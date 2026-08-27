@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { BottomNav, SideNav } from "@/components/AppNav";
+import { BudgetAlert } from "@/components/BudgetAlert";
 import { isLoggedIn } from "@/lib/auth";
 import { TripProvider } from "@/lib/trip-context";
 
@@ -15,6 +16,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-24 lg:px-8 lg:pt-8 lg:pb-10">
             {children}
           </main>
+          <BudgetAlert />
         </TripProvider>
       </div>
       <BottomNav />

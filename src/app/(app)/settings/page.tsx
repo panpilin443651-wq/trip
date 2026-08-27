@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import Link from "next/link";
+import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import {
   Button,
@@ -12,13 +13,17 @@ import {
   SectionTitle,
   Textarea,
 } from "@/components/ui";
+import { buildBreakdown, TONE_CLASSES } from "@/lib/budget";
 import { cn } from "@/lib/cn";
-import { addDaysISO, formatDateThai } from "@/lib/format";
+import { addDaysISO, formatDateThai, formatTHB } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
 
 export default function SettingsPage() {
   const { state, dispatch, exportJSON, importJSON, resetAll } = useTrip();
   const { trip, activities } = state;
+
+  const breakdown = useMemo(() => buildBreakdown(state), [state]);
+  const tone = TONE_CLASSES[breakdown.status.tone];
 
   const fileInput = useRef<HTMLInputElement>(null);
   const [confirmReset, setConfirmReset] = useState(false);
@@ -210,6 +215,43 @@ export default function SettingsPage() {
               </span>
             </div>
           ) : null}
+        </Card>
+
+        <Card as="section">
+          <SectionTitle emoji="💰" title="งบประมาณ" />
+
+          <Field
+            label="งบรวมของทริป (บาท)"
+            hint="ตั้งไว้แล้วระบบจะเตือนเมื่อค่าใช้จ่ายใกล้เต็มหรือเกินงบ"
+          >
+            <NumberInput
+              step={100}
+              placeholder="เช่น 15000"
+              value={trip.totalBudget}
+              onValueChange={(totalBudget) =>
+                dispatch({ type: "updateTrip", patch: { totalBudget } })
+              }
+            />
+          </Field>
+
+          <div className="mt-3 flex flex-wrap items-center justify-between gap-2">
+            <p className="text-sm text-muted">
+              ใช้ไปแล้ว{" "}
+              <span className={cn("font-medium", tone.text)}>
+                {formatTHB(breakdown.totalSpent)}
+              </span>
+              {trip.totalBudget > 0
+                ? breakdown.remaining >= 0
+                  ? ` • เหลือ ${formatTHB(breakdown.remaining)}`
+                  : ` • เกินงบ ${formatTHB(Math.abs(breakdown.remaining))}`
+                : null}
+            </p>
+            <Link href="/budget">
+              <Button variant="secondary" size="sm">
+                🧮 ประมาณการ / แยกหมวด
+              </Button>
+            </Link>
+          </div>
         </Card>
 
         <Card as="section">

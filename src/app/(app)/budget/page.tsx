@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { BudgetCategoryCard } from "@/components/BudgetCategoryCard";
+import { BudgetEstimator } from "@/components/BudgetEstimator";
 import { BudgetSummary } from "@/components/BudgetSummary";
 import { PageHeader } from "@/components/PageHeader";
 import {
@@ -118,6 +119,8 @@ export default function BudgetPage() {
             ))}
           </div>
         </section>
+
+        <BudgetEstimator />
 
         <p className="text-xs leading-relaxed text-faint">
           รายการที่ขึ้นต้นด้วย 📋 มาจากกิจกรรมในหน้าแผนเที่ยว
