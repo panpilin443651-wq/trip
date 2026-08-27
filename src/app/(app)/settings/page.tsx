@@ -8,11 +8,12 @@ import {
   ConfirmDialog,
   Field,
   Input,
+  NumberInput,
   SectionTitle,
   Textarea,
 } from "@/components/ui";
 import { cn } from "@/lib/cn";
-import { addDaysISO, formatDateThai, toNumber } from "@/lib/format";
+import { addDaysISO, formatDateThai } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
 
 export default function SettingsPage() {
@@ -95,20 +96,13 @@ export default function SettingsPage() {
             </Field>
 
             <Field label="จำนวนผู้เดินทาง">
-              <Input
-                type="number"
-                inputMode="numeric"
+              <NumberInput
                 min={1}
                 value={trip.travelers}
-                onChange={(e) =>
+                onValueChange={(travelers) =>
                   dispatch({
                     type: "updateTrip",
-                    patch: {
-                      travelers: Math.max(
-                        1,
-                        Math.round(toNumber(e.target.value, 1)),
-                      ),
-                    },
+                    patch: { travelers: Math.round(travelers) },
                   })
                 }
               />

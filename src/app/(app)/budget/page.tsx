@@ -9,13 +9,14 @@ import {
   Card,
   Field,
   Input,
+  NumberInput,
   SectionTitle,
   Select,
   Sheet,
 } from "@/components/ui";
 import { CATEGORIES } from "@/data/categories";
 import { buildBreakdown } from "@/lib/budget";
-import { formatTHB, toNumber } from "@/lib/format";
+import { formatTHB } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
 import type { CategoryId } from "@/lib/types";
 
@@ -70,17 +71,12 @@ export default function BudgetPage() {
                 : undefined
             }
           >
-            <Input
-              type="number"
-              inputMode="numeric"
-              min={0}
+            <NumberInput
               step={100}
+              placeholder="เช่น 15000"
               value={state.trip.totalBudget}
-              onChange={(e) =>
-                dispatch({
-                  type: "updateTrip",
-                  patch: { totalBudget: Math.max(0, toNumber(e.target.value)) },
-                })
+              onValueChange={(totalBudget) =>
+                dispatch({ type: "updateTrip", patch: { totalBudget } })
               }
             />
           </Field>
@@ -123,19 +119,20 @@ export default function BudgetPage() {
           </div>
         </section>
 
-        <Button
-          variant="secondary"
-          className="w-full sm:hidden"
-          onClick={() => setSheetOpen(true)}
-        >
-          ➕ เพิ่มค่าใช้จ่ายที่ไม่ได้อยู่ในแผน
-        </Button>
-
         <p className="text-xs leading-relaxed text-faint">
           รายการที่ขึ้นต้นด้วย 📋 มาจากกิจกรรมในหน้าแผนเที่ยว
           แก้ไขจำนวนเงินได้ที่กิจกรรมนั้นโดยตรง ส่วน 💵 คือค่าใช้จ่ายที่เพิ่มในหน้านี้
         </p>
       </div>
+
+      <button
+        type="button"
+        onClick={() => setSheetOpen(true)}
+        aria-label="เพิ่มค่าใช้จ่าย"
+        className="fixed right-5 bottom-24 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-white shadow-lg transition-colors hover:bg-brand-dark sm:hidden"
+      >
+        ＋
+      </button>
 
       <Sheet
         open={sheetOpen}
@@ -184,12 +181,9 @@ export default function BudgetPage() {
           </Field>
 
           <Field label="จำนวนเงิน (บาท)">
-            <Input
-              type="number"
-              inputMode="numeric"
-              min={0}
-              value={amount || ""}
-              onChange={(e) => setAmount(Math.max(0, toNumber(e.target.value)))}
+            <NumberInput
+              value={amount}
+              onValueChange={setAmount}
               placeholder="0"
             />
           </Field>

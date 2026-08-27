@@ -2,10 +2,18 @@
 
 import { useState } from "react";
 import { CATEGORIES } from "@/data/categories";
-import { addDaysISO, formatDateShort, toNumber } from "@/lib/format";
+import { addDaysISO, formatDateShort } from "@/lib/format";
 import { searchPlaces, type GeocodeHit } from "@/lib/routing";
 import type { Activity, CategoryId } from "@/lib/types";
-import { Button, Field, Input, Select, Sheet, Textarea } from "./ui";
+import {
+  Button,
+  Field,
+  Input,
+  NumberInput,
+  Select,
+  Sheet,
+  Textarea,
+} from "./ui";
 
 export type ActivityDraft = Omit<Activity, "id" | "order">;
 
@@ -188,15 +196,11 @@ export function ActivityForm({
           </Field>
 
           <Field label="ใช้เวลา (นาที)">
-            <Input
-              type="number"
-              inputMode="numeric"
-              min={0}
+            <NumberInput
               step={5}
+              placeholder="0"
               value={draft.durationMin}
-              onChange={(e) =>
-                patch({ durationMin: Math.max(0, toNumber(e.target.value)) })
-              }
+              onValueChange={(durationMin) => patch({ durationMin })}
             />
           </Field>
         </div>
@@ -231,12 +235,10 @@ export function ActivityForm({
           </Field>
 
           <Field label="ค่าใช้จ่าย (บาท)">
-            <Input
-              type="number"
-              inputMode="numeric"
-              min={0}
+            <NumberInput
+              placeholder="0"
               value={draft.cost}
-              onChange={(e) => patch({ cost: Math.max(0, toNumber(e.target.value)) })}
+              onValueChange={(cost) => patch({ cost })}
             />
           </Field>
         </div>

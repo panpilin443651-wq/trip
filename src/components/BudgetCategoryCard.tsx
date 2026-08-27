@@ -5,9 +5,9 @@ import { useState } from "react";
 import { CATEGORY_MAP } from "@/data/categories";
 import { TONE_CLASSES, type BudgetBreakdown } from "@/lib/budget";
 import { cn } from "@/lib/cn";
-import { formatTHB, toNumber } from "@/lib/format";
+import { formatTHB } from "@/lib/format";
 import type { CategoryId } from "@/lib/types";
-import { Button, Card, Input, ProgressBar } from "./ui";
+import { Button, Card, NumberInput, ProgressBar } from "./ui";
 
 type CategoryRow = BudgetBreakdown["byCategory"][number];
 
@@ -42,15 +42,12 @@ export function BudgetCategoryCard({
         </div>
 
         <div className="w-28 shrink-0">
-          <Input
-            type="number"
-            inputMode="numeric"
-            min={0}
+          <NumberInput
+            step={100}
             value={row.budget}
             aria-label={`งบหมวด${meta.label}`}
-            onChange={(e) =>
-              onBudgetChange(row.id, Math.max(0, toNumber(e.target.value)))
-            }
+            placeholder="0"
+            onValueChange={(next) => onBudgetChange(row.id, next)}
             className="min-h-10 text-right text-sm"
           />
         </div>

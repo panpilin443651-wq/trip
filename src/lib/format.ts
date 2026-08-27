@@ -108,9 +108,3 @@ export function clampNumber(value: number, min: number, max: number): number {
   if (Number.isNaN(value)) return min;
   return Math.min(max, Math.max(min, value));
 }
-
-/** อ่านค่าจาก input type=number ให้ได้ตัวเลขเสมอ */
-export function toNumber(value: string | number, fallback = 0): number {
-  const n = typeof value === "number" ? value : Number(value);
-  return Number.isFinite(n) ? n : fallback;
-}
