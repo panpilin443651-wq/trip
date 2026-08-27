@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #fafaf9;
+  --color-card: #ffffff;
+  --color-ink: #1c1917;
+  --color-muted: #78716c;
+  --color-faint: #a8a29e;
+  --color-line: #e7e5e4;
+  --color-brand: #0d9488;
+  --color-brand-dark: #0f766e;
+  --color-brand-soft: #f0fdfa;
+  --color-ok: #059669;
+  --color-ok-soft: #ecfdf5;
+  --color-warn: #d97706;
+  --color-warn-soft: #fffbeb;
+  --color-danger: #e11d48;
+  --color-danger-soft: #fff1f2;
+
+  --font-sans: var(--font-thai), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  -webkit-tap-highlight-color: transparent;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.leaflet-container {
+  font-family: var(--font-sans);
+  background: #e7e5e4;
+  z-index: 0;
+}
+
+.trip-pin {
+  background: transparent;
+  border: 0;
+}

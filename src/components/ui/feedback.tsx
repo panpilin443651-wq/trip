@@ -1,0 +1,51 @@
+import type { ReactNode } from "react";
+import { cn } from "@/lib/cn";
+
+export function EmptyState({
+  emoji,
+  title,
+  description,
+  action,
+}: {
+  emoji: string;
+  title: string;
+  description: string;
+  action?: ReactNode;
+}) {
+  return (
+    <div className="flex flex-col items-center gap-3 rounded-2xl border border-dashed border-line bg-card/60 px-6 py-10 text-center">
+      <span className="text-4xl" aria-hidden>
+        {emoji}
+      </span>
+      <div>
+        <p className="font-medium">{title}</p>
+        <p className="mt-1 text-sm text-muted">{description}</p>
+      </div>
+      {action}
+    </div>
+  );
+}
+
+export function StatTile({
+  emoji,
+  label,
+  value,
+  valueClass,
+}: {
+  emoji: string;
+  label: string;
+  value: string;
+  valueClass?: string;
+}) {
+  return (
+    <div className="rounded-2xl border border-line bg-card px-3 py-3">
+      <div className="text-lg leading-none" aria-hidden>
+        {emoji}
+      </div>
+      <div className={cn("mt-2 text-lg font-semibold tabular-nums", valueClass)}>
+        {value}
+      </div>
+      <div className="mt-0.5 text-xs text-muted">{label}</div>
+    </div>
+  );
+}

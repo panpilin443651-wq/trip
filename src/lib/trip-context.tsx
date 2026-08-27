@@ -1,0 +1,249 @@
+"use client";
+
+import {
+  createContext,
+  useContext,
+  useEffect,
+  useMemo,
+  useReducer,
+  useRef,
+  useSyncExternalStore,
+  type ReactNode,
+} from "react";
+import { newId } from "./id";
+import { timeToMinutes } from "./format";
+import {
+  clearState,
+  createDefaultState,
+  loadState,
+  normalizeState,
+  saveState,
+} from "./storage";
+import type {
+  Activity,
+  AppState,
+  ChecklistItem,
+  Expense,
+  Place,
+  Trip,
+} from "./types";
+
+type Action =
+  | { type: "replace"; state: AppState }
+  | { type: "updateTrip"; patch: Partial<Trip> }
+  | { type: "setDayCount"; dayCount: number }
+  | { type: "addActivity"; activity: Omit<Activity, "id" | "order"> }
+  | { type: "updateActivity"; id: string; patch: Partial<Activity> }
+  | { type: "deleteActivity"; id: string }
+  | { type: "addExpense"; expense: Omit<Expense, "id"> }
+  | { type: "updateExpense"; id: string; patch: Partial<Expense> }
+  | { type: "deleteExpense"; id: string }
+  | { type: "addPlace"; place: Omit<Place, "id"> }
+  | { type: "updatePlace"; id: string; patch: Partial<Place> }
+  | { type: "deletePlace"; id: string }
+  | { type: "addChecklistItems"; items: Array<Omit<ChecklistItem, "id">> }
+  | { type: "updateChecklistItem"; id: string; patch: Partial<ChecklistItem> }
+  | { type: "deleteChecklistItem"; id: string };
+
+function nextOrder(activities: Activity[]): number {
+  return activities.reduce((max, a) => Math.max(max, a.order), 0) + 1;
+}
+
+function reducer(state: AppState, action: Action): AppState {
+  switch (action.type) {
+    case "replace":
+      return action.state;
+
+    case "updateTrip":
+      return { ...state, trip: { ...state.trip, ...action.patch } };
+
+    case "setDayCount": {
+      const dayCount = Math.max(1, Math.round(action.dayCount));
+      const lastIndex = dayCount - 1;
+      // ย้ายกิจกรรมของวันที่หายไปมาไว้วันสุดท้าย แทนที่จะลบทิ้งเงียบ ๆ
+      const activities = state.activities.map((a) =>
+        a.dayIndex > lastIndex ? { ...a, dayIndex: lastIndex } : a,
+      );
+      return { ...state, trip: { ...state.trip, dayCount }, activities };
+    }
+
+    case "addActivity":
+      return {
+        ...state,
+        activities: [
+          ...state.activities,
+          { ...action.activity, id: newId(), order: nextOrder(state.activities) },
+        ],
+      };
+
+    case "updateActivity":
+      return {
+        ...state,
+        activities: state.activities.map((a) =>
+          a.id === action.id ? { ...a, ...action.patch } : a,
+        ),
+      };
+
+    case "deleteActivity":
+      return {
+        ...state,
+        activities: state.activities.filter((a) => a.id !== action.id),
+      };
+
+    case "addExpense":
+      return {
+        ...state,
+        expenses: [...state.expenses, { ...action.expense, id: newId() }],
+      };
+
+    case "updateExpense":
+      return {
+        ...state,
+        expenses: state.expenses.map((e) =>
+          e.id === action.id ? { ...e, ...action.patch } : e,
+        ),
+      };
+
+    case "deleteExpense":
+      return {
+        ...state,
+        expenses: state.expenses.filter((e) => e.id !== action.id),
+      };
+
+    case "addPlace":
+      return {
+        ...state,
+        places: [...state.places, { ...action.place, id: newId() }],
+      };
+
+    case "updatePlace":
+      return {
+        ...state,
+        places: state.places.map((p) =>
+          p.id === action.id ? { ...p, ...action.patch } : p,
+        ),
+      };
+
+    case "deletePlace":
+      return {
+        ...state,
+        places: state.places.filter((p) => p.id !== action.id),
+      };
+
+    case "addChecklistItems": {
+      const existing = new Set(
+        state.checklist.map((c) => `${c.group}::${c.text}`),
+      );
+      const fresh = action.items
+        .filter((item) => !existing.has(`${item.group}::${item.text}`))
+        .map((item) => ({ ...item, id: newId() }));
+      return { ...state, checklist: [...state.checklist, ...fresh] };
+    }
+
+    case "updateChecklistItem":
+      return {
+        ...state,
+        checklist: state.checklist.map((c) =>
+          c.id === action.id ? { ...c, ...action.patch } : c,
+        ),
+      };
+
+    case "deleteChecklistItem":
+      return {
+        ...state,
+        checklist: state.checklist.filter((c) => c.id !== action.id),
+      };
+
+    default:
+      return state;
+  }
+}
+
+interface TripContextValue {
+  state: AppState;
+  dispatch: React.Dispatch<Action>;
+  /** กิจกรรมของวันหนึ่ง เรียงตามเวลาเริ่ม */
+  activitiesForDay: (dayIndex: number) => Activity[];
+  exportJSON: () => void;
+  importJSON: (file: File) => Promise<void>;
+  resetAll: () => void;
+}
+
+const TripContext = createContext<TripContextValue | null>(null);
+
+/** ตัวช่วยรู้ว่าอยู่บนเบราว์เซอร์แล้วหรือยัง โดยไม่ต้อง setState ใน effect */
+const noopSubscribe = () => () => {};
+
+export function TripProvider({ children }: { children: ReactNode }) {
+  // ฝั่งเซิร์ฟเวอร์ loadState() คืนค่าเริ่มต้นเสมอ ฝั่งเบราว์เซอร์อ่านจาก localStorage
+  const [state, dispatch] = useReducer(reducer, null, loadState);
+  const hydrated = useSyncExternalStore(
+    noopSubscribe,
+    () => true,
+    () => false,
+  );
+  const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    if (!hydrated) return;
+    if (saveTimer.current) clearTimeout(saveTimer.current);
+    saveTimer.current = setTimeout(() => saveState(state), 250);
+    return () => {
+      if (saveTimer.current) clearTimeout(saveTimer.current);
+    };
+  }, [state, hydrated]);
+
+  const value = useMemo<TripContextValue>(
+    () => ({
+      state,
+      dispatch,
+      activitiesForDay: (dayIndex: number) =>
+        state.activities
+          .filter((a) => a.dayIndex === dayIndex)
+          .sort(
+            (a, b) =>
+              timeToMinutes(a.startTime) - timeToMinutes(b.startTime) ||
+              a.order - b.order,
+          ),
+      exportJSON: () => {
+        const blob = new Blob([JSON.stringify(state, null, 2)], {
+          type: "application/json",
+        });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `travel-planner-${state.trip.startDate}.json`;
+        link.click();
+        URL.revokeObjectURL(url);
+      },
+      importJSON: async (file: File) => {
+        const text = await file.text();
+        dispatch({ type: "replace", state: normalizeState(JSON.parse(text)) });
+      },
+      resetAll: () => {
+        clearState();
+        dispatch({ type: "replace", state: createDefaultState() });
+      },
+    }),
+    [state],
+  );
+
+  if (!hydrated) {
+    return (
+      <div className="flex flex-1 items-center justify-center py-24">
+        <div className="flex flex-col items-center gap-3 text-muted">
+          <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-brand" />
+          <span className="text-sm">กำลังโหลดข้อมูลทริป…</span>
+        </div>
+      </div>
+    );
+  }
+
+  return <TripContext.Provider value={value}>{children}</TripContext.Provider>;
+}
+
+export function useTrip(): TripContextValue {
+  const ctx = useContext(TripContext);
+  if (!ctx) throw new Error("useTrip ต้องอยู่ภายใน <TripProvider>");
+  return ctx;
+}

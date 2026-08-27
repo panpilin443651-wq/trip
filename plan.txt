@@ -1,0 +1,120 @@
+===============================================================================
+ TRAVEL PLANNER — แผนงานและความคืบหน้า
+ อัปเดตล่าสุด: 2026-08-27
+===============================================================================
+
+## ที่มา
+สเปกต้นฉบับอยู่ในไฟล์ "วันที่2" (โฟลเดอร์เดียวกัน)
+เว็บวางแผนการท่องเที่ยว: จัดกิจกรรมรายวัน + คุมงบแยกหมวด + Checklist +
+Places to Visit + แนะนำเที่ยวตามจังหวัด + แผนที่และระยะทาง
+ล็อกอินด้วยรหัส fixed ไม่ใช้ database, deploy บน Vercel
+
+## ข้อกำหนดจากผู้ใช้
+- แผนที่/ระยะทาง : Leaflet + OpenStreetMap + OSRM (ฟรี ไม่ต้องมี API key)
+- เก็บข้อมูล     : localStorage เท่านั้น + Export/Import JSON
+- ข้อมูลแนะนำ    : 10 จังหวัดยอดนิยม
+- การรัน         : ไม่ต้องติดตั้ง/รันอะไรเพิ่มในเครื่อง — ให้รันบน Vercel
+- UI             : ภาษาไทย, Modern Minimal, mobile-first
+
+## Tech Stack (ติดตั้งครบแล้ว ไม่ต้องลงเพิ่ม)
+Next.js 16.3.3 (App Router, Turbopack) + React 19 + TypeScript
+Tailwind CSS v4
+leaflet 1.9 + react-leaflet 5 + @types/leaflet
+ฟอนต์ Noto Sans Thai ผ่าน next/font/google
+
+===============================================================================
+## สถานะงาน
+===============================================================================
+
+[x] 1. Scaffold โปรเจกต์ + Design System (สี/ฟอนต์/คอมโพเนนต์ UI)
+[x] 2. Auth  — Server Action + httpOnly cookie, guard ที่ (app)/layout.tsx
+[x] 3. State — types / storage (localStorage) / TripProvider (useReducer)
+[x] 4. หน้า ตั้งค่าทริป (settings)
+[x] 5. หน้า แผนเที่ยว (itinerary) + ฟอร์มกิจกรรม CRUD
+[x] 6. หน้า งบประมาณ (budget) + สถานะสีเขียว/เหลือง/แดง
+[x] 7. หน้า สถานที่ (places) + Checklist
+[x] 8. ข้อมูลแนะนำ 10 จังหวัด + หน้า explore
+[x] 9. หน้า แผนที่ + คำนวณระยะทาง (Leaflet/OSRM)
+[x] 10. หน้า Dashboard + หน้า More
+[x] 11. README + .env.example + vercel.json
+
+*** เสร็จครบทุกข้อ — build ผ่าน, eslint สะอาด, พร้อม deploy ***
+
+ผลการตรวจ (27 ส.ค. 2026)
+  npm run build   ผ่าน — 15 route, TypeScript ไม่มี error
+  npx eslint .    ผ่าน — ไม่มี error/warning
+  เข้า /dashboard โดยยังไม่ล็อกอิน  -> 307 redirect ไป /login  ✓
+  ทุกหน้าหลังล็อกอิน (9 หน้า)        -> 200 ทั้งหมด           ✓
+  GET /api/geocode?q=วัดร่องขุ่น     -> คืนพิกัดจาก Nominatim  ✓
+  GET /api/route (ดอยสุเทพ→เจดีย์หลวง) -> 16.8 กม. / 29 นาที   ✓
+
+===============================================================================
+## โครงสร้างไฟล์
+===============================================================================
+src/app/
+  layout.tsx                 root layout + ฟอนต์ไทย
+  page.tsx                   redirect -> /login หรือ /dashboard
+  login/                     page.tsx, LoginForm.tsx, actions.ts
+  api/logout/route.ts        ลบคุกกี้แล้วเด้งกลับ login
+  api/route/route.ts         พร็อกซี OSRM (ระยะทาง/เวลา/เส้นทาง)
+  api/geocode/route.ts       พร็อกซี Nominatim (ค้นหาชื่อ -> พิกัด)
+  (app)/layout.tsx           auth guard + TripProvider + nav
+  (app)/{dashboard,itinerary,budget,places,checklist,explore,map,more,settings}
+
+src/components/
+  ui/                        primitives, form, overlay, feedback (+ index.ts)
+  AppNav.tsx                 BottomNav (มือถือ) + SideNav (desktop)
+  PageHeader.tsx  DayTabs.tsx
+  ActivityCard.tsx  ActivityForm.tsx
+  BudgetSummary.tsx  BudgetCategoryCard.tsx
+
+src/lib/
+  types.ts  storage.ts  trip-context.tsx  auth.ts  nav.ts  cn.ts  id.ts
+  format.ts   เงินบาท / วันที่ไทย / เวลา / ระยะเวลา
+  geo.ts      haversine + ฟอร์แมตระยะทาง
+  budget.ts   getBudgetStatus() = ตรรกะสีจุดเดียวของทั้งแอป
+  routing.ts  เรียก /api/route + cache + fallback เป็นค่าประมาณ
+
+src/data/
+  categories.ts  6 หมวดงบ + priority
+  checklist-templates.ts
+  provinces.ts   ข้อมูลแนะนำ 10 จังหวัด
+
+===============================================================================
+## กติกาสำคัญของระบบ
+===============================================================================
+- ลดจำนวนวัน  -> เตือนก่อน แล้วย้ายกิจกรรมของวันที่หายไปมาไว้วันสุดท้าย
+                 (ไม่ลบทิ้งเงียบ ๆ)
+- ค่าใช้จ่าย   -> spent = ผลรวม activity.cost + expense.amount ของหมวดนั้น
+- สถานะสี     -> เขียว = ยังไม่เกินงบ / เหลือง = ใช้ไป >= 90% / แดง = เกินงบ
+                 มาจาก getBudgetStatus() ที่เดียว ห้ามเขียนเงื่อนไขสีซ้ำ
+- ลำดับกิจกรรม -> เรียงตามเวลาเริ่มเสมอ (แก้ลำดับด้วยการแก้เวลา)
+- ระยะทาง     -> ขอจาก OSRM ก่อน ถ้าไม่สำเร็จใช้ haversine x 1.3 + แสดง badge
+                 เตือนว่าเป็นค่าประมาณ ไม่ปล่อยให้หน้าแผนที่พัง
+
+===============================================================================
+## ล็อกอิน
+===============================================================================
+username: admin
+password: raotworkshop
+เปลี่ยนได้ผ่าน env var บน Vercel: AUTH_USERNAME / AUTH_PASSWORD
+(ไม่ตั้งก็ใช้ค่า default ด้านบนได้เลย)
+
+===============================================================================
+## Deploy บน Vercel
+===============================================================================
+1. git init && git add -A && git commit
+2. push ขึ้น GitHub
+3. Vercel -> Add New Project -> Import repo
+   Framework Preset: Next.js  (ตรวจจับอัตโนมัติ ไม่ต้องตั้งค่าเพิ่ม)
+4. (ไม่บังคับ) ตั้ง Environment Variables: AUTH_USERNAME, AUTH_PASSWORD
+5. Deploy
+
+===============================================================================
+## ข้อจำกัดที่ต้องรู้
+===============================================================================
+- ข้อมูลอยู่ใน localStorage ของเบราว์เซอร์เครื่องนั้น เปลี่ยนเครื่อง = ข้อมูล
+  ไม่ตามไป ให้ใช้ Export/Import JSON
+- ล็อกอินแบบรหัส fixed กันคนทั่วไปเข้าดูเท่านั้น ไม่เหมาะกับข้อมูลลับ
+- ค่าเข้า/เวลาในข้อมูลแนะนำเป็นค่าประมาณ ควรเช็กก่อนเดินทางจริง
+- OSRM/Nominatim เป็น public server มี rate limit ไม่มี SLA
