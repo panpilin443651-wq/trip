@@ -141,7 +141,7 @@ export default function PlacesPage() {
             className={cn(
               "min-h-10 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors",
               filter === item.id
-                ? "border-brand bg-brand text-white"
+                ? "border-brand bg-brand text-canvas"
                 : "border-line bg-card text-muted hover:text-ink",
             )}
           >
@@ -189,7 +189,7 @@ export default function PlacesPage() {
                     className={cn(
                       "mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border-2 text-base transition-colors",
                       place.visited
-                        ? "border-ok bg-ok text-white"
+                        ? "border-ok bg-ok text-canvas"
                         : "border-line text-transparent hover:border-ok",
                     )}
                   >
@@ -255,7 +255,7 @@ export default function PlacesPage() {
         type="button"
         onClick={openCreate}
         aria-label="เพิ่มสถานที่"
-        className="fixed right-5 bottom-24 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-white shadow-lg transition-colors hover:bg-brand-dark sm:hidden"
+        className="fixed right-5 bottom-24 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-canvas shadow-lg transition-colors hover:bg-brand-dark sm:hidden"
       >
         ＋
       </button>

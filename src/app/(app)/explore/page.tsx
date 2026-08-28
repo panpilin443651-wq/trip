@@ -143,7 +143,7 @@ export default function ExplorePage() {
               className={cn(
                 "min-h-10 shrink-0 rounded-full border px-3.5 text-sm font-medium transition-colors",
                 item.id === provinceId
-                  ? "border-brand bg-brand text-white"
+                  ? "border-brand bg-brand text-canvas"
                   : "border-line bg-card text-muted hover:text-ink",
               )}
             >
@@ -351,7 +351,7 @@ export default function ExplorePage() {
       {toast ? (
         <div
           role="status"
-          className="fixed inset-x-4 bottom-24 z-40 rounded-xl bg-ink px-4 py-3 text-center text-sm text-white shadow-lg lg:inset-x-auto lg:right-8 lg:bottom-8 lg:max-w-sm"
+          className="fixed inset-x-4 bottom-24 z-40 rounded-xl bg-gold-fill px-4 py-3 text-center text-sm font-medium text-canvas shadow-lg lg:inset-x-auto lg:right-8 lg:bottom-8 lg:max-w-sm"
         >
           {toast}
         </div>

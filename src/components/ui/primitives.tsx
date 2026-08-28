@@ -45,10 +45,10 @@ export function SectionTitle({
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
-  primary: "bg-brand text-white hover:bg-brand-dark active:bg-brand-dark",
-  secondary: "bg-white text-ink border border-line hover:bg-canvas",
+  primary: "bg-brand text-canvas hover:bg-brand-dark active:bg-brand-dark",
+  secondary: "bg-card text-ink border border-line hover:bg-canvas",
   ghost: "bg-transparent text-muted hover:bg-line/60 hover:text-ink",
-  danger: "bg-danger-soft text-danger hover:bg-danger hover:text-white",
+  danger: "bg-danger-soft text-danger hover:bg-danger hover:text-canvas",
 };
 
 export function Button({

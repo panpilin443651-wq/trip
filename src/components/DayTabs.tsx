@@ -32,7 +32,7 @@ export function DayTabs({
               className={cn(
                 "min-h-11 shrink-0 rounded-xl border px-4 text-sm font-medium transition-colors",
                 active
-                  ? "border-brand bg-brand text-white"
+                  ? "border-brand bg-brand text-canvas"
                   : "border-line bg-card text-muted hover:text-ink",
               )}
             >
@@ -40,7 +40,7 @@ export function DayTabs({
               <span
                 className={cn(
                   "ml-1.5 text-xs",
-                  active ? "text-white/80" : "text-faint",
+                  active ? "text-canvas/70" : "text-faint",
                 )}
               >
                 {formatDateShort(addDaysISO(startDate, index))}

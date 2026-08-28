@@ -18,20 +18,20 @@ import type { Activity, AppState } from "./types";
 
 /** ต้องตรงกับ @theme ใน globals.css เพราะ canvas อ่านตัวแปร CSS ไม่ได้ */
 const PALETTE = {
-  canvas: "#f8f9fc",
-  card: "#ffffff",
-  ink: "#15203c",
-  muted: "#5a6784",
-  faint: "#8791a5",
-  line: "#e3e7ef",
-  brand: "#1e3159",
-  brandSoft: "#eef1f8",
-  gold: "#876d1a",
+  canvas: "#0e1a30",
+  card: "#172642",
+  ink: "#f4f6fa",
+  muted: "#a9b6cc",
+  faint: "#8090a8",
+  line: "#2b3b58",
+  brand: "#e0bd52",
+  brandSoft: "#1f2c49",
+  gold: "#e0bd52",
   goldFill: "#c9a227",
-  goldSoft: "#fbf5e4",
-  ok: "#17795e",
-  warn: "#8d6909",
-  danger: "#b3261e",
+  goldSoft: "#2a2515",
+  ok: "#58d0a5",
+  warn: "#ecc352",
+  danger: "#ff8f8a",
 };
 
 const W = 1080;
@@ -230,7 +230,7 @@ export function drawTripSummary(
   // ---------- การ์ดงบ ----------
   const budgetH = 130;
   const over = breakdown.status.tone === "over";
-  ctx.fillStyle = over ? "#fdeceb" : PALETTE.brandSoft;
+  ctx.fillStyle = over ? "#3d1c1c" : PALETTE.brandSoft;
   roundRect(ctx, PAD, y, innerW, budgetH, 24);
   ctx.fill();
 

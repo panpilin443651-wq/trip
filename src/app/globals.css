@@ -1,42 +1,43 @@
 @import "tailwindcss";
 
 /*
- * ธีมกรม-ขาว-ทอง
- * กรมเป็นสีหลักของปุ่มและลิงก์ ขาวเป็นพื้นการ์ด ทองเป็นสีเน้น
- * ทุกคู่สีผ่านเกณฑ์ contrast 4.5:1 (ตัวอักษรประกอบ 3:1)
- * ทองสว่างเกินกว่าจะใส่ตัวอักษรขาว จึงแยกเป็น gold (ตัวอักษร)
- * กับ gold-fill (พื้น ใช้คู่กับตัวอักษรสีกรม)
+ * ธีมกรม-ทอง (โหมดเข้ม)
+ * พื้นหลังและการ์ดเป็นสีกรม ตัวอักษรสว่าง ทองเป็นสีหลักของปุ่มและจุดเน้น
+ *
+ * ปุ่มทองต้องใช้ตัวอักษรสีกรม (text-canvas) ไม่ใช่สีขาว
+ * เพราะขาวบนทองมี contrast แค่ 2.4 ซึ่งอ่านไม่ออก
+ * ทุกคู่สีที่ใช้จริงผ่านเกณฑ์ 4.5:1 แล้ว (ตัวอักษรประกอบ 3:1)
  */
 @theme {
-  --color-canvas: #f8f9fc;
-  --color-card: #ffffff;
-  --color-ink: #15203c;
-  --color-muted: #5a6784;
-  --color-faint: #8791a5;
-  --color-line: #e3e7ef;
+  --color-canvas: #0e1a30;
+  --color-card: #172642;
+  --color-ink: #f4f6fa;
+  --color-muted: #a9b6cc;
+  --color-faint: #8090a8;
+  --color-line: #2b3b58;
 
-  --color-brand: #1e3159;
-  --color-brand-dark: #16244a;
-  --color-brand-soft: #eef1f8;
+  /* brand = ทอง ใช้กับปุ่มหลักและสถานะ active */
+  --color-brand: #c9a227;
+  --color-brand-dark: #b08e1c;
+  --color-brand-soft: #1f2c49;
 
-  /* ทองใช้เป็นสีเน้น: gold = สีตัวอักษร, gold-fill = สีพื้น (ต้องใช้ตัวอักษรสีกรม) */
-  --color-gold: #876d1a;
+  --color-gold: #e0bd52;
   --color-gold-fill: #c9a227;
-  --color-gold-soft: #fbf5e4;
+  --color-gold-soft: #2a2515;
 
-  --color-ok: #17795e;
-  --color-ok-soft: #e6f4ef;
-  --color-warn: #8d6909;
-  --color-warn-soft: #fdf3dc;
-  --color-danger: #b3261e;
-  --color-danger-soft: #fdeceb;
+  --color-ok: #58d0a5;
+  --color-ok-soft: #12362c;
+  --color-warn: #ecc352;
+  --color-warn-soft: #3a2f12;
+  --color-danger: #ff8f8a;
+  --color-danger-soft: #3d1c1c;
 
   --font-sans: var(--font-thai), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;
 }
 
 html {
-  color-scheme: light;
+  color-scheme: dark;
 }
 
 body {
@@ -44,6 +45,12 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-tap-highlight-color: transparent;
+}
+
+/* ช่องกรอกวันที่/เวลาของเบราว์เซอร์มีไอคอนสีเข้ม ต้องกลับสีให้เห็นบนพื้นกรม */
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+  filter: invert(1) opacity(0.65);
 }
 
 .no-scrollbar::-webkit-scrollbar {
@@ -67,9 +74,30 @@ body {
 
 /*
  * โหมดพิมพ์ — ใช้ตอนกด "บันทึกเป็น PDF" ในหน้าสรุปแผน
- * ซ่อนเมนูและปุ่มทั้งหมด เหลือแต่เนื้อหาสรุป
+ * พลิกโทเคนกลับเป็นโทนสว่าง เพราะพิมพ์พื้นกรมเต็มหน้าจะเปลืองหมึกและอ่านยาก
  */
 @media print {
+  :root {
+    --color-canvas: #ffffff;
+    --color-card: #ffffff;
+    --color-ink: #15203c;
+    --color-muted: #4a5876;
+    --color-faint: #6b7794;
+    --color-line: #d8ddea;
+    --color-brand: #7a6111;
+    --color-brand-dark: #7a6111;
+    --color-brand-soft: #f6f1e2;
+    --color-gold: #7a6111;
+    --color-gold-fill: #d8c47a;
+    --color-gold-soft: #f6f1e2;
+    --color-ok: #146b52;
+    --color-ok-soft: #e6f4ef;
+    --color-warn: #7d5d08;
+    --color-warn-soft: #fdf3dc;
+    --color-danger: #a3221b;
+    --color-danger-soft: #fdeceb;
+  }
+
   nav,
   aside,
   .print-hide {
@@ -78,6 +106,7 @@ body {
 
   body {
     background: #fff;
+    color: #15203c;
   }
 
   main {

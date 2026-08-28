@@ -47,7 +47,7 @@ export function ProvincePicker({
             return (
               <li
                 key={name}
-                className="flex items-center gap-2 rounded-xl border border-line bg-white px-3 py-2"
+                className="flex items-center gap-2 rounded-xl border border-line bg-card px-3 py-2"
               >
                 <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold-fill text-xs font-semibold text-ink">
                   {index + 1}

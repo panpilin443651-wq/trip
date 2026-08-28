@@ -160,7 +160,7 @@ export default function SettingsPage() {
                 "rounded-xl border px-4 py-4 text-left transition-colors",
                 isDayTrip
                   ? "border-brand bg-brand-soft"
-                  : "border-line bg-white hover:bg-canvas",
+                  : "border-line bg-card hover:bg-brand-soft",
               )}
             >
               <div className="text-2xl leading-none" aria-hidden>
@@ -179,7 +179,7 @@ export default function SettingsPage() {
                 "rounded-xl border px-4 py-4 text-left transition-colors",
                 !isDayTrip
                   ? "border-brand bg-brand-soft"
-                  : "border-line bg-white hover:bg-canvas",
+                  : "border-line bg-card hover:bg-brand-soft",
               )}
             >
               <div className="text-2xl leading-none" aria-hidden>

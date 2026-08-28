@@ -26,10 +26,10 @@ function numberedIcon(index: number) {
     className: "trip-pin",
     html: `<div style="
       width:30px;height:30px;border-radius:9999px;
-      background:#c9a227;color:#15203c;
+      background:#c9a227;color:#0e1a30;
       display:flex;align-items:center;justify-content:center;
       font:600 13px/1 system-ui,sans-serif;
-      border:2px solid #1e3159;box-shadow:0 1px 4px rgba(0,0,0,.35);
+      border:2px solid #0e1a30;box-shadow:0 1px 4px rgba(0,0,0,.35);
     ">${index + 1}</div>`,
     iconSize: [30, 30],
     iconAnchor: [15, 15],
@@ -83,7 +83,7 @@ export default function TripMap({
       {geometry.length > 1 ? (
         <Polyline
           positions={geometry}
-          pathOptions={{ color: "#1e3159", weight: 4, opacity: 0.75 }}
+          pathOptions={{ color: "#c9a227", weight: 5, opacity: 0.9 }}
         />
       ) : null}
 

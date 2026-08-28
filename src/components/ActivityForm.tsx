@@ -153,7 +153,7 @@ export function ActivityForm({
               <li key={`${hit.lat},${hit.lng}`}>
                 <button
                   type="button"
-                  className="w-full rounded-lg px-2 py-2 text-left text-sm hover:bg-white"
+                  className="w-full rounded-lg px-2 py-2 text-left text-sm hover:bg-brand-soft"
                   onClick={() => {
                     patch({
                       lat: hit.lat,
@@ -211,7 +211,7 @@ export function ActivityForm({
               key={minutes}
               type="button"
               onClick={() => patch({ durationMin: minutes })}
-              className="rounded-full border border-line bg-white px-3 py-1.5 text-xs text-muted hover:border-brand hover:text-brand"
+              className="rounded-full border border-line bg-card px-3 py-1.5 text-xs text-muted hover:border-brand hover:text-brand"
             >
               {minutes >= 60 ? `${minutes / 60} ชม.` : `${minutes} นาที`}
             </button>

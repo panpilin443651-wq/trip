@@ -35,7 +35,7 @@ export function Field({
 }
 
 const CONTROL_CLASS =
-  "w-full min-h-11 rounded-xl border border-line bg-white px-3 py-2 text-sm text-ink " +
+  "w-full min-h-11 rounded-xl border border-line bg-card px-3 py-2 text-sm text-ink " +
   "placeholder:text-faint focus:border-brand focus:ring-2 focus:ring-brand/20 focus:outline-none";
 
 export function Input({

@@ -59,7 +59,7 @@ export function BudgetEstimator() {
               "min-h-16 rounded-xl border px-2 py-2 text-center transition-colors",
               item.id === style
                 ? "border-brand bg-brand-soft"
-                : "border-line bg-white hover:bg-canvas",
+                : "border-line bg-card hover:bg-brand-soft",
             )}
           >
             <span className="block text-lg leading-none" aria-hidden>
