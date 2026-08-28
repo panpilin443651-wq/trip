@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { TONE_CLASSES, TONE_EMOJI, type BudgetBreakdown } from "@/lib/budget";
 import { cn } from "@/lib/cn";
 import { formatTHB } from "@/lib/format";
@@ -8,9 +9,12 @@ import { Card, ProgressBar } from "./ui";
 export function BudgetSummary({
   breakdown,
   compact = false,
+  children,
 }: {
   breakdown: BudgetBreakdown;
   compact?: boolean;
+  /** เนื้อหาเสริมท้ายการ์ด เช่น ยอดแยกหมวดในหน้าสรุปแผน */
+  children?: ReactNode;
 }) {
   const { status, totalBudget, totalSpent, remaining } = breakdown;
   const tone = TONE_CLASSES[status.tone];
@@ -63,6 +67,8 @@ export function BudgetSummary({
           </span>
         </span>
       </div>
+
+      {children}
 
       {!compact && status.tone === "empty" ? (
         <p className="mt-3 rounded-xl bg-canvas px-3 py-2.5 text-xs text-muted">

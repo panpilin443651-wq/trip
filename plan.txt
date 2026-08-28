@@ -79,6 +79,8 @@ src/components/
   PageHeader.tsx  DayTabs.tsx
   ActivityCard.tsx  ActivityForm.tsx
   BudgetSummary.tsx  BudgetCategoryCard.tsx  BudgetEstimator.tsx
+  TripOverviewCard.tsx  การ์ดข้อมูลทริป ใช้ทั้งหน้าหลักและหน้าสรุปแผน
+  DayPlanLine.tsx       บรรทัดจังหวัด/วิธีเดินทางของวัน ใช้ทั้งสองหน้าเช่นกัน
   BudgetAlert.tsx    popup เตือนเกินงบ (mount ใน layout)
   ProvinceSelect.tsx เลือกจังหวัดเดียว / ProvincePicker.tsx เลือกหลายจังหวัด
   TripSuggestions.tsx ช่องแนะนำสถานที่+กิจกรรมจากจังหวัดที่เลือกไว้
