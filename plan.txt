@@ -89,6 +89,9 @@ src/lib/
   geo.ts      haversine + ฟอร์แมตระยะทาง
   budget.ts   getBudgetStatus() = ตรรกะสีจุดเดียวของทั้งแอป
   routing.ts  เรียก /api/route + cache + fallback เป็นค่าประมาณ
+  metro-route.ts ค้นเส้นทาง BTS/MRT ด้วย Dijkstra ถ่วงน้ำหนักการเปลี่ยนสาย
+               จุดเปลี่ยนสายหาจากระยะทาง <=350 ม. ไม่ใช่ชื่อ
+               เพราะสถานีเดียวกันคนละชื่อข้ามระบบ (อโศก = สุขุมวิท)
   estimate.ts ประมาณการค่าใช้จ่าย 3 สไตล์ (ประหยัด/ปานกลาง/สบาย)
   summary-image.ts วาดสรุปแผนลง canvas เอง แล้วเซฟเป็น PNG
                (ไม่ใช้ html2canvas เพราะไม่อยากเพิ่ม dependency
@@ -99,7 +102,8 @@ scripts/       geofill.js + validate-coords.js + gen-districts.js + fill-distric
 
 src/data/
   categories.ts  6 หมวดงบ + priority
-  transport.ts   8 วิธีเดินทาง (เครื่องบิน รถไฟ รถยนต์ ฯลฯ)
+  transport.ts   9 วิธีเดินทาง (เครื่องบิน รถไฟ รถยนต์ รถไฟฟ้า ฯลฯ)
+  metro.ts       BTS/MRT 7 สาย 172 สถานี (สร้างจาก scripts/gen-metro.js)
   districts.ts   อำเภอครบ 77 จังหวัด / 928 อำเภอ (สร้างจาก scripts/gen-districts.js)
   checklist-templates.ts
   provinces/     ข้อมูลแนะนำ 77 จังหวัด แยกไฟล์ตามภาค + index.ts รวมและเรียง

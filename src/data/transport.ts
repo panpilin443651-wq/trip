@@ -6,6 +6,7 @@ export type TransportId =
   | "van"
   | "boat"
   | "motorcycle"
+  | "metro"
   | "walk";
 
 export interface TransportMeta {
@@ -24,6 +25,12 @@ export const TRANSPORTS: TransportMeta[] = [
   { id: "van", label: "รถตู้", emoji: "🚐", hint: "รถตู้โดยสารหรือเหมา" },
   { id: "boat", label: "เรือ", emoji: "⛴️", hint: "เรือข้ามเกาะหรือเรือโดยสาร" },
   {
+    id: "metro",
+    label: "รถไฟฟ้า",
+    emoji: "🚇",
+    hint: "BTS / MRT — มีเฉพาะกรุงเทพฯ และปริมณฑล",
+  },
+  {
     id: "motorcycle",
     label: "มอเตอร์ไซค์",
     emoji: "🏍️",
@@ -37,6 +44,18 @@ export const TRANSPORT_MAP: Record<TransportId, TransportMeta> =
     TransportId,
     TransportMeta
   >;
+
+/** จังหวัดที่มีรถไฟฟ้าให้เลือก */
+export const METRO_PROVINCES = [
+  "กรุงเทพมหานคร",
+  "นนทบุรี",
+  "ปทุมธานี",
+  "สมุทรปราการ",
+];
+
+export function hasMetro(province: string): boolean {
+  return METRO_PROVINCES.includes(province.trim());
+}
 
 export function transportOf(id: string | undefined): TransportMeta | null {
   return id && id in TRANSPORT_MAP

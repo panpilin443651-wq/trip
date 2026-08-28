@@ -1,7 +1,8 @@
 "use client";
 
 import { PROVINCES_BY_REGION } from "@/data/provinces";
-import { TRANSPORTS, transportOf } from "@/data/transport";
+import { TRANSPORTS, hasMetro, transportOf } from "@/data/transport";
+import { MetroPlanner } from "./MetroPlanner";
 import { cn } from "@/lib/cn";
 import { useTrip } from "@/lib/trip-context";
 import { Field, Input, Select } from "./ui";
@@ -23,8 +24,22 @@ export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
   };
   const transport = transportOf(plan.transport);
 
+  // รถไฟฟ้ามีเฉพาะ กทม. และปริมณฑล ไม่ควรโผล่ให้เลือกในจังหวัดอื่น
+  const metroAvailable = hasMetro(plan.province);
+  const options = TRANSPORTS.filter(
+    (item) => item.id !== "metro" || metroAvailable,
+  );
+  const showMetroPlanner = metroAvailable && plan.transport === "metro";
+
   function update(patch: Partial<typeof plan>) {
     dispatch({ type: "setDayPlan", dayIndex, patch });
+  }
+
+  function updateProvince(province: string) {
+    // ย้ายไปจังหวัดที่ไม่มีรถไฟฟ้าแล้วยังค้างตัวเลือกไว้จะสับสน
+    const dropMetro =
+      plan.transport === "metro" && !hasMetro(province);
+    update(dropMetro ? { province, transport: "" } : { province });
   }
 
   return (
@@ -55,7 +70,7 @@ export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
         <Field label="จังหวัดของวันนี้">
           <Select
             value={plan.province}
-            onChange={(e) => update({ province: e.target.value })}
+            onChange={(e) => updateProvince(e.target.value)}
           >
             <option value="">— ยังไม่ระบุ —</option>
 
@@ -89,13 +104,19 @@ export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
             onChange={(e) => update({ transport: e.target.value })}
           >
             <option value="">— ยังไม่ระบุ —</option>
-            {TRANSPORTS.map((item) => (
+            {options.map((item) => (
               <option key={item.id} value={item.id}>
                 {item.emoji} {item.label}
               </option>
             ))}
           </Select>
         </Field>
+
+        {showMetroPlanner ? (
+          <div className="sm:col-span-2">
+            <MetroPlanner />
+          </div>
+        ) : null}
 
         <Field label="บันทึกการเดินทาง" className="sm:col-span-2">
           <Input
