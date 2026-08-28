@@ -34,3 +34,25 @@ node scripts/validate-coords.js src/data/provinces/*.ts
 ```
 
 รายงานจุดที่อยู่ไกลจากศูนย์กลางจังหวัดผิดปกติ ตั้งระยะเองได้ด้วย `LIMIT=200`
+
+## gen-districts.js — สร้างรายชื่ออำเภอ
+
+```bash
+node scripts/gen-districts.js <ไฟล์ชื่อจังหวัด.json> src/data/districts.ts
+```
+
+ดึงจาก thailand-geography-json (MIT) แล้วสรุปเป็น จังหวัด → รายชื่ออำเภอ
+ปัจจุบันได้ครบ 77 จังหวัด / 928 อำเภอ
+
+## fill-districts.js — เติมอำเภอให้สถานที่แนะนำ
+
+```bash
+node scripts/fill-districts.js src/data/provinces/north.ts
+```
+
+reverse geocode พิกัดของแต่ละสถานที่กับ Nominatim แล้วเติมฟิลด์ `district`
+เติมเฉพาะรายการที่ยังไม่มี รันซ้ำได้ไม่ยิงซ้ำ
+
+**ตรวจผลก่อนเขียนเสมอ** — จุดที่ติดชายแดนมักคืนชื่อเขตปกครองของประเทศ
+เพื่อนบ้านมา (เช่น บ้านรักไทยเคยได้ "จังหวัดล้างเค้อ" ของเมียนมา)
+สคริปต์จะทิ้งผลที่ไม่ตรงกับรายชื่ออำเภอใน `districts.ts` ของจังหวัดนั้น

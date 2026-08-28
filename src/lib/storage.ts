@@ -11,6 +11,7 @@ export function createDefaultState(): AppState {
     trip: {
       name: "ทริปของฉัน",
       provinces: [],
+      districts: {},
       startDate: todayISO(),
       dayCount: 1,
       travelers: 1,
@@ -64,6 +65,16 @@ export function normalizeState(raw: unknown): AppState {
       totalBudget: Math.max(0, Number(trip.totalBudget) || 0),
       budgets: { ...EMPTY_BUDGETS, ...(trip.budgets ?? {}) },
       provinces: [...new Set(provinces)],
+      // เก็บเฉพาะอำเภอของจังหวัดที่ยังอยู่ในแผน กันข้อมูลค้างหลังเอาจังหวัดออก
+      districts: Object.fromEntries(
+        Object.entries(
+          (trip.districts ?? {}) as Record<string, unknown>,
+        ).flatMap(([province, list]) =>
+          provinces.includes(province) && Array.isArray(list)
+            ? [[province, [...new Set(list.filter((d) => typeof d === "string"))]]]
+            : [],
+        ),
+      ),
     },
     activities: Array.isArray(input.activities)
       ? input.activities.filter((a) => a && typeof a.id === "string")

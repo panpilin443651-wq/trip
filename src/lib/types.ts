@@ -12,6 +12,8 @@ export interface Trip {
   name: string;
   /** จังหวัดที่จะไปในทริปนี้ ไปได้หลายจังหวัดในทริปเดียว */
   provinces: string[];
+  /** อำเภอที่เลือกในแต่ละจังหวัด เช่น { "เชียงใหม่": ["เมืองเชียงใหม่", "แม่ริม"] } */
+  districts: Record<string, string[]>;
   /** ISO date 'YYYY-MM-DD' */
   startDate: string;
   /** 1 = day trip, > 1 = ทริปหลายวัน */

@@ -11,6 +11,7 @@ import {
 } from "@/components/ActivityForm";
 import { DayTabs } from "@/components/DayTabs";
 import { PageHeader } from "@/components/PageHeader";
+import { NearbyRestaurants } from "@/components/NearbyRestaurants";
 import { TripSuggestions } from "@/components/TripSuggestions";
 import { Button, Card, ConfirmDialog, EmptyState } from "@/components/ui";
 import {
@@ -19,6 +20,7 @@ import {
   formatDuration,
   formatTHB,
 } from "@/lib/format";
+import { hasCoords } from "@/lib/geo";
 import { useTrip } from "@/lib/trip-context";
 import type { Activity } from "@/lib/types";
 
@@ -152,8 +154,12 @@ export default function ItineraryPage() {
         </>
       )}
 
-      <div className="mt-4">
+      <div className="mt-4 space-y-4">
         <TripSuggestions dayIndex={safeDayIndex} />
+        <NearbyRestaurants
+          dayIndex={safeDayIndex}
+          activities={dayActivities.filter(hasCoords)}
+        />
       </div>
 
       <button

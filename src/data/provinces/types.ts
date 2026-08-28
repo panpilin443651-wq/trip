@@ -7,6 +7,8 @@ export interface SuggestedPlace {
   description: string;
   lat: number;
   lng: number;
+  /** อำเภอ/เขต ที่สถานที่นี้ตั้งอยู่ (เติมด้วย scripts/fill-districts.js) */
+  district?: string;
   /** เวลาที่ควรเผื่อไว้ในสถานที่นี้ (นาที) */
   durationMin: number;
   /** ค่าเข้าโดยประมาณต่อคน (บาท) 0 = ไม่มีค่าเข้า */

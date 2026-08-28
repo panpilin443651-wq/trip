@@ -17,6 +17,7 @@ import {
   type SuggestedPlace,
 } from "@/data/provinces";
 import { ProvinceSelect } from "@/components/ProvinceSelect";
+import { districtsOf } from "@/data/districts";
 import { cn } from "@/lib/cn";
 import {
   addDaysISO,
@@ -51,6 +52,28 @@ export default function ExplorePage() {
 
   const province =
     PROVINCES.find((p) => p.id === provinceId) ?? PROVINCES[0];
+
+  // อำเภอที่เลือกไว้เพื่อกรองสถานที่ ว่าง = ดูทั้งจังหวัด
+  const [district, setDistrict] = useState<string>("");
+
+  // อำเภอที่มีสถานที่แนะนำจริง ไม่ต้องโชว์อำเภอที่ไม่มีอะไรเลย
+  const districtsWithPlaces = useMemo(() => {
+    const known = new Set(districtsOf(province.name));
+    const found = new Set(
+      province.places
+        .map((place) => place.district)
+        .filter((d): d is string => !!d && known.has(d)),
+    );
+    return [...found].sort((a, b) => a.localeCompare(b, "th"));
+  }, [province]);
+
+  const visiblePlaces = useMemo(
+    () =>
+      district
+        ? province.places.filter((place) => place.district === district)
+        : province.places,
+    [province, district],
+  );
 
   const savedNames = useMemo(
     () => new Set(places.map((p) => p.name)),
@@ -126,7 +149,10 @@ export default function ExplorePage() {
             allowEmpty={false}
             onChange={(name) => {
               const found = PROVINCE_BY_NAME.get(name);
-              if (found) setProvinceId(found.id);
+              if (found) {
+                setProvinceId(found.id);
+                setDistrict("");
+              }
             }}
           />
         </Field>
@@ -139,7 +165,10 @@ export default function ExplorePage() {
             <button
               key={item.id}
               type="button"
-              onClick={() => setProvinceId(item.id)}
+              onClick={() => {
+                setProvinceId(item.id);
+                setDistrict("");
+              }}
               className={cn(
                 "min-h-10 shrink-0 rounded-full border px-3.5 text-sm font-medium transition-colors",
                 item.id === provinceId
@@ -164,6 +193,50 @@ export default function ExplorePage() {
         </p>
       </Card>
 
+      {districtsWithPlaces.length > 1 ? (
+        <Card className="mb-4">
+          <p className="mb-2 text-[13px] font-medium text-muted">
+            เลือกอำเภอ
+          </p>
+          <div className="flex flex-wrap gap-1.5">
+            <button
+              type="button"
+              onClick={() => setDistrict("")}
+              aria-pressed={district === ""}
+              className={cn(
+                "min-h-9 rounded-full border px-3 text-xs transition-colors",
+                district === ""
+                  ? "border-brand bg-brand text-canvas"
+                  : "border-line text-muted hover:text-ink",
+              )}
+            >
+              ทั้งจังหวัด ({province.places.length})
+            </button>
+            {districtsWithPlaces.map((name) => {
+              const count = province.places.filter(
+                (place) => place.district === name,
+              ).length;
+              return (
+                <button
+                  key={name}
+                  type="button"
+                  onClick={() => setDistrict(name)}
+                  aria-pressed={district === name}
+                  className={cn(
+                    "min-h-9 rounded-full border px-3 text-xs transition-colors",
+                    district === name
+                      ? "border-brand bg-brand text-canvas"
+                      : "border-line text-muted hover:text-ink",
+                  )}
+                >
+                  {name} ({count})
+                </button>
+              );
+            })}
+          </div>
+        </Card>
+      ) : null}
+
       <div className="mb-4 flex gap-2 rounded-xl bg-line/50 p-1">
         {(
           [
@@ -187,7 +260,7 @@ export default function ExplorePage() {
 
       {tab === "places" ? (
         <ul className="space-y-3">
-          {province.places.map((place) => (
+          {visiblePlaces.map((place) => (
             <Card as="li" key={place.id}>
               <div className="flex items-start gap-3">
                 <span className="text-2xl leading-none" aria-hidden>

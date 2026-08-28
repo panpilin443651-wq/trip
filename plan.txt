@@ -94,11 +94,12 @@ src/lib/
                (ไม่ใช้ html2canvas เพราะไม่อยากเพิ่ม dependency
                 และมันมักเพี้ยนกับฟอนต์ไทย)
 
-scripts/       geofill.js + validate-coords.js (ใช้ตอนแก้ข้อมูลจังหวัดเท่านั้น
+scripts/       geofill.js + validate-coords.js + gen-districts.js + fill-districts.js (ใช้ตอนแก้ข้อมูลจังหวัดเท่านั้น
                ไม่ได้อยู่ใน build) — ดู scripts/README.md
 
 src/data/
   categories.ts  6 หมวดงบ + priority
+  districts.ts   อำเภอครบ 77 จังหวัด / 928 อำเภอ (สร้างจาก scripts/gen-districts.js)
   checklist-templates.ts
   provinces/     ข้อมูลแนะนำ 77 จังหวัด แยกไฟล์ตามภาค + index.ts รวมและเรียง
                  (featured / north / isan-1 / isan-2 / central-1 / central-2

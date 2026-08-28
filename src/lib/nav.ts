@@ -9,6 +9,13 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   {
+    href: "/settings",
+    label: "ตั้งค่าทริป",
+    emoji: "⚙️",
+    primary: true,
+    description: "รูปแบบการเดินทาง จังหวัด งบรวม และข้อมูลทริป",
+  },
+  {
     href: "/dashboard",
     label: "หน้าหลัก",
     emoji: "🏠",
@@ -33,7 +40,7 @@ export const NAV_ITEMS: NavItem[] = [
     href: "/budget",
     label: "งบประมาณ",
     emoji: "💰",
-    primary: true,
+    primary: false,
     description: "ค่าใช้จ่ายแยกหมวด",
   },
   {
@@ -63,13 +70,6 @@ export const NAV_ITEMS: NavItem[] = [
     emoji: "🧭",
     primary: false,
     description: "สถานที่และกิจกรรมตามจังหวัด",
-  },
-  {
-    href: "/settings",
-    label: "ตั้งค่าทริป",
-    emoji: "⚙️",
-    primary: false,
-    description: "จำนวนวัน งบรวม และข้อมูลทริป",
   },
 ];
 

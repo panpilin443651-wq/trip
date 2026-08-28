@@ -74,83 +74,6 @@ export default function SettingsPage() {
 
       <div className="space-y-4">
         <Card as="section">
-          <SectionTitle emoji="🧳" title="ข้อมูลทริป" />
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Field label="ชื่อทริป" className="sm:col-span-2">
-              <Input
-                value={trip.name}
-                onChange={(e) =>
-                  dispatch({
-                    type: "updateTrip",
-                    patch: { name: e.target.value },
-                  })
-                }
-                placeholder="เช่น เที่ยวเชียงใหม่ปีใหม่"
-              />
-            </Field>
-
-
-
-            <Field label="จำนวนผู้เดินทาง">
-              <NumberInput
-                min={1}
-                value={trip.travelers}
-                onValueChange={(travelers) =>
-                  dispatch({
-                    type: "updateTrip",
-                    patch: { travelers: Math.round(travelers) },
-                  })
-                }
-              />
-            </Field>
-
-            <Field label="วันที่เริ่มเดินทาง">
-              <Input
-                type="date"
-                value={trip.startDate}
-                onChange={(e) =>
-                  dispatch({
-                    type: "updateTrip",
-                    patch: { startDate: e.target.value },
-                  })
-                }
-              />
-            </Field>
-
-            <Field label="วันสุดท้าย" hint="คำนวณจากวันเริ่ม + จำนวนวัน">
-              <Input value={formatDateThai(lastDate, false)} readOnly disabled />
-            </Field>
-
-            <Field label="บันทึกเพิ่มเติม" className="sm:col-span-2">
-              <Textarea
-                value={trip.notes}
-                onChange={(e) =>
-                  dispatch({
-                    type: "updateTrip",
-                    patch: { notes: e.target.value },
-                  })
-                }
-                placeholder="เช่น เบอร์ที่พัก ทะเบียนรถ นัดเจอกันกี่โมง"
-              />
-            </Field>
-          </div>
-        </Card>
-
-        <Card as="section">
-          <SectionTitle emoji="🗺️" title="แพลนการเที่ยว" />
-          <p className="mb-3 text-sm text-muted">
-            เลือกจังหวัดที่จะไปในทริปนี้ ไปหลายจังหวัดในทริปเดียวได้
-            ระบบจะใช้จังหวัดเหล่านี้แนะนำสถานที่และกิจกรรมให้
-          </p>
-          <ProvincePicker
-            value={trip.provinces}
-            onChange={(provinces) =>
-              dispatch({ type: "updateTrip", patch: { provinces } })
-            }
-          />
-        </Card>
-
-        <Card as="section">
           <SectionTitle emoji="📅" title="รูปแบบการเดินทาง" />
 
           <div className="grid grid-cols-2 gap-2">
@@ -220,6 +143,87 @@ export default function SettingsPage() {
               </span>
             </div>
           ) : null}
+        </Card>
+
+        <Card as="section">
+          <SectionTitle emoji="🧳" title="ข้อมูลทริป" />
+          <div className="grid gap-4 sm:grid-cols-2">
+            <Field label="ชื่อทริป" className="sm:col-span-2">
+              <Input
+                value={trip.name}
+                onChange={(e) =>
+                  dispatch({
+                    type: "updateTrip",
+                    patch: { name: e.target.value },
+                  })
+                }
+                placeholder="เช่น เที่ยวเชียงใหม่ปีใหม่"
+              />
+            </Field>
+
+
+
+            <Field label="จำนวนผู้เดินทาง">
+              <NumberInput
+                min={1}
+                value={trip.travelers}
+                onValueChange={(travelers) =>
+                  dispatch({
+                    type: "updateTrip",
+                    patch: { travelers: Math.round(travelers) },
+                  })
+                }
+              />
+            </Field>
+
+            <Field label="วันที่เริ่มเดินทาง">
+              <Input
+                type="date"
+                value={trip.startDate}
+                onChange={(e) =>
+                  dispatch({
+                    type: "updateTrip",
+                    patch: { startDate: e.target.value },
+                  })
+                }
+              />
+            </Field>
+
+            <Field label="วันสุดท้าย" hint="คำนวณจากวันเริ่ม + จำนวนวัน">
+              <Input value={formatDateThai(lastDate, false)} readOnly disabled />
+            </Field>
+
+            <Field label="บันทึกเพิ่มเติม" className="sm:col-span-2">
+              <Textarea
+                value={trip.notes}
+                onChange={(e) =>
+                  dispatch({
+                    type: "updateTrip",
+                    patch: { notes: e.target.value },
+                  })
+                }
+                placeholder="เช่น เบอร์ที่พัก ทะเบียนรถ นัดเจอกันกี่โมง"
+              />
+            </Field>
+          </div>
+        </Card>
+
+        <Card as="section">
+          <SectionTitle emoji="🗺️" title="แพลนการเที่ยว" />
+          <p className="mb-3 text-sm text-muted">
+            เลือกจังหวัดที่จะไปในทริปนี้ ไปหลายจังหวัดในทริปเดียวได้
+            ระบบจะใช้จังหวัดเหล่านี้แนะนำสถานที่และกิจกรรมให้
+          </p>
+          <ProvincePicker
+            provinces={trip.provinces}
+            districts={trip.districts}
+            onChangeProvinces={(provinces) =>
+              dispatch({ type: "updateTrip", patch: { provinces } })
+            }
+            onChangeDistricts={(districts) =>
+              dispatch({ type: "updateTrip", patch: { districts } })
+            }
+          />
         </Card>
 
         <Card as="section">
