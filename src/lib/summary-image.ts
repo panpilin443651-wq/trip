@@ -16,18 +16,22 @@ import type { Activity, AppState } from "./types";
  * (html2canvas มักเพี้ยนกับฟอนต์ไทยและ CSS สมัยใหม่)
  */
 
+/** ต้องตรงกับ @theme ใน globals.css เพราะ canvas อ่านตัวแปร CSS ไม่ได้ */
 const PALETTE = {
-  canvas: "#fdf6fa",
+  canvas: "#f8f9fc",
   card: "#ffffff",
-  ink: "#443a50",
-  muted: "#7a6d8a",
-  faint: "#968ba1",
-  line: "#f2e6ef",
-  brand: "#af4c72",
-  brandSoft: "#fdedf4",
-  ok: "#287a64",
-  warn: "#9c620d",
-  danger: "#bf3b57",
+  ink: "#15203c",
+  muted: "#5a6784",
+  faint: "#8791a5",
+  line: "#e3e7ef",
+  brand: "#1e3159",
+  brandSoft: "#eef1f8",
+  gold: "#876d1a",
+  goldFill: "#c9a227",
+  goldSoft: "#fbf5e4",
+  ok: "#17795e",
+  warn: "#8d6909",
+  danger: "#b3261e",
 };
 
 const W = 1080;
@@ -173,7 +177,12 @@ export function drawTripSummary(
   ctx.fillStyle = PALETTE.ink;
   ctx.font = font(44, 700);
   y += wrapText(ctx, trip.name || "ทริปของฉัน", PAD, y, innerW, 54, 2) * 54;
-  y += 18;
+
+  // เส้นคาดทอง คั่นหัวเรื่องกับเนื้อหา
+  ctx.fillStyle = PALETTE.goldFill;
+  roundRect(ctx, PAD, y + 6, 96, 6, 3);
+  ctx.fill();
+  y += 30;
 
   // ---------- การ์ดข้อมูลทริป ----------
   const infoH = 170;
@@ -221,7 +230,7 @@ export function drawTripSummary(
   // ---------- การ์ดงบ ----------
   const budgetH = 130;
   const over = breakdown.status.tone === "over";
-  ctx.fillStyle = over ? "#fee9ee" : PALETTE.brandSoft;
+  ctx.fillStyle = over ? "#fdeceb" : PALETTE.brandSoft;
   roundRect(ctx, PAD, y, innerW, budgetH, 24);
   ctx.fill();
 
@@ -250,16 +259,28 @@ export function drawTripSummary(
 
   // ---------- แผนรายวัน ----------
   for (const day of days) {
+    if (trip.dayCount > 1) {
+      // ป้ายเลขวันสีทอง ตัวเลขสีกรม
+      ctx.fillStyle = PALETTE.goldFill;
+      roundRect(ctx, PAD, y - 4, 44, 40, 12);
+      ctx.fill();
+      ctx.fillStyle = PALETTE.ink;
+      ctx.font = font(24, 700);
+      ctx.textAlign = "center";
+      ctx.fillText(String(day.index + 1), PAD + 22, y + 5);
+      ctx.textAlign = "left";
+    }
+
     ctx.fillStyle = PALETTE.brand;
     ctx.font = font(28, 700);
     ctx.fillText(
       trip.dayCount === 1
         ? "แผนการเที่ยว"
         : `วันที่ ${day.index + 1}  •  ${formatDateThai(day.date)}`,
-      PAD,
+      trip.dayCount === 1 ? PAD : PAD + 60,
       y,
     );
-    y += 44;
+    y += 48;
 
     if (day.activities.length === 0) {
       ctx.fillStyle = PALETTE.faint;
@@ -275,6 +296,11 @@ export function drawTripSummary(
         ctx.strokeStyle = PALETTE.line;
         ctx.lineWidth = 2;
         ctx.stroke();
+
+        // แถบทองด้านซ้ายของแต่ละกิจกรรม
+        ctx.fillStyle = PALETTE.goldFill;
+        roundRect(ctx, PAD + 6, y + 16, 5, rowH - 32, 3);
+        ctx.fill();
 
         // เวลา
         ctx.fillStyle = PALETTE.brand;

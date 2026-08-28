@@ -68,7 +68,7 @@ export function SideNav() {
     <aside className="hidden w-64 shrink-0 border-r border-line bg-card lg:block">
       <div className="sticky top-0 flex h-dvh flex-col p-4">
         <Link href="/dashboard" className="mb-6 flex items-center gap-3 px-2 py-2">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-brand-soft text-xl">
+          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-gold-soft text-xl ring-1 ring-gold/25">
             ✈️
           </span>
           <span className="text-base font-semibold">Travel Planner</span>

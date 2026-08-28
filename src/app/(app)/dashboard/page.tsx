@@ -83,7 +83,7 @@ export default function DashboardPage() {
                   : `${formatDateThai(trip.startDate, false)} – ${formatDateThai(lastDate, false)}`}
               </p>
               <div className="mt-2 flex flex-wrap gap-1.5">
-                <Badge className="bg-brand-soft text-brand">
+                <Badge className="bg-gold-soft text-gold">
                   {trip.dayCount === 1 ? "☀️ 1 Day Trip" : `🌙 ${trip.dayCount} วัน`}
                 </Badge>
                 <Badge>👥 {trip.travelers} คน</Badge>

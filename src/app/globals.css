@@ -1,35 +1,35 @@
 @import "tailwindcss";
 
 /*
- * ธีมพาสเทล — พื้นชมพูนวล การ์ดขาว แต้มมิ้นต์/พีช/ลาเวนเดอร์
- * สีตัวอักษรและพื้นปุ่มทุกตัวผ่านเกณฑ์ contrast 4.5:1 แล้ว
- * ความพาสเทลมาจากพื้นหลังอ่อน (*-soft) ไม่ใช่จากการทำตัวหนังสือให้จาง
+ * ธีมกรม-ขาว-ทอง
+ * กรมเป็นสีหลักของปุ่มและลิงก์ ขาวเป็นพื้นการ์ด ทองเป็นสีเน้น
+ * ทุกคู่สีผ่านเกณฑ์ contrast 4.5:1 (ตัวอักษรประกอบ 3:1)
+ * ทองสว่างเกินกว่าจะใส่ตัวอักษรขาว จึงแยกเป็น gold (ตัวอักษร)
+ * กับ gold-fill (พื้น ใช้คู่กับตัวอักษรสีกรม)
  */
 @theme {
-  --color-canvas: #fdf6fa;
+  --color-canvas: #f8f9fc;
   --color-card: #ffffff;
-  --color-ink: #443a50;
-  --color-muted: #7a6d8a;
-  --color-faint: #968ba1;
-  --color-line: #f2e6ef;
+  --color-ink: #15203c;
+  --color-muted: #5a6784;
+  --color-faint: #8791a5;
+  --color-line: #e3e7ef;
 
-  --color-brand: #af4c72;
-  --color-brand-dark: #953c5f;
-  --color-brand-soft: #fdedf4;
+  --color-brand: #1e3159;
+  --color-brand-dark: #16244a;
+  --color-brand-soft: #eef1f8;
 
-  --color-ok: #287a64;
-  --color-ok-soft: #e4f6ef;
-  --color-warn: #9c620d;
-  --color-warn-soft: #fdf1dc;
-  --color-danger: #bf3b57;
-  --color-danger-soft: #fee9ee;
+  /* ทองใช้เป็นสีเน้น: gold = สีตัวอักษร, gold-fill = สีพื้น (ต้องใช้ตัวอักษรสีกรม) */
+  --color-gold: #876d1a;
+  --color-gold-fill: #c9a227;
+  --color-gold-soft: #fbf5e4;
 
-  /* แต้มสีพาสเทลสำหรับพื้นหลังตกแต่ง */
-  --color-mint: #d7f2e7;
-  --color-peach: #ffe6d4;
-  --color-lavender: #ece4fb;
-  --color-butter: #fdf3d2;
-  --color-sky: #ddeefb;
+  --color-ok: #17795e;
+  --color-ok-soft: #e6f4ef;
+  --color-warn: #8d6909;
+  --color-warn-soft: #fdf3dc;
+  --color-danger: #b3261e;
+  --color-danger-soft: #fdeceb;
 
   --font-sans: var(--font-thai), ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", sans-serif;

@@ -23,7 +23,7 @@ export function ActivityCard({
   return (
     <Card as="li" className="flex gap-3">
       <div className="flex shrink-0 flex-col items-center">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-brand-soft text-sm font-semibold text-brand">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold-fill text-sm font-semibold text-ink">
           {index + 1}
         </span>
         <span className="mt-1 flex-1 border-l border-dashed border-line" />
