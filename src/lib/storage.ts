@@ -1,6 +1,6 @@
 import { EMPTY_BUDGETS } from "@/data/categories";
 import { todayISO } from "./format";
-import type { AppState } from "./types";
+import type { AppState, DayPlan } from "./types";
 
 export const STORAGE_KEY = "travel-planner:state";
 export const STATE_VERSION = 1;
@@ -12,6 +12,7 @@ export function createDefaultState(): AppState {
       name: "ทริปของฉัน",
       provinces: [],
       districts: {},
+      dayPlans: [{ province: "", transport: "", note: "" }],
       startDate: todayISO(),
       dayCount: 1,
       travelers: 1,
@@ -31,6 +32,19 @@ export function createDefaultState(): AppState {
  * เติมฟิลด์ที่ขาดและตัดค่าที่ผิดรูปทิ้ง เพื่อให้ข้อมูลเก่า/ไฟล์ import
  * ที่ไม่สมบูรณ์ไม่ทำให้แอปพัง
  */
+/** ทำให้ dayPlans ยาวเท่า dayCount เสมอ เผื่อจำนวนวันถูกเปลี่ยน */
+export function fitDayPlans(plans: unknown, dayCount: number): DayPlan[] {
+  const list = Array.isArray(plans) ? plans : [];
+  return Array.from({ length: dayCount }, (_, i) => {
+    const item = list[i] as Partial<DayPlan> | undefined;
+    return {
+      province: typeof item?.province === "string" ? item.province : "",
+      transport: typeof item?.transport === "string" ? item.transport : "",
+      note: typeof item?.note === "string" ? item.note : "",
+    };
+  });
+}
+
 export function normalizeState(raw: unknown): AppState {
   const base = createDefaultState();
   if (!raw || typeof raw !== "object") return base;
@@ -47,6 +61,8 @@ export function normalizeState(raw: unknown): AppState {
       )
     : [];
 
+  const safeDayCount = Math.max(1, Math.round(Number(trip.dayCount) || 1));
+
   const legacy = (input.trip as { destination?: unknown } | undefined)
     ?.destination;
   const provinces =
@@ -60,7 +76,7 @@ export function normalizeState(raw: unknown): AppState {
     version: STATE_VERSION,
     trip: {
       ...trip,
-      dayCount: Math.max(1, Math.round(Number(trip.dayCount) || 1)),
+      dayCount: safeDayCount,
       travelers: Math.max(1, Math.round(Number(trip.travelers) || 1)),
       totalBudget: Math.max(0, Number(trip.totalBudget) || 0),
       budgets: { ...EMPTY_BUDGETS, ...(trip.budgets ?? {}) },
@@ -75,6 +91,7 @@ export function normalizeState(raw: unknown): AppState {
             : [],
         ),
       ),
+      dayPlans: fitDayPlans(trip.dayPlans, safeDayCount),
     },
     activities: Array.isArray(input.activities)
       ? input.activities.filter((a) => a && typeof a.id === "string")

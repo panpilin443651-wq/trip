@@ -99,6 +99,7 @@ scripts/       geofill.js + validate-coords.js + gen-districts.js + fill-distric
 
 src/data/
   categories.ts  6 หมวดงบ + priority
+  transport.ts   8 วิธีเดินทาง (เครื่องบิน รถไฟ รถยนต์ ฯลฯ)
   districts.ts   อำเภอครบ 77 จังหวัด / 928 อำเภอ (สร้างจาก scripts/gen-districts.js)
   checklist-templates.ts
   provinces/     ข้อมูลแนะนำ 77 จังหวัด แยกไฟล์ตามภาค + index.ts รวมและเรียง
@@ -114,6 +115,9 @@ src/data/
 - สถานะสี     -> เขียว = ยังไม่เกินงบ / เหลือง = ใช้ไป >= 90% / แดง = เกินงบ
                  มาจาก getBudgetStatus() ที่เดียว ห้ามเขียนเงื่อนไขสีซ้ำ
 - ลำดับกิจกรรม -> เรียงตามเวลาเริ่มเสมอ (แก้ลำดับด้วยการแก้เวลา)
+- dayPlans     -> ยาวเท่า dayCount เสมอ คุมด้วย fitDayPlans() ทั้งใน
+                  normalizeState และ reducer ตอน setDayCount
+                  ไม่งั้นวันที่เพิ่มมาจะไม่มีที่เก็บจังหวัด/วิธีเดินทาง
 - จังหวัด      -> Trip.provinces เป็น array เลือกได้หลายจังหวัดต่อทริป
                  ข้อมูลรุ่นเก่าที่เก็บ destination เดี่ยวจะถูกย้ายเข้ามาให้
                  อัตโนมัติใน normalizeState

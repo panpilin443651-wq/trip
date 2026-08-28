@@ -1,7 +1,9 @@
 "use client";
 
+import { transportOf } from "@/data/transport";
 import { addDaysISO, formatDateShort } from "@/lib/format";
 import { cn } from "@/lib/cn";
+import { useTrip } from "@/lib/trip-context";
 
 export function DayTabs({
   dayCount,
@@ -14,6 +16,8 @@ export function DayTabs({
   value: number;
   onChange: (dayIndex: number) => void;
 }) {
+  const { state } = useTrip();
+
   // ทริปวันเดียวไม่ต้องมีแท็บให้รก
   if (dayCount <= 1) return null;
 
@@ -22,6 +26,7 @@ export function DayTabs({
       <div className="flex gap-2" role="tablist" aria-label="เลือกวัน">
         {Array.from({ length: dayCount }, (_, index) => {
           const active = index === value;
+          const transport = transportOf(state.trip.dayPlans[index]?.transport);
           return (
             <button
               key={index}
@@ -36,6 +41,7 @@ export function DayTabs({
                   : "border-line bg-card text-muted hover:text-ink",
               )}
             >
+              {transport ? <span className="mr-1">{transport.emoji}</span> : null}
               วันที่ {index + 1}
               <span
                 className={cn(

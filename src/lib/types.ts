@@ -8,12 +8,24 @@ export type CategoryId =
 
 export type Priority = "high" | "medium" | "low";
 
+/** จังหวัดและวิธีเดินทางของแต่ละวันในแผน */
+export interface DayPlan {
+  /** จังหวัดที่เที่ยวในวันนั้น ว่าง = ยังไม่ระบุ */
+  province: string;
+  /** วิธีเดินทางหลักของวันนั้น (ดู src/data/transport.ts) ว่าง = ยังไม่ระบุ */
+  transport: string;
+  /** บันทึกการเดินทาง เช่น เที่ยวบิน TG104 / รถไฟขบวน 109 */
+  note: string;
+}
+
 export interface Trip {
   name: string;
   /** จังหวัดที่จะไปในทริปนี้ ไปได้หลายจังหวัดในทริปเดียว */
   provinces: string[];
   /** อำเภอที่เลือกในแต่ละจังหวัด เช่น { "เชียงใหม่": ["เมืองเชียงใหม่", "แม่ริม"] } */
   districts: Record<string, string[]>;
+  /** แผนรายวัน ความยาวเท่ากับ dayCount เสมอ (normalizeState คุมให้) */
+  dayPlans: DayPlan[];
   /** ISO date 'YYYY-MM-DD' */
   startDate: string;
   /** 1 = day trip, > 1 = ทริปหลายวัน */

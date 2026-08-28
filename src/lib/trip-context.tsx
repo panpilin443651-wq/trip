@@ -15,6 +15,7 @@ import { timeToMinutes } from "./format";
 import {
   clearState,
   createDefaultState,
+  fitDayPlans,
   loadState,
   normalizeState,
   saveState,
@@ -26,6 +27,7 @@ import {
 import type {
   Activity,
   AppState,
+  DayPlan,
   ChecklistItem,
   Expense,
   Place,
@@ -36,6 +38,7 @@ type Action =
   | { type: "replace"; state: AppState }
   | { type: "updateTrip"; patch: Partial<Trip> }
   | { type: "setDayCount"; dayCount: number }
+  | { type: "setDayPlan"; dayIndex: number; patch: Partial<DayPlan> }
   | { type: "addActivity"; activity: Omit<Activity, "id" | "order"> }
   | { type: "updateActivity"; id: string; patch: Partial<Activity> }
   | { type: "deleteActivity"; id: string }
@@ -68,7 +71,24 @@ function reducer(state: AppState, action: Action): AppState {
       const activities = state.activities.map((a) =>
         a.dayIndex > lastIndex ? { ...a, dayIndex: lastIndex } : a,
       );
-      return { ...state, trip: { ...state.trip, dayCount }, activities };
+      return {
+        ...state,
+        // dayPlans ต้องยาวเท่าจำนวนวันเสมอ ไม่งั้นวันที่เพิ่มมาจะไม่มีที่เก็บ
+        trip: {
+          ...state.trip,
+          dayCount,
+          dayPlans: fitDayPlans(state.trip.dayPlans, dayCount),
+        },
+        activities,
+      };
+    }
+
+    case "setDayPlan": {
+      const dayPlans = fitDayPlans(state.trip.dayPlans, state.trip.dayCount).map(
+        (plan, i) =>
+          i === action.dayIndex ? { ...plan, ...action.patch } : plan,
+      );
+      return { ...state, trip: { ...state.trip, dayPlans } };
     }
 
     case "addActivity":

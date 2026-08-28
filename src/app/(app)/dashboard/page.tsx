@@ -13,6 +13,7 @@ import {
   SectionTitle,
   StatTile,
 } from "@/components/ui";
+import { transportOf } from "@/data/transport";
 import { buildBreakdown } from "@/lib/budget";
 import {
   addDaysISO,
@@ -163,6 +164,22 @@ export default function DashboardPage() {
               ) : null
             }
           />
+
+          {(() => {
+            const plan = trip.dayPlans[focusDay];
+            const transport = transportOf(plan?.transport);
+            if (!plan?.province && !transport) return null;
+            return (
+              <p className="mb-2 flex flex-wrap gap-x-3 px-1 text-sm text-muted">
+                {plan?.province ? <span>📍 {plan.province}</span> : null}
+                {transport ? (
+                  <span>
+                    {transport.emoji} {transport.label}
+                  </span>
+                ) : null}
+              </p>
+            );
+          })()}
 
           {upcoming.length === 0 ? (
             <EmptyState

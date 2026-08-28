@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { Badge, Button, Card, ProgressBar, SectionTitle } from "@/components/ui";
 import { CATEGORY_MAP } from "@/data/categories";
+import { transportOf } from "@/data/transport";
 import { buildBreakdown, TONE_CLASSES, TONE_EMOJI } from "@/lib/budget";
 import { cn } from "@/lib/cn";
 import {
@@ -234,6 +235,23 @@ export default function SummaryPage() {
                 </span>
               }
             />
+
+            {(() => {
+              const plan = trip.dayPlans[day.index];
+              const transport = transportOf(plan?.transport);
+              if (!plan?.province && !transport && !plan?.note) return null;
+              return (
+                <p className="mb-2 flex flex-wrap gap-x-3 gap-y-1 px-1 text-sm text-muted">
+                  {plan?.province ? <span>📍 {plan.province}</span> : null}
+                  {transport ? (
+                    <span>
+                      {transport.emoji} {transport.label}
+                    </span>
+                  ) : null}
+                  {plan?.note ? <span>📝 {plan.note}</span> : null}
+                </p>
+              );
+            })()}
 
             {day.activities.length === 0 ? (
               <p className="rounded-2xl border border-dashed border-line px-4 py-5 text-center text-sm text-muted">

@@ -9,6 +9,7 @@ import {
   toDraft,
   type ActivityDraft,
 } from "@/components/ActivityForm";
+import { DayPlanCard } from "@/components/DayPlanCard";
 import { DayTabs } from "@/components/DayTabs";
 import { PageHeader } from "@/components/PageHeader";
 import { NearbyRestaurants } from "@/components/NearbyRestaurants";
@@ -99,10 +100,12 @@ export default function ItineraryPage() {
       />
 
       {trip.dayCount > 1 ? (
-        <p className="mb-4 text-sm text-muted">
+        <p className="mb-3 text-sm text-muted">
           🗓️ {formatDateThai(addDaysISO(trip.startDate, safeDayIndex))}
         </p>
       ) : null}
+
+      <DayPlanCard dayIndex={safeDayIndex} />
 
       {dayActivities.length === 0 ? (
         <EmptyState
