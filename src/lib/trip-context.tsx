@@ -6,9 +6,8 @@ import {
   useEffect,
   useMemo,
   useReducer,
-  useState,
   useRef,
-  useSyncExternalStore,
+  useState,
   type ReactNode,
 } from "react";
 import { newId } from "./id";
@@ -20,6 +19,10 @@ import {
   normalizeState,
   saveState,
 } from "./storage";
+import {
+  loadRemoteState,
+  saveRemoteState,
+} from "./supabase/trip-store";
 import type {
   Activity,
   AppState,
@@ -160,6 +163,11 @@ function reducer(state: AppState, action: Action): AppState {
   }
 }
 
+export type SyncStatus =
+  | { phase: "loading" }
+  | { phase: "ready"; migrated?: boolean }
+  | { phase: "error"; message: string };
+
 interface TripContextValue {
   state: AppState;
   dispatch: React.Dispatch<Action>;
@@ -173,6 +181,8 @@ interface TripContextValue {
   saveNow: (tripPatch?: Partial<Trip>) => void;
   /** เวลาที่บันทึกสำเร็จครั้งล่าสุด (epoch ms) */
   lastSavedAt: number | null;
+  /** สถานะการซิงก์กับ Supabase */
+  sync: SyncStatus;
   exportJSON: () => void;
   importJSON: (file: File) => Promise<void>;
   resetAll: () => void;
@@ -180,32 +190,88 @@ interface TripContextValue {
 
 const TripContext = createContext<TripContextValue | null>(null);
 
-/** ตัวช่วยรู้ว่าอยู่บนเบราว์เซอร์แล้วหรือยัง โดยไม่ต้อง setState ใน effect */
-const noopSubscribe = () => () => {};
-
-export function TripProvider({ children }: { children: ReactNode }) {
-  // ฝั่งเซิร์ฟเวอร์ loadState() คืนค่าเริ่มต้นเสมอ ฝั่งเบราว์เซอร์อ่านจาก localStorage
-  const [state, dispatch] = useReducer(reducer, null, loadState);
-  const hydrated = useSyncExternalStore(
-    noopSubscribe,
-    () => true,
-    () => false,
-  );
+export function TripProvider({
+  userId,
+  children,
+}: {
+  userId: string;
+  children: ReactNode;
+}) {
+  const [state, dispatch] = useReducer(reducer, null, createDefaultState);
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [lastSavedAt, setLastSavedAt] = useState<number | null>(null);
+  const [sync, setSync] = useState<SyncStatus>({ phase: "loading" });
 
+  /**
+   * โหลดแผนจาก Supabase ครั้งเดียวตอนเข้า
+   * ถ้าบัญชียังไม่มีข้อมูล แต่เครื่องนี้มีของเก่าใน localStorage
+   * ให้ยกของเก่าขึ้นคลาวด์ให้เลย ผู้ใช้จะได้ไม่เสียแผนที่ทำไว้ก่อนมี Supabase
+   */
   useEffect(() => {
-    if (!hydrated) return;
+    let cancelled = false;
+
+    loadRemoteState(userId).then(async ({ state: remote, error }) => {
+      if (cancelled) return;
+
+      if (error) {
+        setSync({ phase: "error", message: error });
+        return;
+      }
+
+      if (remote) {
+        dispatch({ type: "replace", state: remote });
+        setSync({ phase: "ready" });
+        return;
+      }
+
+      const local = loadState();
+      const hasLocalData =
+        local.activities.length > 0 ||
+        local.places.length > 0 ||
+        local.checklist.length > 0 ||
+        local.expenses.length > 0 ||
+        local.trip.provinces.length > 0;
+
+      if (hasLocalData) {
+        const saveError = await saveRemoteState(userId, local);
+        if (cancelled) return;
+        dispatch({ type: "replace", state: local });
+        setSync(
+          saveError
+            ? { phase: "error", message: saveError }
+            : { phase: "ready", migrated: true },
+        );
+        return;
+      }
+
+      setSync({ phase: "ready" });
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [userId]);
+
+  // บันทึกขึ้น Supabase แบบหน่วงเวลา และสำรองไว้ใน localStorage ด้วย
+  // เผื่อเน็ตหลุด จะได้ไม่เสียงานที่เพิ่งพิมพ์
+  useEffect(() => {
+    if (sync.phase !== "ready") return;
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    // setState อยู่ใน callback ของ setTimeout จึงไม่ใช่การ setState ตรง ๆ ใน effect
+
     saveTimer.current = setTimeout(() => {
       saveState(state);
-      setLastSavedAt(Date.now());
-    }, 250);
+      void saveRemoteState(userId, state).then((error) => {
+        setSync(
+          error ? { phase: "error", message: error } : { phase: "ready" },
+        );
+        if (!error) setLastSavedAt(Date.now());
+      });
+    }, 600);
+
     return () => {
       if (saveTimer.current) clearTimeout(saveTimer.current);
     };
-  }, [state, hydrated]);
+  }, [state, sync.phase, userId]);
 
   const value = useMemo<TripContextValue>(
     () => ({
@@ -221,12 +287,17 @@ export function TripProvider({ children }: { children: ReactNode }) {
           ),
       saveNow: (tripPatch?: Partial<Trip>) => {
         if (saveTimer.current) clearTimeout(saveTimer.current);
-        saveState(
-          tripPatch ? { ...state, trip: { ...state.trip, ...tripPatch } } : state,
-        );
-        setLastSavedAt(Date.now());
+        const next = tripPatch
+          ? { ...state, trip: { ...state.trip, ...tripPatch } }
+          : state;
+        saveState(next);
+        void saveRemoteState(userId, next).then((error) => {
+          if (error) setSync({ phase: "error", message: error });
+          else setLastSavedAt(Date.now());
+        });
       },
       lastSavedAt,
+      sync,
       exportJSON: () => {
         const blob = new Blob([JSON.stringify(state, null, 2)], {
           type: "application/json",
@@ -243,19 +314,21 @@ export function TripProvider({ children }: { children: ReactNode }) {
         dispatch({ type: "replace", state: normalizeState(JSON.parse(text)) });
       },
       resetAll: () => {
+        const fresh = createDefaultState();
         clearState();
-        dispatch({ type: "replace", state: createDefaultState() });
+        dispatch({ type: "replace", state: fresh });
+        void saveRemoteState(userId, fresh);
       },
     }),
-    [state, lastSavedAt],
+    [state, lastSavedAt, sync, userId],
   );
 
-  if (!hydrated) {
+  if (sync.phase === "loading") {
     return (
       <div className="flex flex-1 items-center justify-center py-24">
         <div className="flex flex-col items-center gap-3 text-muted">
           <span className="h-8 w-8 animate-spin rounded-full border-2 border-line border-t-brand" />
-          <span className="text-sm">กำลังโหลดข้อมูลทริป…</span>
+          <span className="text-sm">กำลังโหลดแผนจาก Supabase…</span>
         </div>
       </div>
     );

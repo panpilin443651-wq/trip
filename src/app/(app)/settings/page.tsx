@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { SignOutButton } from "@/components/SignOutButton";
 import { ProvincePicker } from "@/components/ProvincePicker";
 import {
   Button,
@@ -299,11 +300,7 @@ export default function SettingsPage() {
 
         <Card as="section">
           <SectionTitle emoji="🔐" title="บัญชี" />
-          <form action="/api/logout" method="post">
-            <Button variant="secondary" type="submit">
-              ออกจากระบบ
-            </Button>
-          </form>
+          <SignOutButton />
         </Card>
       </div>
 

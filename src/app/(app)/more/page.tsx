@@ -2,7 +2,8 @@
 
 import Link from "next/link";
 import { PageHeader } from "@/components/PageHeader";
-import { Button, Card } from "@/components/ui";
+import { SignOutButton } from "@/components/SignOutButton";
+import { Card } from "@/components/ui";
 import { SECONDARY_NAV } from "@/lib/nav";
 
 export default function MorePage() {
@@ -36,11 +37,7 @@ export default function MorePage() {
         <p className="mt-1 mb-3 text-sm text-muted">
           ออกจากระบบแล้วข้อมูลทริปยังอยู่ในเบราว์เซอร์เครื่องนี้เหมือนเดิม
         </p>
-        <form action="/api/logout" method="post">
-          <Button variant="secondary" type="submit">
-            ออกจากระบบ
-          </Button>
-        </form>
+        <SignOutButton />
       </Card>
     </>
   );
