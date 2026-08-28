@@ -9,18 +9,18 @@ export interface NavItem {
 
 export const NAV_ITEMS: NavItem[] = [
   {
-    href: "/settings",
-    label: "ตั้งค่าทริป",
-    emoji: "⚙️",
-    primary: true,
-    description: "รูปแบบการเดินทาง จังหวัด งบรวม และข้อมูลทริป",
-  },
-  {
     href: "/dashboard",
     label: "หน้าหลัก",
     emoji: "🏠",
     primary: true,
     description: "ภาพรวมทริปทั้งหมด",
+  },
+  {
+    href: "/settings",
+    label: "ตั้งค่าทริป",
+    emoji: "⚙️",
+    primary: true,
+    description: "รูปแบบการเดินทาง จังหวัด งบรวม และข้อมูลทริป",
   },
   {
     href: "/itinerary",
