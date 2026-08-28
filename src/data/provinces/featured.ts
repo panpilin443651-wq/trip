@@ -1,50 +1,12 @@
 /**
- * ข้อมูลตั้งต้นสำหรับหน้า "แนะนำเที่ยว" — 10 จังหวัดยอดนิยม
+ * 10 จังหวัดยอดนิยม — ข้อมูลละเอียดกว่าจังหวัดอื่น (6-7 สถานที่ + 3 กิจกรรม)
  *
  * ค่าเข้าและระยะเวลาเป็นค่าประมาณสำหรับใช้ตั้งงบและจัดตารางเท่านั้น
  * ควรตรวจสอบกับแหล่งข้อมูลทางการอีกครั้งก่อนเดินทางจริง
  */
+import type { Province } from "./types";
 
-export interface SuggestedPlace {
-  id: string;
-  name: string;
-  emoji: string;
-  /** ประเภทสั้น ๆ เช่น วัด, ธรรมชาติ, ตลาด */
-  tag: string;
-  description: string;
-  lat: number;
-  lng: number;
-  /** เวลาที่ควรเผื่อไว้ในสถานที่นี้ (นาที) */
-  durationMin: number;
-  /** ค่าเข้าโดยประมาณต่อคน (บาท) 0 = ไม่มีค่าเข้า */
-  fee: number;
-  bestTime: string;
-  tip: string;
-}
-
-export interface SuggestedActivity {
-  id: string;
-  name: string;
-  emoji: string;
-  description: string;
-  /** ราคาโดยประมาณต่อคน (บาท) */
-  price: string;
-  duration: string;
-  prepare: string;
-}
-
-export interface Province {
-  id: string;
-  name: string;
-  emoji: string;
-  region: string;
-  blurb: string;
-  center: { lat: number; lng: number };
-  places: SuggestedPlace[];
-  activities: SuggestedActivity[];
-}
-
-export const PROVINCES: Province[] = [
+export const FEATURED_PROVINCES: Province[] = [
   {
     id: "bangkok",
     name: "กรุงเทพมหานคร",

@@ -20,6 +20,8 @@ export interface Trip {
   /** งบที่ตั้งไว้แต่ละหมวด */
   budgets: Record<CategoryId, number>;
   notes: string;
+  /** บันทึกช่วยจำเรื่องงบ เช่น จ่ายมัดจำไปแล้วเท่าไร หารกันยังไง */
+  budgetNote: string;
 }
 
 export interface Activity {

@@ -12,9 +12,9 @@ Places to Visit + แนะนำเที่ยวตามจังหวั�
 ## ข้อกำหนดจากผู้ใช้
 - แผนที่/ระยะทาง : Leaflet + OpenStreetMap + OSRM (ฟรี ไม่ต้องมี API key)
 - เก็บข้อมูล     : localStorage เท่านั้น + Export/Import JSON
-- ข้อมูลแนะนำ    : 10 จังหวัดยอดนิยม
+- ข้อมูลแนะนำ    : ครบทั้ง 77 จังหวัด
 - การรัน         : ไม่ต้องติดตั้ง/รันอะไรเพิ่มในเครื่อง — ให้รันบน Vercel
-- UI             : ภาษาไทย, Modern Minimal, mobile-first
+- UI             : ภาษาไทย, ธีมพาสเทล, mobile-first
 
 ## Tech Stack (ติดตั้งครบแล้ว ไม่ต้องลงเพิ่ม)
 Next.js 16.3.3 (App Router, Turbopack) + React 19 + TypeScript
@@ -38,15 +38,23 @@ leaflet 1.9 + react-leaflet 5 + @types/leaflet
 [x] 10. หน้า Dashboard + หน้า More
 [x] 11. README + .env.example + vercel.json
 
+[x] 12. ประมาณการค่าใช้จ่าย + popup เตือนเกินงบ + ช่องตั้งงบในหน้าตั้งค่า
+[x] 13. แก้บั๊กช่องกรอกตัวเลข (NumberInput)
+[x] 14. ข้อมูลแนะนำครบ 77 จังหวัด + ช่องเลือกจังหวัดทุกหน้า
+[x] 15. เปลี่ยนธีมเป็นพาสเทล (ผ่านเกณฑ์ contrast 4.5:1 ทุกสี)
+[x] 16. ช่องบันทึกช่วยจำงบ + ปุ่มบันทึกทันที
+
 *** เสร็จครบทุกข้อ — build ผ่าน, eslint สะอาด, พร้อม deploy ***
 
-ผลการตรวจ (27 ส.ค. 2026)
-  npm run build   ผ่าน — 15 route, TypeScript ไม่มี error
+ผลการตรวจล่าสุด
+  npm run build   ผ่าน — TypeScript ไม่มี error
   npx eslint .    ผ่าน — ไม่มี error/warning
   เข้า /dashboard โดยยังไม่ล็อกอิน  -> 307 redirect ไป /login  ✓
   ทุกหน้าหลังล็อกอิน (9 หน้า)        -> 200 ทั้งหมด           ✓
-  GET /api/geocode?q=วัดร่องขุ่น     -> คืนพิกัดจาก Nominatim  ✓
-  GET /api/route (ดอยสุเทพ→เจดีย์หลวง) -> 16.8 กม. / 29 นาที   ✓
+  GET /api/geocode / /api/route      -> คืนข้อมูลจริงจาก OSM   ✓
+  ข้อมูลจังหวัด: 77 จังหวัด / 334 สถานที่ / 164 กิจกรรม        ✓
+  พิกัด 668 ค่า อยู่ในกรอบประเทศไทยและใกล้ศูนย์กลางจังหวัดทุกจุด ✓
+  สีทุกคู่ในธีมพาสเทลผ่านเกณฑ์ contrast 4.5:1                  ✓
 
 ===============================================================================
 ## โครงสร้างไฟล์
@@ -74,11 +82,17 @@ src/lib/
   geo.ts      haversine + ฟอร์แมตระยะทาง
   budget.ts   getBudgetStatus() = ตรรกะสีจุดเดียวของทั้งแอป
   routing.ts  เรียก /api/route + cache + fallback เป็นค่าประมาณ
+  estimate.ts ประมาณการค่าใช้จ่าย 3 สไตล์ (ประหยัด/ปานกลาง/สบาย)
+
+scripts/       geofill.js + validate-coords.js (ใช้ตอนแก้ข้อมูลจังหวัดเท่านั้น
+               ไม่ได้อยู่ใน build) — ดู scripts/README.md
 
 src/data/
   categories.ts  6 หมวดงบ + priority
   checklist-templates.ts
-  provinces.ts   ข้อมูลแนะนำ 10 จังหวัด
+  provinces/     ข้อมูลแนะนำ 77 จังหวัด แยกไฟล์ตามภาค + index.ts รวมและเรียง
+                 (featured / north / isan-1 / isan-2 / central-1 / central-2
+                  / east-west / south / types)
 
 ===============================================================================
 ## กติกาสำคัญของระบบ
@@ -118,3 +132,6 @@ password: raotworkshop
 - ล็อกอินแบบรหัส fixed กันคนทั่วไปเข้าดูเท่านั้น ไม่เหมาะกับข้อมูลลับ
 - ค่าเข้า/เวลาในข้อมูลแนะนำเป็นค่าประมาณ ควรเช็กก่อนเดินทางจริง
 - OSRM/Nominatim เป็น public server มี rate limit ไม่มี SLA
+- พิกัดสถานที่แนะนำดึงจาก OpenStreetMap ซึ่งบางจุดเป็นตำแหน่งของพื้นที่กว้าง
+  (เช่นอุทยาน) ไม่ใช่ทางเข้าที่แน่นอน ใช้ประกอบการวางแผนได้ แต่ตอนขับจริง
+  ควรเช็กกับแอปนำทางอีกครั้ง

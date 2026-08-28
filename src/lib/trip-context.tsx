@@ -6,6 +6,7 @@ import {
   useEffect,
   useMemo,
   useReducer,
+  useState,
   useRef,
   useSyncExternalStore,
   type ReactNode,
@@ -164,6 +165,14 @@ interface TripContextValue {
   dispatch: React.Dispatch<Action>;
   /** กิจกรรมของวันหนึ่ง เรียงตามเวลาเริ่ม */
   activitiesForDay: (dayIndex: number) => Activity[];
+  /**
+   * เขียนลง localStorage ทันทีโดยไม่รอ debounce
+   * รับ patch ของ trip ได้ เพราะ dispatch ที่เพิ่งเรียกยังไม่สะท้อนใน state
+   * ตอนที่ event handler ทำงานอยู่ ถ้าไม่ส่งมาจะบันทึกค่าเก่า
+   */
+  saveNow: (tripPatch?: Partial<Trip>) => void;
+  /** เวลาที่บันทึกสำเร็จครั้งล่าสุด (epoch ms) */
+  lastSavedAt: number | null;
   exportJSON: () => void;
   importJSON: (file: File) => Promise<void>;
   resetAll: () => void;
@@ -183,11 +192,16 @@ export function TripProvider({ children }: { children: ReactNode }) {
     () => false,
   );
   const saveTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [lastSavedAt, setLastSavedAt] = useState<number | null>(null);
 
   useEffect(() => {
     if (!hydrated) return;
     if (saveTimer.current) clearTimeout(saveTimer.current);
-    saveTimer.current = setTimeout(() => saveState(state), 250);
+    // setState อยู่ใน callback ของ setTimeout จึงไม่ใช่การ setState ตรง ๆ ใน effect
+    saveTimer.current = setTimeout(() => {
+      saveState(state);
+      setLastSavedAt(Date.now());
+    }, 250);
     return () => {
       if (saveTimer.current) clearTimeout(saveTimer.current);
     };
@@ -205,6 +219,14 @@ export function TripProvider({ children }: { children: ReactNode }) {
               timeToMinutes(a.startTime) - timeToMinutes(b.startTime) ||
               a.order - b.order,
           ),
+      saveNow: (tripPatch?: Partial<Trip>) => {
+        if (saveTimer.current) clearTimeout(saveTimer.current);
+        saveState(
+          tripPatch ? { ...state, trip: { ...state.trip, ...tripPatch } } : state,
+        );
+        setLastSavedAt(Date.now());
+      },
+      lastSavedAt,
       exportJSON: () => {
         const blob = new Blob([JSON.stringify(state, null, 2)], {
           type: "application/json",
@@ -225,7 +247,7 @@ export function TripProvider({ children }: { children: ReactNode }) {
         dispatch({ type: "replace", state: createDefaultState() });
       },
     }),
-    [state],
+    [state, lastSavedAt],
   );
 
   if (!hydrated) {

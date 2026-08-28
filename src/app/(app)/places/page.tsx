@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { ProvinceSelect } from "@/components/ProvinceSelect";
 import {
   Badge,
   Button,
@@ -291,10 +292,9 @@ export default function PlacesPage() {
           </Field>
 
           <Field label="จังหวัด">
-            <Input
+            <ProvinceSelect
               value={draft.province}
-              onChange={(e) => setDraft({ ...draft, province: e.target.value })}
-              placeholder="เช่น เชียงราย"
+              onChange={(province) => setDraft({ ...draft, province })}
             />
           </Field>
 

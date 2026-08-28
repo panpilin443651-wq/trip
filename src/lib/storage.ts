@@ -17,6 +17,7 @@ export function createDefaultState(): AppState {
       totalBudget: 0,
       budgets: { ...EMPTY_BUDGETS },
       notes: "",
+      budgetNote: "",
     },
     activities: [],
     expenses: [],

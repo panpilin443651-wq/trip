@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { ProvinceSelect } from "@/components/ProvinceSelect";
 import {
   Button,
   Card,
@@ -87,16 +88,12 @@ export default function SettingsPage() {
               />
             </Field>
 
-            <Field label="จังหวัด / ปลายทาง">
-              <Input
+            <Field label="จังหวัด / ปลายทาง" hint="เลือกได้ครบทั้ง 77 จังหวัด">
+              <ProvinceSelect
                 value={trip.destination}
-                onChange={(e) =>
-                  dispatch({
-                    type: "updateTrip",
-                    patch: { destination: e.target.value },
-                  })
+                onChange={(destination) =>
+                  dispatch({ type: "updateTrip", patch: { destination } })
                 }
-                placeholder="เช่น เชียงใหม่"
               />
             </Field>
 

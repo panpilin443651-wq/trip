@@ -12,6 +12,9 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // สคริปต์ดูแลข้อมูลจังหวัด รันด้วย Node ตรง ๆ (CommonJS)
+    // ไม่ได้อยู่ในแอปและไม่ถูกรวมเข้า build จึงไม่ต้องใช้กฎของ Next
+    "scripts/**",
   ]),
 ]);
 

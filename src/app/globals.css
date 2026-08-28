@@ -1,23 +1,38 @@
 @import "tailwindcss";
 
+/*
+ * ธีมพาสเทล — พื้นชมพูนวล การ์ดขาว แต้มมิ้นต์/พีช/ลาเวนเดอร์
+ * สีตัวอักษรและพื้นปุ่มทุกตัวผ่านเกณฑ์ contrast 4.5:1 แล้ว
+ * ความพาสเทลมาจากพื้นหลังอ่อน (*-soft) ไม่ใช่จากการทำตัวหนังสือให้จาง
+ */
 @theme {
-  --color-canvas: #fafaf9;
+  --color-canvas: #fdf6fa;
   --color-card: #ffffff;
-  --color-ink: #1c1917;
-  --color-muted: #78716c;
-  --color-faint: #a8a29e;
-  --color-line: #e7e5e4;
-  --color-brand: #0d9488;
-  --color-brand-dark: #0f766e;
-  --color-brand-soft: #f0fdfa;
-  --color-ok: #059669;
-  --color-ok-soft: #ecfdf5;
-  --color-warn: #d97706;
-  --color-warn-soft: #fffbeb;
-  --color-danger: #e11d48;
-  --color-danger-soft: #fff1f2;
+  --color-ink: #443a50;
+  --color-muted: #7a6d8a;
+  --color-faint: #968ba1;
+  --color-line: #f2e6ef;
 
-  --font-sans: var(--font-thai), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  --color-brand: #af4c72;
+  --color-brand-dark: #953c5f;
+  --color-brand-soft: #fdedf4;
+
+  --color-ok: #287a64;
+  --color-ok-soft: #e4f6ef;
+  --color-warn: #9c620d;
+  --color-warn-soft: #fdf1dc;
+  --color-danger: #bf3b57;
+  --color-danger-soft: #fee9ee;
+
+  /* แต้มสีพาสเทลสำหรับพื้นหลังตกแต่ง */
+  --color-mint: #d7f2e7;
+  --color-peach: #ffe6d4;
+  --color-lavender: #ece4fb;
+  --color-butter: #fdf3d2;
+  --color-sky: #ddeefb;
+
+  --font-sans: var(--font-thai), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
 }
 
 html {
@@ -41,7 +56,7 @@ body {
 
 .leaflet-container {
   font-family: var(--font-sans);
-  background: #e7e5e4;
+  background: var(--color-line);
   z-index: 0;
 }
 

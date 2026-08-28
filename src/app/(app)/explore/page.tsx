@@ -10,7 +10,13 @@ import {
   Select,
   Sheet,
 } from "@/components/ui";
-import { PROVINCES, type SuggestedPlace } from "@/data/provinces";
+import {
+  FEATURED_PROVINCE_IDS,
+  PROVINCE_BY_NAME,
+  PROVINCES,
+  type SuggestedPlace,
+} from "@/data/provinces";
+import { ProvinceSelect } from "@/components/ProvinceSelect";
 import { cn } from "@/lib/cn";
 import {
   addDaysISO,
@@ -23,14 +29,18 @@ import { useTrip } from "@/lib/trip-context";
 
 type Tab = "places" | "activities";
 
+/** ทางลัดไปจังหวัดที่คนไปบ่อย ไม่ต้องเลื่อนหาใน dropdown 77 รายการ */
+const POPULAR = PROVINCES.filter((p) => FEATURED_PROVINCE_IDS.has(p.id));
+
 export default function ExplorePage() {
   const { state, dispatch, activitiesForDay } = useTrip();
   const { trip, places } = state;
 
   // ถ้าตั้งปลายทางไว้แล้ว ให้เปิดจังหวัดนั้นก่อน
+  const destination = trip.destination.trim();
   const initialProvince =
-    PROVINCES.find((p) => p.name.includes(trip.destination.trim()) && trip.destination.trim())
-      ?.id ?? PROVINCES[0].id;
+    (destination ? PROVINCE_BY_NAME.get(destination)?.id : undefined) ??
+    POPULAR[0].id;
 
   const [provinceId, setProvinceId] = useState(initialProvince);
   const [tab, setTab] = useState<Tab>("places");
@@ -108,23 +118,39 @@ export default function ExplorePage() {
         subtitle="เลือกจังหวัดแล้วหยิบสถานที่หรือกิจกรรมใส่แผนได้ทันที"
       />
 
-      <div className="no-scrollbar -mx-4 mb-4 flex gap-2 overflow-x-auto px-4 lg:mx-0 lg:px-0">
-        {PROVINCES.map((item) => (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => setProvinceId(item.id)}
-            className={cn(
-              "min-h-11 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors",
-              item.id === provinceId
-                ? "border-brand bg-brand text-white"
-                : "border-line bg-card text-muted hover:text-ink",
-            )}
-          >
-            {item.emoji} {item.name}
-          </button>
-        ))}
-      </div>
+      <Card className="mb-4">
+        <Field label="เลือกจังหวัด" hint={`มีข้อมูลครบทั้ง ${PROVINCES.length} จังหวัด`}>
+          <ProvinceSelect
+            value={province.name}
+            allowEmpty={false}
+            onChange={(name) => {
+              const found = PROVINCE_BY_NAME.get(name);
+              if (found) setProvinceId(found.id);
+            }}
+          />
+        </Field>
+
+        <p className="mt-3 mb-1.5 text-[13px] font-medium text-muted">
+          จังหวัดยอดนิยม
+        </p>
+        <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4">
+          {POPULAR.map((item) => (
+            <button
+              key={item.id}
+              type="button"
+              onClick={() => setProvinceId(item.id)}
+              className={cn(
+                "min-h-10 shrink-0 rounded-full border px-3.5 text-sm font-medium transition-colors",
+                item.id === provinceId
+                  ? "border-brand bg-brand text-white"
+                  : "border-line bg-card text-muted hover:text-ink",
+              )}
+            >
+              {item.emoji} {item.name}
+            </button>
+          ))}
+        </div>
+      </Card>
 
       <Card className="mb-4 bg-brand-soft ring-1 ring-brand/10">
         <h2 className="font-semibold">
