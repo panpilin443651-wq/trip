@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { SignOutButton } from "@/components/SignOutButton";
+import { ItineraryPlanner } from "@/components/ItineraryPlanner";
 import { ProvincePicker } from "@/components/ProvincePicker";
 import {
   Button,
@@ -71,7 +72,7 @@ export default function SettingsPage() {
       <PageHeader
         emoji="⚙️"
         title="ตั้งค่าทริป"
-        subtitle="กำหนดข้อมูลพื้นฐานของทริปและจัดการข้อมูลที่บันทึกไว้"
+        subtitle="ข้อมูลทริป แผนเที่ยวรายวัน งบประมาณ และข้อมูลที่บันทึกไว้"
       />
 
       <div className="space-y-4">
@@ -251,6 +252,11 @@ export default function SettingsPage() {
             }
           />
         </Card>
+
+        {/* scroll-mt เผื่อไว้ให้หัวข้อไม่ชนขอบบนเวลาเข้าจากลิงก์ #plan */}
+        <div id="plan" className="scroll-mt-4 space-y-4">
+          <ItineraryPlanner />
+        </div>
 
         <Card as="section">
           <SectionTitle emoji="💰" title="งบประมาณ" />

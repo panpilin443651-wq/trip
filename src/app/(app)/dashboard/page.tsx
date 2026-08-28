@@ -102,7 +102,7 @@ export default function DashboardPage() {
             }
             action={
               activities.length > 0 ? (
-                <Link href="/itinerary" className="text-sm text-brand underline">
+                <Link href="/settings#plan" className="text-sm text-brand underline">
                   ดูแผนทั้งหมด
                 </Link>
               ) : null
@@ -118,7 +118,7 @@ export default function DashboardPage() {
               description="เริ่มจากตั้งค่าทริป แล้วเพิ่มกิจกรรมแรก หรือหยิบจากที่แนะนำก็ได้"
               action={
                 <div className="flex flex-wrap justify-center gap-2">
-                  <Link href="/itinerary">
+                  <Link href="/settings#plan">
                     <Button>➕ เพิ่มกิจกรรม</Button>
                   </Link>
                   <Link href="/explore">
@@ -150,7 +150,7 @@ export default function DashboardPage() {
               {dayTotal > upcoming.length ? (
                 <p className="mt-2 px-1 text-xs text-faint">
                   และอีก {dayTotal - upcoming.length} กิจกรรมในวันนี้ —{" "}
-                  <Link href="/itinerary" className="text-brand underline">
+                  <Link href="/settings#plan" className="text-brand underline">
                     ดูในแผนเที่ยว
                   </Link>
                 </p>
@@ -162,7 +162,7 @@ export default function DashboardPage() {
         <section>
           <SectionTitle emoji="⚡" title="ทางลัด" />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
-            <Link href="/itinerary">
+            <Link href="/settings#plan">
               <Button variant="secondary" className="h-20 w-full flex-col gap-1">
                 <span className="text-xl">➕</span>
                 <span className="text-xs">เพิ่มกิจกรรม</span>

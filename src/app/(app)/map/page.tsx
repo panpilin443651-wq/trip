@@ -132,7 +132,7 @@ export default function MapPage() {
           title="ยังไม่มีกิจกรรมในวันนี้"
           description="เพิ่มกิจกรรมในหน้าแผนเที่ยวก่อน แล้วปักหมุดสถานที่เพื่อดูเส้นทาง"
           action={
-            <Link href="/itinerary">
+            <Link href="/settings#plan">
               <Button>📋 ไปหน้าแผนเที่ยว</Button>
             </Link>
           }
@@ -239,7 +239,7 @@ export default function MapPage() {
                   </li>
                 ))}
               </ul>
-              <Link href="/itinerary" className="mt-3 inline-block">
+              <Link href="/settings#plan" className="mt-3 inline-block">
                 <Button variant="secondary" size="sm">
                   ไปแก้ที่หน้าแผนเที่ยว
                 </Button>

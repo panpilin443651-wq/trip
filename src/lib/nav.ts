@@ -20,14 +20,7 @@ export const NAV_ITEMS: NavItem[] = [
     label: "ตั้งค่าทริป",
     emoji: "⚙️",
     primary: true,
-    description: "รูปแบบการเดินทาง จังหวัด งบรวม และข้อมูลทริป",
-  },
-  {
-    href: "/itinerary",
-    label: "แผนเที่ยว",
-    emoji: "📋",
-    primary: true,
-    description: "ตารางกิจกรรมรายวัน",
+    description: "ข้อมูลทริป แผนเที่ยวรายวัน จังหวัด และงบรวม",
   },
   {
     href: "/map",

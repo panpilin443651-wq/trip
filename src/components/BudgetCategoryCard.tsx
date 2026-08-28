@@ -100,7 +100,7 @@ export function BudgetCategoryCard({
               </span>
               {line.fromActivity ? (
                 <Link
-                  href="/itinerary"
+                  href="/settings#plan"
                   className="shrink-0 text-xs text-brand underline"
                 >
                   แก้ที่แผน
