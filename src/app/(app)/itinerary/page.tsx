@@ -53,7 +53,8 @@ export default function ItineraryPage() {
     setForm((prev) => ({
       session: (prev?.session ?? 0) + 1,
       editingId: null,
-      draft: emptyDraft(safeDayIndex),
+      // ดึงจังหวัดจากแผนของวันนั้นมาให้ ไม่ต้องกรอกซ้ำทุกกิจกรรม
+      draft: emptyDraft(safeDayIndex, trip.dayPlans[safeDayIndex]?.province ?? ""),
     }));
   }
 
@@ -129,6 +130,7 @@ export default function ItineraryPage() {
                 key={activity.id}
                 activity={activity}
                 index={index}
+                dayProvince={trip.dayPlans[safeDayIndex]?.province}
                 onEdit={() => openEdit(activity)}
                 onDelete={() => setDeleting(activity)}
               />

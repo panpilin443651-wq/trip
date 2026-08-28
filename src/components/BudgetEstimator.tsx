@@ -2,6 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { CATEGORY_MAP } from "@/data/categories";
+import { transportOf } from "@/data/transport";
 import { cn } from "@/lib/cn";
 import { estimateTrip, TRAVEL_STYLES, type TravelStyle } from "@/lib/estimate";
 import { formatTHB } from "@/lib/format";
@@ -18,6 +19,7 @@ export function BudgetEstimator() {
 
   const estimate = useMemo(() => estimateTrip(trip, style), [trip, style]);
   const styleMeta = TRAVEL_STYLES.find((s) => s.id === style) ?? TRAVEL_STYLES[1];
+  const mainTransport = transportOf(trip.mainTransport);
 
   function applyAll() {
     const budgets = { ...trip.budgets };
@@ -46,7 +48,15 @@ export function BudgetEstimator() {
         {estimate.nights > 0
           ? ` • ที่พัก ${estimate.rooms} ห้อง × ${estimate.nights} คืน`
           : " • ไปกลับวันเดียว ไม่มีค่าที่พัก"}
+        {mainTransport ? ` • ${mainTransport.emoji} ${mainTransport.label}` : null}
       </p>
+
+      {mainTransport ? null : (
+        <p className="mb-3 rounded-xl bg-warn-soft px-3 py-2.5 text-sm leading-relaxed text-warn">
+          ⚠️ ยังไม่ได้เลือกวิธีเดินทางหลัก ค่าเดินทางจึงยังไม่รวมค่าตั๋วไป-กลับ
+          เลือกได้ที่การ์ด &ldquo;รูปแบบการเดินทาง&rdquo; ด้านบน
+        </p>
+      )}
 
       <div className="grid grid-cols-3 gap-2">
         {TRAVEL_STYLES.map((item) => (

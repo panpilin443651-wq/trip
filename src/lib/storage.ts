@@ -13,6 +13,7 @@ export function createDefaultState(): AppState {
       provinces: [],
       districts: {},
       dayPlans: [{ province: "", transport: "", note: "" }],
+      mainTransport: "",
       startDate: todayISO(),
       dayCount: 1,
       travelers: 1,
@@ -92,6 +93,8 @@ export function normalizeState(raw: unknown): AppState {
         ),
       ),
       dayPlans: fitDayPlans(trip.dayPlans, safeDayCount),
+      mainTransport:
+        typeof trip.mainTransport === "string" ? trip.mainTransport : "",
     },
     activities: Array.isArray(input.activities)
       ? input.activities.filter((a) => a && typeof a.id === "string")

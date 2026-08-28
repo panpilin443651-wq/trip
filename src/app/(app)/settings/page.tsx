@@ -13,8 +13,10 @@ import {
   Input,
   NumberInput,
   SectionTitle,
+  Select,
   Textarea,
 } from "@/components/ui";
+import { TRANSPORTS } from "@/data/transport";
 import { buildBreakdown, TONE_CLASSES } from "@/lib/budget";
 import { cn } from "@/lib/cn";
 import { addDaysISO, formatDateThai, formatTHB } from "@/lib/format";
@@ -143,6 +145,30 @@ export default function SettingsPage() {
               </span>
             </div>
           ) : null}
+
+          <div className="mt-4 border-t border-line pt-4">
+            <Field
+              label="วิธีเดินทางหลัก"
+              hint="ใช้คำนวณประมาณการค่าใช้จ่าย — บินกับขับรถไปเองราคาต่างกันมาก"
+            >
+              <Select
+                value={trip.mainTransport}
+                onChange={(e) =>
+                  dispatch({
+                    type: "updateTrip",
+                    patch: { mainTransport: e.target.value },
+                  })
+                }
+              >
+                <option value="">— ยังไม่ระบุ —</option>
+                {TRANSPORTS.map((item) => (
+                  <option key={item.id} value={item.id}>
+                    {item.emoji} {item.label}
+                  </option>
+                ))}
+              </Select>
+            </Field>
+          </div>
         </Card>
 
         <Card as="section">

@@ -2,9 +2,10 @@
 
 import { useState } from "react";
 import { districtsOf } from "@/data/districts";
-import { PROVINCE_BY_NAME, PROVINCES_BY_REGION } from "@/data/provinces";
+import { PROVINCE_BY_NAME } from "@/data/provinces";
 import { cn } from "@/lib/cn";
-import { Button, Select } from "./ui";
+import { ProvinceCombobox } from "./ProvinceCombobox";
+import { Button } from "./ui";
 
 /**
  * เลือกได้หลายจังหวัดในทริปเดียว และเจาะเลือกอำเภอในแต่ละจังหวัดได้
@@ -179,31 +180,18 @@ export function ProvincePicker({
         </p>
       )}
 
-      <Select
+      <ProvinceCombobox
         value=""
-        onChange={(e) => addProvince(e.target.value)}
+        onChange={addProvince}
+        exclude={provinces}
+        clearOnSelect
+        placeholder="➕ พิมพ์ชื่อจังหวัดเพื่อเพิ่ม…"
         aria-label="เพิ่มจังหวัด"
-      >
-        <option value="">➕ เพิ่มจังหวัด…</option>
-        {PROVINCES_BY_REGION.map((group) => (
-          <optgroup key={group.region} label={group.region}>
-            {group.provinces.map((province) => (
-              <option
-                key={province.id}
-                value={province.name}
-                disabled={selected.has(province.name)}
-              >
-                {province.emoji} {province.name}
-                {selected.has(province.name) ? " (เลือกแล้ว)" : ""}
-              </option>
-            ))}
-          </optgroup>
-        ))}
-      </Select>
+      />
 
       <p className="mt-2 text-xs leading-relaxed text-faint">
-        เลือกได้ครบทั้ง 77 จังหวัด • ลำดับในรายการคือลำดับการเดินทาง
-        จังหวัดแรกใช้เป็นจุดตั้งต้นของแผนที่
+        พิมพ์ชื่อจังหวัดแล้วเลือกจากรายการ • เลือกได้ครบทั้ง 77 จังหวัด
+        • ลำดับในรายการคือลำดับการเดินทาง จังหวัดแรกใช้เป็นจุดตั้งต้นของแผนที่
       </p>
     </div>
   );

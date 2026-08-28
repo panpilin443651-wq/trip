@@ -26,6 +26,8 @@ export interface Trip {
   districts: Record<string, string[]>;
   /** แผนรายวัน ความยาวเท่ากับ dayCount เสมอ (normalizeState คุมให้) */
   dayPlans: DayPlan[];
+  /** วิธีเดินทางหลักของทริป ใช้คำนวณประมาณการค่าใช้จ่าย (ดู src/data/transport.ts) */
+  mainTransport: string;
   /** ISO date 'YYYY-MM-DD' */
   startDate: string;
   /** 1 = day trip, > 1 = ทริปหลายวัน */
@@ -49,6 +51,8 @@ export interface Activity {
   durationMin: number;
   title: string;
   placeName: string;
+  /** จังหวัดของกิจกรรมนี้ ค่าเริ่มต้นมาจากจังหวัดของวันนั้น */
+  province?: string;
   detail: string;
   cost: number;
   category: CategoryId;

@@ -6,6 +6,7 @@ import { addDaysISO, formatDateShort } from "@/lib/format";
 import { searchPlaces, type GeocodeHit } from "@/lib/routing";
 import { useTrip } from "@/lib/trip-context";
 import { PhotoManager } from "./PhotoManager";
+import { ProvinceCombobox } from "./ProvinceCombobox";
 import type { Activity, CategoryId } from "@/lib/types";
 import {
   Button,
@@ -19,13 +20,17 @@ import {
 
 export type ActivityDraft = Omit<Activity, "id" | "order">;
 
-export function emptyDraft(dayIndex: number): ActivityDraft {
+export function emptyDraft(
+  dayIndex: number,
+  province = "",
+): ActivityDraft {
   return {
     dayIndex,
     startTime: "09:00",
     durationMin: 60,
     title: "",
     placeName: "",
+    province,
     detail: "",
     cost: 0,
     category: "attraction",
@@ -174,6 +179,17 @@ export function ActivityForm({
           </ul>
         ) : null}
 
+        <Field
+          label="จังหวัด"
+          hint="ค่าเริ่มต้นมาจากจังหวัดของวันนั้น เปลี่ยนได้ถ้ากิจกรรมนี้อยู่คนละจังหวัด"
+        >
+          <ProvinceCombobox
+            value={draft.province ?? ""}
+            onChange={(province) => patch({ province })}
+            placeholder="พิมพ์ชื่อจังหวัด…"
+          />
+        </Field>
+
         {dayCount > 1 ? (
           <Field label="วันที่">
             <Select
@@ -274,6 +290,7 @@ export function toDraft(activity: Activity): ActivityDraft {
     durationMin: activity.durationMin,
     title: activity.title,
     placeName: activity.placeName,
+    province: activity.province,
     detail: activity.detail,
     cost: activity.cost,
     category: activity.category,

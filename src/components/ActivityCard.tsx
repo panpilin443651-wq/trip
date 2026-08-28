@@ -9,14 +9,22 @@ import { Badge, Button, Card } from "./ui";
 export function ActivityCard({
   activity,
   index,
+  dayProvince,
   onEdit,
   onDelete,
 }: {
   activity: Activity;
   index: number;
+  /** จังหวัดของวันนั้น ใช้เทียบว่ากิจกรรมนี้อยู่คนละจังหวัดหรือไม่ */
+  dayProvince?: string;
   onEdit: () => void;
   onDelete: () => void;
 }) {
+  // โชว์ป้ายจังหวัดเฉพาะตอนที่ต่างจากจังหวัดของวัน จะได้ไม่รกโดยไม่จำเป็น
+  const otherProvince =
+    activity.province && activity.province !== dayProvince
+      ? activity.province
+      : null;
   const category = CATEGORY_MAP[activity.category];
   const endTime = addMinutesToTime(activity.startTime, activity.durationMin);
 
@@ -79,6 +87,9 @@ export function ActivityCard({
           <Badge>
             {category.emoji} {category.label}
           </Badge>
+          {otherProvince ? (
+            <Badge className="bg-gold-soft text-gold">📍 {otherProvince}</Badge>
+          ) : null}
           {activity.cost > 0 ? (
             <Badge className="bg-brand-soft text-brand">
               {formatTHB(activity.cost)}
