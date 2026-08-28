@@ -43,6 +43,9 @@ leaflet 1.9 + react-leaflet 5 + @types/leaflet
 [x] 14. ข้อมูลแนะนำครบ 77 จังหวัด + ช่องเลือกจังหวัดทุกหน้า
 [x] 15. เปลี่ยนธีมเป็นพาสเทล (ผ่านเกณฑ์ contrast 4.5:1 ทุกสี)
 [x] 16. ช่องบันทึกช่วยจำงบ + ปุ่มบันทึกทันที
+[x] 17. แพลนการเที่ยว — เลือกได้หลายจังหวัดต่อทริป (Trip.provinces)
+[x] 18. ช่องแนะนำสถานที่/กิจกรรม ในหน้าแผนเที่ยว กดใส่วันนั้นได้เลย
+[x] 19. หน้าสรุปแผน /summary + บันทึกเป็น PNG และ PDF
 
 *** เสร็จครบทุกข้อ — build ผ่าน, eslint สะอาด, พร้อม deploy ***
 
@@ -67,14 +70,18 @@ src/app/
   api/route/route.ts         พร็อกซี OSRM (ระยะทาง/เวลา/เส้นทาง)
   api/geocode/route.ts       พร็อกซี Nominatim (ค้นหาชื่อ -> พิกัด)
   (app)/layout.tsx           auth guard + TripProvider + nav
-  (app)/{dashboard,itinerary,budget,places,checklist,explore,map,more,settings}
+  (app)/{dashboard,itinerary,budget,places,checklist,explore,map,more,
+         settings,summary}
 
 src/components/
   ui/                        primitives, form, overlay, feedback (+ index.ts)
   AppNav.tsx                 BottomNav (มือถือ) + SideNav (desktop)
   PageHeader.tsx  DayTabs.tsx
   ActivityCard.tsx  ActivityForm.tsx
-  BudgetSummary.tsx  BudgetCategoryCard.tsx
+  BudgetSummary.tsx  BudgetCategoryCard.tsx  BudgetEstimator.tsx
+  BudgetAlert.tsx    popup เตือนเกินงบ (mount ใน layout)
+  ProvinceSelect.tsx เลือกจังหวัดเดียว / ProvincePicker.tsx เลือกหลายจังหวัด
+  TripSuggestions.tsx ช่องแนะนำสถานที่+กิจกรรมจากจังหวัดที่เลือกไว้
 
 src/lib/
   types.ts  storage.ts  trip-context.tsx  auth.ts  nav.ts  cn.ts  id.ts
@@ -83,6 +90,9 @@ src/lib/
   budget.ts   getBudgetStatus() = ตรรกะสีจุดเดียวของทั้งแอป
   routing.ts  เรียก /api/route + cache + fallback เป็นค่าประมาณ
   estimate.ts ประมาณการค่าใช้จ่าย 3 สไตล์ (ประหยัด/ปานกลาง/สบาย)
+  summary-image.ts วาดสรุปแผนลง canvas เอง แล้วเซฟเป็น PNG
+               (ไม่ใช้ html2canvas เพราะไม่อยากเพิ่ม dependency
+                และมันมักเพี้ยนกับฟอนต์ไทย)
 
 scripts/       geofill.js + validate-coords.js (ใช้ตอนแก้ข้อมูลจังหวัดเท่านั้น
                ไม่ได้อยู่ใน build) — ดู scripts/README.md
@@ -103,6 +113,11 @@ src/data/
 - สถานะสี     -> เขียว = ยังไม่เกินงบ / เหลือง = ใช้ไป >= 90% / แดง = เกินงบ
                  มาจาก getBudgetStatus() ที่เดียว ห้ามเขียนเงื่อนไขสีซ้ำ
 - ลำดับกิจกรรม -> เรียงตามเวลาเริ่มเสมอ (แก้ลำดับด้วยการแก้เวลา)
+- จังหวัด      -> Trip.provinces เป็น array เลือกได้หลายจังหวัดต่อทริป
+                 ข้อมูลรุ่นเก่าที่เก็บ destination เดี่ยวจะถูกย้ายเข้ามาให้
+                 อัตโนมัติใน normalizeState
+- Export PDF  -> ใช้ window.print() + @media print ไม่ต้องมีไลบรารี
+                 ผู้ใช้เลือก "Save as PDF" ในหน้าต่างพิมพ์ของเบราว์เซอร์
 - ระยะทาง     -> ขอจาก OSRM ก่อน ถ้าไม่สำเร็จใช้ haversine x 1.3 + แสดง badge
                  เตือนว่าเป็นค่าประมาณ ไม่ปล่อยให้หน้าแผนที่พัง
 

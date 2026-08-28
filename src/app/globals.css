@@ -64,3 +64,34 @@ body {
   background: transparent;
   border: 0;
 }
+
+/*
+ * โหมดพิมพ์ — ใช้ตอนกด "บันทึกเป็น PDF" ในหน้าสรุปแผน
+ * ซ่อนเมนูและปุ่มทั้งหมด เหลือแต่เนื้อหาสรุป
+ */
+@media print {
+  nav,
+  aside,
+  .print-hide {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+  }
+
+  main {
+    max-width: none !important;
+    padding: 0 !important;
+  }
+
+  /* ไม่ให้การ์ดหรือบล็อกวันถูกตัดกลางหน้ากระดาษ */
+  #trip-summary section,
+  #trip-summary li {
+    break-inside: avoid;
+  }
+
+  @page {
+    margin: 14mm;
+  }
+}

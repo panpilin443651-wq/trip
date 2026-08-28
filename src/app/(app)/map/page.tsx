@@ -7,7 +7,7 @@ import { DayTabs } from "@/components/DayTabs";
 import { PageHeader } from "@/components/PageHeader";
 import type { MapPoint } from "@/components/TripMap";
 import { Badge, Button, Card, EmptyState, StatTile } from "@/components/ui";
-import { PROVINCES } from "@/data/provinces";
+import { PROVINCE_BY_NAME } from "@/data/provinces";
 import { formatDistance, formatTravelTime, hasCoords } from "@/lib/geo";
 import { fetchRoute, type RouteResult } from "@/lib/routing";
 import { useTrip } from "@/lib/trip-context";
@@ -58,12 +58,11 @@ export default function MapPage() {
   // ศูนย์กลางเริ่มต้น: จังหวัดปลายทางถ้าตรงกับข้อมูลที่มี ไม่งั้นกรุงเทพฯ
   const center = useMemo(() => {
     if (points.length > 0) return { lat: points[0].lat, lng: points[0].lng };
-    const destination = trip.destination.trim();
-    const match = destination
-      ? PROVINCES.find((p) => p.name.includes(destination))
-      : undefined;
-    return match?.center ?? BANGKOK;
-  }, [points, trip.destination]);
+    const first = trip.provinces
+      .map((name) => PROVINCE_BY_NAME.get(name))
+      .find(Boolean);
+    return first?.center ?? BANGKOK;
+  }, [points, trip.provinces]);
 
   const routeKey = points
     .map((p) => `${p.lat.toFixed(5)},${p.lng.toFixed(5)}`)

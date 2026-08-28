@@ -37,6 +37,13 @@ export const NAV_ITEMS: NavItem[] = [
     description: "ค่าใช้จ่ายแยกหมวด",
   },
   {
+    href: "/summary",
+    label: "สรุปแผน",
+    emoji: "📄",
+    primary: false,
+    description: "ดูแผนทั้งทริป บันทึกเป็นรูปหรือ PDF",
+  },
+  {
     href: "/places",
     label: "สถานที่",
     emoji: "📍",

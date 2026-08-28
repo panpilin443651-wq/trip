@@ -10,7 +10,7 @@ export function createDefaultState(): AppState {
     version: STATE_VERSION,
     trip: {
       name: "ทริปของฉัน",
-      destination: "",
+      provinces: [],
       startDate: todayISO(),
       dayCount: 1,
       travelers: 1,
@@ -37,6 +37,24 @@ export function normalizeState(raw: unknown): AppState {
   const input = raw as Partial<AppState>;
   const trip = { ...base.trip, ...(input.trip ?? {}) };
 
+  // ข้อมูลรุ่นเก่าเก็บจังหวัดเดียวในชื่อ destination — ย้ายเข้า provinces ให้
+  // ค่าเริ่มต้นของ provinces เป็น array ว่างอยู่แล้ว จึงต้องเช็กว่า "ว่าง" ด้วย
+  // ไม่ใช่เช็กแค่ว่าเป็น array หรือไม่ ไม่งั้นข้อมูลเก่าจะถูกทิ้ง
+  const cleaned = Array.isArray(trip.provinces)
+    ? trip.provinces.filter(
+        (p): p is string => typeof p === "string" && !!p.trim(),
+      )
+    : [];
+
+  const legacy = (input.trip as { destination?: unknown } | undefined)
+    ?.destination;
+  const provinces =
+    cleaned.length > 0
+      ? cleaned
+      : typeof legacy === "string" && legacy.trim()
+        ? [legacy.trim()]
+        : [];
+
   return {
     version: STATE_VERSION,
     trip: {
@@ -45,6 +63,7 @@ export function normalizeState(raw: unknown): AppState {
       travelers: Math.max(1, Math.round(Number(trip.travelers) || 1)),
       totalBudget: Math.max(0, Number(trip.totalBudget) || 0),
       budgets: { ...EMPTY_BUDGETS, ...(trip.budgets ?? {}) },
+      provinces: [...new Set(provinces)],
     },
     activities: Array.isArray(input.activities)
       ? input.activities.filter((a) => a && typeof a.id === "string")

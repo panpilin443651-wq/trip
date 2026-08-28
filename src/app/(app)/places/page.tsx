@@ -48,7 +48,9 @@ export default function PlacesPage() {
   const [filter, setFilter] = useState<Filter>("all");
   const [sheetOpen, setSheetOpen] = useState(false);
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [draft, setDraft] = useState<PlaceDraft>(emptyPlace(trip.destination));
+  const [draft, setDraft] = useState<PlaceDraft>(
+    emptyPlace(trip.provinces[0] ?? ""),
+  );
   const [deleting, setDeleting] = useState<Place | null>(null);
 
   const visitedCount = places.filter((p) => p.visited).length;
@@ -72,7 +74,7 @@ export default function PlacesPage() {
 
   function openCreate() {
     setEditingId(null);
-    setDraft(emptyPlace(trip.destination));
+    setDraft(emptyPlace(trip.provinces[0] ?? ""));
     setSheetOpen(true);
   }
 

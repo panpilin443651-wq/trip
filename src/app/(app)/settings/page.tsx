@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import { ProvinceSelect } from "@/components/ProvinceSelect";
+import { ProvincePicker } from "@/components/ProvincePicker";
 import {
   Button,
   Card,
@@ -88,14 +88,7 @@ export default function SettingsPage() {
               />
             </Field>
 
-            <Field label="จังหวัด / ปลายทาง" hint="เลือกได้ครบทั้ง 77 จังหวัด">
-              <ProvinceSelect
-                value={trip.destination}
-                onChange={(destination) =>
-                  dispatch({ type: "updateTrip", patch: { destination } })
-                }
-              />
-            </Field>
+
 
             <Field label="จำนวนผู้เดินทาง">
               <NumberInput
@@ -140,6 +133,20 @@ export default function SettingsPage() {
               />
             </Field>
           </div>
+        </Card>
+
+        <Card as="section">
+          <SectionTitle emoji="🗺️" title="แพลนการเที่ยว" />
+          <p className="mb-3 text-sm text-muted">
+            เลือกจังหวัดที่จะไปในทริปนี้ ไปหลายจังหวัดในทริปเดียวได้
+            ระบบจะใช้จังหวัดเหล่านี้แนะนำสถานที่และกิจกรรมให้
+          </p>
+          <ProvincePicker
+            value={trip.provinces}
+            onChange={(provinces) =>
+              dispatch({ type: "updateTrip", patch: { provinces } })
+            }
+          />
         </Card>
 
         <Card as="section">

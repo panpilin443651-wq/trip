@@ -11,6 +11,7 @@ import {
 } from "@/components/ActivityForm";
 import { DayTabs } from "@/components/DayTabs";
 import { PageHeader } from "@/components/PageHeader";
+import { TripSuggestions } from "@/components/TripSuggestions";
 import { Button, Card, ConfirmDialog, EmptyState } from "@/components/ui";
 import {
   addDaysISO,
@@ -150,6 +151,10 @@ export default function ItineraryPage() {
           </Card>
         </>
       )}
+
+      <div className="mt-4">
+        <TripSuggestions dayIndex={safeDayIndex} />
+      </div>
 
       <button
         type="button"

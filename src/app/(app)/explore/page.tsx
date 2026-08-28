@@ -37,10 +37,11 @@ export default function ExplorePage() {
   const { trip, places } = state;
 
   // ถ้าตั้งปลายทางไว้แล้ว ให้เปิดจังหวัดนั้นก่อน
-  const destination = trip.destination.trim();
+  // เปิดจังหวัดแรกของทริปก่อน ถ้ายังไม่ได้เลือกค่อยใช้จังหวัดยอดนิยม
   const initialProvince =
-    (destination ? PROVINCE_BY_NAME.get(destination)?.id : undefined) ??
-    POPULAR[0].id;
+    trip.provinces
+      .map((name) => PROVINCE_BY_NAME.get(name)?.id)
+      .find(Boolean) ?? POPULAR[0].id;
 
   const [provinceId, setProvinceId] = useState(initialProvince);
   const [tab, setTab] = useState<Tab>("places");

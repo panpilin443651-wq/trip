@@ -73,7 +73,9 @@ export default function DashboardPage() {
           <div className="flex items-start justify-between gap-3">
             <div className="min-w-0">
               <p className="text-sm text-muted">
-                {trip.destination ? `📍 ${trip.destination}` : "📍 ยังไม่ได้ตั้งปลายทาง"}
+                {trip.provinces.length > 0
+                  ? `📍 ${trip.provinces.join(" → ")}`
+                  : "📍 ยังไม่ได้เลือกจังหวัด"}
               </p>
               <p className="mt-1.5 font-medium">
                 {trip.dayCount === 1

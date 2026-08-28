@@ -10,7 +10,8 @@ export type Priority = "high" | "medium" | "low";
 
 export interface Trip {
   name: string;
-  destination: string;
+  /** จังหวัดที่จะไปในทริปนี้ ไปได้หลายจังหวัดในทริปเดียว */
+  provinces: string[];
   /** ISO date 'YYYY-MM-DD' */
   startDate: string;
   /** 1 = day trip, > 1 = ทริปหลายวัน */
