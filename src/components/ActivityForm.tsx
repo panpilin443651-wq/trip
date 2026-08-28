@@ -4,6 +4,8 @@ import { useState } from "react";
 import { CATEGORIES } from "@/data/categories";
 import { addDaysISO, formatDateShort } from "@/lib/format";
 import { searchPlaces, type GeocodeHit } from "@/lib/routing";
+import { useTrip } from "@/lib/trip-context";
+import { PhotoManager } from "./PhotoManager";
 import type { Activity, CategoryId } from "@/lib/types";
 import {
   Button,
@@ -51,6 +53,7 @@ export function ActivityForm({
   onClose: () => void;
   onSubmit: (draft: ActivityDraft) => void;
 }) {
+  const { userId } = useTrip();
   const [draft, setDraft] = useState<ActivityDraft>(initial);
   const [hits, setHits] = useState<GeocodeHit[]>([]);
   const [searching, setSearching] = useState(false);
@@ -243,6 +246,14 @@ export function ActivityForm({
           </Field>
         </div>
 
+        <Field label="รูปความทรงจำ" hint="รูปจะขึ้นบนหมุดในแผนที่ และอยู่ในไฟล์สรุปแผนด้วย">
+          <PhotoManager
+            userId={userId}
+            paths={draft.photos ?? []}
+            onChange={(photos) => patch({ photos })}
+          />
+        </Field>
+
         <Field label="รายละเอียด">
           <Textarea
             value={draft.detail}
@@ -268,5 +279,6 @@ export function toDraft(activity: Activity): ActivityDraft {
     category: activity.category,
     lat: activity.lat,
     lng: activity.lng,
+    photos: activity.photos,
   };
 }

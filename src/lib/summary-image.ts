@@ -34,6 +34,59 @@ const PALETTE = {
   danger: "#ff8f8a",
 };
 
+/** ความสูงของแถวรูปในสรุป */
+const PHOTO_H = 150;
+const PHOTO_W = 150;
+
+/**
+ * โหลดรูปเข้ามาก่อนวาด เพราะ canvas วาดรูปที่ยังโหลดไม่เสร็จไม่ได้
+ * ต้องตั้ง crossOrigin ไม่งั้น canvas จะโดน taint แล้ว toBlob จะพัง
+ * ใบไหนโหลดไม่ได้ก็ข้ามไป ไม่ให้ทั้งรูปสรุปพังเพราะรูปเดียว
+ */
+async function preloadImages(
+  urls: Record<string, string>,
+): Promise<Record<string, HTMLImageElement>> {
+  const entries = Object.entries(urls);
+  if (entries.length === 0) return {};
+
+  const loaded = await Promise.all(
+    entries.map(
+      ([path, url]) =>
+        new Promise<[string, HTMLImageElement] | null>((resolve) => {
+          const img = new Image();
+          img.crossOrigin = "anonymous";
+          img.onload = () => resolve([path, img]);
+          img.onerror = () => resolve(null);
+          img.src = url;
+        }),
+    ),
+  );
+
+  return Object.fromEntries(loaded.filter((x) => x !== null));
+}
+
+/** วาดรูปแบบ cover ในกรอบสี่เหลี่ยม ไม่ให้ภาพยืด */
+function drawCover(
+  ctx: CanvasRenderingContext2D,
+  img: HTMLImageElement,
+  x: number,
+  y: number,
+  w: number,
+  h: number,
+) {
+  const scale = Math.max(w / img.width, h / img.height);
+  const sw = w / scale;
+  const sh = h / scale;
+  const sx = (img.width - sw) / 2;
+  const sy = (img.height - sh) / 2;
+  ctx.save();
+  ctx.beginPath();
+  ctx.roundRect(x, y, w, h, 12);
+  ctx.clip();
+  ctx.drawImage(img, sx, sy, sw, sh, x, y, w, h);
+  ctx.restore();
+}
+
 const W = 1080;
 const PAD = 56;
 const SCALE = 2; // เรนเดอร์ 2 เท่าให้คมบนจอความละเอียดสูง
@@ -126,13 +179,22 @@ function buildDays(state: AppState): DayBlock[] {
 }
 
 /** ความสูงที่ต้องใช้ คำนวณล่วงหน้าเพื่อสร้าง canvas ให้พอดี */
-function measureHeight(state: AppState, days: DayBlock[]): number {
+function measureHeight(
+  state: AppState,
+  days: DayBlock[],
+  images: Record<string, HTMLImageElement>,
+): number {
   let h = PAD + 150; // หัวเรื่อง
   h += 190; // การ์ดสรุปทริป
   h += 150; // การ์ดงบ
   for (const day of days) {
     h += 64; // หัววัน
     h += Math.max(1, day.activities.length) * 78;
+    // เผื่อที่ให้แถวรูปของกิจกรรมที่มีรูปโหลดสำเร็จ
+    for (const activity of day.activities) {
+      const shots = (activity.photos ?? []).filter((path) => images[path]);
+      if (shots.length > 0) h += PHOTO_H + 14;
+    }
     h += 44; // สรุปท้ายวัน
     h += 24;
   }
@@ -142,14 +204,16 @@ function measureHeight(state: AppState, days: DayBlock[]): number {
   return h;
 }
 
-export function drawTripSummary(
+export async function drawTripSummary(
   canvas: HTMLCanvasElement,
   state: AppState,
-): void {
+  photoUrls: Record<string, string> = {},
+): Promise<void> {
   const { trip } = state;
   const days = buildDays(state);
   const breakdown = buildBreakdown(state);
-  const height = measureHeight(state, days);
+  const images = await preloadImages(photoUrls);
+  const height = measureHeight(state, days, images);
 
   canvas.width = W * SCALE;
   canvas.height = height * SCALE;
@@ -355,6 +419,20 @@ export function drawTripSummary(
         ctx.textAlign = "left";
 
         y += rowH + 8;
+
+        const shots = (activity.photos ?? [])
+          .map((path) => images[path])
+          .filter((img) => img !== undefined);
+
+        if (shots.length > 0) {
+          let px = PAD + 22;
+          for (const img of shots) {
+            if (px + PHOTO_W > W - PAD) break; // แถวเดียวพอ ไม่ให้รูปล้น
+            drawCover(ctx, img, px, y, PHOTO_W, PHOTO_H);
+            px += PHOTO_W + 10;
+          }
+          y += PHOTO_H + 14;
+        }
       }
     }
 

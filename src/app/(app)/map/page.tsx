@@ -5,11 +5,13 @@ import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { DayTabs } from "@/components/DayTabs";
 import { PageHeader } from "@/components/PageHeader";
+import { RouteSuggestion } from "@/components/RouteSuggestion";
 import type { MapPoint } from "@/components/TripMap";
 import { Badge, Button, Card, EmptyState, StatTile } from "@/components/ui";
 import { PROVINCE_BY_NAME } from "@/data/provinces";
 import { formatDistance, formatTravelTime, hasCoords } from "@/lib/geo";
 import { fetchRoute, type RouteResult } from "@/lib/routing";
+import { signPhotoUrls } from "@/lib/supabase/photos";
 import { useTrip } from "@/lib/trip-context";
 
 // Leaflet แตะ window ตอน import จึงต้องโหลดฝั่ง client เท่านั้น
@@ -63,6 +65,25 @@ export default function MapPage() {
       .find(Boolean);
     return first?.center ?? BANGKOK;
   }, [points, trip.provinces]);
+
+  // bucket เป็นแบบส่วนตัว ต้องขอ signed URL ใหม่ทุกครั้งที่เปิดหน้า
+  const photoPaths = useMemo(
+    () => dayActivities.flatMap((a) => a.photos ?? []),
+    [dayActivities],
+  );
+  const photoKey = photoPaths.join("|");
+  const [photoUrls, setPhotoUrls] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!photoKey) return;
+    let cancelled = false;
+    signPhotoUrls(photoKey.split("|")).then((map) => {
+      if (!cancelled) setPhotoUrls(map);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [photoKey]);
 
   const routeKey = points
     .map((p) => `${p.lat.toFixed(5)},${p.lng.toFixed(5)}`)
@@ -122,7 +143,12 @@ export default function MapPage() {
             points={points}
             geometry={route?.geometry ?? points.map((p) => [p.lat, p.lng])}
             center={center}
+            photoUrls={photoUrls}
           />
+
+          {points.length >= 3 ? (
+            <RouteSuggestion activities={points.map((p) => p.activity)} />
+          ) : null}
 
           {points.length >= 2 ? (
             <>

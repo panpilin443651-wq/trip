@@ -42,6 +42,24 @@ where table_schema = 'public'
 
 union all
 select
-  '5. จำนวนผู้ใช้ที่สมัครแล้ว',
+  '5. bucket เก็บรูป trip-photos',
+  case when exists (
+    select 1 from storage.buckets where id = 'trip-photos'
+  ) then '✅ มีแล้ว' else '❌ ยังไม่มี — รัน schema.sql ใหม่' end
+
+union all
+select
+  '6. storage policy (ต้องมี 3)',
+  case count(*)
+    when 3 then '✅ ครบ 3'
+    else '❌ มี ' || count(*) || ' อัน — อัปโหลดรูปจะไม่ผ่าน'
+  end
+from pg_policies
+where schemaname = 'storage' and tablename = 'objects'
+  and policyname in ('ดูรูปของตัวเอง', 'อัปโหลดรูปของตัวเอง', 'ลบรูปของตัวเอง')
+
+union all
+select
+  '7. จำนวนผู้ใช้ที่สมัครแล้ว',
   count(*) || ' คน'
 from auth.users;

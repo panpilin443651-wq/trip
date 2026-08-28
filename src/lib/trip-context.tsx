@@ -170,6 +170,8 @@ export type SyncStatus =
 
 interface TripContextValue {
   state: AppState;
+  /** id ผู้ใช้ที่ล็อกอินอยู่ ใช้เป็นโฟลเดอร์เก็บรูปใน Storage */
+  userId: string;
   dispatch: React.Dispatch<Action>;
   /** กิจกรรมของวันหนึ่ง เรียงตามเวลาเริ่ม */
   activitiesForDay: (dayIndex: number) => Activity[];
@@ -276,6 +278,7 @@ export function TripProvider({
   const value = useMemo<TripContextValue>(
     () => ({
       state,
+      userId,
       dispatch,
       activitiesForDay: (dayIndex: number) =>
         state.activities

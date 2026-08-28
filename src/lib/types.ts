@@ -40,6 +40,8 @@ export interface Activity {
   category: CategoryId;
   lat?: number;
   lng?: number;
+  /** พาธรูปความทรงจำใน Supabase Storage (บัคเก็ต trip-photos) */
+  photos?: string[];
   /** ลำดับที่สร้าง ใช้ตัดสินเมื่อเวลาเริ่มเท่ากัน */
   order: number;
 }

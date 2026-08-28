@@ -21,16 +21,21 @@ export interface MapPoint {
 }
 
 /** หมุดหมายเลขวาดด้วย HTML แทนรูป PNG ของ Leaflet ที่พาธมักหลุดตอน build */
-function numberedIcon(index: number) {
+function numberedIcon(index: number, hasPhoto = false) {
+  const badge = hasPhoto
+    ? `<span style="position:absolute;top:-4px;right:-4px;width:14px;height:14px;
+        border-radius:9999px;background:#f4f6fa;border:2px solid #0e1a30;
+        font:600 8px/10px system-ui;text-align:center">📷</span>`
+    : "";
   return L.divIcon({
     className: "trip-pin",
-    html: `<div style="
+    html: `<div style="position:relative;
       width:30px;height:30px;border-radius:9999px;
       background:#c9a227;color:#0e1a30;
       display:flex;align-items:center;justify-content:center;
       font:600 13px/1 system-ui,sans-serif;
       border:2px solid #0e1a30;box-shadow:0 1px 4px rgba(0,0,0,.35);
-    ">${index + 1}</div>`,
+    ">${index + 1}${badge}</div>`,
     iconSize: [30, 30],
     iconAnchor: [15, 15],
     popupAnchor: [0, -16],
@@ -62,10 +67,13 @@ export default function TripMap({
   points,
   geometry,
   center,
+  photoUrls = {},
 }: {
   points: MapPoint[];
   geometry: Array<[number, number]>;
   center: { lat: number; lng: number };
+  /** พาธรูป -> signed URL (bucket เป็นแบบส่วนตัว จึงเปิดตรง ๆ ไม่ได้) */
+  photoUrls?: Record<string, string>;
 }) {
   return (
     <MapContainer
@@ -91,7 +99,7 @@ export default function TripMap({
         <Marker
           key={point.activity.id}
           position={[point.lat, point.lng]}
-          icon={numberedIcon(index)}
+          icon={numberedIcon(index, (point.activity.photos?.length ?? 0) > 0)}
         >
           <Popup>
             <strong>{point.activity.title}</strong>
@@ -108,6 +116,27 @@ export default function TripMap({
                 <br />
                 💰 {formatTHB(point.activity.cost)}
               </>
+            ) : null}
+
+            {(point.activity.photos ?? []).length > 0 ? (
+              <span style={{ display: "flex", gap: 4, marginTop: 8 }}>
+                {(point.activity.photos ?? []).slice(0, 3).map((path) =>
+                  photoUrls[path] ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      key={path}
+                      src={photoUrls[path]}
+                      alt="รูปความทรงจำ"
+                      style={{
+                        width: 62,
+                        height: 62,
+                        objectFit: "cover",
+                        borderRadius: 8,
+                      }}
+                    />
+                  ) : null,
+                )}
+              </span>
             ) : null}
           </Popup>
         </Marker>

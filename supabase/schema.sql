@@ -84,6 +84,55 @@ create trigger trip_states_touch_updated_at
   for each row execute function public.touch_updated_at();
 
 -- =====================================================================
+-- Storage — รูปความทรงจำที่แนบกับจุดแวะ
+--
+-- bucket เป็นแบบส่วนตัว (public = false) เว็บจึงต้องขอ signed URL
+-- ทุกครั้งที่จะแสดงรูป คนที่ไม่มีลิงก์เปิดดูไม่ได้
+--
+-- โครงสร้างพาธ: <user_id>/<ชื่อไฟล์>
+-- policy เช็กโฟลเดอร์ชั้นแรกว่าตรงกับ auth.uid() ไหม
+-- =====================================================================
+insert into storage.buckets (id, name, public, file_size_limit, allowed_mime_types)
+values (
+  'trip-photos',
+  'trip-photos',
+  false,
+  5242880,                                  -- 5 MB ต่อไฟล์
+  array['image/jpeg', 'image/png', 'image/webp']
+)
+on conflict (id) do update
+  set public = excluded.public,
+      file_size_limit = excluded.file_size_limit,
+      allowed_mime_types = excluded.allowed_mime_types;
+
+drop policy if exists "ดูรูปของตัวเอง" on storage.objects;
+create policy "ดูรูปของตัวเอง"
+  on storage.objects for select
+  to authenticated
+  using (
+    bucket_id = 'trip-photos'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+drop policy if exists "อัปโหลดรูปของตัวเอง" on storage.objects;
+create policy "อัปโหลดรูปของตัวเอง"
+  on storage.objects for insert
+  to authenticated
+  with check (
+    bucket_id = 'trip-photos'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+drop policy if exists "ลบรูปของตัวเอง" on storage.objects;
+create policy "ลบรูปของตัวเอง"
+  on storage.objects for delete
+  to authenticated
+  using (
+    bucket_id = 'trip-photos'
+    and (storage.foldername(name))[1] = auth.uid()::text
+  );
+
+-- =====================================================================
 -- ตรวจว่าตั้งค่าครบแล้ว — รันแยกได้ ผลลัพธ์ควรเป็นตามคอมเมนต์
 -- =====================================================================
 

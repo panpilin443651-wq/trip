@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { Badge, Button, Card, ProgressBar, SectionTitle } from "@/components/ui";
 import { CATEGORY_MAP } from "@/data/categories";
@@ -14,6 +14,7 @@ import {
   formatTHB,
 } from "@/lib/format";
 import { downloadCanvas, drawTripSummary } from "@/lib/summary-image";
+import { signPhotoUrls } from "@/lib/supabase/photos";
 import { useTrip } from "@/lib/trip-context";
 
 export default function SummaryPage() {
@@ -43,15 +44,35 @@ export default function SummaryPage() {
     [activitiesForDay, trip.dayCount, trip.startDate],
   );
 
+  // bucket เป็นแบบส่วนตัว จึงต้องขอ signed URL ก่อนทั้งแสดงผลและ export
+  const photoPaths = useMemo(
+    () => state.activities.flatMap((a) => a.photos ?? []),
+    [state.activities],
+  );
+  const photoKey = photoPaths.join(`|`);
+  const [photoUrls, setPhotoUrls] = useState<Record<string, string>>({});
+
+  useEffect(() => {
+    if (!photoKey) return;
+    let cancelled = false;
+    signPhotoUrls(photoKey.split("|"), 7200).then((map) => {
+      if (!cancelled) setPhotoUrls(map);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [photoKey]);
+
   const totalActivities = days.reduce((sum, d) => sum + d.activities.length, 0);
   const checklistDone = checklist.filter((c) => c.done).length;
 
-  function saveImage() {
+  async function saveImage() {
     const canvas = canvasRef.current;
     if (!canvas) return;
     setImageState("working");
     try {
-      drawTripSummary(canvas, state);
+      // ต้อง await เพราะต้องโหลดรูปความทรงจำเข้ามาวาดก่อน
+      await drawTripSummary(canvas, state, photoUrls);
       downloadCanvas(canvas, `แผนเที่ยว-${trip.name || "ทริป"}.png`);
       setImageState("done");
       window.setTimeout(() => setImageState("idle"), 3000);
@@ -75,7 +96,7 @@ export default function SummaryPage() {
         <Card className="mb-5">
           <SectionTitle emoji="💾" title="บันทึกแผน" />
           <div className="flex flex-col gap-2 sm:flex-row">
-            <Button className="flex-1" onClick={saveImage}>
+            <Button className="flex-1" onClick={() => void saveImage()}>
               {imageState === "working" ? "กำลังสร้างรูป…" : "🖼️ บันทึกเป็นรูป PNG"}
             </Button>
             <Button
@@ -244,6 +265,22 @@ export default function SummaryPage() {
                         </Badge>
                         <Badge>⏱️ {formatDuration(activity.durationMin)}</Badge>
                       </div>
+
+                      {(activity.photos ?? []).length > 0 ? (
+                        <div className="mt-2 flex flex-wrap gap-1.5">
+                          {(activity.photos ?? []).map((path) =>
+                            photoUrls[path] ? (
+                              // eslint-disable-next-line @next/next/no-img-element
+                              <img
+                                key={path}
+                                src={photoUrls[path]}
+                                alt="รูปความทรงจำ"
+                                className="h-20 w-20 rounded-lg border border-line object-cover"
+                              />
+                            ) : null,
+                          )}
+                        </div>
+                      ) : null}
                     </div>
                     <span className="shrink-0 text-sm font-medium tabular-nums">
                       {activity.cost > 0 ? formatTHB(activity.cost) : "ฟรี"}
