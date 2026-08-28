@@ -126,3 +126,36 @@ export function NumberInput({
     />
   );
 }
+
+/**
+ * ช่องรหัสผ่านที่กดดู/ซ่อนได้
+ *
+ * ปุ่มต้องเป็น type="button" ไม่งั้นจะกลายเป็นปุ่ม submit ของฟอร์ม
+ * แล้วกดดูรหัสทีจะส่งฟอร์มไปด้วย
+ */
+export function PasswordInput({
+  className,
+  ...props
+}: Omit<InputHTMLAttributes<HTMLInputElement>, "type">) {
+  const [visible, setVisible] = useState(false);
+
+  return (
+    <div className="relative">
+      <Input
+        {...props}
+        type={visible ? "text" : "password"}
+        className={cn("pr-12", className)}
+      />
+      <button
+        type="button"
+        onClick={() => setVisible((v) => !v)}
+        aria-label={visible ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
+        aria-pressed={visible}
+        title={visible ? "ซ่อนรหัสผ่าน" : "แสดงรหัสผ่าน"}
+        className="absolute inset-y-0 right-0 flex w-12 items-center justify-center rounded-r-xl text-lg text-muted transition-colors hover:text-ink focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none"
+      >
+        <span aria-hidden>{visible ? "🙈" : "👁️"}</span>
+      </button>
+    </div>
+  );
+}

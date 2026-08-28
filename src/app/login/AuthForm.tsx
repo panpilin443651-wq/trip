@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useActionState } from "react";
 import { useFormStatus } from "react-dom";
-import { Button, Field, Input } from "@/components/ui";
+import { Button, Field, Input, PasswordInput } from "@/components/ui";
 import { signIn, signUp, type AuthState } from "./actions";
 
 function SubmitButton({ label }: { label: string }) {
@@ -46,8 +46,7 @@ export function AuthForm({
         label="รหัสผ่าน"
         hint={isSignUp ? "อย่างน้อย 6 ตัวอักษร" : undefined}
       >
-        <Input
-          type="password"
+        <PasswordInput
           name="password"
           autoComplete={isSignUp ? "new-password" : "current-password"}
           placeholder="••••••••"
