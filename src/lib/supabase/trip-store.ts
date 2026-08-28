@@ -46,8 +46,12 @@ function describe(message: string): string {
   if (m.includes("relation") && m.includes("does not exist")) {
     return "ยังไม่ได้สร้างตารางในฐานข้อมูล — รัน supabase/schema.sql ใน SQL Editor ก่อน";
   }
+  // GRANT กับ RLS เป็นคนละชั้น จึงแยกข้อความเพื่อชี้ทางแก้ให้ถูกจุด
+  if (m.includes("permission denied")) {
+    return "ยังไม่ได้ให้สิทธิ์ตาราง — รัน supabase/schema.sql ใหม่อีกครั้ง (เวอร์ชันล่าสุดมีคำสั่ง grant แล้ว)";
+  }
   if (m.includes("row-level security") || m.includes("violates row-level")) {
-    return "สิทธิ์ไม่พอ — ตรวจว่ารัน RLS policy ใน supabase/schema.sql ครบแล้ว";
+    return "RLS policy ไม่ผ่าน — ตรวจว่ารัน policy ใน supabase/schema.sql ครบทั้ง 4 อัน";
   }
   if (m.includes("jwt") || m.includes("expired")) {
     return "เซสชันหมดอายุ กรุณาเข้าสู่ระบบใหม่";

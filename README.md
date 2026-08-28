@@ -12,9 +12,18 @@ Checklist และดูเส้นทาง/ระยะทางบนแผ
 เปิด Supabase Dashboard → **SQL Editor** → วางไฟล์ [`supabase/schema.sql`](supabase/schema.sql)
 ทั้งไฟล์ → กด Run (รันซ้ำได้ ไม่พัง)
 
-สคริปต์นี้สร้างตาราง `trip_states` พร้อมเปิด **Row Level Security**
-ซึ่งจำเป็นมาก เพราะเว็บใช้ anon key ที่เปิดเผยในเบราว์เซอร์
-ถ้าไม่เปิด RLS ใครก็อ่านข้อมูลคนอื่นได้
+สคริปต์นี้สร้างตาราง `trip_states` แล้วตั้งสิทธิ์ 2 ชั้นซึ่งต้องมีทั้งคู่
+
+| ชั้น | ทำอะไร | ถ้าขาด |
+| --- | --- | --- |
+| `GRANT` | role `authenticated` แตะตารางนี้ได้ | ขึ้น `permission denied for table` |
+| **RLS policy** | แตะได้แล้ว เห็นเฉพาะแถวของตัวเอง | คนอื่นอ่านข้อมูลเราได้ |
+
+RLS จำเป็นมาก เพราะเว็บใช้ anon key ที่เปิดเผยในเบราว์เซอร์อยู่แล้ว
+ความปลอดภัยอยู่ที่ policy ไม่ใช่การซ่อนคีย์
+
+**เช็กว่าตั้งค่าครบ**: รัน [`supabase/check.sql`](supabase/check.sql) ใน SQL Editor
+ทุกบรรทัดต้องขึ้น ✅
 
 ### 2. ตั้ง Environment Variables
 

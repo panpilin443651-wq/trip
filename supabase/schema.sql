@@ -23,6 +23,21 @@ comment on table public.trip_states is
   'แผนทริปของผู้ใช้ 1 แถวต่อ 1 ผู้ใช้ คอลัมน์ data คือ AppState ทั้งก้อน';
 
 -- ---------------------------------------------------------------------
+-- สิทธิ์ระดับตาราง (GRANT)
+--
+-- ต้องให้ต่างหากจาก RLS เพราะเป็นคนละชั้นกัน
+--   GRANT = role นี้แตะตารางนี้ได้ไหม
+--   RLS   = แตะได้แล้ว เห็นแถวไหนบ้าง
+-- ถ้าไม่มี GRANT จะขึ้น "permission denied for table trip_states"
+-- ทั้งที่ policy ถูกต้องครบแล้ว
+--
+-- ให้เฉพาะ authenticated ไม่ให้ anon เพราะทุก policy ต้องมี auth.uid()
+-- ผู้ใช้ที่ยังไม่ล็อกอินจึงไม่มีเหตุให้แตะตารางนี้ตั้งแต่แรก
+-- ---------------------------------------------------------------------
+grant usage on schema public to authenticated;
+grant select, insert, update, delete on public.trip_states to authenticated;
+
+-- ---------------------------------------------------------------------
 -- Row Level Security — ผู้ใช้เห็นและแก้ได้เฉพาะแถวของตัวเอง
 -- สำคัญมาก เพราะเว็บใช้ anon key ซึ่งเปิดเผยในเบราว์เซอร์
 -- ถ้าไม่เปิด RLS ใครก็อ่านข้อมูลคนอื่นได้
@@ -67,3 +82,21 @@ drop trigger if exists trip_states_touch_updated_at on public.trip_states;
 create trigger trip_states_touch_updated_at
   before update on public.trip_states
   for each row execute function public.touch_updated_at();
+
+-- =====================================================================
+-- ตรวจว่าตั้งค่าครบแล้ว — รันแยกได้ ผลลัพธ์ควรเป็นตามคอมเมนต์
+-- =====================================================================
+
+-- ควรได้ rowsecurity = true
+-- select tablename, rowsecurity
+--   from pg_tables where schemaname = 'public' and tablename = 'trip_states';
+
+-- ควรได้ 4 แถว (select / insert / update / delete)
+-- select policyname, cmd from pg_policies
+--   where schemaname = 'public' and tablename = 'trip_states';
+
+-- ควรได้ SELECT, INSERT, UPDATE, DELETE ของ role authenticated
+-- ถ้าว่าง แปลว่า GRANT ยังไม่ผ่าน จะเจอ permission denied for table
+-- select grantee, privilege_type from information_schema.role_table_grants
+--   where table_schema = 'public' and table_name = 'trip_states'
+--   order by grantee, privilege_type;
