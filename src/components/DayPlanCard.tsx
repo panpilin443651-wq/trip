@@ -1,17 +1,19 @@
 "use client";
 
-import { PROVINCES_BY_REGION } from "@/data/provinces";
-import { TRANSPORTS, hasMetro, transportOf } from "@/data/transport";
-import { MetroPlanner } from "./MetroPlanner";
+import { hasMetro } from "@/data/transport";
 import { cn } from "@/lib/cn";
+import { formatRoute, hasMetroLeg } from "@/lib/legs";
 import { useTrip } from "@/lib/trip-context";
-import { Field, Input, Select } from "./ui";
+import { MetroPlanner } from "./MetroPlanner";
+import { ProvinceCombobox } from "./ProvinceCombobox";
+import { TravelLegsEditor } from "./TravelLegsEditor";
+import { Field, Input } from "./ui";
 
 /**
- * ระบุจังหวัดและวิธีเดินทางของวันนั้น
+ * ระบุจังหวัดและช่วงการเดินทางของวันนั้น
  *
- * จังหวัดที่เลือกไว้ในแพลนการเที่ยวจะขึ้นก่อน เพราะเป็นตัวเลือกที่ใช้จริง
- * แต่ยังเลือกจังหวัดอื่นได้ เผื่อแวะระหว่างทางโดยไม่ได้วางแผนไว้
+ * การเดินทางแยกเป็นช่วง ๆ เพราะวันเดียวมักใช้หลายวิธี
+ * เช่น บินลงเชียงใหม่แล้วเช่ารถขึ้นดอยอินทนนท์ต่อ
  */
 export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
   const { state, dispatch } = useTrip();
@@ -19,110 +21,75 @@ export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
 
   const plan = trip.dayPlans[dayIndex] ?? {
     province: "",
-    transport: "",
+    legs: [],
     note: "",
   };
-  const transport = transportOf(plan.transport);
 
-  // รถไฟฟ้ามีเฉพาะ กทม. และปริมณฑล ไม่ควรโผล่ให้เลือกในจังหวัดอื่น
-  const metroAvailable = hasMetro(plan.province);
-  const options = TRANSPORTS.filter(
-    (item) => item.id !== "metro" || metroAvailable,
-  );
-  const showMetroPlanner = metroAvailable && plan.transport === "metro";
-
-  function update(patch: Partial<typeof plan>) {
-    dispatch({ type: "setDayPlan", dayIndex, patch });
-  }
+  const route = formatRoute(plan);
+  // ตัวช่วยหาเส้นทาง BTS/MRT ใช้ได้เฉพาะ กทม. และปริมณฑล
+  const showMetroPlanner = hasMetroLeg(plan) && hasMetro(plan.province);
 
   function updateProvince(province: string) {
-    // ย้ายไปจังหวัดที่ไม่มีรถไฟฟ้าแล้วยังค้างตัวเลือกไว้จะสับสน
-    const dropMetro =
-      plan.transport === "metro" && !hasMetro(province);
-    update(dropMetro ? { province, transport: "" } : { province });
+    dispatch({ type: "setDayPlan", dayIndex, patch: { province } });
   }
 
   return (
     <div
       className={cn(
         "mb-4 rounded-2xl border p-4",
-        plan.province || plan.transport
+        plan.province || route
           ? "border-gold/35 bg-gold-soft"
           : "border-dashed border-line bg-card",
       )}
     >
-      <div className="mb-3 flex items-center justify-between gap-3">
-        <h2 className="text-sm font-semibold">
-          🧳 วันนี้ไปไหน เดินทางยังไง
-        </h2>
-        {plan.province || transport ? (
+      <div className="mb-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
+        <h2 className="text-sm font-semibold">🧳 วันนี้ไปไหน เดินทางยังไง</h2>
+        {plan.province || route ? (
           <span className="text-xs text-gold">
-            {transport ? `${transport.emoji} ${transport.label}` : null}
-            {plan.province && transport ? " • " : null}
-            {plan.province}
+            {route || plan.province}
           </span>
         ) : (
           <span className="text-xs text-faint">ยังไม่ได้ระบุ</span>
         )}
       </div>
 
-      <div className="grid gap-3 sm:grid-cols-2">
-        <Field label="จังหวัดของวันนี้">
-          <Select
+      <div className="space-y-3">
+        <Field
+          label="จังหวัดของวันนี้"
+          hint="ใช้เป็นค่าเริ่มต้นของกิจกรรมที่เพิ่มในวันนี้ และใช้แนะนำสถานที่ใกล้เคียง"
+        >
+          <ProvinceCombobox
             value={plan.province}
-            onChange={(e) => updateProvince(e.target.value)}
-          >
-            <option value="">— ยังไม่ระบุ —</option>
-
-            {trip.provinces.length > 0 ? (
-              <optgroup label="จังหวัดในแผนของคุณ">
-                {trip.provinces.map((name) => (
-                  <option key={name} value={name}>
-                    {name}
-                  </option>
-                ))}
-              </optgroup>
-            ) : null}
-
-            {PROVINCES_BY_REGION.map((group) => (
-              <optgroup key={group.region} label={group.region}>
-                {group.provinces
-                  .filter((p) => !trip.provinces.includes(p.name))
-                  .map((province) => (
-                    <option key={province.id} value={province.name}>
-                      {province.emoji} {province.name}
-                    </option>
-                  ))}
-              </optgroup>
-            ))}
-          </Select>
+            onChange={updateProvince}
+            placeholder="พิมพ์ชื่อจังหวัด…"
+            aria-label="จังหวัดของวันนี้"
+          />
         </Field>
 
-        <Field label="วิธีเดินทาง" hint={transport?.hint}>
-          <Select
-            value={plan.transport}
-            onChange={(e) => update({ transport: e.target.value })}
-          >
-            <option value="">— ยังไม่ระบุ —</option>
-            {options.map((item) => (
-              <option key={item.id} value={item.id}>
-                {item.emoji} {item.label}
-              </option>
-            ))}
-          </Select>
-        </Field>
+        <div>
+          <p className="mb-1.5 text-[13px] font-medium text-muted">
+            การเดินทางของวันนี้
+          </p>
+          <TravelLegsEditor dayIndex={dayIndex} />
+          <p className="mt-1 text-xs text-faint">
+            แยกเป็นช่วง ๆ ได้ เช่น กรุงเทพฯ ✈️ เชียงใหม่ แล้วต่อ เชียงใหม่ 🚗
+            ดอยอินทนนท์
+          </p>
+        </div>
 
-        {showMetroPlanner ? (
-          <div className="sm:col-span-2">
-            <MetroPlanner />
-          </div>
-        ) : null}
+        {showMetroPlanner ? <MetroPlanner /> : null}
 
-        <Field label="บันทึกการเดินทาง" className="sm:col-span-2">
+        <Field label="บันทึกของวันนี้">
           <Input
             value={plan.note}
-            onChange={(e) => update({ note: e.target.value })}
-            placeholder="เช่น เที่ยวบิน TG104 09:30 / รถไฟขบวน 109 / เช่ารถที่สนามบิน"
+            onChange={(e) =>
+              dispatch({
+                type: "setDayPlan",
+                dayIndex,
+                patch: { note: e.target.value },
+              })
+            }
+            placeholder="เช่น เช็กอินโรงแรมก่อนบ่ายสาม / นัดไกด์ 8 โมง"
           />
         </Field>
       </div>

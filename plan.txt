@@ -80,6 +80,10 @@ src/components/
   ActivityCard.tsx  ActivityForm.tsx
   BudgetSummary.tsx  BudgetCategoryCard.tsx  BudgetEstimator.tsx
   TripOverviewCard.tsx  การ์ดข้อมูลทริป ใช้ทั้งหน้าหลักและหน้าสรุปแผน
+  TravelLegsEditor.tsx  แก้ช่วงการเดินทางของวัน (จาก -> ถึง + วิธี)
+  ActivitySearchInput.tsx ช่องชื่อกิจกรรมที่พิมพ์เองหรือค้นจากที่แนะนำก็ได้
+  lib/legs.ts           รวมช่วงเป็นสายเดียว + ตรวจว่าวันไหนมีรถไฟฟ้า
+  lib/activity-search.ts ดัชนีค้นหา ~500 รายการ + กลุ่มคำพ้อง
   DayPlanLine.tsx       บรรทัดจังหวัด/วิธีเดินทางของวัน ใช้ทั้งสองหน้าเช่นกัน
   BudgetAlert.tsx    popup เตือนเกินงบ (mount ใน layout)
   ProvinceSelect.tsx เลือกจังหวัดเดียว / ProvincePicker.tsx เลือกหลายจังหวัด

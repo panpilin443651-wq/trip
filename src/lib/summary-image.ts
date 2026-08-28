@@ -1,6 +1,6 @@
 import { CATEGORY_MAP } from "@/data/categories";
-import { transportOf } from "@/data/transport";
 import { buildBreakdown } from "./budget";
+import { formatRoute } from "./legs";
 import {
   addDaysISO,
   addMinutesToTime,
@@ -192,7 +192,7 @@ function measureHeight(
     h += 64; // หัววัน
     // เผื่อบรรทัดจังหวัด/วิธีเดินทางของวันนั้น
     const plan = state.trip.dayPlans[day.index];
-    if (plan?.province || plan?.transport || plan?.note) h += 34;
+    if (plan?.province || formatRoute(plan) || plan?.note) h += 34;
     h += Math.max(1, day.activities.length) * 78;
     // เผื่อที่ให้แถวรูปของกิจกรรมที่มีรูปโหลดสำเร็จ
     for (const activity of day.activities) {
@@ -352,11 +352,11 @@ export async function drawTripSummary(
 
     // บรรทัดจังหวัดและวิธีเดินทางของวันนั้น
     const plan = trip.dayPlans[day.index];
-    const transport = transportOf(plan?.transport);
-    if (plan?.province || transport || plan?.note) {
+    const route = formatRoute(plan);
+    if (plan?.province || route || plan?.note) {
       const bits = [
         plan?.province ? `📍 ${plan.province}` : null,
-        transport ? `${transport.emoji} ${transport.label}` : null,
+        route || null,
         plan?.note ? `📝 ${plan.note}` : null,
       ].filter(Boolean);
       ctx.fillStyle = PALETTE.muted;

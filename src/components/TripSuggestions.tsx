@@ -7,12 +7,27 @@ import {
   type SuggestedActivity,
   type SuggestedPlace,
 } from "@/data/provinces";
+import { activityFill, matchesQuery, placeFill } from "@/lib/activity-search";
 import { cn } from "@/lib/cn";
 import { addMinutesToTime, formatDuration, formatTHB } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
-import { Badge, Button, Card, SectionTitle } from "./ui";
+import { Badge, Button, Card, Input, SectionTitle } from "./ui";
 
 type Tab = "places" | "activities";
+
+/**
+ * ข้อความทั้งหมดของแถวหนึ่งที่เอาไปค้นได้
+ * ต้องรวมคำอธิบายและทิปด้วย เพราะคำที่คนพิมพ์อย่าง "เดินป่า"
+ * ไม่ได้อยู่ในชื่อสถานที่สักแห่ง แต่อยู่ในคำอธิบายเส้นทาง
+ */
+function haystack(row: PlaceRow | ActivityRow): string {
+  const item = "place" in row ? row.place : row.activity;
+  const extra =
+    "place" in row
+      ? `${row.place.tag} ${row.place.tip} ${row.place.bestTime}`
+      : `${row.activity.prepare} ${row.activity.duration}`;
+  return `${item.name} ${item.description} ${extra} ${row.province}`.toLowerCase();
+}
 
 interface PlaceRow {
   province: string;
@@ -32,6 +47,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
   const { trip, activities } = state;
 
   const [tab, setTab] = useState<Tab>("places");
+  const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
@@ -81,43 +97,28 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
   }
 
   function addPlace(row: PlaceRow) {
-    const { place, province } = row;
     dispatch({
       type: "addActivity",
       activity: {
         dayIndex,
         startTime: nextStartTime(),
-        durationMin: place.durationMin,
-        title: place.name,
-        placeName: `${place.name} ${province}`,
-        detail: `${place.description}\n💡 ${place.tip}`,
-        cost: place.fee,
-        category: place.fee > 0 ? "attraction" : "other",
-        lat: place.lat,
-        lng: place.lng,
+        ...placeFill(row.province, row.place),
       },
     });
-    notify(`ใส่ "${place.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
+    notify(`ใส่ "${row.place.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
   }
 
   function addActivity(row: ActivityRow) {
-    const { activity, province } = row;
     dispatch({
       type: "addActivity",
       activity: {
         dayIndex,
         startTime: nextStartTime(),
-        durationMin: 120,
-        title: activity.name,
-        placeName: province,
-        detail: `${activity.description}\n💵 ${activity.price}\n⏱️ ${activity.duration}\n🎒 ${activity.prepare}`,
-        cost: 0,
-        category: "other",
+        ...activityFill(row.province, row.activity),
       },
     });
-    notify(`ใส่ "${activity.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
+    notify(`ใส่ "${row.activity.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
   }
-
   if (provinces.length === 0) {
     return (
       <Card as="section" className="bg-canvas">
@@ -135,7 +136,16 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     );
   }
 
-  const rows = tab === "places" ? placeRows : activityRows;
+  const q = query.trim().toLowerCase();
+  const countPlaces = placeRows.filter((row) =>
+    matchesQuery(haystack(row), q),
+  ).length;
+  const countActivities = activityRows.filter((row) =>
+    matchesQuery(haystack(row), q),
+  ).length;
+  const rows = (tab === "places" ? placeRows : activityRows).filter((row) =>
+    matchesQuery(haystack(row), q),
+  );
   const visible = expanded ? rows : rows.slice(0, 4);
 
   return (
@@ -157,8 +167,8 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
       <div className="mb-3 flex gap-2 rounded-xl bg-line/50 p-1">
         {(
           [
-            ["places", `📍 สถานที่ (${placeRows.length})`],
-            ["activities", `🎯 กิจกรรม (${activityRows.length})`],
+            ["places", `📍 สถานที่ (${countPlaces})`],
+            ["activities", `🎯 กิจกรรม (${countActivities})`],
           ] as Array<[Tab, string]>
         ).map(([id, label]) => (
           <button
@@ -177,6 +187,23 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
           </button>
         ))}
       </div>
+
+      <Input
+        value={query}
+        onChange={(e) => {
+          setQuery(e.target.value);
+          setExpanded(false);
+        }}
+        placeholder="🔍 ค้นหา เช่น เดินป่า ล่องแก่ง ตลาด"
+        aria-label="ค้นหาสถานที่และกิจกรรมแนะนำ"
+        className="mb-3"
+      />
+
+      {rows.length === 0 ? (
+        <p className="rounded-xl border border-dashed border-line px-3 py-4 text-center text-sm text-muted">
+          ไม่พบรายการที่ตรงกับ &ldquo;{query}&rdquo; ในจังหวัดที่เลือกไว้
+        </p>
+      ) : null}
 
       <ul className="space-y-2">
         {tab === "places"

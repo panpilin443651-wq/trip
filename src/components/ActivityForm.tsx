@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { CATEGORIES } from "@/data/categories";
 import { addDaysISO, formatDateShort } from "@/lib/format";
+import type { SuggestionFill } from "@/lib/activity-search";
 import { searchPlaces, type GeocodeHit } from "@/lib/routing";
 import { useTrip } from "@/lib/trip-context";
+import { ActivitySearchInput } from "./ActivitySearchInput";
 import { PhotoManager } from "./PhotoManager";
 import { ProvinceCombobox } from "./ProvinceCombobox";
 import type { Activity, CategoryId } from "@/lib/types";
@@ -58,7 +60,7 @@ export function ActivityForm({
   onClose: () => void;
   onSubmit: (draft: ActivityDraft) => void;
 }) {
-  const { userId } = useTrip();
+  const { state, userId } = useTrip();
   const [draft, setDraft] = useState<ActivityDraft>(initial);
   const [hits, setHits] = useState<GeocodeHit[]>([]);
   const [searching, setSearching] = useState(false);
@@ -66,6 +68,31 @@ export function ActivityForm({
 
   function patch(next: Partial<ActivityDraft>) {
     setDraft((current) => ({ ...current, ...next }));
+  }
+
+  /**
+   * จังหวัดที่ใช้จัดอันดับผลค้นหา — จังหวัดของกิจกรรมนี้มาก่อน
+   * เพราะเจาะจงกว่าจังหวัดทั้งหมดของทริป
+   */
+  const searchProvinces = draft.province
+    ? [draft.province, ...state.trip.provinces]
+    : state.trip.provinces;
+
+  /** เติมทุกอย่างจากรายการที่เลือก แต่ไม่แตะวันและเวลาที่ผู้ใช้ตั้งไว้แล้ว */
+  function applySuggestion(fill: SuggestionFill) {
+    patch({
+      title: fill.title,
+      placeName: fill.placeName,
+      province: fill.province,
+      detail: fill.detail,
+      durationMin: fill.durationMin,
+      cost: fill.cost,
+      category: fill.category,
+      lat: fill.lat,
+      lng: fill.lng,
+    });
+    setHits([]);
+    setSearchNote(null);
   }
 
   async function handleSearch() {
@@ -110,12 +137,15 @@ export function ActivityForm({
       }
     >
       <div className="space-y-4">
-        <Field label="ชื่อกิจกรรม">
-          <Input
+        <Field
+          label="ชื่อกิจกรรม"
+          hint="พิมพ์ค้นได้ เช่น เดินป่า / ล่องแก่ง แล้วเลือกจากที่แนะนำในจังหวัดของทริป"
+        >
+          <ActivitySearchInput
             value={draft.title}
-            onChange={(e) => patch({ title: e.target.value })}
-            placeholder="เช่น ไหว้พระธาตุดอยสุเทพ"
-            autoFocus
+            onChange={(title) => patch({ title })}
+            onPick={applySuggestion}
+            provinces={searchProvinces}
           />
         </Field>
 

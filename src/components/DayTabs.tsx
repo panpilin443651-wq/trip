@@ -1,6 +1,6 @@
 "use client";
 
-import { transportOf } from "@/data/transport";
+import { legTransports } from "@/lib/legs";
 import { addDaysISO, formatDateShort } from "@/lib/format";
 import { cn } from "@/lib/cn";
 import { useTrip } from "@/lib/trip-context";
@@ -26,7 +26,8 @@ export function DayTabs({
       <div className="flex gap-2" role="tablist" aria-label="เลือกวัน">
         {Array.from({ length: dayCount }, (_, index) => {
           const active = index === value;
-          const transport = transportOf(state.trip.dayPlans[index]?.transport);
+          // วันหนึ่งใช้ได้หลายวิธี โชว์ 2 อันแรกพอ ไม่งั้นแท็บยาวเกิน
+          const modes = legTransports(state.trip.dayPlans[index]).slice(0, 2);
           return (
             <button
               key={index}
@@ -41,7 +42,9 @@ export function DayTabs({
                   : "border-line bg-card text-muted hover:text-ink",
               )}
             >
-              {transport ? <span className="mr-1">{transport.emoji}</span> : null}
+              {modes.length > 0 ? (
+                <span className="mr-1">{modes.map((m) => m.emoji).join("")}</span>
+              ) : null}
               วันที่ {index + 1}
               <span
                 className={cn(
