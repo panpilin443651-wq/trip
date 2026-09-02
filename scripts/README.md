@@ -85,3 +85,13 @@ Overpass ติด rate limit ง่าย สคริปต์รอ 8 วิ�
 ```bash
 node --experimental-strip-types --import ./scripts/alias-hooks.mjs test.mts
 ```
+
+## list-gemini-models.js
+
+ดูว่า API key ของ Gemini ใช้รุ่นไหนได้บ้าง ใช้ตอนเจอ error ว่าไม่พบโมเดล
+
+```bash
+GEMINI_API_KEY=AIza... node scripts/list-gemini-models.js
+```
+
+ปกติไม่ต้องรัน เพราะแอปหารุ่นที่ใช้ได้เองอยู่แล้ว
