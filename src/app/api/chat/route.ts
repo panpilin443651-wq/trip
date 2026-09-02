@@ -28,13 +28,41 @@ interface IncomingMessage {
   text: string;
 }
 
-/** แปลรหัสข้อผิดพลาดของ Gemini เป็นข้อความที่บอกได้ว่าต้องทำอะไรต่อ */
-function upstreamMessage(status: number): string {
+/**
+ * ดึงข้อความผิดพลาดจริงที่ Google ส่งมา
+ *
+ * ต้องเอามาโชว์ด้วยเสมอ เพราะรหัสสถานะเดียวกันมาได้จากหลายสาเหตุมาก
+ * โดยเฉพาะ 400 ที่เป็นได้ทั้งคีย์ผิด รูปแบบคำขอผิด และรุ่นไม่รองรับฟีเจอร์
+ * ถ้าเดาเองจะพาไปแก้ผิดจุด
+ */
+async function readUpstreamError(res: Response): Promise<string> {
+  try {
+    const text = await res.text();
+    const data = JSON.parse(text) as {
+      error?: { message?: string; status?: string };
+    };
+    const detail = data.error?.message?.trim();
+    if (detail) return detail;
+    return text.slice(0, 300);
+  } catch {
+    return "";
+  }
+}
+
+/** คำแนะนำตามรหัสสถานะ ใช้คู่กับข้อความจริงจาก Google เสมอ */
+function upstreamHint(status: number, detail: string): string {
   if (status === 429) {
     return "โควตาฟรีของ Gemini เต็มชั่วคราว รอสักครู่แล้วลองใหม่";
   }
-  if (status === 400 || status === 403) {
-    return "API key ใช้ไม่ได้ — ตรวจค่า GEMINI_API_KEY อีกครั้ง";
+  if (status === 403) {
+    return "คีย์ไม่มีสิทธิ์เรียก — ตรวจว่าเปิดใช้ Generative Language API แล้ว และคีย์ไม่ได้ถูกจำกัดโดเมน/IP";
+  }
+  if (status === 400) {
+    // 400 มาได้หลายทาง แยกด้วยข้อความที่ Google ส่งมา
+    if (/API key not valid|API_KEY_INVALID/i.test(detail)) {
+      return "API key ไม่ถูกต้อง — คัดลอกคีย์จาก Google AI Studio มาใหม่";
+    }
+    return "คำขอถูกปฏิเสธ";
   }
   return "ผู้ช่วยไม่ตอบสนอง ลองใหม่อีกครั้ง";
 }
@@ -99,7 +127,7 @@ export async function POST(request: Request) {
       : "";
 
   const payload = {
-    system_instruction: {
+    systemInstruction: {
       parts: [{ text: buildSystemPrompt(tripSummary) }],
     },
     contents: messages.map((m) => ({
@@ -154,6 +182,8 @@ export async function POST(request: Request) {
   // ต้องเช็กก่อนเริ่มสตรีม เพราะพอสตรีมแล้วเปลี่ยนสถานะไม่ได้
   if (!upstream.ok || !upstream.body) {
     if (upstream.status === 404) {
+      const notFoundDetail = await readUpstreamError(upstream);
+      console.error(`[chat] Gemini 404 (${model}): ${notFoundDetail}`);
       const usable = rankModels(await listUsableModels());
       return NextResponse.json(
         {
@@ -162,14 +192,21 @@ export async function POST(request: Request) {
               ? `คีย์นี้ใช้รุ่น "${model}" ไม่ได้ ลองตั้ง GEMINI_MODEL เป็น ` +
                 `"${usable[0]}" (รุ่นที่ใช้ได้: ${usable.slice(0, 6).join(", ")})`
               : `ไม่พบรุ่น "${model}" และถามรายชื่อรุ่นที่ใช้ได้ไม่สำเร็จ — ` +
-                `ตรวจว่า GEMINI_API_KEY ถูกต้อง และเปิดใช้ Generative Language API แล้ว`,
+                `ตรวจว่า GEMINI_API_KEY ถูกต้อง และเปิดใช้ Generative Language API แล้ว` +
+                `${notFoundDetail ? ` (Google บอกว่า: ${notFoundDetail})` : ""}`,
         },
         { status: 502 },
       );
     }
 
+    const detail = await readUpstreamError(upstream);
+    const hint = upstreamHint(upstream.status, detail);
+    // log ไว้ให้ตามดูใน Vercel ได้ เผื่อผู้ใช้ส่งภาพหน้าจอมาไม่ครบ
+    console.error(`[chat] Gemini ${upstream.status} (${model}): ${detail}`);
     return NextResponse.json(
-      { error: upstreamMessage(upstream.status) },
+      {
+        error: detail ? `${hint} — Google บอกว่า: ${detail}` : hint,
+      },
       { status: 502 },
     );
   }

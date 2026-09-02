@@ -64,6 +64,33 @@ function rank(models) {
 
   console.log("เรียงตามที่แอปจะเลือกใช้:");
   ranked.forEach((m, i) => console.log(`  ${i === 0 ? "→" : " "} ${m}`));
-  console.log(`\nแอปจะใช้ "${ranked[0]}" ให้เอง ไม่ต้องตั้ง GEMINI_MODEL ก็ได้`);
-  console.log(`ถ้าอยากล็อกรุ่นไว้ ให้ตั้ง GEMINI_MODEL=${ranked[0]}`);
+
+  // ยิงจริงหนึ่งครั้งด้วยเพย์โหลดหน้าตาเดียวกับที่แอปใช้
+  // อยู่ในรายชื่อรุ่นไม่ได้แปลว่าเรียกได้ สิทธิ์เป็นคนละชุดกัน
+  console.log(`\nลองเรียก "${ranked[0]}" จริง…`);
+  const test = await fetch(
+    `https://generativelanguage.googleapis.com/v1beta/models/${ranked[0]}:generateContent`,
+    {
+      method: "POST",
+      headers: { "Content-Type": "application/json", "x-goog-api-key": KEY },
+      body: JSON.stringify({
+        systemInstruction: { parts: [{ text: "ตอบสั้น ๆ เป็นภาษาไทย" }] },
+        contents: [{ role: "user", parts: [{ text: "ทักทายสั้น ๆ" }] }],
+        generationConfig: { maxOutputTokens: 50 },
+      }),
+    },
+  );
+
+  if (test.ok) {
+    const data = await test.json();
+    const text = (data.candidates?.[0]?.content?.parts ?? [])
+      .map((x) => x.text ?? "")
+      .join("");
+    console.log(`✓ เรียกได้ ตอบว่า: ${text.trim() || "(ว่าง)"}`);
+    console.log(`\nแอปจะใช้ "${ranked[0]}" ให้เอง ไม่ต้องตั้ง GEMINI_MODEL`);
+  } else {
+    console.log(`✗ เรียกไม่ได้ (HTTP ${test.status})`);
+    console.log(await test.text());
+    console.log("\nเอาข้อความข้างบนนี้ไปหาสาเหตุได้เลย");
+  }
 })();
