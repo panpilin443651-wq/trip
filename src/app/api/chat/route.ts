@@ -1,7 +1,11 @@
 import { NextResponse } from "next/server";
 import { buildSystemPrompt } from "@/lib/chat/knowledge";
 import type { ChatRole } from "@/lib/chat/types";
-import { GEMINI_API_KEY, isGeminiConfigured } from "@/lib/gemini/config";
+import {
+  GEMINI_API_KEY,
+  isGeminiConfigured,
+  normalizeModel,
+} from "@/lib/gemini/config";
 import {
   candidateModels,
   pickModel,
@@ -209,9 +213,16 @@ export async function POST(request: Request) {
     const detail = await readUpstreamError(upstream);
     const hint = upstreamHint(upstream.status, detail);
     // log ไว้ให้ตามดูใน Vercel ได้ เผื่อผู้ใช้ส่งภาพหน้าจอมาไม่ครบ
-    console.error(`[chat] Gemini ${upstream.status} (${model}): ${detail}`);
+    console.error(
+      `[chat] Gemini ${upstream.status} model=${JSON.stringify(model)}: ${detail}`,
+    );
     return NextResponse.json(
-      { error: detail ? `${hint} — Google บอกว่า: ${detail}` : hint },
+      {
+        // ใส่ชื่อรุ่นแบบ JSON เพื่อให้เห็นช่องว่างหรือขึ้นบรรทัดใหม่ที่ติดมา
+        error:
+          (detail ? `${hint} — Google บอกว่า: ${detail}` : hint) +
+          ` [รุ่นที่ส่งไป: ${JSON.stringify(model)}]`,
+      },
       { status: 502 },
     );
   }
@@ -225,5 +236,67 @@ export async function POST(request: Request) {
       "Content-Type": "text/plain; charset=utf-8",
       "Cache-Control": "no-store",
     },
+  });
+}
+
+/**
+ * หน้าตรวจการตั้งค่า — เปิด /api/chat ในเบราว์เซอร์ตอนล็อกอินอยู่
+ *
+ * มีไว้เพราะเวลาเจอ error จากฝั่ง Google เราเดาไม่ออกว่าค่าจริงบนเซิร์ฟเวอร์
+ * เป็นอะไร ดูตรงนี้ทีเดียวจบ ไม่ต้องไล่ถามกันไปมา
+ * ไม่คืนตัวคีย์ออกมา บอกแค่ว่ามีหรือไม่และยาวเท่าไร
+ */
+export async function GET() {
+  let user = null;
+  try {
+    const supabase = await createClient();
+    const result = await supabase.auth.getUser();
+    user = result.data.user;
+  } catch {
+    user = null;
+  }
+  if (!user) {
+    return NextResponse.json({ error: "กรุณาเข้าสู่ระบบก่อน" }, { status: 401 });
+  }
+
+  const raw = process.env.GEMINI_MODEL;
+  const model = pickModel();
+  const candidates = await candidateModels();
+
+  // ยิงจริงหนึ่งครั้งด้วยคำถามสั้นที่สุด จะได้รู้ว่าเรียกได้จริงไหม
+  let test: { ok: boolean; status: number; message?: string };
+  try {
+    const res = await fetch(
+      `https://generativelanguage.googleapis.com/v1beta/models/` +
+        `${model}:generateContent`,
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "x-goog-api-key": GEMINI_API_KEY,
+        },
+        body: JSON.stringify({
+          contents: [{ role: "user", parts: [{ text: "hi" }] }],
+          generationConfig: { maxOutputTokens: 2000 },
+        }),
+        signal: AbortSignal.timeout(20_000),
+      },
+    );
+    test = res.ok
+      ? { ok: true, status: res.status }
+      : { ok: false, status: res.status, message: await readUpstreamError(res) };
+  } catch (e) {
+    test = { ok: false, status: 0, message: String(e).slice(0, 200) };
+  }
+
+  return NextResponse.json({
+    keyMissing: !isGeminiConfigured,
+    keyLength: GEMINI_API_KEY.length,
+    envModelRaw: raw === undefined ? null : raw,
+    envModelCleaned: raw === undefined ? null : normalizeModel(raw),
+    modelInUse: model,
+    candidatesTop: candidates.slice(0, 6),
+    candidateCount: candidates.length,
+    testCall: test,
   });
 }
