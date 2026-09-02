@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { BottomNav, SideNav } from "@/components/AppNav";
 import { BudgetAlert } from "@/components/BudgetAlert";
+import { ChatWidget } from "@/components/ChatWidget";
 import { SyncStatus } from "@/components/SyncStatus";
 import { createClient } from "@/lib/supabase/server";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
@@ -25,6 +26,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
             {children}
           </main>
           <BudgetAlert />
+          <ChatWidget />
           <SyncStatus />
         </TripProvider>
       </div>

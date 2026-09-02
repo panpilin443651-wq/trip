@@ -189,3 +189,15 @@ src/data/
 - พิกัดสถานที่แนะนำดึงจาก OpenStreetMap ซึ่งบางจุดเป็นตำแหน่งของพื้นที่กว้าง
   (เช่นอุทยาน) ไม่ใช่ทางเข้าที่แน่นอน ใช้ประกอบการวางแผนได้ แต่ตอนขับจริง
   ควรเช็กกับแอปนำทางอีกครั้ง
+
+[ผู้ช่วย AI - Gemini]
+  /chat + ปุ่มลอยทุกหน้า ถามวิธีใช้เว็บและเรื่องทริปได้
+  lib/gemini/config.ts  คีย์ฝั่งเซิร์ฟเวอร์เท่านั้น ห้าม NEXT_PUBLIC_
+  lib/gemini/sse.ts     แปลงสตรีม SSE ของ Gemini เป็นข้อความ (มีเทสต์ 8 เคส)
+  lib/chat/knowledge.ts คู่มือเว็บ สร้างจาก NAV_ITEMS/CATEGORIES/TRANSPORTS
+                        จะได้ไม่ล้าสมัยเวลาเพิ่มหน้าใหม่
+  lib/chat/trip-summary.ts  แปลง AppState เป็นข้อความให้โมเดลอ่าน
+                        ตัดรูปกับพิกัดออก เพราะข้อมูลก้อนนี้ถูกส่งไป Google
+  lib/chat/storage.ts   ประวัติแชทเป็น external store (useSyncExternalStore)
+                        เลี่ยงทั้ง hydration mismatch และ setState-in-effect
+  api/chat/route.ts     ตรวจล็อกอินก่อน แล้วค่อยเช็กคีย์ กันคนนอกยิงจนโควตาหมด

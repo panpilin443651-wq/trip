@@ -76,3 +76,12 @@ node scripts/gen-metro.js
 
 Overpass ติด rate limit ง่าย สคริปต์รอ 8 วินาทีระหว่างเส้นทาง
 และ retry อัตโนมัติ 3 ครั้ง
+
+## alias-hooks.mjs
+
+ตัวช่วยให้ `node --experimental-strip-types` รู้จัก path alias `@/` ของโปรเจกต์
+ใช้ทดสอบตรรกะใน `src/lib` ตรง ๆ โดยไม่ต้องผ่าน Next
+
+```bash
+node --experimental-strip-types --import ./scripts/alias-hooks.mjs test.mts
+```

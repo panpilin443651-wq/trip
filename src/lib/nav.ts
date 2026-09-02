@@ -44,6 +44,13 @@ export const NAV_ITEMS: NavItem[] = [
     description: "ดูแผนทั้งทริป บันทึกเป็นรูปหรือ PDF",
   },
   {
+    href: "/chat",
+    label: "ผู้ช่วย AI",
+    emoji: "💬",
+    primary: false,
+    description: "ถามวิธีใช้เว็บและเรื่องทริปของคุณ",
+  },
+  {
     href: "/places",
     label: "สถานที่",
     emoji: "📍",

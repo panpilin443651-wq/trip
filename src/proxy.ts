@@ -60,6 +60,15 @@ export async function proxy(request: NextRequest) {
   );
 
   if (!user && !isPublic) {
+    // เส้นทาง API ถูกเรียกด้วย fetch ถ้า redirect ไปหน้า login ฝั่งเรียกจะได้
+    // HTML กลับไปแล้ว parse JSON พัง จึงตอบ 401 ให้จัดการต่อได้ตรง ๆ
+    if (pathname.startsWith("/api/")) {
+      return NextResponse.json(
+        { error: "กรุณาเข้าสู่ระบบก่อน" },
+        { status: 401 },
+      );
+    }
+
     const url = request.nextUrl.clone();
     url.pathname = "/login";
     url.searchParams.set("next", pathname);
