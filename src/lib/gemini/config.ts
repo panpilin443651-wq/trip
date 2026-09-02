@@ -7,8 +7,14 @@
  */
 export const GEMINI_API_KEY = process.env.GEMINI_API_KEY ?? "";
 
-/** เปลี่ยนรุ่นได้ทาง env เผื่อรุ่นที่ตั้งไว้ถูกปลดจากชั้นฟรี */
-export const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+/**
+ * รุ่นที่ลองเป็นตัวแรก
+ *
+ * Google ปลดรุ่นเก่าออกจากผู้ใช้ใหม่เรื่อย ๆ — คีย์ที่ออกใหม่เรียก
+ * gemini-2.5-flash ไม่ได้แล้ว ได้ 404 พร้อมข้อความแนะให้ใช้ 3.6 แทน
+ * ถ้าค่านี้ใช้ไม่ได้ ระบบจะไปหารุ่นที่ใช้ได้เองจาก ListModels
+ */
+export const GEMINI_MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
 
 /** ยังไม่ได้ตั้ง env — ใช้แสดงวิธีตั้งค่าแทนที่จะพังเงียบ ๆ */
 export const isGeminiConfigured = GEMINI_API_KEY.length > 20;
