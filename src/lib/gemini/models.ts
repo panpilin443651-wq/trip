@@ -1,4 +1,4 @@
-import { GEMINI_API_KEY, GEMINI_MODEL } from "./config";
+import { GEMINI_API_KEY, GEMINI_MODEL, normalizeModel } from "./config";
 
 interface ModelInfo {
   name?: string;
@@ -76,8 +76,10 @@ let confirmed: string | null = null;
 
 /** รุ่นที่จะลองก่อน — ค่าที่ตั้งใน env มาก่อน แล้วค่อยเป็นรุ่นที่ยืนยันแล้ว */
 export function pickModel(): string {
-  if (process.env.GEMINI_MODEL) return process.env.GEMINI_MODEL;
-  return confirmed ?? GEMINI_MODEL;
+  // GEMINI_MODEL ผ่าน normalizeModel มาแล้วตั้งแต่ใน config
+  // ถ้าค่าที่ตั้งไว้ผิดรูป จะกลายเป็นค่าเริ่มต้นให้เอง
+  const wanted = normalizeModel(process.env.GEMINI_MODEL);
+  return wanted || confirmed || GEMINI_MODEL;
 }
 
 export function rememberModel(model: string): void {

@@ -64,6 +64,13 @@ function upstreamHint(status: number, detail: string): string {
     if (/API key not valid|API_KEY_INVALID/i.test(detail)) {
       return "API key ไม่ถูกต้อง — คัดลอกคีย์จาก Google AI Studio มาใหม่";
     }
+    if (/model name format|GenerateContentRequest.model/i.test(detail)) {
+      return (
+        "ชื่อรุ่นผิดรูป — ถ้าตั้ง GEMINI_MODEL ไว้ ให้ลบทิ้งแล้ว redeploy " +
+        "(แอปหารุ่นที่ใช้ได้เอง) หรือใส่แค่ชื่อล้วน ๆ เช่น gemini-3.6-flash " +
+        "ห้ามมีเครื่องหมายคำพูด ช่องว่าง หรือคำนำหน้า models/"
+      );
+    }
     return "คำขอถูกปฏิเสธ";
   }
   return "ผู้ช่วยไม่ตอบสนอง ลองใหม่อีกครั้ง";
