@@ -192,10 +192,19 @@ export default function SummaryPage() {
                       </p>
                     </div>
                     <div className="min-w-0 flex-1">
-                      <p className="font-medium break-words">{activity.title}</p>
-                      {activity.placeName ? (
+                      {/* สถานที่เป็นบรรทัดหลัก กิจกรรมทั้งหมดตามลงมา
+                          ให้ตรงกับการ์ดในแผนเที่ยว */}
+                      <p className="font-medium break-words">
+                        {activity.placeName || activity.title}
+                      </p>
+                      {(activity.activities ?? []).length > 0 ? (
                         <p className="mt-0.5 text-sm break-words text-muted">
-                          📍 {activity.placeName}
+                          🎯 {(activity.activities ?? []).join(" · ")}
+                        </p>
+                      ) : activity.placeName &&
+                        activity.title !== activity.placeName ? (
+                        <p className="mt-0.5 text-sm break-words text-muted">
+                          🎯 {activity.title}
                         </p>
                       ) : null}
                       <div className="mt-1.5 flex flex-wrap gap-1.5">

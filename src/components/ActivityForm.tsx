@@ -7,7 +7,7 @@ import type { SuggestionFill } from "@/lib/activity-search";
 import type { PlaceOption } from "@/lib/place-search";
 import { googleMapsUrl } from "@/lib/place-search";
 import { useTrip } from "@/lib/trip-context";
-import { ActivitySearchInput } from "./ActivitySearchInput";
+import { ActivityListInput } from "./ActivityListInput";
 import { PhotoManager } from "./PhotoManager";
 import { PlaceCombobox } from "./PlaceCombobox";
 import { ProvinceCombobox } from "./ProvinceCombobox";
@@ -34,6 +34,7 @@ export function emptyDraft(
     durationMin: 60,
     title: "",
     placeName: "",
+    activities: [],
     province,
     detail: "",
     cost: 0,
@@ -69,6 +70,9 @@ export function ActivityForm({
     setDraft((current) => ({ ...current, ...next }));
   }
 
+  /** ข้อมูลรุ่นเก่าไม่มีฟิลด์นี้ อ่านผ่านตัวช่วยจะได้ไม่ต้องเช็ก undefined ทุกที่ */
+  const activities = draft.activities ?? [];
+
   /**
    * จังหวัดที่ใช้จัดอันดับผลค้นหา — จังหวัดของกิจกรรมนี้มาก่อน
    * เพราะเจาะจงกว่าจังหวัดทั้งหมดของทริป
@@ -99,11 +103,14 @@ export function ActivityForm({
     });
   }
 
-  /** เลือกกิจกรรมจากรายการ — เติมเฉพาะส่วนที่เกี่ยวกับกิจกรรม ไม่ทับสถานที่ */
-  function applyActivity(fill: SuggestionFill) {
+  /**
+   * เลือกกิจกรรม "แรก" จากรายการแนะนำ — เอาเวลาและค่าใช้จ่ายที่แนะนำมาเติมให้
+   * กิจกรรมที่เพิ่มทีหลังจะไม่เข้าทางนี้ เพราะรายการนี้มีช่องค่าใช้จ่ายช่องเดียว
+   * ถ้าให้ทุกกิจกรรมมาทับ ตัวเลขที่ผู้ใช้ปรับเองไว้จะหายทุกครั้งที่เพิ่มอันใหม่
+   */
+  function applyFirstActivity(fill: SuggestionFill) {
     patch({
-      title: fill.title,
-      detail: fill.detail,
+      detail: draft.detail.trim() ? draft.detail : fill.detail,
       durationMin: fill.durationMin,
       cost: fill.cost,
       category: fill.category,
@@ -129,12 +136,17 @@ export function ActivityForm({
           </Button>
           <Button
             className="flex-1"
-            disabled={!draft.placeName.trim() && !draft.title.trim()}
+            disabled={!draft.placeName.trim() && activities.length === 0}
             onClick={() => {
-              // กรอกแค่สถานที่ก็บันทึกได้ ใช้ชื่อสถานที่เป็นชื่อรายการไปเลย
+              // title ใช้ในที่แคบ ๆ อย่างหมุดบนแผนที่และรายการค่าใช้จ่าย
+              // จึงเก็บแค่ชื่อเดียว เอากิจกรรมแรกก่อน ไม่มีค่อยใช้ชื่อสถานที่
               const place = draft.placeName.trim();
-              const title = draft.title.trim() || place;
-              onSubmit({ ...draft, title, placeName: place });
+              onSubmit({
+                ...draft,
+                title: activities[0] ?? place,
+                placeName: place,
+                activities,
+              });
             }}
           >
             บันทึก
@@ -181,18 +193,17 @@ export function ActivityForm({
 
         {/* กิจกรรมเป็นของย่อยลงมาจากสถานที่ — ไปที่นั่นแล้วทำอะไร */}
         <div className="border-l-2 border-line pl-3">
-          <Field
-            label="🎯 กิจกรรมที่นี่"
-            hint="ไม่กรอกก็ได้ จะใช้ชื่อสถานที่เป็นชื่อรายการให้เอง"
-          >
-            <ActivitySearchInput
-              value={draft.title}
-              onChange={(title) => patch({ title })}
-              onPick={applyActivity}
+          <div>
+            <p className="mb-1.5 text-[13px] font-medium text-muted">
+              🎯 กิจกรรมที่นี่
+            </p>
+            <ActivityListInput
+              value={activities}
+              onChange={(next) => patch({ activities: next })}
+              onFirstPick={applyFirstActivity}
               provinces={searchProvinces}
-              placeholder="เช่น ไหว้พระ ถ่ายรูป ชิมของกิน…"
             />
-          </Field>
+          </div>
         </div>
 
         <Field
@@ -306,6 +317,7 @@ export function toDraft(activity: Activity): ActivityDraft {
     durationMin: activity.durationMin,
     title: activity.title,
     placeName: activity.placeName,
+    activities: activity.activities ?? [],
     province: activity.province,
     detail: activity.detail,
     cost: activity.cost,

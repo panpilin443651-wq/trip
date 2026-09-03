@@ -19,15 +19,20 @@ export function ActivitySearchInput({
   value,
   onChange,
   onPick,
+  onSubmit,
   provinces,
   placeholder = "เช่น เดินป่า ล่องแก่ง ไหว้พระ…",
+  autoFocus = true,
 }: {
   value: string;
   onChange: (title: string) => void;
   onPick: (fill: SuggestionFill) => void;
+  /** กด Enter ทั้งที่ไม่ได้เลือกจากรายการ — ใช้ชื่อที่พิมพ์เองไปเลย */
+  onSubmit?: () => void;
   /** จังหวัดที่เลือกไว้ ใช้ดันผลลัพธ์ของจังหวัดนั้นขึ้นก่อน */
   provinces: string[];
   placeholder?: string;
+  autoFocus?: boolean;
 }) {
   const listId = useId();
   const [open, setOpen] = useState(false);
@@ -61,7 +66,7 @@ export function ActivitySearchInput({
         aria-autocomplete="list"
         value={value}
         placeholder={placeholder}
-        autoFocus
+        autoFocus={autoFocus}
         onChange={(e) => {
           onChange(e.target.value);
           setOpen(true);
@@ -73,7 +78,14 @@ export function ActivitySearchInput({
           blurTimer.current = setTimeout(() => setOpen(false), 120);
         }}
         onKeyDown={(e) => {
-          if (!showList) return;
+          // พิมพ์ชื่อเองแล้วกด Enter ทั้งที่ไม่มีรายการให้เลือก
+          if (!showList) {
+            if (e.key === "Enter" && onSubmit) {
+              e.preventDefault();
+              onSubmit();
+            }
+            return;
+          }
           if (e.key === "ArrowDown") {
             e.preventDefault();
             setActive((i) => Math.min(i + 1, matches.length - 1));

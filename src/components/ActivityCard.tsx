@@ -58,7 +58,12 @@ export function ActivityCard({
                 </span>
               ) : null}
             </h3>
-            {activity.placeName && activity.title !== activity.placeName ? (
+            {/* ที่เดียวทำได้หลายอย่าง โชว์ให้ครบ ไม่ใช่แค่อันแรก */}
+            {(activity.activities ?? []).length > 0 ? (
+              <p className="mt-0.5 text-sm break-words text-muted">
+                🎯 {(activity.activities ?? []).join(" · ")}
+              </p>
+            ) : activity.placeName && activity.title !== activity.placeName ? (
               <p className="mt-0.5 text-sm break-words text-muted">
                 🎯 {activity.title}
               </p>

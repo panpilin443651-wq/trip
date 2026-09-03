@@ -401,21 +401,19 @@ export async function drawTripSummary(
         ctx.fillStyle = PALETTE.ink;
         ctx.font = font(24, 600);
         const titleMax = innerW - 320;
-        let title = activity.title;
+        const heading = activity.placeName || activity.title;
+        let title = heading;
         while (ctx.measureText(title).width > titleMax && title.length > 1) {
           title = title.slice(0, -1);
         }
-        ctx.fillText(
-          title + (title !== activity.title ? "…" : ""),
-          PAD + 130,
-          y + 13,
-        );
+        ctx.fillText(title + (title !== heading ? "…" : ""), PAD + 130, y + 13);
 
         ctx.fillStyle = PALETTE.muted;
         ctx.font = font(19);
+        const doing = activity.activities ?? [];
         const meta = `${CATEGORY_MAP[activity.category].emoji} ${
           CATEGORY_MAP[activity.category].label
-        }${activity.placeName ? `  •  ${activity.placeName}` : ""}`;
+        }${doing.length > 0 ? `  •  ${doing.join(", ")}` : ""}`;
         let metaText = meta;
         while (ctx.measureText(metaText).width > titleMax && metaText.length > 1) {
           metaText = metaText.slice(0, -1);

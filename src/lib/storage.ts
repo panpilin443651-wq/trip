@@ -1,7 +1,7 @@
 import { EMPTY_BUDGETS } from "@/data/categories";
 import { todayISO } from "./format";
 import { newId } from "./id";
-import type { AppState, DayPlan, TravelLeg } from "./types";
+import type { Activity, AppState, DayPlan, TravelLeg } from "./types";
 
 export const STORAGE_KEY = "travel-planner:state";
 export const STATE_VERSION = 1;
@@ -78,6 +78,24 @@ export function fitDayPlans(plans: unknown, dayCount: number): DayPlan[] {
   });
 }
 
+/**
+ * เติมรายการกิจกรรมให้ข้อมูลรุ่นเก่า
+ *
+ * เดิมหนึ่งรายการมีกิจกรรมได้อย่างเดียวเก็บไว้ในฟิลด์ title ตอนนี้ใส่ได้หลายอย่าง
+ * ของเก่าจึงต้องยกชื่อเดิมมาเป็นกิจกรรมแรก ยกเว้นกรณีที่ title เท่ากับชื่อสถานที่
+ * ซึ่งแปลว่าตอนนั้นผู้ใช้ไม่ได้กรอกกิจกรรม แค่บันทึกว่าแวะที่นั่น
+ */
+function normalizeActivity(raw: Activity): Activity {
+  const list = Array.isArray(raw.activities)
+    ? raw.activities.filter((a): a is string => typeof a === "string" && !!a.trim())
+    : undefined;
+  if (list) return { ...raw, activities: [...new Set(list.map((a) => a.trim()))] };
+
+  const title = (raw.title ?? "").trim();
+  const place = (raw.placeName ?? "").trim();
+  return { ...raw, activities: title && title !== place ? [title] : [] };
+}
+
 export function normalizeState(raw: unknown): AppState {
   const base = createDefaultState();
   if (!raw || typeof raw !== "object") return base;
@@ -129,7 +147,9 @@ export function normalizeState(raw: unknown): AppState {
         typeof trip.mainTransport === "string" ? trip.mainTransport : "",
     },
     activities: Array.isArray(input.activities)
-      ? input.activities.filter((a) => a && typeof a.id === "string")
+      ? input.activities
+          .filter((a) => a && typeof a.id === "string")
+          .map(normalizeActivity)
       : [],
     expenses: Array.isArray(input.expenses)
       ? input.expenses.filter((e) => e && typeof e.id === "string")

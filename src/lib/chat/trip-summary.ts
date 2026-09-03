@@ -80,9 +80,12 @@ export function summarizeTrip(state: AppState): string {
     }
     for (const a of dayActivities) {
       const end = addMinutesToTime(a.startTime, a.durationMin);
+      const doing = a.activities ?? [];
       const bits = [
-        `  ${a.startTime}–${end} ${a.title}`,
-        a.placeName ? `ที่ ${a.placeName}` : null,
+        `  ${a.startTime}–${end} ${a.placeName || a.title}`,
+        // ที่เดียวทำได้หลายอย่าง ส่งไปให้ครบ ไม่งั้นถามว่าวันนี้ทำอะไรบ้าง
+        // แล้วจะตอบได้แค่กิจกรรมแรก
+        doing.length > 0 ? `ทำ ${doing.join(", ")}` : null,
         `หมวด ${CATEGORY_MAP[a.category].label}`,
         `ค่าใช้จ่าย ${a.cost}`,
       ].filter(Boolean);
