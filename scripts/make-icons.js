@@ -141,6 +141,82 @@ function drawIcon(size, { inset = 0.12, round = 0.22 } = {}) {
   return encodePng(size, size, out);
 }
 
+
+/**
+ * ประกอบไฟล์ .ico จาก PNG หลายขนาด
+ *
+ * .ico เป็นแค่กล่องใส่รูปหลายขนาดในไฟล์เดียว เบราว์เซอร์ยุคนี้อ่าน PNG
+ * ที่ฝังอยู่ข้างในได้ จึงไม่ต้องแปลงเป็น BMP แบบสมัยก่อน
+ * ใส่หลายขนาดเพราะแต่ละที่ใช้ไม่เท่ากัน — แท็บ 16, บุ๊กมาร์ก 32, ทางลัด 48
+ */
+function encodeIco(images) {
+  const header = Buffer.alloc(6);
+  header.writeUInt16LE(0, 0); // สงวนไว้
+  header.writeUInt16LE(1, 2); // 1 = ไอคอน
+  header.writeUInt16LE(images.length, 4);
+
+  const entries = [];
+  let offset = 6 + images.length * 16;
+  for (const { size, png } of images) {
+    const e = Buffer.alloc(16);
+    // ขนาด 256 ต้องเขียนเป็น 0 ตามสเปก
+    e[0] = size >= 256 ? 0 : size;
+    e[1] = size >= 256 ? 0 : size;
+    e[2] = 0; // ไม่ใช้จานสี
+    e[3] = 0;
+    e.writeUInt16LE(1, 4); // plane
+    e.writeUInt16LE(32, 6); // 32 บิตต่อพิกเซล
+    e.writeUInt32LE(png.length, 8);
+    e.writeUInt32LE(offset, 12);
+    offset += png.length;
+    entries.push(e);
+  }
+
+  return Buffer.concat([header, ...entries, ...images.map((i) => i.png)]);
+}
+
+/**
+ * favicon วาดให้หมุดเต็มกรอบกว่าไอคอนแอป
+ *
+ * ไอคอนแอปเว้นขอบเยอะได้เพราะแสดงที่ 180px ขึ้นไป แต่ favicon ใช้จริงที่ 16px
+ * ถ้าเว้นขอบเท่ากันหมุดจะเหลือไม่กี่พิกเซลจนดูไม่ออกว่าเป็นอะไร
+ * รูตรงกลางก็ต้องใหญ่ขึ้นด้วย ไม่งั้นหายไปเลยตอนย่อ
+ */
+function drawFavicon(size) {
+  const SS = 4;
+  const big = size * SS;
+  const acc = new Float64Array(size * size * 4);
+  const radius = big * 0.22;
+  const cx = big / 2;
+  const cy = big * 0.4;
+  const r = big * 0.245;
+  const tip = [cx, cy + big * 0.5];
+  const left = [cx - r * 0.86, cy + r * 0.5];
+  const right = [cx + r * 0.86, cy + r * 0.5];
+
+  for (let by = 0; by < big; by += 1) {
+    for (let bx = 0; bx < big; bx += 1) {
+      const dx = Math.max(radius - bx, bx - (big - radius), 0);
+      const dy = Math.max(radius - by, by - (big - radius), 0);
+      if (Math.hypot(dx, dy) > radius) continue;
+
+      const d = Math.hypot(bx - cx, by - cy);
+      const onPin = (d <= r || inTriangle(bx, by, left, right, tip)) && d > r * 0.5;
+      const color = onPin ? GOLD : NAVY;
+
+      const i = (Math.floor(by / SS) * size + Math.floor(bx / SS)) * 4;
+      acc[i] += color[0];
+      acc[i + 1] += color[1];
+      acc[i + 2] += color[2];
+      acc[i + 3] += 255;
+    }
+  }
+
+  const out = Buffer.alloc(size * size * 4);
+  for (let i = 0; i < size * size * 4; i += 1) out[i] = Math.round(acc[i] / (SS * SS));
+  return encodePng(size, size, out);
+}
+
 const TARGETS = [
   // ไอคอนปกติ เว้นขอบน้อยเพื่อให้หมุดเต็มกรอบ
   { file: "public/icon-192.png", size: 192, opts: { inset: 0.08 } },
@@ -160,3 +236,14 @@ for (const { file, size, opts } of TARGETS) {
   fs.writeFileSync(file, drawIcon(size, opts));
   console.log(`✓ ${file} (${size}x${size}, ${(fs.statSync(file).size / 1024).toFixed(1)} KB)`);
 }
+
+// favicon ใส่ 3 ขนาดในไฟล์เดียว เบราว์เซอร์เลือกใช้ขนาดที่เหมาะเอง
+const FAVICON_SIZES = [16, 32, 48];
+const ico = encodeIco(
+  FAVICON_SIZES.map((size) => ({ size, png: drawFavicon(size) })),
+);
+fs.writeFileSync("src/app/favicon.ico", ico);
+console.log(
+  `✓ src/app/favicon.ico (${FAVICON_SIZES.join(", ")} px, ` +
+    `${(ico.length / 1024).toFixed(1)} KB)`,
+);
