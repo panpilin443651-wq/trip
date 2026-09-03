@@ -46,13 +46,21 @@ export function ActivityCard({
                 ({formatDuration(activity.durationMin)})
               </span>
             </p>
-            <h3 className="mt-0.5 font-medium break-words">{activity.title}</h3>
-            {activity.placeName ? (
+            {/*
+              สถานที่เป็นตัวหลัก กิจกรรมเป็นของย่อยลงมา ให้ตรงกับลำดับในฟอร์ม
+              ถ้ากรอกแค่สถานที่ ชื่อรายการจะเท่ากับชื่อสถานที่ ไม่ต้องโชว์ซ้ำสองบรรทัด
+            */}
+            <h3 className="mt-0.5 font-medium break-words">
+              {activity.placeName || activity.title}
+              {activity.placeName && !hasCoords(activity) ? (
+                <span className="ml-1.5 text-xs font-normal text-faint">
+                  (ยังไม่ปักหมุด)
+                </span>
+              ) : null}
+            </h3>
+            {activity.placeName && activity.title !== activity.placeName ? (
               <p className="mt-0.5 text-sm break-words text-muted">
-                📍 {activity.placeName}
-                {hasCoords(activity) ? null : (
-                  <span className="ml-1 text-xs text-faint">(ยังไม่ปักหมุด)</span>
-                )}
+                🎯 {activity.title}
               </p>
             ) : null}
           </div>

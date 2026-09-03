@@ -4,10 +4,12 @@ import { useState } from "react";
 import { CATEGORIES } from "@/data/categories";
 import { addDaysISO, formatDateShort } from "@/lib/format";
 import type { SuggestionFill } from "@/lib/activity-search";
-import { searchPlaces, type GeocodeHit } from "@/lib/routing";
+import type { PlaceOption } from "@/lib/place-search";
+import { googleMapsUrl } from "@/lib/place-search";
 import { useTrip } from "@/lib/trip-context";
 import { ActivitySearchInput } from "./ActivitySearchInput";
 import { PhotoManager } from "./PhotoManager";
+import { PlaceCombobox } from "./PlaceCombobox";
 import { ProvinceCombobox } from "./ProvinceCombobox";
 import type { Activity, CategoryId } from "@/lib/types";
 import {
@@ -62,9 +64,6 @@ export function ActivityForm({
 }) {
   const { state, userId } = useTrip();
   const [draft, setDraft] = useState<ActivityDraft>(initial);
-  const [hits, setHits] = useState<GeocodeHit[]>([]);
-  const [searching, setSearching] = useState(false);
-  const [searchNote, setSearchNote] = useState<string | null>(null);
 
   function patch(next: Partial<ActivityDraft>) {
     setDraft((current) => ({ ...current, ...next }));
@@ -78,40 +77,42 @@ export function ActivityForm({
     ? [draft.province, ...state.trip.provinces]
     : state.trip.provinces;
 
-  /** เติมทุกอย่างจากรายการที่เลือก แต่ไม่แตะวันและเวลาที่ผู้ใช้ตั้งไว้แล้ว */
-  function applySuggestion(fill: SuggestionFill) {
+  /**
+   * เลือกสถานที่จากรายการ — เติมพิกัด เวลาที่ควรเผื่อ และค่าเข้าให้เลย
+   * ที่ที่มาจากการค้นสดจะมีแค่ชื่อกับพิกัด ไม่มีเวลา/ค่าเข้า จึงไม่ไปทับของเดิม
+   */
+  function applyPlace(option: PlaceOption) {
+    const fill = option.fill;
+    patch({
+      placeName: option.name,
+      province: option.province || draft.province,
+      lat: option.lat,
+      lng: option.lng,
+      ...(fill
+        ? {
+            detail: draft.detail.trim() ? draft.detail : fill.detail,
+            durationMin: fill.durationMin,
+            cost: fill.cost,
+            category: fill.category,
+          }
+        : {}),
+    });
+  }
+
+  /** เลือกกิจกรรมจากรายการ — เติมเฉพาะส่วนที่เกี่ยวกับกิจกรรม ไม่ทับสถานที่ */
+  function applyActivity(fill: SuggestionFill) {
     patch({
       title: fill.title,
-      placeName: fill.placeName,
-      province: fill.province,
       detail: fill.detail,
       durationMin: fill.durationMin,
       cost: fill.cost,
       category: fill.category,
-      lat: fill.lat,
-      lng: fill.lng,
+      // ยังไม่ได้เลือกสถานที่ ค่อยใช้ของกิจกรรมมาเติมให้
+      ...(draft.placeName.trim()
+        ? {}
+        : { placeName: fill.placeName, lat: fill.lat, lng: fill.lng }),
+      ...(draft.province ? {} : { province: fill.province }),
     });
-    setHits([]);
-    setSearchNote(null);
-  }
-
-  async function handleSearch() {
-    const query = draft.placeName.trim() || draft.title.trim();
-    if (!query) {
-      setSearchNote("พิมพ์ชื่อสถานที่ก่อนค้นหา");
-      return;
-    }
-    setSearching(true);
-    setSearchNote(null);
-    try {
-      const results = await searchPlaces(query);
-      setHits(results);
-      if (results.length === 0) setSearchNote("ไม่พบสถานที่ที่ตรงกับคำค้นนี้");
-    } catch {
-      setSearchNote("ค้นหาไม่สำเร็จ — ตรวจการเชื่อมต่ออินเทอร์เน็ต");
-    } finally {
-      setSearching(false);
-    }
   }
 
   const hasCoords = typeof draft.lat === "number" && typeof draft.lng === "number";
@@ -119,7 +120,7 @@ export function ActivityForm({
   return (
     <Sheet
       open
-      title={isEdit ? "แก้ไขกิจกรรม" : "เพิ่มกิจกรรม"}
+      title={isEdit ? "แก้ไขรายการ" : "เพิ่มสถานที่"}
       onClose={onClose}
       footer={
         <div className="flex gap-2">
@@ -128,8 +129,13 @@ export function ActivityForm({
           </Button>
           <Button
             className="flex-1"
-            disabled={!draft.title.trim()}
-            onClick={() => onSubmit({ ...draft, title: draft.title.trim() })}
+            disabled={!draft.placeName.trim() && !draft.title.trim()}
+            onClick={() => {
+              // กรอกแค่สถานที่ก็บันทึกได้ ใช้ชื่อสถานที่เป็นชื่อรายการไปเลย
+              const place = draft.placeName.trim();
+              const title = draft.title.trim() || place;
+              onSubmit({ ...draft, title, placeName: place });
+            }}
           >
             บันทึก
           </Button>
@@ -138,42 +144,34 @@ export function ActivityForm({
     >
       <div className="space-y-4">
         <Field
-          label="ชื่อกิจกรรม"
-          hint="พิมพ์ค้นได้ เช่น เดินป่า / ล่องแก่ง แล้วเลือกจากที่แนะนำในจังหวัดของทริป"
+          label="📍 สถานที่"
+          hint="กดที่ช่องแล้วเลือกจากที่ดังในจังหวัดนี้ หรือพิมพ์ชื่อเองก็ได้"
         >
-          <ActivitySearchInput
-            value={draft.title}
-            onChange={(title) => patch({ title })}
-            onPick={applySuggestion}
-            provinces={searchProvinces}
+          <PlaceCombobox
+            value={draft.placeName}
+            onChange={(placeName) => patch({ placeName })}
+            onPick={applyPlace}
+            dayProvince={draft.province ?? ""}
+            tripProvinces={searchProvinces}
           />
         </Field>
 
-        <Field label="สถานที่" hint="กดค้นหาเพื่อปักหมุดลงแผนที่">
-          <div className="flex gap-2">
-            <Input
-              value={draft.placeName}
-              onChange={(e) => patch({ placeName: e.target.value })}
-              placeholder="เช่น วัดพระธาตุดอยสุเทพ เชียงใหม่"
-            />
-            <Button
-              variant="secondary"
-              type="button"
-              onClick={() => void handleSearch()}
-              disabled={searching}
-              className="shrink-0"
-            >
-              {searching ? "…" : "🔍"}
-            </Button>
-          </div>
-        </Field>
-
         {hasCoords ? (
-          <p className="-mt-2 text-xs text-ok">
-            📍 ปักหมุดแล้ว ({draft.lat?.toFixed(4)}, {draft.lng?.toFixed(4)})
+          <p className="-mt-2 flex flex-wrap items-center gap-x-3 text-xs text-ok">
+            <span>
+              ปักหมุดแล้ว ({draft.lat?.toFixed(4)}, {draft.lng?.toFixed(4)})
+            </span>
+            <a
+              href={googleMapsUrl(draft.placeName, draft.lat, draft.lng)}
+              target="_blank"
+              rel="noreferrer"
+              className="underline"
+            >
+              🗺️ เปิดใน Google Maps
+            </a>
             <button
               type="button"
-              className="ml-2 underline"
+              className="underline"
               onClick={() => patch({ lat: undefined, lng: undefined })}
             >
               ล้างหมุด
@@ -181,33 +179,21 @@ export function ActivityForm({
           </p>
         ) : null}
 
-        {searchNote ? (
-          <p className="-mt-2 text-xs text-muted">{searchNote}</p>
-        ) : null}
-
-        {hits.length > 0 ? (
-          <ul className="-mt-1 space-y-1 rounded-xl border border-line bg-canvas p-2">
-            {hits.map((hit) => (
-              <li key={`${hit.lat},${hit.lng}`}>
-                <button
-                  type="button"
-                  className="w-full rounded-lg px-2 py-2 text-left text-sm hover:bg-brand-soft"
-                  onClick={() => {
-                    patch({
-                      lat: hit.lat,
-                      lng: hit.lng,
-                      placeName: draft.placeName.trim() || hit.name,
-                    });
-                    setHits([]);
-                  }}
-                >
-                  <span className="font-medium">{hit.name}</span>
-                  <span className="block text-xs text-muted">{hit.display}</span>
-                </button>
-              </li>
-            ))}
-          </ul>
-        ) : null}
+        {/* กิจกรรมเป็นของย่อยลงมาจากสถานที่ — ไปที่นั่นแล้วทำอะไร */}
+        <div className="border-l-2 border-line pl-3">
+          <Field
+            label="🎯 กิจกรรมที่นี่"
+            hint="ไม่กรอกก็ได้ จะใช้ชื่อสถานที่เป็นชื่อรายการให้เอง"
+          >
+            <ActivitySearchInput
+              value={draft.title}
+              onChange={(title) => patch({ title })}
+              onPick={applyActivity}
+              provinces={searchProvinces}
+              placeholder="เช่น ไหว้พระ ถ่ายรูป ชิมของกิน…"
+            />
+          </Field>
+        </div>
 
         <Field
           label="จังหวัด"
