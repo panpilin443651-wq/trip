@@ -94,7 +94,10 @@ export const config = {
      * ต้องข้ามไฟล์ของ PWA ด้วย — manifest กับ sw.js ถูกโหลดโดยเบราว์เซอร์เอง
      * ไม่ได้แนบคุกกี้เซสชันมาเสมอ ถ้าโดนเด้งไปหน้า login จะติดตั้งเป็นแอปไม่ได้
      * ส่วน offline.html ต้องเปิดได้ตอนไม่มีเน็ต ซึ่งเช็กเซสชันไม่ได้อยู่แล้ว
+     *
+     * opengraph-image ก็ต้องข้าม เพราะ LINE กับแอปแชตอื่นดึงรูปด้วยบอทของตัวเอง
+     * ที่ไม่มีคุกกี้ ถ้าโดนเด้งไป login จะได้ HTML แทนรูป การ์ดพรีวิวก็ไม่ขึ้น
      */
-    "/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|sw.js|offline.html|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
+    "/((?!_next/static|_next/image|favicon.ico|manifest.webmanifest|sw.js|offline.html|opengraph-image|twitter-image|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)",
   ],
 };

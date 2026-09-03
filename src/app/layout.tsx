@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
+import { SITE_URL } from "@/lib/site";
 import "./globals.css";
 
 const notoSansThai = Noto_Sans_Thai({
@@ -10,11 +11,30 @@ const notoSansThai = Noto_Sans_Thai({
   display: "swap",
 });
 
+const TITLE = "Travel Planner — วางแผนการท่องเที่ยว";
+const DESCRIPTION =
+  "วางแผนทริป จัดตารางกิจกรรมรายวัน คุมงบประมาณแยกหมวด และดูเส้นทางบนแผนที่";
+
 export const metadata: Metadata = {
-  title: "Travel Planner — วางแผนการท่องเที่ยว",
-  description:
-    "วางแผนทริป จัดตารางกิจกรรมรายวัน คุมงบประมาณแยกหมวด และดูเส้นทางบนแผนที่",
+  // ต้องมี ไม่งั้น og:image จะเป็นพาธสั้น ๆ แล้ว LINE ดึงรูปไม่ได้
+  metadataBase: new URL(SITE_URL),
+  title: TITLE,
+  description: DESCRIPTION,
   applicationName: "Travel Planner",
+  // การ์ดพรีวิวตอนแชร์ลิงก์ในแอปแชต — รูปมาจาก src/app/opengraph-image.tsx
+  openGraph: {
+    type: "website",
+    siteName: "Travel Planner",
+    title: TITLE,
+    description: DESCRIPTION,
+    url: SITE_URL,
+    locale: "th_TH",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: TITLE,
+    description: DESCRIPTION,
+  },
   // iOS ไม่อ่าน manifest ต้องบอกผ่าน meta ของตัวเองถึงจะเปิดแบบเต็มจอ
   appleWebApp: {
     capable: true,

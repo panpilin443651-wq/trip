@@ -242,3 +242,11 @@ src/data/
   components/BuildInfo.tsx  บรรทัดท้ายหน้า ⋯ เพิ่มเติม
   มีไว้ตอบคำถาม "แก้แล้วทำไมยังไม่เห็น" ให้จบในครั้งเดียว
   เทียบเลขกับ commit ล่าสุด ไม่ตรง = ยังไม่ได้ deploy
+
+[การ์ดพรีวิวตอนแชร์ลิงก์]
+  app/opengraph-image.tsx  รูป 1200x630 สร้างด้วย next/og ตอน build
+                           ข้อความในรูปเป็นละตินเท่านั้น ฟอนต์ที่ติดมาไม่มีไทย
+  lib/site.ts              หา URL ของเว็บ ใช้ทำลิงก์เต็มใน og:image
+                           Vercel ให้ VERCEL_PROJECT_PRODUCTION_URL มาอยู่แล้ว
+  proxy.ts ต้องยกเว้น opengraph-image ไม่งั้นบอทของ LINE โดนเด้งไป login
+  แล้วได้ HTML แทนรูป
