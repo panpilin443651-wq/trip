@@ -21,6 +21,7 @@ import {
 import { DayPlanCard } from "./DayPlanCard";
 import { DayTabs } from "./DayTabs";
 import { NearbyRestaurants } from "./NearbyRestaurants";
+import { ProvinceRestaurants } from "./ProvinceRestaurants";
 import { TripSuggestions } from "./TripSuggestions";
 import { Button, Card, ConfirmDialog, EmptyState, SectionTitle } from "./ui";
 
@@ -173,6 +174,9 @@ export function ItineraryPlanner() {
       </Card>
 
       <TripSuggestions dayIndex={safeDayIndex} />
+
+      {/* รายการของจังหวัดดูได้ตั้งแต่ยังไม่มีจุดแวะ ส่วนค้นสดต้องปักหมุดก่อน */}
+      <ProvinceRestaurants dayIndex={safeDayIndex} />
 
       <NearbyRestaurants
         dayIndex={safeDayIndex}

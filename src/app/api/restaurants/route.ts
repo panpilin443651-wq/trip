@@ -1,7 +1,14 @@
 import { NextResponse } from "next/server";
+import { OSM_RESTAURANTS } from "@/data/osm-restaurants";
 
 /**
- * ค้นร้านอาหารและคาเฟ่รอบพิกัดที่ให้มา ผ่าน Overpass API (OpenStreetMap)
+ * ร้านอาหารและคาเฟ่ — รับได้สองแบบ
+ *
+ *   ?province=เชียงใหม่   อ่านจากฐานข้อมูลที่คัดไว้ล่วงหน้า ตอบทันที ใช้ได้ทุกที่
+ *   ?lat=&lng=&radius=   ค้นสดรอบพิกัดผ่าน Overpass ได้ร้านใกล้จุดแวะจริง ๆ
+ *
+ * มีสองแบบเพราะใช้คนละจังหวะ — ตอนวางแผนยังไม่มีพิกัดก็เลือกจากรายการของ
+ * จังหวัดได้เลย ส่วนตอนจัดตารางรายวันแล้วอยากได้ร้านใกล้ ๆ ค่อยค้นสด
  *
  * ทำฝั่งเซิร์ฟเวอร์เพื่อเลี่ยง CORS และให้แคชผลลัพธ์ที่ขอบได้
  * ไม่ต้องใช้ API key ต่างจาก Google Places
@@ -28,6 +35,10 @@ export interface RestaurantHit {
   lng: number;
   /** ลิงก์เปิดใน Google Maps เพื่อดูรีวิวและเรตติ้งต่อ */
   mapsUrl: string;
+  /** เวลาเปิดปิดตามรูปแบบ OSM — มีเฉพาะผลจากฐานข้อมูลรายจังหวัด */
+  openingHours?: string | null;
+  /** มีคนเขียนถึงใน Wikipedia — มีเฉพาะผลจากฐานข้อมูลรายจังหวัด */
+  notable?: boolean;
 }
 
 const KIND_LABEL: Record<string, string> = {
@@ -36,8 +47,40 @@ const KIND_LABEL: Record<string, string> = {
   fast_food: "อาหารจานด่วน",
 };
 
+/** ลิงก์ค้นร้านใน Google Maps ด้วยชื่อ + พิกัด จะได้เจอร้านเดียวกันแล้วเห็นรีวิว */
+function mapsUrlFor(name: string, lat: number, lng: number): string {
+  return (
+    "https://www.google.com/maps/search/?api=1&query=" +
+    encodeURIComponent(`${name} ${lat},${lng}`)
+  );
+}
+
 export async function GET(request: Request) {
   const params = new URL(request.url).searchParams;
+
+  const province = (params.get("province") ?? "").trim();
+  if (province) {
+    const hits: RestaurantHit[] = (OSM_RESTAURANTS[province] ?? []).map((r) => ({
+      id: r.id,
+      name: r.name,
+      kind: r.kind,
+      cuisine: r.cuisine || null,
+      lat: r.lat,
+      lng: r.lng,
+      mapsUrl: mapsUrlFor(r.name, r.lat, r.lng),
+      openingHours: r.openingHours || null,
+      notable: r.notable,
+    }));
+
+    return NextResponse.json(hits, {
+      headers: {
+        // ข้อมูลนิ่ง สร้างตอน build จึงแคชได้ยาว
+        "Cache-Control":
+          "public, max-age=3600, s-maxage=604800, stale-while-revalidate=86400",
+      },
+    });
+  }
+
   const lat = Number(params.get("lat"));
   const lng = Number(params.get("lng"));
   const radius = Math.min(5000, Math.max(500, Number(params.get("radius")) || 2000));
@@ -86,9 +129,7 @@ export async function GET(request: Request) {
             lat: elLat,
             lng: elLng,
             // ค้นด้วยชื่อ + พิกัด เพื่อให้ Google เจอร้านเดียวกันแล้วเห็นรีวิว
-            mapsUrl:
-              "https://www.google.com/maps/search/?api=1&query=" +
-              encodeURIComponent(`${name} ${elLat},${elLng}`),
+            mapsUrl: mapsUrlFor(name, elLat, elLng),
           } satisfies RestaurantHit;
         })
         .filter((r): r is RestaurantHit => r !== null);
