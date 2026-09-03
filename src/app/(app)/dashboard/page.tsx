@@ -5,6 +5,7 @@ import { useMemo } from "react";
 import { BudgetSummary } from "@/components/BudgetSummary";
 import { DayPlanLine } from "@/components/DayPlanLine";
 import { PageHeader } from "@/components/PageHeader";
+import { TripActions } from "@/components/TripActions";
 import { TripOverviewCard } from "@/components/TripOverviewCard";
 import {
   Button,
@@ -53,6 +54,8 @@ export default function DashboardPage() {
       />
 
       <div className="space-y-4">
+        <TripActions />
+
         <TripOverviewCard trip={trip} showCountdown editLink />
 
         <BudgetSummary breakdown={breakdown} compact />

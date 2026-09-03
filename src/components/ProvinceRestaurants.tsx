@@ -1,17 +1,22 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
 import { addMinutesToTime } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
-import { Badge, Button, Card, SectionTitle, cn } from "./ui";
+import { Badge, Button, Card, Input, SectionTitle, cn } from "./ui";
+
+/** จำนวนที่โชว์ตอนยังไม่ได้กดดูทั้งหมด */
+const PREVIEW = 8;
 
 /**
  * ร้านอาหารและคาเฟ่ดังของจังหวัด จากฐานข้อมูลที่คัดไว้ล่วงหน้า
  *
- * ต่างจาก NearbyRestaurants ตรงที่ตัวนั้นค้นสดรอบพิกัดจุดแวะ ต้องปักหมุดก่อน
- * ส่วนตัวนี้ดูได้ตั้งแต่ยังไม่มีจุดแวะเลย แค่เลือกจังหวัดไว้ก็พอ
- * เหมาะกับตอนกำลังวางแผนว่าจะไปกินอะไรบ้าง
+ * ดูได้ตั้งแต่ยังไม่มีจุดแวะเลย แค่เลือกจังหวัดไว้ก็พอ เหมาะกับตอนกำลังวางแผน
+ * ว่าจะไปกินอะไรบ้าง พิมพ์ค้นชื่อร้านหรือประเภทอาหารได้
+ *
+ * ร้านที่มีคนเขียนถึงใน Wikipedia ติดดาว ⭐ และถูกดันขึ้นบนสุดเสมอ
+ * เพราะเป็นสัญญาณเดียวที่ OSM มีว่าร้านไหน "ดัง" จริง
  */
 export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
   const { state, dispatch, activitiesForDay } = useTrip();
@@ -36,6 +41,7 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
     province: string;
     hits: RestaurantHit[] | null;
   } | null>(null);
+  const [query, setQuery] = useState("");
   const [added, setAdded] = useState<Set<string>>(new Set());
   const [showAll, setShowAll] = useState(false);
 
@@ -58,6 +64,30 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
       cancelled = true;
     };
   }, [active]);
+
+  const current = result?.province === active ? result : null;
+  const all = current?.hits ?? null;
+
+  /**
+   * กรองตามคำค้นแล้วดันร้านติดดาวขึ้นก่อน
+   *
+   * ค้นทั้งชื่อ ประเภทอาหาร และชนิดร้าน เพราะคนมักพิมพ์ว่า "กาแฟ" หรือ "ทะเล"
+   * มากกว่าจะจำชื่อร้านได้
+   */
+  const filtered = useMemo(() => {
+    if (!all) return null;
+    const q = query.trim().toLowerCase();
+    const matched = q
+      ? all.filter((r) =>
+          [r.name, r.cuisine ?? "", r.kind].some((field) =>
+            field.toLowerCase().includes(q),
+          ),
+        )
+      : all;
+    return [...matched].sort(
+      (a, b) => Number(!!b.notable) - Number(!!a.notable),
+    );
+  }, [all, query]);
 
   /** ต่อท้ายกิจกรรมสุดท้ายของวัน เผื่อเวลาเดินทาง 30 นาที */
   function nextStartTime(): string {
@@ -91,10 +121,7 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
 
   if (provinces.length === 0) return null;
 
-  // แยกกิ่งจากตัว current ตรง ๆ ไม่ใช่จากตัวแปร boolean ที่แยกไว้
-  // เพราะ TypeScript ตามไม่ทันว่า hits ไม่เป็น null แล้ว
-  const current = result?.province === active ? result : null;
-  const hits = current?.hits ?? null;
+  const starred = all?.filter((r) => r.notable).length ?? 0;
 
   return (
     <Card as="section">
@@ -102,8 +129,10 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
         emoji="🍜"
         title="ร้านดังในจังหวัด"
         action={
-          hits ? (
-            <span className="text-xs text-muted">{hits.length} ร้าน</span>
+          all ? (
+            <span className="text-xs text-muted">
+              {all.length} ร้าน{starred > 0 ? ` · ⭐ ${starred}` : ""}
+            </span>
           ) : null
         }
       />
@@ -114,7 +143,10 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
             <button
               key={name}
               type="button"
-              onClick={() => setProvince(name)}
+              onClick={() => {
+                setProvince(name);
+                setQuery("");
+              }}
               aria-pressed={name === active}
               className={cn(
                 "min-h-9 rounded-full border px-3 text-sm transition-colors",
@@ -129,6 +161,17 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
         </div>
       ) : null}
 
+      {all && all.length > 0 ? (
+        <Input
+          type="search"
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          placeholder="ค้นชื่อร้าน หรือประเภท เช่น กาแฟ อาหารทะเล"
+          aria-label="ค้นหาร้านในจังหวัด"
+          className="mb-3"
+        />
+      ) : null}
+
       {current === null ? (
         <p className="text-sm text-muted">กำลังโหลด…</p>
       ) : current.hits === null ? (
@@ -138,24 +181,40 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
       ) : current.hits.length === 0 ? (
         <p className="text-sm leading-relaxed text-muted">
           ยังไม่มีร้านของ{active}ในฐานข้อมูล — จังหวัดที่คนลงข้อมูลใน
-          OpenStreetMap ไว้น้อยจะเป็นแบบนี้ ลองใช้ปุ่มค้นร้านแถวนั้นด้านล่างแทน
+          OpenStreetMap ไว้น้อยจะเป็นแบบนี้ ลองค้นใน Google Maps โดยตรงแทน
         </p>
-      ) : (
+      ) : filtered && filtered.length === 0 ? (
+        <p className="text-sm leading-relaxed text-muted">
+          ไม่พบร้านที่ตรงกับ &ldquo;{query}&rdquo; ใน{active} —
+          ลองพิมพ์สั้นลงหรือค้นด้วยประเภทอาหารแทน
+        </p>
+      ) : filtered ? (
         <>
           <ul className="space-y-2">
-            {(showAll ? current.hits : current.hits.slice(0, 8)).map((hit) => {
+            {(showAll ? filtered : filtered.slice(0, PREVIEW)).map((hit) => {
               const inPlan = added.has(hit.id);
               return (
                 <li
                   key={hit.id}
-                  className="flex items-start gap-3 rounded-xl border border-line px-3 py-2.5"
+                  className={cn(
+                    "flex items-start gap-3 rounded-xl border px-3 py-2.5",
+                    hit.notable
+                      ? "border-accent/40 bg-accent-soft"
+                      : "border-line",
+                  )}
                 >
                   <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium break-words">{hit.name}</p>
+                    <p className="text-sm font-medium break-words">
+                      {hit.notable ? (
+                        <span className="mr-1" title="มีคนเขียนถึงใน Wikipedia">
+                          ⭐
+                        </span>
+                      ) : null}
+                      {hit.name}
+                    </p>
                     <div className="mt-1 flex flex-wrap gap-1.5">
                       <Badge>{hit.kind}</Badge>
                       {hit.cuisine ? <Badge>{hit.cuisine}</Badge> : null}
-                      {hit.notable ? <Badge>⭐ มีคนเขียนถึง</Badge> : null}
                     </div>
                     {hit.openingHours ? (
                       <p className="mt-1 text-xs text-faint">
@@ -186,23 +245,25 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
             })}
           </ul>
 
-          {current.hits.length > 8 ? (
+          {filtered.length > PREVIEW ? (
             <button
               type="button"
               onClick={() => setShowAll((v) => !v)}
               className="mt-3 text-sm text-brand underline"
             >
-              {showAll ? "ย่อรายการ" : `ดูอีก ${current.hits.length - 8} ร้าน`}
+              {showAll
+                ? "ย่อรายการ"
+                : `ดูอีก ${filtered.length - PREVIEW} ร้าน`}
             </button>
           ) : null}
 
           <p className="mt-3 text-xs leading-relaxed text-faint">
-            คัดจาก OpenStreetMap เฉพาะร้านที่มีเว็บ เบอร์โทร เวลาเปิดปิด
-            หรือมีคนเขียนถึง และตัดร้านเชนที่มีทุกห้างออกแล้ว
+            ⭐ = มีคนเขียนถึงใน Wikipedia · คัดจาก OpenStreetMap เฉพาะร้านที่มีเว็บ
+            เบอร์โทร หรือเวลาเปิดปิด และตัดร้านเชนที่มีทุกห้างออกแล้ว
             เวลาจะไปจริงควรเช็กเวลาเปิด-ปิดใน Google Maps อีกที
           </p>
         </>
-      )}
+      ) : null}
     </Card>
   );
 }
