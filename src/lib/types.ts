@@ -117,13 +117,40 @@ export interface ChecklistItem {
   done: boolean;
 }
 
+/**
+ * แผนเที่ยวหนึ่งแผน — ทุกอย่างที่ผูกกับทริปนั้นอยู่ในก้อนเดียวกัน
+ *
+ * ชื่อ AppState มาจากตอนที่เว็บเก็บได้ทริปเดียว ตอนนี้เก็บได้หลายทริปแล้ว
+ * (ดู TripLibrary) แต่ยังใช้ชื่อเดิมเพราะทุกหน้าอ่านผ่าน useTrip() ซึ่งคืน
+ * เฉพาะทริปที่เปิดอยู่ หน้าเหล่านั้นจึงไม่ต้องรู้ว่ามีหลายทริป
+ */
 export interface AppState {
   version: number;
+  /** ไอดีของทริป ใช้แยกแต่ละแผนใน TripLibrary */
+  id: string;
+  /** ISO date 'YYYY-MM-DD' ที่สร้างแผนนี้ ใช้เรียงลำดับในรายการ */
+  createdAt: string;
   trip: Trip;
   activities: Activity[];
   expenses: Expense[];
   places: Place[];
   checklist: ChecklistItem[];
+}
+
+/**
+ * แผนทั้งหมดของผู้ใช้หนึ่งคน
+ *
+ * เก็บทุกทริปไว้ในก้อน JSON ก้อนเดียวเหมือนเดิม ไม่ได้แยกเป็นตารางใหม่
+ * เพราะตาราง trip_states ใช้ user_id เป็น primary key อยู่ ถ้าจะแยกตาราง
+ * ต้องให้ผู้ใช้ไปรัน SQL migration เอง ซึ่งเป็นขั้นที่พลาดกันบ่อย
+ * แผนแต่ละอันเล็ก (ไม่กี่ KB) โหลดมาพร้อมกันทั้งหมดจึงไม่หนัก
+ */
+export interface TripLibrary {
+  version: number;
+  /** ทริปที่กำลังเปิดดูอยู่ ต้องมีอยู่จริงใน trips เสมอ */
+  activeTripId: string;
+  /** มีอย่างน้อยหนึ่งแผนเสมอ */
+  trips: AppState[];
 }
 
 export interface LatLng {

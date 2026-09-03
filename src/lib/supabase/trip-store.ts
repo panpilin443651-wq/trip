@@ -1,18 +1,23 @@
 "use client";
 
-import { normalizeState } from "@/lib/storage";
-import type { AppState } from "@/lib/types";
+import { normalizeLibrary } from "@/lib/storage";
+import type { TripLibrary } from "@/lib/types";
 import { createClient } from "./client";
 
 const TABLE = "trip_states";
 
 export interface LoadResult {
-  state: AppState | null;
+  library: TripLibrary | null;
   error: string | null;
 }
 
-/** อ่านแผนของผู้ใช้จาก Supabase — คืน null ถ้ายังไม่เคยบันทึก */
-export async function loadRemoteState(userId: string): Promise<LoadResult> {
+/**
+ * อ่านคลังแผนของผู้ใช้จาก Supabase — คืน null ถ้ายังไม่เคยบันทึก
+ *
+ * แถวที่บันทึกไว้ก่อนมีหลายทริปจะเป็น AppState ก้อนเดียว normalizeLibrary
+ * ห่อให้เป็นคลังที่มีแผนเดียวให้เอง ไม่ต้องแก้ฐานข้อมูล
+ */
+export async function loadRemoteLibrary(userId: string): Promise<LoadResult> {
   const supabase = createClient();
   const { data, error } = await supabase
     .from(TABLE)
@@ -20,22 +25,22 @@ export async function loadRemoteState(userId: string): Promise<LoadResult> {
     .eq("user_id", userId)
     .maybeSingle();
 
-  if (error) return { state: null, error: describe(error.message) };
+  if (error) return { library: null, error: describe(error.message) };
   if (!data?.data || Object.keys(data.data).length === 0) {
-    return { state: null, error: null };
+    return { library: null, error: null };
   }
-  return { state: normalizeState(data.data), error: null };
+  return { library: normalizeLibrary(data.data), error: null };
 }
 
-/** เขียนทับแผนของผู้ใช้ */
-export async function saveRemoteState(
+/** เขียนทับคลังแผนของผู้ใช้ */
+export async function saveRemoteLibrary(
   userId: string,
-  state: AppState,
+  library: TripLibrary,
 ): Promise<string | null> {
   const supabase = createClient();
   const { error } = await supabase
     .from(TABLE)
-    .upsert({ user_id: userId, data: state }, { onConflict: "user_id" });
+    .upsert({ user_id: userId, data: library }, { onConflict: "user_id" });
 
   return error ? describe(error.message) : null;
 }

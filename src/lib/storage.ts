@@ -1,16 +1,24 @@
 import { EMPTY_BUDGETS } from "@/data/categories";
 import { todayISO } from "./format";
 import { newId } from "./id";
-import type { Activity, AppState, DayPlan, TravelLeg } from "./types";
+import type {
+  Activity,
+  AppState,
+  DayPlan,
+  TravelLeg,
+  TripLibrary,
+} from "./types";
 
 export const STORAGE_KEY = "travel-planner:state";
-export const STATE_VERSION = 1;
+export const STATE_VERSION = 2;
 
-export function createDefaultState(): AppState {
+export function createDefaultState(name = "ทริปของฉัน"): AppState {
   return {
     version: STATE_VERSION,
+    id: newId(),
+    createdAt: todayISO(),
     trip: {
-      name: "ทริปของฉัน",
+      name,
       provinces: [],
       districts: {},
       dayPlans: [{ province: "", legs: [], note: "" }],
@@ -125,6 +133,12 @@ export function normalizeState(raw: unknown): AppState {
 
   return {
     version: STATE_VERSION,
+    // ข้อมูลรุ่นก่อนไม่มี id/createdAt เพราะตอนนั้นเก็บได้ทริปเดียว
+    id: typeof input.id === "string" && input.id ? input.id : newId(),
+    createdAt:
+      typeof input.createdAt === "string" && input.createdAt
+        ? input.createdAt
+        : trip.startDate || todayISO(),
     trip: {
       ...trip,
       dayCount: safeDayCount,
@@ -163,22 +177,82 @@ export function normalizeState(raw: unknown): AppState {
   };
 }
 
-export function loadState(): AppState {
-  if (typeof window === "undefined") return createDefaultState();
+// ── คลังแผนหลายทริป ─────────────────────────────────────────────────
+
+export function createDefaultLibrary(): TripLibrary {
+  const first = createDefaultState();
+  return { version: STATE_VERSION, activeTripId: first.id, trips: [first] };
+}
+
+/**
+ * อ่านคลังแผนจากข้อมูลดิบ รองรับทั้งรูปแบบใหม่และรูปแบบทริปเดียวของเดิม
+ *
+ * ข้อมูลรุ่นก่อนเป็น AppState ก้อนเดียวไม่มีฟิลด์ trips จึงห่อให้เป็นคลัง
+ * ที่มีแผนเดียว ผู้ใช้เดิมจะได้เห็นแผนของตัวเองเหมือนเดิมหลังอัปเดต
+ *
+ * การันตีว่าคืนคลังที่มีอย่างน้อยหนึ่งแผนเสมอ และ activeTripId ชี้ไปที่แผน
+ * ที่มีอยู่จริง ทุกหน้าจึงไม่ต้องเช็กกรณีคลังว่าง
+ */
+export function normalizeLibrary(raw: unknown): TripLibrary {
+  if (!raw || typeof raw !== "object") return createDefaultLibrary();
+
+  const input = raw as Partial<TripLibrary>;
+  if (!Array.isArray(input.trips)) {
+    // รูปแบบเดิม — ทั้งก้อนคือแผนเดียว
+    const only = normalizeState(raw);
+    return { version: STATE_VERSION, activeTripId: only.id, trips: [only] };
+  }
+
+  const trips = input.trips.map((t) => normalizeState(t));
+  if (trips.length === 0) return createDefaultLibrary();
+
+  // ไอดีซ้ำจะทำให้สลับแผนแล้วไปโดนผิดอัน ออกไอดีใหม่ให้ตัวที่ซ้ำ
+  const seen = new Set<string>();
+  const unique = trips.map((t) =>
+    seen.has(t.id) ? { ...t, id: newId() } : (seen.add(t.id), t),
+  );
+
+  const activeTripId = unique.some((t) => t.id === input.activeTripId)
+    ? (input.activeTripId as string)
+    : unique[0].id;
+
+  return { version: STATE_VERSION, activeTripId, trips: unique };
+}
+
+/** แผนที่เปิดอยู่ — normalizeLibrary การันตีว่ามีเสมอ */
+export function activeTrip(library: TripLibrary): AppState {
+  return (
+    library.trips.find((t) => t.id === library.activeTripId) ?? library.trips[0]
+  );
+}
+
+/** แผนนี้มีอะไรอยู่บ้างไหม ใช้ตัดสินว่าควรยกของเก่าขึ้นคลาวด์หรือเตือนก่อนลบ */
+export function isTripEmpty(state: AppState): boolean {
+  return (
+    state.activities.length === 0 &&
+    state.places.length === 0 &&
+    state.checklist.length === 0 &&
+    state.expenses.length === 0 &&
+    state.trip.provinces.length === 0
+  );
+}
+
+export function loadLibrary(): TripLibrary {
+  if (typeof window === "undefined") return createDefaultLibrary();
   try {
     const raw = window.localStorage.getItem(STORAGE_KEY);
-    if (!raw) return createDefaultState();
-    return normalizeState(JSON.parse(raw));
+    if (!raw) return createDefaultLibrary();
+    return normalizeLibrary(JSON.parse(raw));
   } catch {
     // JSON พัง หรือ localStorage ถูกปิด — เริ่มใหม่แทนที่จะให้แอปล่ม
-    return createDefaultState();
+    return createDefaultLibrary();
   }
 }
 
-export function saveState(state: AppState): void {
+export function saveLibrary(library: TripLibrary): void {
   if (typeof window === "undefined") return;
   try {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(library));
   } catch {
     // เต็มโควตา หรืออยู่ในโหมดส่วนตัว — ข้ามไปเงียบ ๆ
   }
