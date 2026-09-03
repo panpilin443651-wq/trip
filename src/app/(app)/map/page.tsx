@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { DayTabs } from "@/components/DayTabs";
+import { MapExport } from "@/components/MapExport";
 import { PageHeader } from "@/components/PageHeader";
 import { RouteSuggestion } from "@/components/RouteSuggestion";
 import type { MapPoint } from "@/components/TripMap";
@@ -149,6 +150,16 @@ export default function MapPage() {
           {points.length >= 3 ? (
             <RouteSuggestion activities={points.map((p) => p.activity)} />
           ) : null}
+
+          <MapExport
+            points={points.map((p) => ({
+              name: p.activity.title || p.activity.placeName,
+              lat: p.lat,
+              lng: p.lng,
+            }))}
+            tripName={trip.name}
+            dayLabel={`วันที่ ${safeDayIndex + 1}`}
+          />
 
           {points.length >= 2 ? (
             <>
