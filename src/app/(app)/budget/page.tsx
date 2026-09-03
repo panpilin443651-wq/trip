@@ -3,6 +3,7 @@
 import { useMemo, useState } from "react";
 import { BudgetCategoryCard } from "@/components/BudgetCategoryCard";
 import { BudgetEstimator } from "@/components/BudgetEstimator";
+import { FuelEstimate } from "@/components/FuelEstimate";
 import { BudgetSummary } from "@/components/BudgetSummary";
 import { PageHeader } from "@/components/PageHeader";
 import {
@@ -145,6 +146,8 @@ export default function BudgetPage() {
         </section>
 
         <BudgetEstimator />
+
+        <FuelEstimate />
 
         <Card as="section">
           <SectionTitle emoji="📝" title="บันทึกช่วยจำเรื่องงบ" />

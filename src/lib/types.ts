@@ -57,6 +57,20 @@ export interface Trip {
   notes: string;
   /** บันทึกช่วยจำเรื่องงบ เช่น จ่ายมัดจำไปแล้วเท่าไร หารกันยังไง */
   budgetNote: string;
+  /**
+   * ค่าที่ใช้คิดค่าน้ำมันเมื่อเดินทางด้วยรถ
+   * เก็บต่อทริปเพราะแต่ละทริปอาจใช้รถคนละคันและราคาน้ำมันคนละช่วง
+   */
+  fuel: FuelSettings;
+}
+
+export interface FuelSettings {
+  /** อัตราสิ้นเปลือง กม./ลิตร */
+  kmPerLitre: number;
+  /** ราคาน้ำมัน บาท/ลิตร */
+  pricePerLitre: number;
+  /** ขับกลับทางเดิมด้วยไหม — เส้นทางในแผนเป็นขาไปอย่างเดียว */
+  roundTrip: boolean;
 }
 
 export interface Activity {

@@ -1,4 +1,5 @@
 import { EMPTY_BUDGETS } from "@/data/categories";
+import { DEFAULT_FUEL_PRICE, DEFAULT_KM_PER_LITRE } from "./fuel";
 import { todayISO } from "./format";
 import { newId } from "./id";
 import type {
@@ -30,6 +31,11 @@ export function createDefaultState(name = "ทริปของฉัน"): App
       budgets: { ...EMPTY_BUDGETS },
       notes: "",
       budgetNote: "",
+      fuel: {
+        kmPerLitre: DEFAULT_KM_PER_LITRE,
+        pricePerLitre: DEFAULT_FUEL_PRICE,
+        roundTrip: true,
+      },
     },
     activities: [],
     expenses: [],
@@ -44,6 +50,12 @@ export function createDefaultState(name = "ทริปของฉัน"): App
  */
 function str(value: unknown): string {
   return typeof value === "string" ? value : "";
+}
+
+/** เอาเฉพาะเลขบวก ไม่งั้นคืนค่าตั้งต้น */
+function pos(value: unknown, fallback: number): number {
+  const n = Number(value);
+  return Number.isFinite(n) && n > 0 ? n : fallback;
 }
 
 /**
@@ -145,6 +157,13 @@ export function normalizeState(raw: unknown): AppState {
       travelers: Math.max(1, Math.round(Number(trip.travelers) || 1)),
       totalBudget: Math.max(0, Number(trip.totalBudget) || 0),
       budgets: { ...EMPTY_BUDGETS, ...(trip.budgets ?? {}) },
+      // ข้อมูลรุ่นก่อนไม่มีก้อนนี้ และช่องกรอกอาจถูกล้างจนเป็น 0 ซึ่งจะทำให้
+      // หารแล้วได้ Infinity จึงดึงกลับมาเป็นค่าตั้งต้นเมื่อไม่ใช่เลขบวก
+      fuel: {
+        kmPerLitre: pos(trip.fuel?.kmPerLitre, DEFAULT_KM_PER_LITRE),
+        pricePerLitre: pos(trip.fuel?.pricePerLitre, DEFAULT_FUEL_PRICE),
+        roundTrip: trip.fuel?.roundTrip !== false,
+      },
       provinces: [...new Set(provinces)],
       // เก็บเฉพาะอำเภอของจังหวัดที่ยังอยู่ในแผน กันข้อมูลค้างหลังเอาจังหวัดออก
       districts: Object.fromEntries(
