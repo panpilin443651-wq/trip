@@ -825,7 +825,7 @@ export const FEATURED_PROVINCES: Province[] = [
   },
   {
     id: "chonburi",
-    name: "ชลบุรี (พัทยา)",
+    name: "ชลบุรี",
     emoji: "🎢",
     region: "ภาคตะวันออก",
     blurb: "ทะเลใกล้กรุงเทพฯ สวนสนุก สวนพฤกษศาสตร์ และเกาะล้าน",

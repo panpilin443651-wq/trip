@@ -95,3 +95,23 @@ GEMINI_API_KEY=AIza... node scripts/list-gemini-models.js
 ```
 
 ปกติไม่ต้องรัน เพราะแอปหารุ่นที่ใช้ได้เองอยู่แล้ว
+
+## ชุดสร้างรายการสถานที่จาก OpenStreetMap
+
+รันตามลำดับนี้เมื่ออยากอัปเดตข้อมูลใน `src/data/osm-places.ts`
+
+```bash
+node scripts/fetch-province-boundaries.js boundaries.json
+node scripts/fetch-attractions.js attractions.json
+node scripts/build-attractions.js attractions.json boundaries.json
+node scripts/validate-osm-places.js
+```
+
+- **fetch-province-boundaries.js** — ขอบเขต 77 จังหวัดจาก OSM
+  ย่อจุดเหลือความละเอียดราว 33 เมตร ได้ไฟล์ราว 12 MB
+- **fetch-attractions.js** — ที่เที่ยวทั่วประเทศ ยิงทีเดียวต่อกลุ่มแท็ก
+  กรองด้วยขอบเขตประเทศไทย ไม่ใช่กรอบสี่เหลี่ยม (กรอบกินเมียนมา/ลาว/กัมพูชาเข้ามา)
+- **geo-provinces.js** — บอกว่าพิกัดอยู่จังหวัดไหน ด้วย ray casting ในเครื่อง
+  ไม่ต้องยิง API ทีละจุด แม่นราว 97% เทียบกับ 364 จุดที่ยืนยันด้วย reverse geocode
+- **build-attractions.js** — คัด แบ่งจังหวัด สลับประเภท แล้วเขียนไฟล์ข้อมูล
+- **validate-osm-places.js** — ตรวจข้อมูลที่ได้ 8 ข้อ

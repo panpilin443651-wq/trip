@@ -8,8 +8,13 @@ export interface PlaceOption {
   province: string;
   /** บรรทัดรองบอกประเภทและเวลาที่ควรเผื่อ */
   hint: string;
-  /** มาจากข้อมูลที่เราคัดไว้ หรือมาจากการค้นสด */
-  source: "curated" | "search";
+  /**
+   * ที่มาของรายการ
+   *   curated = ข้อมูลที่คัดไว้เอง มีเวลาที่ควรเผื่อและค่าเข้าครบ
+   *   osm     = ดึงจาก OpenStreetMap มีเยอะกว่าแต่มีแค่ชื่อกับพิกัด
+   *   search  = ค้นสดตอนพิมพ์
+   */
+  source: "curated" | "osm" | "search";
   lat?: number;
   lng?: number;
   /** ค่าที่จะเติมลงฟอร์ม — มีเฉพาะที่มาจากข้อมูลที่คัดไว้ */

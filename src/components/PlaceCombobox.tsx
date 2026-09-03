@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useId, useMemo, useRef, useState } from "react";
+import type { OsmPlace } from "@/data/osm-places";
 import { cn } from "@/lib/cn";
 import {
   googleMapsUrl,
@@ -16,10 +17,12 @@ import { Input } from "./ui";
  * ช่องเลือกสถานที่ — กดแล้วมีรายการที่ดังในจังหวัดขึ้นมาให้เลือกทันที
  * พิมพ์เองก็ได้ ไม่ต้องเลือกจากรายการ
  *
- * รายการมาจาก 2 ทาง
- *   1. สถานที่ที่คัดไว้ของจังหวัดนั้น — ขึ้นทันที ไม่ต้องรอเน็ต
- *      และมีเวลาที่ควรเผื่อกับค่าเข้าติดมาด้วย
- *   2. ค้นสดจากแผนที่ สำหรับที่ที่ไม่มีในรายการ เช่น โรงแรมหรือร้านเฉพาะเจาะจง
+ * รายการมาจาก 3 ชั้น
+ *   1. ที่คัดไว้เองของจังหวัดนั้น — ขึ้นทันทีไม่ต้องรอเน็ต มีเวลาที่ควรเผื่อ
+ *      และค่าเข้าติดมาด้วย แต่มีแค่จังหวัดละ 4-8 แห่ง
+ *   2. ที่เที่ยวจาก OpenStreetMap — โหลดจาก /api/places ตามจังหวัด
+ *      มีเยอะกว่ามาก แต่มีแค่ชื่อ ประเภท และพิกัด
+ *   3. ค้นสดจาก Nominatim — สำหรับที่ที่ไม่มีในสองชั้นแรก เช่นโรงแรม
  * ทุกแถวมีลิงก์เปิดใน Google Maps ต่อ เผื่ออยากดูรูปกับรีวิวก่อนตัดสินใจ
  */
 export function PlaceCombobox({
@@ -40,16 +43,22 @@ export function PlaceCombobox({
   const listId = useId();
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
-  // ผูกผลค้นไว้กับคำค้นที่ยิงไป จะได้รู้ว่าเป็นผลของคำที่พิมพ์อยู่ตอนนี้ไหม
+  const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // ผูกผลที่โหลดมาไว้กับคำค้น/จังหวัดที่ขอไป จะได้รู้ว่าเป็นของปัจจุบันไหม
   // ถ้าเก็บแค่ตัวผลลัพธ์ ต้องล้างค่าทิ้งใน effect ซึ่งติดกฎ set-state-in-effect
   const [remote, setRemote] = useState<{ query: string; hits: GeocodeHit[] }>({
     query: "",
     hits: [],
   });
-  const blurTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const [osm, setOsm] = useState<{ province: string; places: OsmPlace[] }>({
+    province: "",
+    places: [],
+  });
 
   const provinceKey = tripProvinces.filter(Boolean).join("|");
   const query = value.trim();
+  const lowerQuery = query.toLowerCase();
 
   /** ยังไม่พิมพ์ = โชว์ที่ดังของจังหวัดวันนั้น พิมพ์แล้ว = ค้นจากที่คัดไว้ */
   const curated = useMemo(() => {
@@ -60,6 +69,23 @@ export function PlaceCombobox({
     }
     return searchCuratedPlaces(query, provinces, 8);
   }, [query, dayProvince, provinceKey]);
+
+  // โหลดที่เที่ยวของจังหวัดนี้ครั้งเดียวตอนจังหวัดเปลี่ยน
+  useEffect(() => {
+    if (!dayProvince) return;
+    let cancelled = false;
+    fetch(`/api/places?province=${encodeURIComponent(dayProvince)}`)
+      .then((res) => (res.ok ? res.json() : []))
+      .then((places: OsmPlace[]) => {
+        if (!cancelled) setOsm({ province: dayProvince, places });
+      })
+      .catch(() => {
+        if (!cancelled) setOsm({ province: dayProvince, places: [] });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [dayProvince]);
 
   // ค้นสดเฉพาะตอนพิมพ์พอสมควรแล้ว และหน่วงไว้ไม่ให้ยิงทุกตัวอักษร
   useEffect(() => {
@@ -80,16 +106,37 @@ export function PlaceCombobox({
     };
   }, [query]);
 
-  /** ยิงไปแล้วแต่ผลของคำนี้ยังไม่กลับมา */
-  const searching = query.length >= 3 && remote.query !== query;
+  const osmOptions = useMemo<PlaceOption[]>(() => {
+    // ผลที่ผูกกับจังหวัดเก่า ถือว่ายังไม่มา — เทียบในนี้ไม่ใช่ข้างนอก
+    // ไม่งั้นได้อาร์เรย์ใหม่ทุก render แล้ว useMemo ก็ไม่ช่วยอะไร
+    if (osm.province !== dayProvince) return [];
+    const matched = lowerQuery
+      ? osm.places.filter((p) => p.name.toLowerCase().includes(lowerQuery))
+      : osm.places;
+    return matched
+      // ที่ที่มีอยู่ในรายการที่คัดไว้แล้วไม่ต้องโชว์ซ้ำ
+      .filter((p) => !curated.some((c) => c.name === p.name))
+      .slice(0, lowerQuery ? 10 : 30)
+      .map((p) => ({
+        key: `osm:${p.id}`,
+        name: p.name,
+        emoji: p.emoji,
+        province: osm.province,
+        hint: p.notable ? `${p.kind} • เป็นที่รู้จัก` : p.kind,
+        source: "osm" as const,
+        lat: p.lat,
+        lng: p.lng,
+      }));
+  }, [osm, dayProvince, lowerQuery, curated]);
 
   const remoteOptions = useMemo<PlaceOption[]>(() => {
-    // ผลที่ผูกกับคำค้นเก่า ถือว่ายังไม่มา — เทียบในนี้ไม่ใช่ข้างนอก
-    // ไม่งั้นได้อาร์เรย์ใหม่ทุก render แล้ว useMemo ก็ไม่ช่วยอะไร
     if (remote.query !== query) return [];
     return remote.hits
-      // ชื่อที่มีอยู่ในรายการที่คัดไว้แล้วไม่ต้องโชว์ซ้ำ
-      .filter((hit) => !curated.some((c) => c.name === hit.name))
+      .filter(
+        (hit) =>
+          !curated.some((c) => c.name === hit.name) &&
+          !osmOptions.some((o) => o.name === hit.name),
+      )
       .map((hit) => ({
         key: `search:${hit.lat},${hit.lng}`,
         name: hit.name,
@@ -100,16 +147,34 @@ export function PlaceCombobox({
         lat: hit.lat,
         lng: hit.lng,
       }));
-  }, [remote, query, curated]);
+  }, [remote, query, curated, osmOptions]);
 
-  const options = [...curated, ...remoteOptions];
+  const sections = [
+    {
+      key: "curated",
+      label: `⭐ ที่ดังใน ${dayProvince || "ทริปนี้"}`,
+      items: curated,
+    },
+    {
+      key: "osm",
+      label: `📍 ที่เที่ยวอื่นใน ${dayProvince}`,
+      items: osmOptions,
+    },
+    { key: "search", label: "🔎 ค้นจากแผนที่", items: remoteOptions },
+  ].filter((section) => section.items.length > 0);
+
+  const options = sections.flatMap((section) => section.items);
   const showList = open && options.length > 0;
+  const searching = query.length >= 3 && remote.query !== query;
 
   function pick(option: PlaceOption) {
     onPick(option);
     setOpen(false);
     setActive(0);
   }
+
+  // ลำดับแบนของทุกแถว ใช้กับลูกศรขึ้น-ลงที่ไม่รู้จักการแบ่งกลุ่ม
+  let flatIndex = -1;
 
   return (
     <div className="relative">
@@ -152,67 +217,70 @@ export function PlaceCombobox({
         <ul
           id={listId}
           role="listbox"
-          className="absolute inset-x-0 top-full z-30 mt-1 max-h-72 overflow-y-auto rounded-xl border border-line bg-card py-1 shadow-lg"
+          className="absolute inset-x-0 top-full z-30 mt-1 max-h-80 overflow-y-auto rounded-xl border border-line bg-card py-1 shadow-lg"
         >
-          {query.length === 0 && curated.length > 0 ? (
-            <li className="px-3 pt-1 pb-1.5 text-xs text-faint">
-              ⭐ ที่ดังใน {dayProvince || "ทริปนี้"} — พิมพ์เพื่อค้นที่อื่น
-            </li>
-          ) : null}
+          {sections.map((section) => (
+            <li key={section.key}>
+              <p className="border-t border-line px-3 pt-2 pb-1 text-xs text-faint first:border-t-0">
+                {section.label}
+              </p>
+              <ul>
+                {section.items.map((option) => {
+                  flatIndex += 1;
+                  const index = flatIndex;
+                  return (
+                    <li
+                      key={option.key}
+                      role="option"
+                      aria-selected={index === active}
+                    >
+                      <div
+                        className={cn(
+                          "flex items-start gap-1",
+                          index === active ? "bg-brand-soft" : "",
+                        )}
+                      >
+                        <button
+                          type="button"
+                          // ต้องใช้ onMouseDown เพราะ onClick มาหลัง blur ซึ่งปิดรายการไปแล้ว
+                          onMouseDown={(e) => {
+                            e.preventDefault();
+                            if (blurTimer.current) clearTimeout(blurTimer.current);
+                            pick(option);
+                          }}
+                          onMouseEnter={() => setActive(index)}
+                          className="flex min-w-0 flex-1 items-start gap-2 px-3 py-2 text-left"
+                        >
+                          <span className="text-lg leading-none" aria-hidden>
+                            {option.emoji}
+                          </span>
+                          <span className="min-w-0 flex-1">
+                            <span className="block truncate text-sm font-medium">
+                              {option.name}
+                            </span>
+                            <span className="block truncate text-xs text-muted">
+                              {option.hint}
+                            </span>
+                          </span>
+                        </button>
 
-          {options.map((option, index) => (
-            <li key={option.key} role="option" aria-selected={index === active}>
-              {/* คั่นให้เห็นว่าแถวไหนมาจากการค้นสด ซึ่งไม่มีเวลา/ค่าเข้าให้ */}
-              {index === curated.length && remoteOptions.length > 0 ? (
-                <p className="border-t border-line px-3 pt-2 pb-1 text-xs text-faint">
-                  ค้นจากแผนที่
-                </p>
-              ) : null}
-
-              <div
-                className={cn(
-                  "flex items-start gap-1",
-                  index === active ? "bg-brand-soft" : "",
-                )}
-              >
-                <button
-                  type="button"
-                  // ต้องใช้ onMouseDown เพราะ onClick มาหลัง blur ซึ่งปิดรายการไปแล้ว
-                  onMouseDown={(e) => {
-                    e.preventDefault();
-                    if (blurTimer.current) clearTimeout(blurTimer.current);
-                    pick(option);
-                  }}
-                  onMouseEnter={() => setActive(index)}
-                  className="flex min-w-0 flex-1 items-start gap-2 px-3 py-2 text-left"
-                >
-                  <span className="text-lg leading-none" aria-hidden>
-                    {option.emoji}
-                  </span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block truncate text-sm font-medium">
-                      {option.name}
-                    </span>
-                    <span className="block truncate text-xs text-muted">
-                      {option.province ? `${option.province} • ` : ""}
-                      {option.hint}
-                    </span>
-                  </span>
-                </button>
-
-                <a
-                  href={googleMapsUrl(option.name, option.lat, option.lng)}
-                  target="_blank"
-                  rel="noreferrer"
-                  // กัน blur ของช่องพิมพ์ไม่ให้ปิดรายการก่อนลิงก์ทำงาน
-                  onMouseDown={(e) => e.stopPropagation()}
-                  aria-label={`เปิด ${option.name} ใน Google Maps`}
-                  className="shrink-0 px-2 py-2 text-base"
-                  title="ดูรูปและรีวิวใน Google Maps"
-                >
-                  🗺️
-                </a>
-              </div>
+                        <a
+                          href={googleMapsUrl(option.name, option.lat, option.lng)}
+                          target="_blank"
+                          rel="noreferrer"
+                          // กัน blur ของช่องพิมพ์ไม่ให้ปิดรายการก่อนลิงก์ทำงาน
+                          onMouseDown={(e) => e.stopPropagation()}
+                          aria-label={`เปิด ${option.name} ใน Google Maps`}
+                          className="shrink-0 px-2 py-2 text-base"
+                          title="ดูรูปและรีวิวใน Google Maps"
+                        >
+                          🗺️
+                        </a>
+                      </div>
+                    </li>
+                  );
+                })}
+              </ul>
             </li>
           ))}
         </ul>
