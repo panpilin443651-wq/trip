@@ -230,3 +230,11 @@ src/data/
   scripts/make-icons.js สร้าง PNG เองด้วย zlib ไม่ต้องลงไลบรารีแต่งรูป
   proxy.ts ต้องยกเว้น manifest.webmanifest กับ sw.js ไม่งั้นโดนเด้งไป login
   จนติดตั้งไม่ได้
+
+[ตัวบอกเวอร์ชัน]
+  lib/build-info.ts     อ่าน VERCEL_GIT_COMMIT_SHA ที่ Vercel ใส่ให้ตอน build
+                        ต้องอ่านฝั่งเซิร์ฟเวอร์ ตัวแปรที่ไม่ขึ้นต้น NEXT_PUBLIC_
+                        จะไม่ถูกแทนค่าให้ใน client component
+  components/BuildInfo.tsx  บรรทัดท้ายหน้า ⋯ เพิ่มเติม
+  มีไว้ตอบคำถาม "แก้แล้วทำไมยังไม่เห็น" ให้จบในครั้งเดียว
+  เทียบเลขกับ commit ล่าสุด ไม่ตรง = ยังไม่ได้ deploy

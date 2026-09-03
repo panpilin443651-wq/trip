@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { BUILD_SHA, BUILD_TIME } from "@/lib/build-info";
 import { buildSystemPrompt } from "@/lib/chat/knowledge";
 import type { ChatRole } from "@/lib/chat/types";
 import {
@@ -290,6 +291,9 @@ export async function GET() {
   }
 
   return NextResponse.json({
+    // เช็กเวอร์ชันจากที่เดียวกับที่เช็กเรื่อง Gemini จะได้ไม่ต้องเปิดหลายที่
+    buildSha: BUILD_SHA,
+    buildTime: BUILD_TIME,
     keyMissing: !isGeminiConfigured,
     keyLength: GEMINI_API_KEY.length,
     envModelRaw: raw === undefined ? null : raw,

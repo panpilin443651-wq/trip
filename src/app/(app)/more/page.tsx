@@ -1,6 +1,5 @@
-"use client";
-
 import Link from "next/link";
+import { BuildInfo } from "@/components/BuildInfo";
 import { PageHeader } from "@/components/PageHeader";
 import { SignOutButton } from "@/components/SignOutButton";
 import { Card } from "@/components/ui";
@@ -39,6 +38,8 @@ export default function MorePage() {
         </p>
         <SignOutButton />
       </Card>
+
+      <BuildInfo />
     </>
   );
 }
