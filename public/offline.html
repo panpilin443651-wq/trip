@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="th">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ออฟไลน์อยู่ — Travel Planner</title>
+    <style>
+      :root {
+        color-scheme: dark;
+      }
+      body {
+        margin: 0;
+        min-height: 100dvh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+        background: #0e1a30;
+        color: #f4f6fa;
+        font-family: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
+        text-align: center;
+      }
+      .card {
+        max-width: 24rem;
+        border: 1px solid #2b3b58;
+        border-radius: 1.5rem;
+        background: #172642;
+        padding: 2rem 1.5rem;
+      }
+      h1 {
+        margin: 0 0 0.75rem;
+        font-size: 1.25rem;
+      }
+      p {
+        margin: 0 0 1.25rem;
+        color: #a9b6cc;
+        font-size: 0.95rem;
+        line-height: 1.7;
+      }
+      button {
+        min-height: 2.75rem;
+        width: 100%;
+        border: 0;
+        border-radius: 0.75rem;
+        background: #c9a227;
+        color: #0e1a30;
+        font-family: inherit;
+        font-size: 0.95rem;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="card">
+      <div style="font-size: 2.5rem">📡</div>
+      <h1>ตอนนี้ออฟไลน์อยู่</h1>
+      <p>
+        เว็บนี้ต้องต่ออินเทอร์เน็ตเพื่อดึงแผนทริปจากบัญชีของคุณ
+        ต่อเน็ตแล้วกดลองใหม่ได้เลย
+      </p>
+      <button type="button" onclick="location.reload()">ลองใหม่</button>
+    </div>
+  </body>
+</html>

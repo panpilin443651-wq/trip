@@ -218,3 +218,12 @@ src/data/
                         ข้อมูล 550 KB ถ้าติดไป bundle มือถือจะโหลดทุกครั้ง
   scripts/geo-provinces.js  แบ่งจังหวัดด้วย ray casting ในเครื่อง แม่น 97%
                         มีทางสำรองสำหรับจังหวัดชายทะเลที่ขอบเขตใน OSM ไม่ปิดวง
+
+[ติดตั้งเป็นแอป PWA]
+  app/manifest.ts       ชื่อ ไอคอน ทางลัด เปิดแบบ standalone
+  public/sw.js          แคชเฉพาะไฟล์คงที่ ไม่แคชหน้าเว็บและ /api
+                        เพราะเนื้อหาผูกกับบัญชีที่ล็อกอินอยู่
+  public/offline.html   หน้าที่ขึ้นเมื่อเน็ตหลุด
+  scripts/make-icons.js สร้าง PNG เองด้วย zlib ไม่ต้องลงไลบรารีแต่งรูป
+  proxy.ts ต้องยกเว้น manifest.webmanifest กับ sw.js ไม่งั้นโดนเด้งไป login
+  จนติดตั้งไม่ได้
