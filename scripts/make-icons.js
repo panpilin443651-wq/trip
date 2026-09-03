@@ -3,17 +3,81 @@
  *
  * ใช้: node scripts/make-icons.js
  *
- * เขียน PNG กับ ICO เองด้วย zlib ที่ Node มีอยู่แล้ว ไม่ต้องลงไลบรารีแต่งรูป
- * (โปรเจกต์นี้ตั้งใจไม่เพิ่ม dependency) รูปวาดด้วยสมการล้วน จึงคมทุกขนาด
- * โดยไม่ต้องมีไฟล์ต้นฉบับ แก้สีหรือสัดส่วนแล้วรันใหม่ได้ทั้งชุด
+ * ต้นฉบับคือ assets/logo.png (โลโก้ TripPlan บนพื้นขาว มีตัวหนังสืออยู่ใต้รูป)
+ * สคริปต์นี้ตัดเฉพาะสี่เหลี่ยมไอคอน ทำพื้นนอกให้โปร่งใส แล้วย่อเป็นขนาดต่าง ๆ
+ * เปลี่ยนโลโก้เมื่อไหร่ ทับไฟล์ต้นฉบับแล้วรันใหม่ได้ทั้งชุด
  *
- * รูป: กระเป๋าเดินทางสีทองบนพื้นกรม มีเครื่องบินกับรถเจาะอยู่ข้างใน
+ * ถอดและเขียน PNG/ICO เองด้วย zlib ที่ Node มีอยู่แล้ว ไม่ต้องลงไลบรารีแต่งรูป
+ * (โปรเจกต์นี้ตั้งใจไม่เพิ่ม dependency)
  */
 const fs = require("fs");
 const zlib = require("zlib");
 
-const NAVY = [14, 26, 48]; // --color-canvas
-const GOLD = [201, 162, 39]; // --color-brand
+const SOURCE = "assets/logo.png";
+
+// ── ตัวอ่าน PNG ─────────────────────────────────────────────────────
+
+/**
+ * ถอด PNG แบบ 8 บิต ไม่ interlace (ทั้ง RGB และ RGBA)
+ *
+ * แต่ละแถวถูกกรอง (filter) ก่อนบีบอัด ต้องย้อนกลับทีละแถวตามลำดับ
+ * เพราะแถวหลังอ้างอิงค่าที่ถอดแล้วของแถวก่อนหน้า
+ */
+function decodePng(buf) {
+  let offset = 8; // ข้ามลายเซ็น 8 ไบต์
+  let width = 0;
+  let height = 0;
+  let colorType = 0;
+  const idat = [];
+
+  while (offset < buf.length) {
+    const length = buf.readUInt32BE(offset);
+    const type = buf.toString("ascii", offset + 4, offset + 8);
+    if (type === "IHDR") {
+      width = buf.readUInt32BE(offset + 8);
+      height = buf.readUInt32BE(offset + 12);
+      if (buf[offset + 16] !== 8) throw new Error("รองรับเฉพาะ PNG 8 บิต");
+      colorType = buf[offset + 17];
+      if (colorType !== 2 && colorType !== 6)
+        throw new Error("รองรับเฉพาะ PNG แบบ RGB หรือ RGBA");
+      if (buf[offset + 20] !== 0)
+        throw new Error("ไม่รองรับ PNG แบบ interlace");
+    }
+    if (type === "IDAT")
+      idat.push(buf.subarray(offset + 8, offset + 8 + length));
+    offset += 12 + length;
+  }
+
+  const bpp = colorType === 2 ? 3 : 4;
+  const stride = width * bpp;
+  const raw = zlib.inflateSync(Buffer.concat(idat));
+  const px = Buffer.alloc(height * stride);
+
+  for (let y = 0; y < height; y += 1) {
+    const filter = raw[y * (stride + 1)];
+    const line = raw.subarray(y * (stride + 1) + 1, (y + 1) * (stride + 1));
+    for (let i = 0; i < stride; i += 1) {
+      const left = i >= bpp ? px[y * stride + i - bpp] : 0;
+      const up = y > 0 ? px[(y - 1) * stride + i] : 0;
+      const upLeft = i >= bpp && y > 0 ? px[(y - 1) * stride + i - bpp] : 0;
+      let v = line[i];
+      if (filter === 1) v += left;
+      else if (filter === 2) v += up;
+      else if (filter === 3) v += (left + up) >> 1;
+      else if (filter === 4) {
+        // Paeth — เลือกเพื่อนบ้านที่ใกล้ค่าทำนายที่สุด
+        const p = left + up - upLeft;
+        const pa = Math.abs(p - left);
+        const pb = Math.abs(p - up);
+        const pc = Math.abs(p - upLeft);
+        v += pa <= pb && pa <= pc ? left : pb <= pc ? up : upLeft;
+      }
+      px[y * stride + i] = v & 255;
+    }
+  }
+
+  return { width, height, px, bpp };
+}
 
 // ── ตัวเขียน PNG ────────────────────────────────────────────────────
 
@@ -30,32 +94,71 @@ const CRC_TABLE = (() => {
 
 function crc32(buf) {
   let c = 0xffffffff;
-  for (const byte of buf) c = CRC_TABLE[(c ^ byte) & 0xff] ^ (c >>> 8);
+  for (const b of buf) c = CRC_TABLE[(c ^ b) & 0xff] ^ (c >>> 8);
   return (c ^ 0xffffffff) >>> 0;
 }
 
 function chunk(type, data) {
-  const length = Buffer.alloc(4);
-  length.writeUInt32BE(data.length);
+  const len = Buffer.alloc(4);
+  len.writeUInt32BE(data.length);
   const body = Buffer.concat([Buffer.from(type, "ascii"), data]);
   const crc = Buffer.alloc(4);
   crc.writeUInt32BE(crc32(body));
-  return Buffer.concat([length, body, crc]);
+  return Buffer.concat([len, body, crc]);
+}
+
+/**
+ * เลือก filter ของแต่ละแถวแบบอัตโนมัติ
+ *
+ * ลองครบทั้ง 5 แบบแล้วเอาแบบที่ผลรวมค่าสัมบูรณ์น้อยที่สุด (วิธีมาตรฐานตามสเปก)
+ * รูปนี้เป็นภาพไล่เฉดสี ถ้าไม่กรองเลยไฟล์จะใหญ่กว่าเดิมหลายเท่า
+ */
+function filterRow(line, prev, bpp) {
+  const n = line.length;
+  let best = null;
+  for (let f = 0; f <= 4; f += 1) {
+    const out = Buffer.alloc(n);
+    let score = 0;
+    for (let i = 0; i < n; i += 1) {
+      const a = i >= bpp ? line[i - bpp] : 0;
+      const b = prev[i];
+      const c = i >= bpp ? prev[i - bpp] : 0;
+      let pred = 0;
+      if (f === 1) pred = a;
+      else if (f === 2) pred = b;
+      else if (f === 3) pred = (a + b) >> 1;
+      else if (f === 4) {
+        const p = a + b - c;
+        const pa = Math.abs(p - a);
+        const pb = Math.abs(p - b);
+        const pc = Math.abs(p - c);
+        pred = pa <= pb && pa <= pc ? a : pb <= pc ? b : c;
+      }
+      const v = (line[i] - pred) & 255;
+      out[i] = v;
+      score += v < 128 ? v : 256 - v;
+    }
+    if (!best || score < best.score) best = { f, out, score };
+  }
+  return best;
 }
 
 function encodePng(width, height, rgba) {
   const ihdr = Buffer.alloc(13);
   ihdr.writeUInt32BE(width, 0);
   ihdr.writeUInt32BE(height, 4);
-  ihdr[8] = 8; // bit depth
-  ihdr[9] = 6; // color type RGBA
+  ihdr[8] = 8; // บิตต่อช่องสี
+  ihdr[9] = 6; // RGBA
 
-  // แต่ละแถวต้องมีไบต์บอกวิธี filter นำหน้า ใช้ 0 (ไม่ filter) ให้ง่ายไว้ก่อน
-  const raw = Buffer.alloc(height * (width * 4 + 1));
+  const stride = width * 4;
+  const raw = Buffer.alloc(height * (stride + 1));
+  let prev = Buffer.alloc(stride);
   for (let y = 0; y < height; y += 1) {
-    const rowStart = y * (width * 4 + 1);
-    raw[rowStart] = 0;
-    rgba.copy(raw, rowStart + 1, y * width * 4, (y + 1) * width * 4);
+    const line = rgba.subarray(y * stride, (y + 1) * stride);
+    const { f, out } = filterRow(line, prev, 4);
+    raw[y * (stride + 1)] = f;
+    out.copy(raw, y * (stride + 1) + 1);
+    prev = line;
   }
 
   return Buffer.concat([
@@ -66,12 +169,7 @@ function encodePng(width, height, rgba) {
   ]);
 }
 
-/**
- * ประกอบไฟล์ .ico จาก PNG หลายขนาด
- *
- * .ico เป็นแค่กล่องใส่รูปหลายขนาดในไฟล์เดียว เบราว์เซอร์ยุคนี้อ่าน PNG
- * ที่ฝังอยู่ข้างในได้ จึงไม่ต้องแปลงเป็น BMP แบบสมัยก่อน
- */
+/** ICO เป็นแค่กล่องใส่ PNG หลายขนาด เบราว์เซอร์เลือกใช้ขนาดที่เหมาะเอง */
 function encodeIco(images) {
   const header = Buffer.alloc(6);
   header.writeUInt16LE(0, 0); // สงวนไว้
@@ -95,150 +193,267 @@ function encodeIco(images) {
   return Buffer.concat([header, ...entries, ...images.map((i) => i.png)]);
 }
 
-// ── รูปทรงพื้นฐาน ใช้พิกัด 0..1 จะได้ไม่ผูกกับขนาดจริง ────────────────
-
-function roundRect(x, y, x0, y0, x1, y1, r) {
-  if (x < x0 || x > x1 || y < y0 || y > y1) return false;
-  const dx = Math.max(x0 + r - x, x - (x1 - r), 0);
-  const dy = Math.max(y0 + r - y, y - (y1 - r), 0);
-  return Math.hypot(dx, dy) <= r;
-}
-
-const circle = (x, y, cx, cy, r) => Math.hypot(x - cx, y - cy) <= r;
-
-/** จุดอยู่ในสามเหลี่ยมไหม — ใช้เครื่องหมายของ cross product ทั้งสามด้าน */
-function triangle(px, py, [ax, ay], [bx, by], [cx, cy]) {
-  const sign = (x1, y1, x2, y2, x3, y3) =>
-    (x1 - x3) * (y2 - y3) - (x2 - x3) * (y1 - y3);
-  const d1 = sign(px, py, ax, ay, bx, by);
-  const d2 = sign(px, py, bx, by, cx, cy);
-  const d3 = sign(px, py, cx, cy, ax, ay);
-  return !((d1 < 0 || d2 < 0 || d3 < 0) && (d1 > 0 || d2 > 0 || d3 > 0));
-}
-
-// ── ชิ้นส่วนของรูป ──────────────────────────────────────────────────
-
-/** เครื่องบินมองจากด้านบน หันขึ้น — ลำตัว ปีกกวาดหลัง และแพนหาง */
-function plane(x, y, cx, cy, s) {
-  return (
-    roundRect(x, y, cx - 0.028 * s, cy - 0.075 * s, cx + 0.028 * s, cy + 0.06 * s, 0.028 * s) ||
-    triangle(x, y, [cx - 0.15 * s, cy + 0.028 * s], [cx + 0.15 * s, cy + 0.028 * s], [cx, cy - 0.05 * s]) ||
-    triangle(x, y, [cx - 0.06 * s, cy + 0.075 * s], [cx + 0.06 * s, cy + 0.075 * s], [cx, cy + 0.02 * s])
-  );
-}
+// ── ตัดโลโก้ออกจากภาพต้นฉบับ ────────────────────────────────────────
 
 /**
- * รถมองจากด้านข้าง — ตัวถัง ห้องโดยสาร และล้อ
+ * ตัดเฉพาะสี่เหลี่ยมไอคอนออกมา แล้วทำพื้นนอกให้โปร่งใส
  *
- * ล้อต้องยื่นพ้นตัวถังลงมา ไม่งั้นทั้งคันรวมเป็นก้อนเดียวแล้วดูเหมือนเนินเขา
- * (แบบแรกที่ลองใช้สามเหลี่ยมเป็นหลังคาออกมาเป็นแบบนั้นพอดี)
+ * หาขอบจากพิกเซล "มีสี" (ช่องสีต่างกันมาก) ไม่ใช่แค่ "ไม่ขาว" เพราะใต้สี่เหลี่ยม
+ * มีเงาสีเทาจาง ๆ ซึ่งไม่ใช่ตัวไอคอน และมองแค่ครึ่งบนของภาพ ไม่งั้นจะไปกิน
+ * ตัวหนังสือ TripPlan ที่อยู่ด้านล่างเข้ามาด้วย
+ *
+ * ส่วนความโปร่งใสหาโดยลามจากขอบภาพเข้ามาตามพิกเซลจาง ๆ ไม่ใช่ไล่เช็กทีละพิกเซล
+ * ว่าขาวไหม เพราะถนนกลางรูปก็เป็นสีขาว ถ้าเช็กแค่สีจะทะลุเป็นรูกลางไอคอน
  */
-function car(x, y, cx, cy, s) {
-  return (
-    roundRect(x, y, cx - 0.15 * s, cy - 0.012 * s, cx + 0.15 * s, cy + 0.035 * s, 0.018 * s) ||
-    roundRect(x, y, cx - 0.082 * s, cy - 0.072 * s, cx + 0.062 * s, cy + 0.005 * s, 0.022 * s) ||
-    circle(x, y, cx - 0.09 * s, cy + 0.045 * s, 0.038 * s) ||
-    circle(x, y, cx + 0.09 * s, cy + 0.045 * s, 0.038 * s)
-  );
+function loadLogo(file) {
+  const { width, height, px, bpp } = decodePng(fs.readFileSync(file));
+  const isVivid = (x, y) => {
+    const i = (y * width + x) * bpp;
+    const [r, g, b] = [px[i], px[i + 1], px[i + 2]];
+    return Math.max(r, g, b) - Math.min(r, g, b) > 25;
+  };
+
+  const searchLimit = Math.floor(height * 0.75);
+  let x0 = width;
+  let x1 = 0;
+  let y0 = height;
+  let y1 = 0;
+  for (let y = 0; y < searchLimit; y += 1)
+    for (let x = 0; x < width; x += 1)
+      if (isVivid(x, y)) {
+        if (x < x0) x0 = x;
+        if (x > x1) x1 = x;
+        if (y < y0) y0 = y;
+        if (y > y1) y1 = y;
+      }
+  if (x1 < x0) throw new Error(`หาสี่เหลี่ยมไอคอนใน ${file} ไม่เจอ`);
+
+  const w = x1 - x0 + 1;
+  const h = y1 - y0 + 1;
+  const rgba = Buffer.alloc(w * h * 4);
+  for (let y = 0; y < h; y += 1)
+    for (let x = 0; x < w; x += 1) {
+      const s = ((y0 + y) * width + x0 + x) * bpp;
+      const d = (y * w + x) * 4;
+      rgba[d] = px[s];
+      rgba[d + 1] = px[s + 1];
+      rgba[d + 2] = px[s + 2];
+      rgba[d + 3] = 255;
+    }
+
+  const isPale = (p) => {
+    const i = p * 4;
+    const [r, g, b] = [rgba[i], rgba[i + 1], rgba[i + 2]];
+    return (
+      r > 205 && g > 205 && b > 205 && Math.max(r, g, b) - Math.min(r, g, b) < 18
+    );
+  };
+  const seen = new Uint8Array(w * h);
+  const stack = [];
+  for (let x = 0; x < w; x += 1) stack.push(x, (h - 1) * w + x);
+  for (let y = 0; y < h; y += 1) stack.push(y * w, y * w + w - 1);
+  while (stack.length) {
+    const p = stack.pop();
+    if (seen[p] || !isPale(p)) continue;
+    seen[p] = 1;
+    const x = p % w;
+    const y = (p - x) / w;
+    if (x > 0) stack.push(p - 1);
+    if (x < w - 1) stack.push(p + 1);
+    if (y > 0) stack.push(p - w);
+    if (y < h - 1) stack.push(p + w);
+  }
+  for (let p = 0; p < w * h; p += 1) if (seen[p]) rgba[p * 4 + 3] = 0;
+
+  return { w, h, rgba };
 }
 
-/** ช่องกระจกของรถ เจาะกลับเป็นสีทองให้อ่านออกว่าเป็นรถ ไม่ใช่ก้อนสี่เหลี่ยม */
-function carWindow(x, y, cx, cy, s) {
-  return roundRect(x, y, cx - 0.062 * s, cy - 0.055 * s, cx + 0.042 * s, cy - 0.012 * s, 0.012 * s);
-}
+// ── แปลงขนาด ────────────────────────────────────────────────────────
 
 /**
- * กระเป๋าเดินทาง — ตัวกระเป๋าสีทอง เจาะเครื่องบินกับรถเป็นสีกรม
+ * ย่อด้วยการเฉลี่ยพื้นที่ (box filter)
  *
- * @param withVehicles ใส่รถกับเครื่องบินไหม
- *   ที่ขนาด 16-32 px รายละเอียดพวกนี้เละจนดูไม่ออก ใช้กระเป๋าเปล่าแทน
- *   ซึ่งยังบอกได้ว่าเป็นเว็บอะไร
- * @param scale ย่อ/ขยายทั้งภาพรอบจุดกึ่งกลาง — maskable ต้องเว้นขอบให้ระบบครอบตัด
- * @param round มุมโค้งของพื้นหลัง 0 = สี่เหลี่ยมเต็ม
+ * ต้องคูณอัลฟาเข้าไปก่อนเฉลี่ย ไม่งั้นสีของพิกเซลโปร่งใสจะถูกนับด้วย
+ * แล้วขอบไอคอนจะมีขลิบขาวบาง ๆ
  */
-function drawIcon(size, { withVehicles = true, scale = 1, round = 0.22 } = {}) {
-  const SS = 4; // วาดใหญ่กว่าจริง 4 เท่าแล้วเฉลี่ยลง ขอบจะได้ไม่หยัก
-  const big = size * SS;
-  const acc = new Float64Array(size * size * 4);
-
-  for (let by = 0; by < big; by += 1) {
-    for (let bx = 0; bx < big; bx += 1) {
-      const x = bx / big;
-      const y = by / big;
-      if (round > 0 && !roundRect(x, y, 0, 0, 1, 1, round)) continue;
-
-      const gx = 0.5 + (x - 0.5) / scale;
-      const gy = 0.5 + (y - 0.5) / scale;
-
-      // หูหิ้ว — สี่เหลี่ยมโค้งวงนอกลบวงใน เอาเฉพาะส่วนเหนือตัวกระเป๋า
-      const handle =
-        gy < 0.345 &&
-        roundRect(gx, gy, 0.375, 0.155, 0.625, 0.36, 0.075) &&
-        !roundRect(gx, gy, 0.435, 0.225, 0.565, 0.4, 0.045);
-      const body = roundRect(gx, gy, 0.155, 0.335, 0.845, 0.85, 0.09);
-
-      let color = NAVY;
-      if (handle || body) {
-        color = GOLD;
-        if (body && withVehicles) {
-          if (plane(gx, gy, 0.5, 0.455, 0.95)) color = NAVY;
-          else if (car(gx, gy, 0.5, 0.715, 1)) {
-            color = carWindow(gx, gy, 0.5, 0.715, 1) ? GOLD : NAVY;
-          } else if (gy > 0.575 && gy < 0.593) {
-            // เส้นซิปกลางกระเป๋า คั่นสองช่องให้ดูเป็นกระเป๋าจริง
-            color = NAVY;
-          }
+function resize(src, size) {
+  const out = Buffer.alloc(size * size * 4);
+  for (let y = 0; y < size; y += 1) {
+    const sy0 = (y * src.h) / size;
+    const sy1 = ((y + 1) * src.h) / size;
+    for (let x = 0; x < size; x += 1) {
+      const sx0 = (x * src.w) / size;
+      const sx1 = ((x + 1) * src.w) / size;
+      let r = 0;
+      let g = 0;
+      let b = 0;
+      let a = 0;
+      let total = 0;
+      for (let sy = Math.floor(sy0); sy < Math.ceil(sy1); sy += 1) {
+        const fy = Math.min(sy + 1, sy1) - Math.max(sy, sy0);
+        for (let sx = Math.floor(sx0); sx < Math.ceil(sx1); sx += 1) {
+          const f = (Math.min(sx + 1, sx1) - Math.max(sx, sx0)) * fy;
+          if (f <= 0) continue;
+          const i = (sy * src.w + sx) * 4;
+          const al = src.rgba[i + 3] / 255;
+          r += src.rgba[i] * al * f;
+          g += src.rgba[i + 1] * al * f;
+          b += src.rgba[i + 2] * al * f;
+          a += al * f;
+          total += f;
         }
       }
-
-      const i = (Math.floor(by / SS) * size + Math.floor(bx / SS)) * 4;
-      acc[i] += color[0];
-      acc[i + 1] += color[1];
-      acc[i + 2] += color[2];
-      acc[i + 3] += 255;
+      const i = (y * size + x) * 4;
+      if (a > 0) {
+        out[i] = Math.round(r / a);
+        out[i + 1] = Math.round(g / a);
+        out[i + 2] = Math.round(b / a);
+      }
+      out[i + 3] = Math.round((a / total) * 255);
     }
   }
-
-  const out = Buffer.alloc(size * size * 4);
-  for (let i = 0; i < size * size * 4; i += 1) out[i] = Math.round(acc[i] / (SS * SS));
-  return encodePng(size, size, out);
+  return { w: size, h: size, rgba: out };
 }
 
-// ── ไฟล์ที่ต้องสร้าง ────────────────────────────────────────────────
+/** ตัดขอบเข้ามาก่อนย่อ ทำให้เส้นทางกลางรูปใหญ่ขึ้นตอนไอคอนเล็ก */
+function cropInset(src, inset) {
+  const dx = Math.round(src.w * inset);
+  const dy = Math.round(src.h * inset);
+  const w = src.w - dx * 2;
+  const h = src.h - dy * 2;
+  const rgba = Buffer.alloc(w * h * 4);
+  for (let y = 0; y < h; y += 1)
+    src.rgba.copy(
+      rgba,
+      y * w * 4,
+      ((y + dy) * src.w + dx) * 4,
+      ((y + dy) * src.w + dx + w) * 4,
+    );
+  return { w, h, rgba };
+}
 
-const TARGETS = [
-  { file: "public/icon-192.png", size: 192, opts: {} },
-  { file: "public/icon-512.png", size: 512, opts: {} },
-  // maskable ระบบครอบตัดได้ถึง 20% รอบด้าน ต้องย่อรูปให้เนื้อหาอยู่ตรงกลาง
-  // และใช้พื้นเต็มสี่เหลี่ยม เพราะมุมโค้งจะถูกครอบทับอยู่แล้ว
-  { file: "public/icon-maskable-512.png", size: 512, opts: { scale: 0.72, round: 0 } },
-  // iOS ครอบมุมให้เอง จึงวาดเป็นสี่เหลี่ยมเต็ม
-  { file: "src/app/apple-icon.png", size: 180, opts: { round: 0 } },
-];
+/** ชดเชยความเบลอที่เกิดจากการย่อ (unsharp mask แบบง่าย) */
+function sharpen(img, amount) {
+  const { w, h, rgba } = img;
+  const out = Buffer.from(rgba);
+  for (let y = 1; y < h - 1; y += 1)
+    for (let x = 1; x < w - 1; x += 1) {
+      const i = (y * w + x) * 4;
+      for (let c = 0; c < 3; c += 1) {
+        const blur =
+          (rgba[i + c] * 4 +
+            rgba[i - 4 + c] +
+            rgba[i + 4 + c] +
+            rgba[i - w * 4 + c] +
+            rgba[i + w * 4 + c]) /
+          8;
+        const v = Math.round(rgba[i + c] + (rgba[i + c] - blur) * amount);
+        out[i + c] = Math.max(0, Math.min(255, v));
+      }
+    }
+  return { w, h, rgba: out };
+}
 
-for (const { file, size, opts } of TARGETS) {
-  fs.writeFileSync(file, drawIcon(size, opts));
-  console.log(
-    `✓ ${file} (${size}x${size}, ${(fs.statSync(file).size / 1024).toFixed(1)} KB)`,
-  );
+/** ทับอัลฟาของอีกภาพ ใช้เอามุมโค้งของต้นฉบับกลับมาหลังซูมเข้า */
+function applyAlphaOf(img, mask) {
+  for (let i = 0; i < img.w * img.h; i += 1)
+    img.rgba[i * 4 + 3] = Math.round(
+      (img.rgba[i * 4 + 3] * mask.rgba[i * 4 + 3]) / 255,
+    );
+  return img;
 }
 
 /**
- * favicon ใส่ 3 ขนาดในไฟล์เดียว เบราว์เซอร์เลือกใช้ขนาดที่เหมาะเอง
+ * ลากสีของขอบไอคอนออกไปเติมมุมโค้ง แล้วปิดความโปร่งใสทั้งใบ
  *
- * 16 กับ 32 ใช้กระเป๋าเปล่า เพราะเครื่องบินกับรถเหลือไม่กี่พิกเซลจนเละ
- * ส่วน 48 ใส่ครบได้ การลดรายละเอียดตามขนาดเป็นเรื่องปกติของงานไอคอน
+ * ไอคอนที่ระบบครอบมุมให้เอง (iOS, maskable) ต้องทึบเต็มสี่เหลี่ยม จะเอาอัลฟา
+ * ไปยัดเป็น 255 เฉย ๆ ไม่ได้ เพราะพิกเซลโปร่งใสไม่มีสีเก็บไว้ มุมจะกลายเป็นสีดำ
+ *
+ * อีกทางคือตัดขอบเข้ามาให้พ้นมุมโค้ง แต่ลองแล้วต้องตัดถึง 8% ต่อด้าน
+ * ซึ่งดันหมุดเครื่องบินออกไปนอกวงปลอดภัยของ maskable จนโดนครอบหัวขาด
+ * การลากสีขอบออกไปแทนจึงดีกว่า เพราะกรอบภาพไม่ขยับเลย
  */
-const FAVICON = [
-  { size: 16, opts: { withVehicles: false, scale: 1.1 } },
-  { size: 32, opts: { withVehicles: false, scale: 1.1 } },
-  { size: 48, opts: { scale: 1.1 } },
+function fillCorners(img) {
+  const { w, h, rgba } = img;
+  for (let y = 0; y < h; y += 1) {
+    const row = y * w;
+    let first = -1;
+    let last = -1;
+    for (let x = 0; x < w; x += 1)
+      if (rgba[(row + x) * 4 + 3] > 200) {
+        if (first < 0) first = x;
+        last = x;
+      }
+    if (first < 0) continue; // ทั้งแถวโปร่งใส — ไม่มีสีให้ลาก
+    for (let x = 0; x < first; x += 1)
+      rgba.copy(rgba, (row + x) * 4, (row + first) * 4, (row + first) * 4 + 3);
+    for (let x = last + 1; x < w; x += 1)
+      rgba.copy(rgba, (row + x) * 4, (row + last) * 4, (row + last) * 4 + 3);
+  }
+  for (let i = 0; i < w * h; i += 1) rgba[i * 4 + 3] = 255;
+  return img;
+}
+
+// ── สร้างไฟล์ ───────────────────────────────────────────────────────
+
+const logo = loadLogo(SOURCE);
+console.log(`ต้นฉบับ ${SOURCE} → ตัดสี่เหลี่ยมไอคอนได้ ${logo.w}x${logo.h}`);
+
+/**
+ * ไอคอนขนาดเล็ก (favicon) — ซูมเข้านิดหน่อยแล้วเพิ่มความคม
+ *
+ * ที่ 16 px ถ้าย่อทั้งใบตรง ๆ ตึกกับภูเขารอบนอกจะกลายเป็นจุดสีมั่ว ๆ
+ * ตัดขอบออก 10% ทำให้เส้นทางสีขาวกลางรูปใหญ่ขึ้นจนยังอ่านออก
+ * ส่วนอัลฟาเอาของภาพเต็มมาครอบ มุมโค้งจะได้เหมือนเดิม
+ */
+function smallIcon(size) {
+  const zoomed = sharpen(resize(cropInset(logo, 0.1), size), 1);
+  return applyAlphaOf(zoomed, resize(logo, size));
+}
+
+/** ไอคอนขนาดใหญ่ — ย่อทั้งใบ เก็บรายละเอียดต้นฉบับไว้ครบ */
+function largeIcon(size) {
+  return sharpen(resize(logo, size), 0.35);
+}
+
+/**
+ * ไอคอนเต็มกรอบ ไม่มีมุมโค้ง — สำหรับที่ที่ระบบครอบมุมให้เอง
+ *
+ * ใช้กรอบเดียวกับไอคอนปกติ หมุดทั้งสองจึงยังอยู่ในวงปลอดภัยของ maskable
+ * (รัศมี 40% จากจุดกึ่งกลาง) ไม่ต้องย่อรูปให้เล็กลงอีก
+ */
+function fullBleedIcon(size) {
+  return fillCorners(largeIcon(size));
+}
+
+const TARGETS = [
+  { file: "public/icon-192.png", img: () => largeIcon(192) },
+  { file: "public/icon-512.png", img: () => largeIcon(512) },
+  // maskable ระบบครอบตัดเหลือวงกลมกลางภาพได้ จึงต้องทึบเต็มสี่เหลี่ยม
+  { file: "public/icon-maskable-512.png", img: () => fullBleedIcon(512) },
+  // iOS ครอบมุมให้เอง และไม่รองรับพื้นโปร่งใส (จะกลายเป็นสีดำ)
+  { file: "src/app/apple-icon.png", img: () => fullBleedIcon(180) },
 ];
+
+for (const { file, img } of TARGETS) {
+  const image = img();
+  fs.writeFileSync(file, encodePng(image.w, image.h, image.rgba));
+  console.log(
+    `✓ ${file} (${image.w}x${image.h}, ` +
+      `${(fs.statSync(file).size / 1024).toFixed(1)} KB)`,
+  );
+}
+
+/** favicon ใส่ 3 ขนาดในไฟล์เดียว เบราว์เซอร์เลือกใช้ขนาดที่เหมาะเอง */
+const FAVICON_SIZES = [16, 32, 48];
 const ico = encodeIco(
-  FAVICON.map(({ size, opts }) => ({ size, png: drawIcon(size, opts) })),
+  FAVICON_SIZES.map((size) => {
+    const image = smallIcon(size);
+    return { size, png: encodePng(image.w, image.h, image.rgba) };
+  }),
 );
 fs.writeFileSync("src/app/favicon.ico", ico);
 console.log(
-  `✓ src/app/favicon.ico (${FAVICON.map((f) => f.size).join(", ")} px, ` +
+  `✓ src/app/favicon.ico (${FAVICON_SIZES.join(", ")} px, ` +
     `${(ico.length / 1024).toFixed(1)} KB)`,
 );
