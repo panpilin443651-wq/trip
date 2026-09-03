@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { BudgetAllocation } from "@/components/BudgetAllocation";
 import { BudgetCategoryCard } from "@/components/BudgetCategoryCard";
 import { BudgetEstimator } from "@/components/BudgetEstimator";
 import { FuelEstimate } from "@/components/FuelEstimate";
@@ -18,7 +19,7 @@ import {
   Textarea,
 } from "@/components/ui";
 import { CATEGORIES } from "@/data/categories";
-import { buildBreakdown } from "@/lib/budget";
+import { buildAllocation, buildBreakdown } from "@/lib/budget";
 import { formatTHB } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
 import type { CategoryId } from "@/lib/types";
@@ -55,7 +56,8 @@ export default function BudgetPage() {
     setSaved(true);
   }
 
-  const plannedTotal = breakdown.byCategory.reduce((sum, c) => sum + c.budget, 0);
+  // ใช้ตัวเดียวกับการ์ด "การแบ่งงบลงหมวด" จะได้ไม่มีสองสูตรที่เพี้ยนจากกันได้
+  const allocation = useMemo(() => buildAllocation(state.trip), [state.trip]);
   const perPerson =
     state.trip.travelers > 1
       ? breakdown.totalSpent / state.trip.travelers
@@ -92,9 +94,11 @@ export default function BudgetPage() {
           <Field
             label="งบรวมของทริป (บาท)"
             hint={
-              plannedTotal > state.trip.totalBudget && state.trip.totalBudget > 0
-                ? `⚠️ งบที่ตั้งรายหมวดรวมกัน ${formatTHB(plannedTotal)} ซึ่งมากกว่างบรวม`
-                : undefined
+              allocation.tone === "over"
+                ? `⚠️ งบรายหมวดรวมกัน ${formatTHB(allocation.allocated)} เกินงบรวมอยู่ ${formatTHB(-allocation.unallocated)}`
+                : allocation.unallocated > 0
+                  ? `ยังเหลือ ${formatTHB(allocation.unallocated)} ที่ยังไม่ได้แบ่งลงหมวด`
+                  : undefined
             }
           >
             <NumberInput
@@ -115,6 +119,8 @@ export default function BudgetPage() {
             </p>
           ) : null}
         </Card>
+
+        <BudgetAllocation />
 
         <section>
           <SectionTitle

@@ -1,5 +1,5 @@
 import { CATEGORIES } from "@/data/categories";
-import type { Activity, AppState, CategoryId, Expense } from "./types";
+import type { Activity, AppState, CategoryId, Expense, Trip } from "./types";
 
 export type BudgetTone = "ok" | "warn" | "over" | "empty";
 
@@ -150,6 +150,114 @@ export function buildBreakdown(state: AppState): BudgetBreakdown {
     status: getBudgetStatus(totalSpent, trip.totalBudget),
     byCategory,
   };
+}
+
+// ── ผูกงบรายหมวดเข้ากับงบรวม ────────────────────────────────────────
+
+export interface Allocation {
+  /** งบรวมที่ตั้งไว้ */
+  totalBudget: number;
+  /** ผลรวมงบที่แบ่งลงหมวดแล้ว */
+  allocated: number;
+  /** งบรวมลบงบที่แบ่งแล้ว — ติดลบ = แบ่งเกินงบรวม */
+  unallocated: number;
+  /** แบ่งไปแล้วกี่เปอร์เซ็นต์ของงบรวม (ตัดที่ 100 สำหรับแสดงแถบ) */
+  percent: number;
+  tone: BudgetTone;
+  label: string;
+}
+
+/**
+ * เทียบงบรายหมวดกับงบรวม
+ *
+ * สองตัวเลขนี้เคยเป็นอิสระต่อกัน ตั้งงบรวมไว้ 15,000 แล้วแบ่งรายหมวดรวมกันได้
+ * 30,000 โดยไม่มีอะไรเตือน ตัวนี้ทำให้เห็นความสัมพันธ์ชัด ๆ
+ */
+export function buildAllocation(trip: Trip): Allocation {
+  const allocated = CATEGORIES.reduce(
+    (sum, c) => sum + Math.max(0, trip.budgets[c.id] ?? 0),
+    0,
+  );
+  const totalBudget = Math.max(0, trip.totalBudget);
+  const unallocated = totalBudget - allocated;
+
+  if (totalBudget <= 0) {
+    return {
+      totalBudget,
+      allocated,
+      unallocated,
+      percent: 0,
+      tone: "empty",
+      label: allocated > 0 ? "ยังไม่ได้ตั้งงบรวม" : "ยังไม่ได้ตั้งงบ",
+    };
+  }
+
+  const percent = Math.min(100, (allocated / totalBudget) * 100);
+
+  if (unallocated < 0) {
+    return {
+      totalBudget,
+      allocated,
+      unallocated,
+      percent,
+      tone: "over",
+      label: "แบ่งเกินงบรวม",
+    };
+  }
+  if (unallocated === 0) {
+    return {
+      totalBudget,
+      allocated,
+      unallocated,
+      percent,
+      tone: "ok",
+      label: "แบ่งครบพอดี",
+    };
+  }
+  return {
+    totalBudget,
+    allocated,
+    unallocated,
+    percent,
+    tone: "warn",
+    label: "ยังแบ่งไม่ครบ",
+  };
+}
+
+/**
+ * เกลี่ยงบที่ยังไม่ได้แบ่ง ลงหมวดที่ยังไม่ได้ตั้งงบ
+ *
+ * ถ้าตั้งครบทุกหมวดแล้ว จะเกลี่ยตามสัดส่วนเดิมของแต่ละหมวดแทน
+ * เพื่อไม่ให้สัดส่วนที่ผู้ใช้ตั้งใจไว้เพี้ยน
+ *
+ * เศษที่หารไม่ลงตัวยกไปให้หมวดสุดท้าย ผลรวมจะได้ตรงกับงบรวมเป๊ะ
+ * ไม่ใช่ขาดไปหนึ่งบาทเพราะปัดเศษ
+ */
+export function distributeRemaining(trip: Trip): Record<CategoryId, number> {
+  const budgets = { ...trip.budgets };
+  const { unallocated } = buildAllocation(trip);
+  if (unallocated <= 0) return budgets;
+
+  const empty = CATEGORIES.filter((c) => (budgets[c.id] ?? 0) <= 0);
+  const targets = empty.length > 0 ? empty : CATEGORIES;
+
+  const weights = targets.map((c) =>
+    empty.length > 0 ? 1 : Math.max(0, budgets[c.id] ?? 0),
+  );
+  const totalWeight = weights.reduce((sum, w) => sum + w, 0);
+  if (totalWeight <= 0) return budgets;
+
+  let given = 0;
+  targets.forEach((category, i) => {
+    const isLast = i === targets.length - 1;
+    const share = isLast
+      ? unallocated - given
+      : Math.round((unallocated * weights[i]) / totalWeight);
+    budgets[category.id] = (budgets[category.id] ?? 0) + share;
+    given += share;
+  });
+
+  return budgets;
 }
 
 /** ผลรวมค่าใช้จ่ายของกิจกรรมในวันหนึ่ง */
