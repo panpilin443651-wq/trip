@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { CATEGORIES } from "@/data/categories";
-import { addDaysISO, formatDateShort } from "@/lib/format";
+import { addDaysISO, addMinutesToTime, formatDateShort } from "@/lib/format";
 import type { SuggestionFill } from "@/lib/activity-search";
 import type { PlaceOption } from "@/lib/place-search";
 import { googleMapsUrl } from "@/lib/place-search";
@@ -10,6 +10,7 @@ import { useTrip } from "@/lib/trip-context";
 import { ActivityListInput } from "./ActivityListInput";
 import { PhotoManager } from "./PhotoManager";
 import { PlaceCombobox } from "./PlaceCombobox";
+import { PlaceListInput } from "./PlaceListInput";
 import { ProvinceCombobox } from "./ProvinceCombobox";
 import type { Activity, CategoryId } from "@/lib/types";
 import {
@@ -44,6 +45,9 @@ export function emptyDraft(
 
 const DURATION_PRESETS = [30, 60, 90, 120, 180, 240];
 
+/** เผื่อเวลาเดินทางระหว่างที่ ตอนเรียงเวลาให้อัตโนมัติ */
+const TRAVEL_GAP_MIN = 30;
+
 /**
  * ผู้เรียกต้อง mount คอมโพเนนต์นี้เฉพาะตอนเปิดฟอร์ม และใส่ `key` ที่เปลี่ยนทุกครั้ง
  * ที่เปิดใหม่ เพื่อให้ค่าเริ่มต้นถูกรีเซ็ตด้วยการ remount แทนการ setState ใน effect
@@ -61,10 +65,18 @@ export function ActivityForm({
   dayCount: number;
   startDate: string;
   onClose: () => void;
-  onSubmit: (draft: ActivityDraft) => void;
+  /** เลือกได้หลายสถานที่ในครั้งเดียว จึงคืนเป็นรายการเสมอ */
+  onSubmit: (drafts: ActivityDraft[]) => void;
 }) {
   const { state, userId } = useTrip();
   const [draft, setDraft] = useState<ActivityDraft>(initial);
+
+  /**
+   * สถานที่ที่เลือกไว้ ใช้เฉพาะตอนเพิ่มใหม่
+   * ตอนแก้ไขยังเป็นที่เดียวเหมือนเดิม เพราะกำลังแก้รายการที่มีอยู่แล้ว
+   */
+  const [places, setPlaces] = useState<PlaceOption[]>([]);
+  const multiple = !isEdit && places.length > 1;
 
   function patch(next: Partial<ActivityDraft>) {
     setDraft((current) => ({ ...current, ...next }));
@@ -122,6 +134,56 @@ export function ActivityForm({
     });
   }
 
+  const canSave = isEdit
+    ? Boolean(draft.placeName.trim()) || activities.length > 0
+    : places.length > 0 || activities.length > 0;
+
+  /**
+   * ประกอบรายการที่จะบันทึก — หนึ่งสถานที่ต่อหนึ่งรายการ
+   *
+   * ช่องเวลา ค่าใช้จ่าย กิจกรรม และรูป มีชุดเดียวในฟอร์ม จึงให้กับที่แรก
+   * ส่วนที่ถัด ๆ ไปใช้ข้อมูลที่ติดมากับตัวเอง (เวลาที่ควรเผื่อ ค่าเข้า หมวด)
+   * ถ้าไม่มีก็ใช้ค่าเดียวกับที่แรก แล้วผู้ใช้ค่อยไปปรับทีหลัง
+   */
+  function buildDrafts(): ActivityDraft[] {
+    if (isEdit || places.length === 0) {
+      const place = draft.placeName.trim();
+      return [
+        {
+          ...draft,
+          title: activities[0] ?? place,
+          placeName: place,
+          activities,
+        },
+      ];
+    }
+
+    let startTime = draft.startTime;
+    return places.map((place, index) => {
+      const fill = place.fill;
+      const durationMin = fill?.durationMin ?? draft.durationMin;
+      const item: ActivityDraft = {
+        ...draft,
+        startTime,
+        durationMin,
+        placeName: place.name,
+        province: place.province || draft.province,
+        lat: place.lat,
+        lng: place.lng,
+        cost: fill?.cost ?? (index === 0 ? draft.cost : 0),
+        category: fill?.category ?? draft.category,
+        // กิจกรรม รูป และรายละเอียดที่พิมพ์ไว้ ผู้ใช้คิดถึงที่แรกตอนกรอก
+        // จึงให้ที่แรกที่เดียว ที่อื่นใช้คำอธิบายของตัวเองแทน
+        activities: index === 0 ? activities : [],
+        photos: index === 0 ? draft.photos : undefined,
+        detail: index === 0 ? draft.detail : (fill?.detail ?? ""),
+        title: (index === 0 ? activities[0] : undefined) ?? place.name,
+      };
+      startTime = addMinutesToTime(startTime, durationMin + TRAVEL_GAP_MIN);
+      return item;
+    });
+  }
+
   const hasCoords = typeof draft.lat === "number" && typeof draft.lng === "number";
 
   return (
@@ -136,37 +198,47 @@ export function ActivityForm({
           </Button>
           <Button
             className="flex-1"
-            disabled={!draft.placeName.trim() && activities.length === 0}
-            onClick={() => {
-              // title ใช้ในที่แคบ ๆ อย่างหมุดบนแผนที่และรายการค่าใช้จ่าย
-              // จึงเก็บแค่ชื่อเดียว เอากิจกรรมแรกก่อน ไม่มีค่อยใช้ชื่อสถานที่
-              const place = draft.placeName.trim();
-              onSubmit({
-                ...draft,
-                title: activities[0] ?? place,
-                placeName: place,
-                activities,
-              });
-            }}
+            disabled={!canSave}
+            onClick={() => onSubmit(buildDrafts())}
           >
-            บันทึก
+            {places.length > 1 ? `บันทึก ${places.length} ที่` : "บันทึก"}
           </Button>
         </div>
       }
     >
       <div className="space-y-4">
-        <Field
-          label="📍 สถานที่"
-          hint="กดที่ช่องแล้วเลือกจากที่ดังในจังหวัดนี้ หรือพิมพ์ชื่อเองก็ได้"
-        >
-          <PlaceCombobox
-            value={draft.placeName}
-            onChange={(placeName) => patch({ placeName })}
-            onPick={applyPlace}
-            dayProvince={draft.province ?? ""}
-            tripProvinces={searchProvinces}
-          />
-        </Field>
+        {isEdit ? (
+          <Field
+            label="📍 สถานที่"
+            hint="กดที่ช่องแล้วเลือกจากที่ดังในจังหวัดนี้ หรือพิมพ์ชื่อเองก็ได้"
+          >
+            <PlaceCombobox
+              value={draft.placeName}
+              onChange={(placeName) => patch({ placeName })}
+              onPick={applyPlace}
+              dayProvince={draft.province ?? ""}
+              tripProvinces={searchProvinces}
+            />
+          </Field>
+        ) : (
+          <div>
+            <p className="mb-1.5 text-[13px] font-medium text-muted">
+              📍 สถานที่
+            </p>
+            <PlaceListInput
+              value={places}
+              onChange={setPlaces}
+              onFirstPick={applyPlace}
+              dayProvince={draft.province ?? ""}
+              tripProvinces={searchProvinces}
+            />
+            <p className="mt-1 text-xs text-faint">
+              {places.length > 1
+                ? `แต่ละที่จะเป็นคนละรายการ เรียงเวลาต่อกันให้อัตโนมัติ เผื่อเดินทาง ${TRAVEL_GAP_MIN} นาที`
+                : "เลือกได้หลายที่รวดเดียว แต่ละที่จะเป็นคนละรายการในแผน"}
+            </p>
+          </div>
+        )}
 
         {hasCoords ? (
           <p className="-mt-2 flex flex-wrap items-center gap-x-3 text-xs text-ok">
@@ -191,20 +263,31 @@ export function ActivityForm({
           </p>
         ) : null}
 
-        {/* กิจกรรมเป็นของย่อยลงมาจากสถานที่ — ไปที่นั่นแล้วทำอะไร */}
-        <div className="border-l-2 border-line pl-3">
-          <div>
-            <p className="mb-1.5 text-[13px] font-medium text-muted">
-              🎯 กิจกรรมที่นี่
-            </p>
-            <ActivityListInput
-              value={activities}
-              onChange={(next) => patch({ activities: next })}
-              onFirstPick={applyFirstActivity}
-              provinces={searchProvinces}
-            />
+        {/*
+          กิจกรรมเป็นของย่อยลงมาจากสถานที่ — ไปที่นั่นแล้วทำอะไร
+          เลือกมาหลายที่แล้วช่องนี้จะกำกวมว่าเป็นกิจกรรมของที่ไหน จึงซ่อนไว้
+          แล้วให้ไปเพิ่มทีหลังจากการ์ดของแต่ละที่แทน
+        */}
+        {multiple ? (
+          <p className="rounded-xl border border-dashed border-line px-3 py-2.5 text-xs leading-relaxed text-muted">
+            เลือกไว้ {places.length} ที่ — กิจกรรม รูป และรายละเอียด
+            ใส่ได้ทีหลังโดยกด ✏️ ที่การ์ดของแต่ละที่
+          </p>
+        ) : (
+          <div className="border-l-2 border-line pl-3">
+            <div>
+              <p className="mb-1.5 text-[13px] font-medium text-muted">
+                🎯 กิจกรรมที่นี่
+              </p>
+              <ActivityListInput
+                value={activities}
+                onChange={(next) => patch({ activities: next })}
+                onFirstPick={applyFirstActivity}
+                provinces={searchProvinces}
+              />
+            </div>
           </div>
-        </div>
+        )}
 
         <Field
           label="จังหวัด"
@@ -289,21 +372,28 @@ export function ActivityForm({
           </Field>
         </div>
 
-        <Field label="รูปความทรงจำ" hint="รูปจะขึ้นบนหมุดในแผนที่ และอยู่ในไฟล์สรุปแผนด้วย">
-          <PhotoManager
-            userId={userId}
-            paths={draft.photos ?? []}
-            onChange={(photos) => patch({ photos })}
-          />
-        </Field>
+        {multiple ? null : (
+          <>
+            <Field
+              label="รูปความทรงจำ"
+              hint="รูปจะขึ้นบนหมุดในแผนที่ และอยู่ในไฟล์สรุปแผนด้วย"
+            >
+              <PhotoManager
+                userId={userId}
+                paths={draft.photos ?? []}
+                onChange={(photos) => patch({ photos })}
+              />
+            </Field>
 
-        <Field label="รายละเอียด">
-          <Textarea
-            value={draft.detail}
-            onChange={(e) => patch({ detail: e.target.value })}
-            placeholder="เช่น จองล่วงหน้าแล้ว / แต่งกายสุภาพ / ที่จอดรถอยู่ด้านหลัง"
-          />
-        </Field>
+            <Field label="รายละเอียด">
+              <Textarea
+                value={draft.detail}
+                onChange={(e) => patch({ detail: e.target.value })}
+                placeholder="เช่น จองล่วงหน้าแล้ว / แต่งกายสุภาพ / ที่จอดรถอยู่ด้านหลัง"
+              />
+            </Field>
+          </>
+        )}
       </div>
     </Sheet>
   );

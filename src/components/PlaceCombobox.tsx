@@ -29,16 +29,23 @@ export function PlaceCombobox({
   value,
   onChange,
   onPick,
+  onSubmit,
   dayProvince,
   tripProvinces,
+  autoFocus = true,
+  placeholder = "กดเพื่อดูที่ดังในจังหวัดนี้ หรือพิมพ์ชื่อเอง",
 }: {
   value: string;
   onChange: (name: string) => void;
   onPick: (option: PlaceOption) => void;
+  /** กด Enter ทั้งที่ไม่ได้เลือกจากรายการ — ใช้ชื่อที่พิมพ์เองไปเลย */
+  onSubmit?: () => void;
   /** จังหวัดของวันนั้น ใช้เป็นรายการตั้งต้นตอนยังไม่พิมพ์ */
   dayProvince: string;
   /** จังหวัดทั้งหมดในทริป ใช้ดันผลค้นของจังหวัดเหล่านี้ขึ้นก่อน */
   tripProvinces: string[];
+  autoFocus?: boolean;
+  placeholder?: string;
 }) {
   const listId = useId();
   const [open, setOpen] = useState(false);
@@ -184,8 +191,8 @@ export function PlaceCombobox({
         aria-controls={listId}
         aria-autocomplete="list"
         value={value}
-        placeholder="กดเพื่อดูที่ดังในจังหวัดนี้ หรือพิมพ์ชื่อเอง"
-        autoFocus
+        placeholder={placeholder}
+        autoFocus={autoFocus}
         onChange={(e) => {
           onChange(e.target.value);
           setOpen(true);
@@ -197,7 +204,14 @@ export function PlaceCombobox({
           blurTimer.current = setTimeout(() => setOpen(false), 150);
         }}
         onKeyDown={(e) => {
-          if (!showList) return;
+          // พิมพ์ชื่อเองแล้วกด Enter ทั้งที่ไม่มีรายการให้เลือก
+          if (!showList) {
+            if (e.key === "Enter" && onSubmit) {
+              e.preventDefault();
+              onSubmit();
+            }
+            return;
+          }
           if (e.key === "ArrowDown") {
             e.preventDefault();
             setActive((i) => Math.min(i + 1, options.length - 1));

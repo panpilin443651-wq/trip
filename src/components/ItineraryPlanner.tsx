@@ -72,14 +72,20 @@ export function ItineraryPlanner() {
     }));
   }
 
-  function handleSubmit(next: ActivityDraft) {
+  function handleSubmit(drafts: ActivityDraft[]) {
+    if (drafts.length === 0) return;
+
     if (form?.editingId) {
-      dispatch({ type: "updateActivity", id: form.editingId, patch: next });
+      // ตอนแก้ไขฟอร์มคืนมารายการเดียวเสมอ
+      dispatch({ type: "updateActivity", id: form.editingId, patch: drafts[0] });
     } else {
-      dispatch({ type: "addActivity", activity: next });
+      // เลือกมาหลายที่ก็เพิ่มทีละรายการ เวลาถูกเรียงต่อกันมาจากฟอร์มแล้ว
+      for (const item of drafts) {
+        dispatch({ type: "addActivity", activity: item });
+      }
     }
     setForm(null);
-    setDayIndex(next.dayIndex);
+    setDayIndex(drafts[0].dayIndex);
   }
 
   return (
