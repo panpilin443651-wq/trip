@@ -38,14 +38,14 @@ export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
       className={cn(
         "mb-4 rounded-2xl border p-4",
         plan.province || route
-          ? "border-gold/35 bg-gold-soft"
+          ? "border-accent/35 bg-accent-soft"
           : "border-dashed border-line bg-card",
       )}
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
         <h2 className="text-sm font-semibold">🧳 วันนี้ไปไหน เดินทางยังไง</h2>
         {plan.province || route ? (
-          <span className="text-xs text-gold">
+          <span className="text-xs text-accent">
             {route || plan.province}
           </span>
         ) : (

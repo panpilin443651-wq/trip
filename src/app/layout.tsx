@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#0e1a30",
+  themeColor: "#071b33",
   width: "device-width",
   initialScale: 1,
   // เปิดแบบแอปแล้วเนื้อหาต้องไหลไปใต้รอยบากและแถบล่างของเครื่อง

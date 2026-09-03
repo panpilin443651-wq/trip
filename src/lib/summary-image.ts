@@ -19,20 +19,21 @@ import type { Activity, AppState } from "./types";
 
 /** ต้องตรงกับ @theme ใน globals.css เพราะ canvas อ่านตัวแปร CSS ไม่ได้ */
 const PALETTE = {
-  canvas: "#0e1a30",
-  card: "#172642",
-  ink: "#f4f6fa",
-  muted: "#a9b6cc",
-  faint: "#8090a8",
-  line: "#2b3b58",
-  brand: "#e0bd52",
-  brandSoft: "#1f2c49",
-  gold: "#e0bd52",
-  goldFill: "#c9a227",
-  goldSoft: "#2a2515",
-  ok: "#58d0a5",
+  canvas: "#071b33",
+  card: "#102a49",
+  ink: "#f2f7fb",
+  muted: "#a4b8d1",
+  faint: "#8095ae",
+  line: "#22405e",
+  brand: "#2ba3e3",
+  brandSoft: "#0f2f4f",
+  accent: "#4fd1e0",
+  accentFill: "#2bb8cf",
+  accentSoft: "#0c3244",
+  ok: "#5fd98c",
   warn: "#ecc352",
   danger: "#ff8f8a",
+  dangerSoft: "#3d1c1c",
 };
 
 /** ความสูงของแถวรูปในสรุป */
@@ -246,8 +247,8 @@ export async function drawTripSummary(
   ctx.font = font(44, 700);
   y += wrapText(ctx, trip.name || "ทริปของฉัน", PAD, y, innerW, 54, 2) * 54;
 
-  // เส้นคาดทอง คั่นหัวเรื่องกับเนื้อหา
-  ctx.fillStyle = PALETTE.goldFill;
+  // เส้นคาดสีฟ้าคราม คั่นหัวเรื่องกับเนื้อหา
+  ctx.fillStyle = PALETTE.accentFill;
   roundRect(ctx, PAD, y + 6, 96, 6, 3);
   ctx.fill();
   y += 30;
@@ -298,7 +299,7 @@ export async function drawTripSummary(
   // ---------- การ์ดงบ ----------
   const budgetH = 130;
   const over = breakdown.status.tone === "over";
-  ctx.fillStyle = over ? "#3d1c1c" : PALETTE.brandSoft;
+  ctx.fillStyle = over ? PALETTE.dangerSoft : PALETTE.brandSoft;
   roundRect(ctx, PAD, y, innerW, budgetH, 24);
   ctx.fill();
 
@@ -328,11 +329,11 @@ export async function drawTripSummary(
   // ---------- แผนรายวัน ----------
   for (const day of days) {
     if (trip.dayCount > 1) {
-      // ป้ายเลขวันสีทอง ตัวเลขสีกรม
-      ctx.fillStyle = PALETTE.goldFill;
+      // ป้ายเลขวันสีฟ้าคราม ตัวเลขสีพื้นหลัง (ตัวอักษรสว่างบนพื้นสว่างอ่านไม่ออก)
+      ctx.fillStyle = PALETTE.accentFill;
       roundRect(ctx, PAD, y - 4, 44, 40, 12);
       ctx.fill();
-      ctx.fillStyle = PALETTE.ink;
+      ctx.fillStyle = PALETTE.canvas;
       ctx.font = font(24, 700);
       ctx.textAlign = "center";
       ctx.fillText(String(day.index + 1), PAD + 22, y + 5);
@@ -380,8 +381,8 @@ export async function drawTripSummary(
         ctx.lineWidth = 2;
         ctx.stroke();
 
-        // แถบทองด้านซ้ายของแต่ละกิจกรรม
-        ctx.fillStyle = PALETTE.goldFill;
+        // แถบสีฟ้าครามด้านซ้ายของแต่ละกิจกรรม
+        ctx.fillStyle = PALETTE.accentFill;
         roundRect(ctx, PAD + 6, y + 16, 5, rowH - 32, 3);
         ctx.fill();
 

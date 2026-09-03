@@ -14,11 +14,11 @@ export const alt = "Travel Planner — วางแผนการท่อง�
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-const NAVY = "#0e1a30";
-const CARD = "#172642";
-const GOLD = "#c9a227";
-const INK = "#f4f6fa";
-const MUTED = "#a9b6cc";
+const NAVY = "#071b33";
+const CARD = "#102a49";
+const ACCENT = "#2ba3e3";
+const INK = "#f2f7fb";
+const MUTED = "#a4b8d1";
 
 export default async function Image() {
   // ใช้ไอคอนตัวเดียวกับที่ติดตั้งเป็นแอป จะได้เป็นภาพจำเดียวกัน
@@ -37,8 +37,8 @@ export default async function Image() {
           justifyContent: "center",
           gap: 40,
           background: NAVY,
-          // เส้นขอบทองบาง ๆ ด้านบน ให้การ์ดมีจุดเกาะสายตา
-          borderTop: `16px solid ${GOLD}`,
+          // เส้นขอบสีฟ้าบาง ๆ ด้านบน ให้การ์ดมีจุดเกาะสายตา
+          borderTop: `16px solid ${ACCENT}`,
         }}
       >
         <div style={{ display: "flex", alignItems: "center", gap: 48 }}>
@@ -48,7 +48,7 @@ export default async function Image() {
             <div style={{ fontSize: 82, fontWeight: 700, color: INK }}>
               Travel Planner
             </div>
-            <div style={{ fontSize: 36, color: GOLD }}>
+            <div style={{ fontSize: 36, color: ACCENT }}>
               Plan trips across all 77 provinces
             </div>
           </div>

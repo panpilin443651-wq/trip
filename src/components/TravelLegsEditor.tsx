@@ -93,7 +93,7 @@ export function TravelLegsEditor({ dayIndex }: { dayIndex: number }) {
               className="rounded-xl border border-line bg-card px-3 py-2.5"
             >
               <div className="mb-2 flex items-center gap-2">
-                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-gold-fill text-xs font-semibold text-ink">
+                <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent-fill text-xs font-semibold text-canvas">
                   {index + 1}
                 </span>
                 <span className="flex-1 text-xs text-faint">

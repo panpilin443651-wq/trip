@@ -72,7 +72,7 @@ export function ProvincePicker({
                 className="rounded-xl border border-line bg-card px-3 py-2"
               >
                 <div className="flex items-center gap-2">
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-gold-fill text-xs font-semibold text-ink">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-accent-fill text-xs font-semibold text-canvas">
                     {index + 1}
                   </span>
                   <span className="min-w-0 flex-1 truncate text-sm">

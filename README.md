@@ -94,7 +94,7 @@ npx eslint .
 ## Tech Stack
 
 - **Next.js 16** (App Router, Turbopack) + React 19 + TypeScript
-- **Tailwind CSS v4** — ธีมกรม-ทอง (โหมดเข้ม) กำหนดใน `src/app/globals.css` — มีชุดสีสำหรับพิมพ์ PDF แยกใน `@media print` ทุกคู่สีผ่านเกณฑ์ contrast 4.5:1
+- **Tailwind CSS v4** — ธีมกรมน้ำเงิน-ฟ้า (โหมดเข้ม) เฉดสีมาจากโลโก้ กำหนดใน `src/app/globals.css` — มีชุดสีสำหรับพิมพ์ PDF แยกใน `@media print` ทุกคู่สีผ่านเกณฑ์ contrast 4.5:1 ตรวจได้ด้วย `node scripts/check-contrast.js`
 - **Leaflet + OpenStreetMap** — แผนที่ ไม่ต้องใช้ API key
 - **OSRM** (ผ่าน `/api/route`) — ระยะทางจริงตามถนน
 - **Nominatim** (ผ่าน `/api/geocode`) — ค้นหาชื่อสถานที่เป็นพิกัด

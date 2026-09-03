@@ -20,21 +20,26 @@ export interface MapPoint {
   lng: number;
 }
 
-/** หมุดหมายเลขวาดด้วย HTML แทนรูป PNG ของ Leaflet ที่พาธมักหลุดตอน build */
+/**
+ * หมุดหมายเลขวาดด้วย HTML แทนรูป PNG ของ Leaflet ที่พาธมักหลุดตอน build
+ *
+ * สีตรงนี้ก๊อปมาจาก @theme ใน globals.css เพราะ Leaflet รับเป็นสตริง HTML
+ * อ่านตัวแปร CSS ไม่ได้ แก้ธีมเมื่อไหร่ต้องแก้ที่นี่ด้วย
+ */
 function numberedIcon(index: number, hasPhoto = false) {
   const badge = hasPhoto
     ? `<span style="position:absolute;top:-4px;right:-4px;width:14px;height:14px;
-        border-radius:9999px;background:#f4f6fa;border:2px solid #0e1a30;
+        border-radius:9999px;background:#f2f7fb;border:2px solid #071b33;
         font:600 8px/10px system-ui;text-align:center">📷</span>`
     : "";
   return L.divIcon({
     className: "trip-pin",
     html: `<div style="position:relative;
       width:30px;height:30px;border-radius:9999px;
-      background:#c9a227;color:#0e1a30;
+      background:#2ba3e3;color:#071b33;
       display:flex;align-items:center;justify-content:center;
       font:600 13px/1 system-ui,sans-serif;
-      border:2px solid #0e1a30;box-shadow:0 1px 4px rgba(0,0,0,.35);
+      border:2px solid #071b33;box-shadow:0 1px 4px rgba(0,0,0,.35);
     ">${index + 1}${badge}</div>`,
     iconSize: [30, 30],
     iconAnchor: [15, 15],
@@ -91,7 +96,7 @@ export default function TripMap({
       {geometry.length > 1 ? (
         <Polyline
           positions={geometry}
-          pathOptions={{ color: "#c9a227", weight: 5, opacity: 0.9 }}
+          pathOptions={{ color: "#1b8ac6", weight: 5, opacity: 0.9 }}
         />
       ) : null}
 

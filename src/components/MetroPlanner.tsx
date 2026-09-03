@@ -116,7 +116,7 @@ export function MetroPlanner() {
                         {leg.stations.length - 1} สถานี)
                       </p>
                       {route.transferAt[index] ? (
-                        <p className="mt-1 text-xs text-gold">
+                        <p className="mt-1 text-xs text-accent">
                           ↳ เปลี่ยนสายที่ {route.transferAt[index]}
                         </p>
                       ) : null}

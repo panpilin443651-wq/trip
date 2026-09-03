@@ -31,7 +31,7 @@ export function ActivityCard({
   return (
     <Card as="li" className="flex gap-3">
       <div className="flex shrink-0 flex-col items-center">
-        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-gold-fill text-sm font-semibold text-ink">
+        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent-fill text-sm font-semibold text-canvas">
           {index + 1}
         </span>
         <span className="mt-1 flex-1 border-l border-dashed border-line" />
@@ -101,7 +101,7 @@ export function ActivityCard({
             {category.emoji} {category.label}
           </Badge>
           {otherProvince ? (
-            <Badge className="bg-gold-soft text-gold">📍 {otherProvince}</Badge>
+            <Badge className="bg-accent-soft text-accent">📍 {otherProvince}</Badge>
           ) : null}
           {activity.cost > 0 ? (
             <Badge className="bg-brand-soft text-brand">

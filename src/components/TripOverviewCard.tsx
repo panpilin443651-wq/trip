@@ -63,7 +63,7 @@ export function TripOverviewCard({
           </p>
 
           <div className="mt-2 flex flex-wrap gap-1.5">
-            <Badge className="bg-gold-soft text-gold">
+            <Badge className="bg-accent-soft text-accent">
               {trip.dayCount === 1 ? "☀️ 1 Day Trip" : `🌙 ${trip.dayCount} วัน`}
             </Badge>
             <Badge>👥 {trip.travelers} คน</Badge>

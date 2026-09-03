@@ -15,7 +15,7 @@ export function AuthShell({
     <main className="flex flex-1 items-center justify-center px-5 py-10">
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-gold-soft text-3xl ring-1 ring-gold/25">
+          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-soft text-3xl ring-1 ring-accent/25">
             ✈️
           </div>
           <h1 className="text-2xl font-semibold">{title}</h1>

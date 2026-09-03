@@ -1,32 +1,38 @@
 @import "tailwindcss";
 
 /*
- * ธีมกรม-ทอง (โหมดเข้ม)
- * พื้นหลังและการ์ดเป็นสีกรม ตัวอักษรสว่าง ทองเป็นสีหลักของปุ่มและจุดเน้น
+ * ธีมกรมน้ำเงิน-ฟ้า (โหมดเข้ม) — เฉดสีดึงมาจากโลโก้ TripPlan
+ * ท้องฟ้าเป็นสีฟ้า ผืนน้ำเป็นฟ้าคราม หมุดเป็นสีกรมน้ำเงิน
  *
- * ปุ่มทองต้องใช้ตัวอักษรสีกรม (text-canvas) ไม่ใช่สีขาว
- * เพราะขาวบนทองมี contrast แค่ 2.4 ซึ่งอ่านไม่ออก
+ * แยกสองตระกูลตามหน้าที่ ไม่ใช่ตามความสวย
+ *   brand  = ของที่กดได้ (ปุ่ม ริงโฟกัส เมนู active)
+ *   accent = ของที่เน้นสายตาแต่กดไม่ได้ (ป้าย วงกลมลำดับ กล่องโลโก้)
+ *
+ * พื้นทึบสีสว่างต้องใช้ตัวอักษรสีพื้นหลัง (text-canvas) ไม่ใช่ text-ink
+ * เพราะตัวอักษรสว่างบนพื้นสว่างมี contrast ไม่ถึงเกณฑ์
  * ทุกคู่สีที่ใช้จริงผ่านเกณฑ์ 4.5:1 แล้ว (ตัวอักษรประกอบ 3:1)
  */
 @theme {
-  --color-canvas: #0e1a30;
-  --color-card: #172642;
-  --color-ink: #f4f6fa;
-  --color-muted: #a9b6cc;
-  --color-faint: #8090a8;
-  --color-line: #2b3b58;
+  --color-canvas: #071b33;
+  --color-card: #102a49;
+  --color-ink: #f2f7fb;
+  --color-muted: #a4b8d1;
+  --color-faint: #8095ae;
+  --color-line: #22405e;
 
-  /* brand = ทอง ใช้กับปุ่มหลักและสถานะ active */
-  --color-brand: #c9a227;
-  --color-brand-dark: #b08e1c;
-  --color-brand-soft: #1f2c49;
+  /* brand = ฟ้าท้องฟ้า ใช้กับปุ่มหลักและสถานะ active */
+  --color-brand: #2ba3e3;
+  --color-brand-dark: #1b8ac6;
+  --color-brand-soft: #0f2f4f;
 
-  --color-gold: #e0bd52;
-  --color-gold-fill: #c9a227;
-  --color-gold-soft: #2a2515;
+  /* accent = ฟ้าครามจากผืนน้ำ ใช้เน้นสิ่งที่กดไม่ได้ */
+  --color-accent: #4fd1e0;
+  --color-accent-fill: #2bb8cf;
+  --color-accent-soft: #0c3244;
 
-  --color-ok: #58d0a5;
-  --color-ok-soft: #12362c;
+  /* ok ต้องเขียวพอที่จะไม่ถูกอ่านว่าเป็นฟ้าครามของ accent */
+  --color-ok: #5fd98c;
+  --color-ok-soft: #0d3524;
   --color-warn: #ecc352;
   --color-warn-soft: #3a2f12;
   --color-danger: #ff8f8a;
@@ -80,16 +86,20 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   :root {
     --color-canvas: #ffffff;
     --color-card: #ffffff;
-    --color-ink: #15203c;
-    --color-muted: #4a5876;
-    --color-faint: #6b7794;
-    --color-line: #d8ddea;
-    --color-brand: #7a6111;
-    --color-brand-dark: #7a6111;
-    --color-brand-soft: #f6f1e2;
-    --color-gold: #7a6111;
-    --color-gold-fill: #d8c47a;
-    --color-gold-soft: #f6f1e2;
+    --color-ink: #10233f;
+    --color-muted: #45587a;
+    --color-faint: #66748f;
+    --color-line: #d5dceb;
+    --color-brand: #0f5f96;
+    --color-brand-dark: #0f5f96;
+    --color-brand-soft: #e8f2fb;
+    --color-accent: #0e6070;
+    /*
+     * ตอนพิมพ์ canvas กลายเป็นสีขาว วงกลมลำดับที่ใช้ text-canvas จึงต้องมี
+     * พื้นเข้มถึงจะอ่านออก — สลับทิศกับโหมดเข้มที่พื้นสว่างตัวอักษรเข้ม
+     */
+    --color-accent-fill: #0e6070;
+    --color-accent-soft: #e6f6f9;
     --color-ok: #146b52;
     --color-ok-soft: #e6f4ef;
     --color-warn: #7d5d08;
@@ -105,8 +115,8 @@ input[type="time"]::-webkit-calendar-picker-indicator {
   }
 
   body {
-    background: #fff;
-    color: #15203c;
+    background: var(--color-canvas);
+    color: var(--color-ink);
   }
 
   main {
