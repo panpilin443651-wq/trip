@@ -5,8 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>ออฟไลน์อยู่ — Travel Planner</title>
     <style>
+      /*
+       * หน้านี้ไม่มี Tailwind จึงเขียนสีเองทั้งหมด ต้องตรงกับ globals.css
+       * โหมดสีอ่านจาก localStorage ตัวเดียวกับที่ปุ่มสลับโหมดเขียนไว้
+       */
       :root {
         color-scheme: dark;
+        --bg: #071b33;
+        --fg: #f2f7fb;
+        --card: #102a49;
+        --line: #22405e;
+        --muted: #a4b8d1;
+        --brand: #2ba3e3;
+      }
+      :root[data-theme="light"] {
+        color-scheme: light;
+        --bg: #f2f7fc;
+        --fg: #0e2540;
+        --card: #ffffff;
+        --line: #d8e2ee;
+        --muted: #4b5f7d;
+        --brand: #0f6899;
       }
       body {
         margin: 0;
@@ -15,16 +34,16 @@
         align-items: center;
         justify-content: center;
         padding: 1.5rem;
-        background: #071b33;
-        color: #f2f7fb;
+        background: var(--bg);
+        color: var(--fg);
         font-family: "Noto Sans Thai", ui-sans-serif, system-ui, sans-serif;
         text-align: center;
       }
       .card {
         max-width: 24rem;
-        border: 1px solid #22405e;
+        border: 1px solid var(--line);
         border-radius: 1.5rem;
-        background: #102a49;
+        background: var(--card);
         padding: 2rem 1.5rem;
       }
       h1 {
@@ -33,7 +52,7 @@
       }
       p {
         margin: 0 0 1.25rem;
-        color: #a4b8d1;
+        color: var(--muted);
         font-size: 0.95rem;
         line-height: 1.7;
       }
@@ -42,13 +61,27 @@
         width: 100%;
         border: 0;
         border-radius: 0.75rem;
-        background: #2ba3e3;
-        color: #071b33;
+        background: var(--brand);
+        color: var(--bg);
         font-family: inherit;
         font-size: 0.95rem;
         font-weight: 600;
       }
     </style>
+    <script>
+      // ใช้โหมดสีเดียวกับที่ผู้ใช้เลือกไว้ในเว็บ (คีย์เดียวกับ src/lib/theme.ts)
+      // ต้องวิ่งก่อนหน้าจอถูกวาด ไม่งั้นคนใช้โหมดสว่างจะเห็นจอดำวาบ
+      (function () {
+        try {
+          var t = localStorage.getItem("theme");
+          if (t !== "dark" && t !== "light")
+            t = matchMedia("(prefers-color-scheme: light)").matches
+              ? "light"
+              : "dark";
+          document.documentElement.setAttribute("data-theme", t);
+        } catch (e) {}
+      })();
+    </script>
   </head>
   <body>
     <div class="card">

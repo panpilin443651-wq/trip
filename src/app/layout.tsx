@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Noto_Sans_Thai } from "next/font/google";
 import { ServiceWorkerRegistrar } from "@/components/ServiceWorkerRegistrar";
 import { SITE_URL } from "@/lib/site";
+import { THEME_COLOR, THEME_INIT_SCRIPT } from "@/lib/theme";
 import "./globals.css";
 
 const notoSansThai = Noto_Sans_Thai({
@@ -51,7 +52,9 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#071b33",
+  // ค่าเริ่มต้นเป็นโหมดมืด สคริปต์ใน <head> แก้ให้ตรงโหมดจริงก่อนหน้าจอถูกวาด
+  // และปุ่มสลับโหมดแก้ตามทุกครั้งที่กด
+  themeColor: THEME_COLOR.dark,
   width: "device-width",
   initialScale: 1,
   // เปิดแบบแอปแล้วเนื้อหาต้องไหลไปใต้รอยบากและแถบล่างของเครื่อง
@@ -60,7 +63,17 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="th" className={`${notoSansThai.variable} h-full antialiased`}>
+    // data-theme ตั้งเป็นมืดไว้ก่อน แล้วสคริปต์ด้านล่างแก้ให้ตรงกับที่ผู้ใช้เลือก
+    // suppressHydrationWarning จำเป็น เพราะสคริปต์แก้ attribute ก่อน React จะ hydrate
+    <html
+      lang="th"
+      data-theme="dark"
+      suppressHydrationWarning
+      className={`${notoSansThai.variable} h-full antialiased`}
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: THEME_INIT_SCRIPT }} />
+      </head>
       <body className="flex min-h-full flex-col">
         {children}
         <ServiceWorkerRegistrar />

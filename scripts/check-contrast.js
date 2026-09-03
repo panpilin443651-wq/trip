@@ -54,8 +54,8 @@ const PAIRS = [
 /**
  * ดึงค่าโทเคนออกจาก CSS
  *
- * โหมดพิมพ์ประกาศทับเฉพาะบางตัว ตัวที่ไม่ได้ประกาศให้ตกทอดมาจากโหมดเข้ม
- * เหมือนที่เบราว์เซอร์ทำ
+ * โหมดสว่างกับโหมดพิมพ์ประกาศทับเฉพาะบางตัว ตัวที่ไม่ได้ประกาศให้ตกทอดมาจาก
+ * โหมดเข้ม เหมือนที่เบราว์เซอร์ทำ
  */
 function readTokens(css) {
   const grab = (block) => {
@@ -65,10 +65,15 @@ function readTokens(css) {
     return found;
   };
 
-  const theme = css.slice(css.indexOf("@theme"), css.indexOf("@media print"));
-  const print = css.slice(css.indexOf("@media print"));
-  const dark = grab(theme);
-  return { dark, light: { ...dark, ...grab(print) } };
+  const lightStart = css.indexOf(':root[data-theme="light"]');
+  const printStart = css.indexOf("@media print");
+  if (lightStart < 0 || printStart < 0)
+    throw new Error("หาบล็อกโหมดสว่างหรือโหมดพิมพ์ใน globals.css ไม่เจอ");
+
+  const dark = grab(css.slice(css.indexOf("@theme"), lightStart));
+  const light = { ...dark, ...grab(css.slice(lightStart, printStart)) };
+  const print = { ...dark, ...grab(css.slice(printStart)) };
+  return { dark, light, print };
 }
 
 const luminance = (hex) => {
@@ -106,12 +111,14 @@ function check(label, tokens) {
   return failed;
 }
 
-const { dark, light } = readTokens(fs.readFileSync(CSS, "utf8"));
+const themes = readTokens(fs.readFileSync(CSS, "utf8"));
 const failed =
-  check("โหมดเข้ม (หน้าจอ)", dark) + check("โหมดสว่าง (พิมพ์ PDF)", light);
+  check("โหมดมืด (หน้าจอ)", themes.dark) +
+  check("โหมดสว่าง (หน้าจอ)", themes.light) +
+  check("โหมดพิมพ์ PDF", themes.print);
 
 console.log(
   `\n${failed === 0 ? "ผ่านทั้งหมด" : `ไม่ผ่าน ${failed} คู่`} ` +
-    `จาก ${PAIRS.length * 2} คู่`,
+    `จาก ${PAIRS.length * 3} คู่`,
 );
 process.exit(failed === 0 ? 0 : 1);

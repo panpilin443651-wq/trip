@@ -94,7 +94,8 @@ npx eslint .
 ## Tech Stack
 
 - **Next.js 16** (App Router, Turbopack) + React 19 + TypeScript
-- **Tailwind CSS v4** — ธีมกรมน้ำเงิน-ฟ้า (โหมดเข้ม) เฉดสีมาจากโลโก้ กำหนดใน `src/app/globals.css` — มีชุดสีสำหรับพิมพ์ PDF แยกใน `@media print` ทุกคู่สีผ่านเกณฑ์ contrast 4.5:1 ตรวจได้ด้วย `node scripts/check-contrast.js`
+- **Tailwind CSS v4** — ธีมกรมน้ำเงิน-ฟ้า เฉดสีมาจากโลโก้ กำหนดใน `src/app/globals.css` มี 3 ชุด: โหมดมืด (`@theme`), โหมดสว่าง (`:root[data-theme="light"]`) และโหมดพิมพ์ PDF (`@media print`) ทุกคู่สีผ่านเกณฑ์ contrast 4.5:1 ตรวจได้ด้วย `node scripts/check-contrast.js`
+- **สลับโหมดมืด/สว่าง** — ปุ่มมุมขวาบน จำค่าไว้ใน `localStorage` ยังไม่เคยเลือก = ตามการตั้งค่าของเครื่อง มีสคริปต์เล็ก ๆ ใน `<head>` ตั้งโหมดก่อนหน้าจอถูกวาด จะได้ไม่เห็นจอวาบสลับสี
 - **Leaflet + OpenStreetMap** — แผนที่ ไม่ต้องใช้ API key
 - **OSRM** (ผ่าน `/api/route`) — ระยะทางจริงตามถนน
 - **Nominatim** (ผ่าน `/api/geocode`) — ค้นหาชื่อสถานที่เป็นพิกัด

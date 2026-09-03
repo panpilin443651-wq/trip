@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { isSupabaseConfigured } from "@/lib/supabase/config";
 
 /** กรอบหน้า login / signup พร้อมคำเตือนถ้ายังไม่ได้ตั้งค่า Supabase */
@@ -12,7 +13,9 @@ export function AuthShell({
   children: ReactNode;
 }) {
   return (
-    <main className="flex flex-1 items-center justify-center px-5 py-10">
+    <main className="relative flex flex-1 items-center justify-center px-5 py-10">
+      {/* หน้านี้ไม่มีแถบบน วางปุ่มไว้มุมขวาบนตรง ๆ ได้เพราะเนื้อหาอยู่กลางจอ */}
+      <ThemeToggle className="absolute top-4 right-4" />
       <div className="w-full max-w-sm">
         <div className="mb-8 text-center">
           <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-2xl bg-accent-soft text-3xl ring-1 ring-accent/25">
