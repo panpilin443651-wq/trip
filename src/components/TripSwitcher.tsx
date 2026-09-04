@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { TripListSheet } from "@/components/TripListSheet";
+import { cn } from "@/lib/cn";
 import { useTrip } from "@/lib/trip-context";
 
 /**
@@ -10,7 +11,7 @@ import { useTrip } from "@/lib/trip-context";
  * อยู่บนแถบบนเพราะต้องกดถึงได้จากทุกหน้า สร้างแผนใหม่แล้วแผนเดิมยังอยู่ครบ
  * แค่สลับกลับไปดูได้
  */
-export function TripSwitcher() {
+export function TripSwitcher({ className }: { className?: string }) {
   const { state, trips } = useTrip();
   const [open, setOpen] = useState(false);
 
@@ -19,11 +20,14 @@ export function TripSwitcher() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex min-w-0 flex-1 items-center gap-2 rounded-xl px-1.5 py-1.5 text-left transition-colors hover:bg-brand-soft"
+        className={cn(
+          "flex min-w-0 items-center gap-2 rounded-xl px-1.5 py-1.5 text-left transition-colors hover:bg-brand-soft",
+          className,
+        )}
         aria-label="สลับแผนเที่ยว"
       >
         <span
-          className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-base ring-1 ring-accent/25 sm:flex"
+          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-base ring-1 ring-accent/25"
           aria-hidden
         >
           ✈️

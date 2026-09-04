@@ -106,5 +106,34 @@ lockCount = 0;
   check("คืนเป็น hidden ตามเดิม", bodyOverflow === "hidden", bodyOverflow);
 }
 
+console.log("\nตาข่ายกันพลาด — ปลดล็อกทั้งหมดตอนเปลี่ยนหน้า");
+
+/** เลียนแบบ releaseAllScrollLocks */
+function releaseAll() {
+  if (lockCount === 0) return;
+  lockCount = 0;
+  bodyOverflow = savedOverflow;
+}
+
+bodyOverflow = "";
+lockCount = 0;
+{
+  newLock();
+  newLock();
+  releaseAll();
+  check("ล็อกค้างอยู่สองชั้นก็เคลียร์หมด", bodyOverflow === "" && lockCount === 0);
+  const close = newLock();
+  check("หลังเคลียร์แล้วยังล็อกใหม่ได้", bodyOverflow === "hidden");
+  close();
+  check("ปิดแล้วคืนค่าได้ปกติ", bodyOverflow === "", bodyOverflow);
+}
+
+bodyOverflow = "";
+lockCount = 0;
+{
+  releaseAll();
+  check("เรียกตอนไม่มีล็อกอยู่ ไม่ทำอะไรเสียหาย", bodyOverflow === "" && lockCount === 0);
+}
+
 console.log(`\nผ่าน ${pass} · ไม่ผ่าน ${fail}`);
 process.exit(fail ? 1 : 0);

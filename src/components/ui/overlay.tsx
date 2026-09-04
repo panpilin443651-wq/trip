@@ -34,6 +34,19 @@ function unlockBodyScroll() {
   if (lockCount === 0) document.body.style.overflow = savedOverflow;
 }
 
+/**
+ * ปลดล็อกทั้งหมดทิ้ง ใช้เป็นตาข่ายกันพลาดตอนเปลี่ยนหน้า
+ *
+ * การนับผู้ถือแก้เคสที่รู้จักไปแล้ว แต่ถ้ายังมีทางไหนที่หลงเหลือการล็อกไว้
+ * ผู้ใช้จะเจอหน้าที่เลื่อนไม่ได้และไม่มีทางแก้เองนอกจากรีเฟรช
+ * ยอมให้ฉากหลังของกล่องที่เปิดค้างเลื่อนได้ ดีกว่าปล่อยให้ทั้งหน้าค้าง
+ */
+export function releaseAllScrollLocks() {
+  if (lockCount === 0) return;
+  lockCount = 0;
+  document.body.style.overflow = savedOverflow;
+}
+
 /** โมดัลที่เลื่อนขึ้นจากด้านล่างบนมือถือ และเป็นกล่องกลางจอบนจอใหญ่ */
 export function Sheet({
   open,
