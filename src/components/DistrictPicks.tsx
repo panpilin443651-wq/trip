@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { OsmPlace } from "@/data/osm-places";
 import type { HotelHit } from "@/app/api/hotels/route";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
+import { groupCount, rowsInScope } from "@/lib/district-groups";
 import { addMinutesToTime } from "@/lib/format";
 import { PlaceThumb } from "@/components/PlaceThumb";
 import { googleMapsUrl } from "@/lib/place-search";
@@ -28,6 +29,8 @@ type Row = {
   lat: number;
   lng: number;
   notable: boolean;
+  /** อำเภอที่ตั้ง ว่างได้ถ้าชุดข้อมูลไม่รู้ */
+  district: string;
   /** หมวดสำหรับปุ่มกรอง */
   group: "วัด" | "ที่เที่ยว" | "คาเฟ่" | "ร้านอาหาร" | "โรงแรม" | "รีสอร์ต";
 };
@@ -75,7 +78,8 @@ export function DistrictPicks({
    * จึงไม่ต้องล้างค่าเก่าด้วย setState ตอนเริ่ม effect ซึ่งติดกฎ
    * react-hooks/set-state-in-effect
    */
-  const wanted = `${province}::${district}`;
+  // ผูกกับจังหวัดอย่างเดียว การกรองอำเภอทำในเครื่อง ไม่ต้องโหลดใหม่
+  const wanted = province;
   const [result, setResult] = useState<{
     key: string;
     rows: Row[] | null;
@@ -89,9 +93,18 @@ export function DistrictPicks({
     if (!province) return;
     let cancelled = false;
 
-    const qs = `province=${encodeURIComponent(province)}${
-      district ? `&district=${encodeURIComponent(district)}` : ""
-    }`;
+    /*
+     * ขอมาทั้งจังหวัดเสมอ แล้วค่อยกรองอำเภอเองในเครื่อง
+     *
+     * เดิมส่งอำเภอไปให้ API กรองให้ ผลคือพอเลือกอำเภอแล้วปุ่มกรองส่วนใหญ่ตาย
+     * — ไล่นับจากข้อมูลจริง 672 อำเภอที่มีข้อมูล ปุ่ม "วัด" กดไม่ได้ 78%
+     * และ "โรงแรม" กดไม่ได้ 76% เพราะชุดข้อมูลจำกัดจำนวนต่อ "จังหวัด"
+     * พอหารลงอำเภอละสิบกว่าอำเภอจึงเหลือหมวดละศูนย์เป็นส่วนใหญ่
+     *
+     * ดึงทั้งจังหวัดแล้วยังรู้จำนวนทั้งจังหวัด จึงเสนอให้ดูทั้งจังหวัดแทนได้
+     * เมื่ออำเภอนั้นไม่มี · แถมยิงคำขอน้อยลงด้วย เพราะสลับอำเภอไม่ต้องโหลดใหม่
+     */
+    const qs = `province=${encodeURIComponent(province)}`;
 
     Promise.all([
       fetch(`/api/places?${qs}`, { signal: AbortSignal.timeout(15000) }).then(
@@ -117,6 +130,7 @@ export function DistrictPicks({
             lat: p.lat,
             lng: p.lng,
             notable: p.notable,
+            district: p.district,
             group: (p.kind === "วัด" ? "วัด" : "ที่เที่ยว") as Row["group"],
           })),
           ...food.map((f) => ({
@@ -128,6 +142,7 @@ export function DistrictPicks({
             lat: f.lat,
             lng: f.lng,
             notable: f.notable,
+            district: f.district,
             group: (f.kind === "คาเฟ่" ? "คาเฟ่" : "ร้านอาหาร") as Row["group"],
           })),
           ...stay.map((h) => ({
@@ -141,6 +156,7 @@ export function DistrictPicks({
             lat: h.lat,
             lng: h.lng,
             notable: h.notable,
+            district: h.district,
             group: (h.kind === "รีสอร์ต" ? "รีสอร์ต" : "โรงแรม") as Row["group"],
           })),
         ];
@@ -153,16 +169,27 @@ export function DistrictPicks({
     return () => {
       cancelled = true;
     };
-  }, [province, district, wanted]);
+  }, [province, wanted]);
 
   const current = result?.key === wanted ? result : null;
   const all = current?.rows ?? null;
 
+  /** แถวของอำเภอที่เลือก ว่าง = ดูทั้งจังหวัดอยู่แล้ว */
+  const local = useMemo(
+    () => (all && district ? all.filter((row) => row.district === district) : all),
+    [all, district],
+  );
+
+  const countFor = (name: Group) =>
+    all ? groupCount(all, district, name) : { count: 0, wide: false };
+
+  const usingWholeProvince = countFor(group).wide;
+
   const filtered = useMemo(() => {
     if (!all) return null;
+    const rows = rowsInScope(all, district, group).rows;
     const q = query.trim().toLowerCase();
-    return all
-      .filter((row) => group === "ทั้งหมด" || row.group === group)
+    return rows
       .filter(
         (row) =>
           !q ||
@@ -170,7 +197,7 @@ export function DistrictPicks({
           row.hint.toLowerCase().includes(q),
       )
       .sort((a, b) => Number(b.notable) - Number(a.notable));
-  }, [all, group, query]);
+  }, [all, district, group, query]);
 
   /** ต่อท้ายกิจกรรมสุดท้ายของวัน เผื่อเวลาเดินทาง 30 นาที */
   function nextStartTime(): string {
@@ -209,16 +236,19 @@ export function DistrictPicks({
   }
 
   const where = district || province;
-  const starred = all?.filter((r) => r.notable).length ?? 0;
+  // นับตามขอบเขตที่หัวข้อบอก ไม่ใช่ทั้งจังหวัด ไม่งั้นหัวข้อว่า "ในบ้านแหลม"
+  // แต่ตัวเลขเป็นของทั้งเพชรบุรี ซึ่งอ่านแล้วเข้าใจผิด
+  const scoped = local ?? null;
+  const starred = scoped?.filter((r) => r.notable).length ?? 0;
 
   return (
     <Card as="section" className="mt-4">
       <SectionTitle
         title={`วัด ร้านดัง ที่พัก ใน${where}`}
         action={
-          all ? (
+          scoped ? (
             <span className="text-xs text-muted">
-              {all.length} แห่ง{starred > 0 ? ` · ⭐ ${starred}` : ""}
+              {scoped.length} แห่ง{starred > 0 ? ` · ⭐ ${starred}` : ""}
             </span>
           ) : null
         }
@@ -226,10 +256,7 @@ export function DistrictPicks({
 
       <div className="mb-3 flex flex-wrap gap-1.5">
         {GROUPS.map((name) => {
-          const count =
-            name === "ทั้งหมด"
-              ? (all?.length ?? 0)
-              : (all?.filter((r) => r.group === name).length ?? 0);
+          const { count, wide } = countFor(name);
           return (
             <button
               key={name}
@@ -249,11 +276,18 @@ export function DistrictPicks({
               )}
             >
               {name}
-              {all ? ` (${count})` : ""}
+              {all ? ` (${count}${wide ? " ทั้งจังหวัด" : ""})` : ""}
             </button>
           );
         })}
       </div>
+
+      {usingWholeProvince ? (
+        <p className="mb-3 text-xs leading-relaxed text-muted">
+          อำเภอ{district}ไม่มี{group}ในฐานข้อมูล — กำลังแสดง{group}ทั้งจังหวัด
+          {province}แทน
+        </p>
+      ) : null}
 
       {current === null ? (
         <p className="text-sm text-muted">กำลังโหลด…</p>

@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import type { DistrictCount } from "@/app/api/districts/route";
 import { DistrictPicks } from "@/components/DistrictPicks";
 import { ExploreChat } from "@/components/ExploreChat";
+import { parseDurationMin, parsePriceTHB } from "@/lib/activity-parse";
 import { ExplorePlaceSearch } from "@/components/ExplorePlaceSearch";
 import { PlaceDetailSheet } from "@/components/PlaceDetailSheet";
 import {
@@ -20,6 +21,7 @@ import {
   FEATURED_PROVINCE_IDS,
   PROVINCE_BY_NAME,
   PROVINCES,
+  type SuggestedActivity,
   type SuggestedPlace,
 } from "@/data/provinces";
 import { ProvinceCombobox } from "@/components/ProvinceCombobox";
@@ -69,6 +71,7 @@ export default function ExplorePage() {
   const [detail, setDetail] = useState<SuggestedPlace | null>(null);
   /** ขั้นที่ 5 — ที่ที่ติ๊กไว้เพื่อสร้างเป็นโปรแกรมเที่ยวรวดเดียว */
   const [picked, setPicked] = useState<Set<string>>(new Set());
+  const [addedActivities, setAddedActivities] = useState<Set<string>>(new Set());
 
   const province =
     PROVINCES.find((p) => p.id === provinceId) ?? PROVINCES[0];
@@ -170,6 +173,32 @@ export default function ExplorePage() {
     setToast({ text, toMap });
     // ปุ่มไปแผนที่ต้องอยู่นานพอให้กดทัน ข้อความเฉย ๆ ไม่ต้องค้างนาน
     window.setTimeout(() => setToast(null), toMap ? 6000 : 2600);
+  }
+
+  /**
+   * ใส่กิจกรรมแนะนำลงแผน
+   *
+   * ราคากับระยะเวลาในข้อมูลเขียนไว้ให้คนอ่าน ("ครึ่งวัน–เต็มวัน") ต้องแปลงเป็น
+   * ตัวเลขก่อน ดู src/lib/activity-parse.ts · เก็บข้อความเดิมไว้ในรายละเอียด
+   * ด้วย ผู้ใช้จะได้เห็นช่วงจริงและแก้ตัวเลขเองได้ที่หน้าแผนเที่ยว
+   */
+  function addActivityToPlan(activity: SuggestedActivity) {
+    dispatch({
+      type: "addActivity",
+      activity: {
+        dayIndex: targetDay,
+        startTime: suggestedStartTime(targetDay),
+        durationMin: parseDurationMin(activity.duration),
+        title: activity.name,
+        placeName: province.name,
+        province: province.name,
+        detail: `${activity.description} • 💵 ${activity.price} • ⏱️ ${activity.duration} • 🎒 ${activity.prepare}`,
+        cost: parsePriceTHB(activity.price),
+        category: "other",
+      },
+    });
+    setAddedActivities((prev) => new Set(prev).add(activity.id));
+    notify(`ใส่ "${activity.name}" ในแผนวันที่ ${targetDay + 1} แล้ว`, true);
   }
 
   function addToPlaces(place: SuggestedPlace) {
@@ -511,7 +540,27 @@ export default function ExplorePage() {
           </ul>
         )
       ) : (
-        <ul className="space-y-3">
+        <>
+          {trip.dayCount > 1 ? (
+            /* แท็บสถานที่เลือกวันได้ที่แถบโปรแกรมด้านล่าง แต่แถบนั้นขึ้นเฉพาะตอน
+               ติ๊กสถานที่ไว้ แท็บกิจกรรมจึงต้องมีตัวเลือกวันของตัวเอง */
+            <Card className="mb-3">
+              <Field label="บันทึกกิจกรรมลงวันที่">
+                <Select
+                  value={targetDay}
+                  onChange={(e) => setTargetDay(Number(e.target.value))}
+                >
+                  {Array.from({ length: trip.dayCount }, (_, index) => (
+                    <option key={index} value={index}>
+                      วันที่ {index + 1} (
+                      {formatDateShort(addDaysISO(trip.startDate, index))})
+                    </option>
+                  ))}
+                </Select>
+              </Field>
+            </Card>
+          ) : null}
+          <ul className="space-y-3">
           {province.activities.map((activity) => (
             <Card as="li" key={activity.id}>
               <div className="flex items-start gap-3">
@@ -538,11 +587,26 @@ export default function ExplorePage() {
                       <dd>{activity.prepare}</dd>
                     </div>
                   </dl>
+
+                  <Button
+                    size="sm"
+                    variant={
+                      addedActivities.has(activity.id) ? "ghost" : "secondary"
+                    }
+                    className="mt-3"
+                    disabled={addedActivities.has(activity.id)}
+                    onClick={() => addActivityToPlan(activity)}
+                  >
+                    {addedActivities.has(activity.id)
+                      ? "✓ บันทึกในแผนแล้ว"
+                      : "บันทึกในแผน"}
+                  </Button>
                 </div>
               </div>
             </Card>
           ))}
-        </ul>
+          </ul>
+        </>
       )}
 
       {tab === "places" ? (
