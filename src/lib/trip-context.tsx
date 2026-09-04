@@ -31,9 +31,7 @@ import type {
   Activity,
   AppState,
   DayPlan,
-  ChecklistItem,
   Expense,
-  Place,
   Trip,
   TripLibrary,
 } from "./types";
@@ -48,13 +46,7 @@ type Action =
   | { type: "deleteActivity"; id: string }
   | { type: "addExpense"; expense: Omit<Expense, "id"> }
   | { type: "updateExpense"; id: string; patch: Partial<Expense> }
-  | { type: "deleteExpense"; id: string }
-  | { type: "addPlace"; place: Omit<Place, "id"> }
-  | { type: "updatePlace"; id: string; patch: Partial<Place> }
-  | { type: "deletePlace"; id: string }
-  | { type: "addChecklistItems"; items: Array<Omit<ChecklistItem, "id">> }
-  | { type: "updateChecklistItem"; id: string; patch: Partial<ChecklistItem> }
-  | { type: "deleteChecklistItem"; id: string };
+  | { type: "deleteExpense"; id: string };
 
 /** คำสั่งที่ทำกับคลังแผน ไม่ใช่กับเนื้อในของแผนใดแผนหนึ่ง */
 type LibraryAction =
@@ -149,50 +141,6 @@ function reducer(state: AppState, action: Action): AppState {
         expenses: state.expenses.filter((e) => e.id !== action.id),
       };
 
-    case "addPlace":
-      return {
-        ...state,
-        places: [...state.places, { ...action.place, id: newId() }],
-      };
-
-    case "updatePlace":
-      return {
-        ...state,
-        places: state.places.map((p) =>
-          p.id === action.id ? { ...p, ...action.patch } : p,
-        ),
-      };
-
-    case "deletePlace":
-      return {
-        ...state,
-        places: state.places.filter((p) => p.id !== action.id),
-      };
-
-    case "addChecklistItems": {
-      const existing = new Set(
-        state.checklist.map((c) => `${c.group}::${c.text}`),
-      );
-      const fresh = action.items
-        .filter((item) => !existing.has(`${item.group}::${item.text}`))
-        .map((item) => ({ ...item, id: newId() }));
-      return { ...state, checklist: [...state.checklist, ...fresh] };
-    }
-
-    case "updateChecklistItem":
-      return {
-        ...state,
-        checklist: state.checklist.map((c) =>
-          c.id === action.id ? { ...c, ...action.patch } : c,
-        ),
-      };
-
-    case "deleteChecklistItem":
-      return {
-        ...state,
-        checklist: state.checklist.filter((c) => c.id !== action.id),
-      };
-
     default:
       return state;
   }
@@ -249,8 +197,6 @@ function libraryReducer(
         trip: { ...source.trip, name: `${source.trip.name} (สำเนา)` },
         activities: source.activities.map((a) => ({ ...a, id: newId() })),
         expenses: source.expenses.map((e) => ({ ...e, id: newId() })),
-        places: source.places.map((p) => ({ ...p, id: newId() })),
-        checklist: source.checklist.map((c) => ({ ...c, id: newId() })),
       };
       return {
         ...library,

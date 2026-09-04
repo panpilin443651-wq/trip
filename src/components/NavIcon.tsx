@@ -10,15 +10,12 @@
  */
 export type NavIconName =
   | "home"
-  | "compass"
   | "map"
   | "suitcase"
   | "user"
   | "wallet"
   | "document"
-  | "chat"
-  | "pin"
-  | "checklist";
+  | "chat";
 
 /** เส้นของแต่ละไอคอน — เก็บแค่ path จะได้ไม่ต้องเขียน <svg> ซ้ำทุกอัน */
 const PATHS: Record<NavIconName, React.ReactNode> = {
@@ -27,12 +24,6 @@ const PATHS: Record<NavIconName, React.ReactNode> = {
       <path d="M3.5 10.6 12 3.8l8.5 6.8" />
       <path d="M5.8 9.6V20h12.4V9.6" />
       <path d="M9.8 20v-5.2h4.4V20" />
-    </>
-  ),
-  compass: (
-    <>
-      <circle cx="12" cy="12" r="8.3" />
-      <path d="m15.2 8.8-1.9 4.5-4.5 1.9 1.9-4.5z" />
     </>
   ),
   map: (
@@ -73,20 +64,6 @@ const PATHS: Record<NavIconName, React.ReactNode> = {
     <>
       <rect x="3.4" y="5.2" width="17.2" height="11.6" rx="2.6" />
       <path d="M8.6 16.8 8 20.4l4.4-3.6" />
-    </>
-  ),
-  pin: (
-    <>
-      <path d="M12 20.8C8.3 16.2 6.4 13.1 6.4 11.3 6.4 8.2 8.9 5.7 12 5.7 15.1 5.7 17.6 8.2 17.6 11.3c0 1.8-1.9 4.9-5.6 9.5z" />
-      <circle cx="12" cy="11.2" r="2.1" />
-    </>
-  ),
-  checklist: (
-    <>
-      <rect x="4.6" y="4.4" width="14.8" height="15.4" rx="2.2" />
-      <path d="m8.4 10.2 1.6 1.6 3-3" />
-      <path d="M13.6 15.4h3" />
-      <path d="M8.4 15.4h1.4" />
     </>
   ),
 };

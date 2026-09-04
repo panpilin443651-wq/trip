@@ -203,7 +203,6 @@ function measureHeight(
     h += 44; // สรุปท้ายวัน
     h += 24;
   }
-  if (state.checklist.length > 0) h += 110;
   if (state.trip.budgetNote.trim()) h += 130;
   h += 110; // ท้ายรูป
   return h;
@@ -468,39 +467,6 @@ export async function drawTripSummary(
     ctx.fillText(`💰 ${formatTHB(day.cost)}`, W - PAD - 4, y + 2);
     ctx.textAlign = "left";
     y += 60;
-  }
-
-  // ---------- Checklist ----------
-  if (state.checklist.length > 0) {
-    const done = state.checklist.filter((c) => c.done).length;
-    const percent = Math.round((done / state.checklist.length) * 100);
-
-    ctx.fillStyle = PALETTE.card;
-    roundRect(ctx, PAD, y, innerW, 86, 20);
-    ctx.fill();
-    ctx.strokeStyle = PALETTE.line;
-    ctx.stroke();
-
-    ctx.fillStyle = PALETTE.ink;
-    ctx.font = font(24, 600);
-    ctx.fillText(`✅ Checklist  ${done}/${state.checklist.length}`, PAD + 24, y + 18);
-
-    // แถบความคืบหน้า
-    const barW = innerW - 48;
-    ctx.fillStyle = PALETTE.line;
-    roundRect(ctx, PAD + 24, y + 56, barW, 12, 6);
-    ctx.fill();
-    ctx.fillStyle = percent === 100 ? PALETTE.ok : PALETTE.brand;
-    roundRect(ctx, PAD + 24, y + 56, (barW * percent) / 100, 12, 6);
-    ctx.fill();
-
-    ctx.textAlign = "right";
-    ctx.fillStyle = PALETTE.muted;
-    ctx.font = font(22, 600);
-    ctx.fillText(`${percent}%`, W - PAD - 24, y + 18);
-    ctx.textAlign = "left";
-
-    y += 110;
   }
 
   // ---------- บันทึกงบ ----------

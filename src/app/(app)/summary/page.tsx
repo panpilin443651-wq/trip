@@ -8,7 +8,6 @@ import { TripOverviewCard } from "@/components/TripOverviewCard";
 import { Badge, Button, Card, SectionTitle } from "@/components/ui";
 import { CATEGORY_MAP } from "@/data/categories";
 import { buildBreakdown } from "@/lib/budget";
-import { cn } from "@/lib/cn";
 import {
   addDaysISO,
   addMinutesToTime,
@@ -22,7 +21,7 @@ import { useTrip } from "@/lib/trip-context";
 
 export default function SummaryPage() {
   const { state, activitiesForDay } = useTrip();
-  const { trip, checklist, places } = state;
+  const { trip } = state;
 
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const [imageState, setImageState] = useState<"idle" | "working" | "done">(
@@ -66,7 +65,6 @@ export default function SummaryPage() {
   }, [photoKey]);
 
   const totalActivities = days.reduce((sum, d) => sum + d.activities.length, 0);
-  const checklistDone = checklist.filter((c) => c.done).length;
 
   async function saveImage() {
     const canvas = canvasRef.current;
@@ -244,34 +242,6 @@ export default function SummaryPage() {
           </section>
         ))}
 
-        {places.length > 0 ? (
-          <section className="break-inside-avoid">
-            <SectionTitle title="สถานที่ที่อยากไป" />
-            <Card>
-              <ul className="space-y-1.5 text-sm">
-                {places.map((place) => (
-                  <li key={place.id} className="flex items-start gap-2">
-                    <span className="shrink-0">
-                      {place.visited ? "✅" : "⬜"}
-                    </span>
-                    <span
-                      className={cn(
-                        "min-w-0 flex-1 break-words",
-                        place.visited && "text-faint line-through",
-                      )}
-                    >
-                      {place.name}
-                      {place.province ? (
-                        <span className="text-muted"> • {place.province}</span>
-                      ) : null}
-                    </span>
-                  </li>
-                ))}
-              </ul>
-            </Card>
-          </section>
-        ) : null}
-
         {/*
           ยอดรวมท้ายไฟล์ เคยเป็นการ์ดใหญ่ 2 ใบซึ่งซ้ำกับตัวเลขบนหน้าหลัก
           และซ้ำกับบรรทัด "รวม N กิจกรรม" ของแต่ละวันที่อยู่เหนือขึ้นไป
@@ -279,9 +249,6 @@ export default function SummaryPage() {
         */}
         <p className="border-t border-line pt-3 text-center text-xs text-muted">
           📋 รวม {totalActivities} กิจกรรม
-          {checklist.length > 0
-            ? ` • ✅ เตรียมของแล้ว ${checklistDone}/${checklist.length} รายการ`
-            : ""}
         </p>
 
         <p className="text-center text-xs text-faint">

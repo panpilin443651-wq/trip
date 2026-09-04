@@ -48,7 +48,7 @@ const POPULAR = PROVINCES.filter((p) => FEATURED_PROVINCE_IDS.has(p.id));
  */
 export function ExploreTab() {
   const { state, dispatch, activitiesForDay } = useTrip();
-  const { trip, places } = state;
+  const { trip } = state;
 
   // ถ้าตั้งปลายทางไว้แล้ว ให้เปิดจังหวัดนั้นก่อน
   // เปิดจังหวัดแรกของทริปก่อน ถ้ายังไม่ได้เลือกค่อยใช้จังหวัดยอดนิยม
@@ -169,11 +169,6 @@ export function ExploreTab() {
     [province, district],
   );
 
-  const savedNames = useMemo(
-    () => new Set(places.map((p) => p.name)),
-    [places],
-  );
-
   function notify(text: string, toMap = false) {
     setToast({ text, toMap });
     // ปุ่มไปแผนที่ต้องอยู่นานพอให้กดทัน ข้อความเฉย ๆ ไม่ต้องค้างนาน
@@ -204,26 +199,6 @@ export function ExploreTab() {
     });
     setAddedActivities((prev) => new Set(prev).add(activity.id));
     notify(`ใส่ "${activity.name}" ในแผนวันที่ ${targetDay + 1} แล้ว`, true);
-  }
-
-  function addToPlaces(place: SuggestedPlace) {
-    if (savedNames.has(place.name)) {
-      notify(`"${place.name}" อยู่ในรายการอยู่แล้ว`);
-      return;
-    }
-    dispatch({
-      type: "addPlace",
-      place: {
-        name: place.name,
-        province: province.name,
-        note: `${place.description} • ${place.tip}`,
-        priority: "medium",
-        visited: false,
-        lat: place.lat,
-        lng: place.lng,
-      },
-    });
-    notify(`เพิ่ม "${place.name}" ลงรายการสถานที่แล้ว`);
   }
 
   /** ต่อท้ายกิจกรรมสุดท้ายของวันนั้น เผื่อเวลาเดินทาง 30 นาที */
@@ -630,9 +605,7 @@ export function ExploreTab() {
       <PlaceDetailSheet
         place={detail}
         province={province.name}
-        isSaved={detail ? savedNames.has(detail.name) : false}
         onClose={() => setDetail(null)}
-        onSaveToList={addToPlaces}
         onAddToTrip={(place) => {
           setDetail(null);
           setScheduling(place);

@@ -28,6 +28,8 @@ const legacy = {
   },
   activities: [{ id: "a1", dayIndex: 0, startTime: "09:00", durationMin: 60, title: "ไหว้พระ", placeName: "วัดพระธาตุดอยสุเทพ", detail: "", cost: 100, category: "attraction", order: 1 }],
   expenses: [{ id: "e1", label: "ค่าน้ำมัน", amount: 2000, category: "transport" }],
+  // สองอันนี้ถูกถอดออกจากแอปแล้ว แต่ยังค้างอยู่ในข้อมูลที่ผู้ใช้บันทึกไว้เดิม
+  // ต้องโหลดผ่านได้โดยไม่ล่ม แค่ถูกมองข้ามไปเฉย ๆ
   places: [{ id: "p1", name: "ถนนคนเดิน", province: "เชียงใหม่", note: "", priority: "high", visited: false }],
   checklist: [{ id: "c1", group: "เอกสาร", text: "บัตรประชาชน", done: true }],
 };
@@ -37,8 +39,11 @@ const only = activeTrip(lib);
 check("ชื่อทริปยังอยู่", only.trip.name === "เชียงใหม่ 3 วัน", only.trip.name);
 check("กิจกรรมยังอยู่", only.activities.length === 1);
 check("ค่าใช้จ่ายยังอยู่", only.expenses.length === 1);
-check("สถานที่ยังอยู่", only.places.length === 1);
-check("เช็กลิสต์ยังอยู่", only.checklist.length === 1);
+check(
+  "ฟิลด์เก่าที่ถอดออกแล้วไม่ติดมาด้วย",
+  !("places" in only) && !("checklist" in only),
+  JSON.stringify(Object.keys(only)),
+);
 check("งบรวมยังอยู่", only.trip.totalBudget === 15000);
 check("งบหมวดยังอยู่", only.trip.budgets.transport === 5000);
 check("ได้ id ใหม่", typeof only.id === "string" && only.id.length > 0);

@@ -29,17 +29,12 @@ export function PlaceDetailSheet({
   province,
   onClose,
   onAddToTrip,
-  onSaveToList,
-  isSaved,
 }: {
   place: SuggestedPlace | null;
   province: string;
   onClose: () => void;
   /** ใส่เป็นจุดแวะในตารางของวันใดวันหนึ่ง */
   onAddToTrip: (place: SuggestedPlace) => void;
-  /** เก็บเข้ารายการ "ที่อยากไป" ไว้ก่อน ยังไม่ระบุว่าวันไหน */
-  onSaveToList: (place: SuggestedPlace) => void;
-  isSaved: boolean;
 }) {
   return (
     <Sheet
@@ -95,17 +90,6 @@ export function PlaceDetailSheet({
               <dd className="mt-0.5 leading-relaxed">{place.tip}</dd>
             </div>
           </dl>
-
-          <Button
-            variant="secondary"
-            className="w-full"
-            onClick={() => onSaveToList(place)}
-            disabled={isSaved}
-          >
-            {isSaved
-              ? "✓ อยู่ในรายการที่อยากไปแล้ว"
-              : "เก็บไว้ในรายการที่อยากไป"}
-          </Button>
 
           <p className="text-xs leading-relaxed text-faint">
             พิกัดมาจาก OpenStreetMap ส่วนค่าเข้าและเวลาเปิด-ปิดเป็นค่าโดยประมาณ

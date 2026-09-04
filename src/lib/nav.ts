@@ -74,20 +74,6 @@ export const NAV_ITEMS: NavItem[] = [
     primary: false,
     description: "ดูแผนทั้งทริป บันทึกเป็นรูปหรือ PDF",
   },
-  {
-    href: "/places",
-    label: "สถานที่",
-    icon: "pin",
-    primary: false,
-    description: "รายการที่อยากไป",
-  },
-  {
-    href: "/checklist",
-    label: "Checklist",
-    icon: "checklist",
-    primary: false,
-    description: "ของที่ต้องเตรียม",
-  },
 ];
 
 export const PRIMARY_NAV = NAV_ITEMS.filter((item) => item.primary);

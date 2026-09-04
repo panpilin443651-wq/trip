@@ -17,7 +17,7 @@ import type { AppState } from "@/lib/types";
 const MAX_CHARS = 8000;
 
 export function summarizeTrip(state: AppState): string {
-  const { trip, activities, places, checklist } = state;
+  const { trip, activities } = state;
   const breakdown = buildBreakdown(state);
   const lines: string[] = [];
 
@@ -90,27 +90,6 @@ export function summarizeTrip(state: AppState): string {
         `ค่าใช้จ่าย ${a.cost}`,
       ].filter(Boolean);
       lines.push(bits.join(" · "));
-    }
-  }
-
-  if (places.length > 0) {
-    lines.push("");
-    lines.push("## สถานที่ที่อยากไป");
-    for (const p of places) {
-      lines.push(
-        `- ${p.name}${p.province ? ` (${p.province})` : ""} — ` +
-          `${p.visited ? "ไปแล้ว" : "ยังไม่ได้ไป"}${p.note.trim() ? ` · ${p.note.trim()}` : ""}`,
-      );
-    }
-  }
-
-  if (checklist.length > 0) {
-    const done = checklist.filter((c) => c.done).length;
-    lines.push("");
-    lines.push(`## Checklist: เตรียมแล้ว ${done} จาก ${checklist.length} รายการ`);
-    const pending = checklist.filter((c) => !c.done).map((c) => c.text);
-    if (pending.length > 0) {
-      lines.push(`ยังไม่ได้เตรียม: ${pending.join(", ")}`);
     }
   }
 

@@ -410,7 +410,7 @@ export default function SettingsPage() {
       <ConfirmDialog
         open={confirmReset}
         title="ล้างข้อมูลทั้งหมด"
-        message="กิจกรรม งบประมาณ สถานที่ และ Checklist ทั้งหมดจะถูกลบและกู้คืนไม่ได้ แนะนำให้ Export เก็บไว้ก่อน"
+        message="กิจกรรม แผนรายวัน และงบประมาณทั้งหมดจะถูกลบและกู้คืนไม่ได้ แนะนำให้ Export เก็บไว้ก่อน"
         confirmLabel="ล้างข้อมูล"
         onCancel={() => setConfirmReset(false)}
         onConfirm={() => {

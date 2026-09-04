@@ -11,7 +11,6 @@ import {
   Button,
   Card,
   EmptyState,
-  ProgressBar,
   SectionTitle,
   StatTile,
 } from "@/components/ui";
@@ -22,15 +21,10 @@ import { useTrip } from "@/lib/trip-context";
 
 export default function DashboardPage() {
   const { state, activitiesForDay } = useTrip();
-  const { trip, activities, places, checklist } = state;
+  const { trip, activities } = state;
 
   const breakdown = useMemo(() => buildBreakdown(state), [state]);
 
-  const checklistDone = checklist.filter((c) => c.done).length;
-  const checklistPercent = checklist.length
-    ? (checklistDone / checklist.length) * 100
-    : 0;
-  const visitedCount = places.filter((p) => p.visited).length;
   const pinnedCount = activities.filter(hasCoords).length;
 
   /** วันแรกที่ยังมีกิจกรรม — คือสิ่งที่ผู้ใช้อยากเห็นตอนเปิดแอป */
@@ -65,30 +59,7 @@ export default function DashboardPage() {
             label="เวลารวมในแผน"
             value={formatDuration(totalMinutes)}
           />
-          <StatTile
-            label="ไปแล้ว / ทั้งหมด"
-            value={`${visitedCount}/${places.length}`}
-          />
         </div>
-
-        {checklist.length > 0 ? (
-          <Card>
-            <div className="mb-2 flex items-center justify-between text-sm">
-              <span className="text-muted">✅ ความคืบหน้าการเตรียมของ</span>
-              <Link href="/checklist" className="text-brand underline">
-                ดูทั้งหมด
-              </Link>
-            </div>
-            <ProgressBar
-              percent={checklistPercent}
-              barClass={checklistPercent === 100 ? "bg-ok" : "bg-brand"}
-            />
-            <p className="mt-2 text-xs text-muted">
-              เตรียมแล้ว {checklistDone} จาก {checklist.length} รายการ (
-              {Math.round(checklistPercent)}%)
-            </p>
-          </Card>
-        ) : null}
 
         <section>
           <SectionTitle
@@ -163,10 +134,10 @@ export default function DashboardPage() {
                 <span className="text-xs">เพิ่มกิจกรรม</span>
               </Button>
             </Link>
-            <Link href="/places">
+            <Link href="/chat">
               <Button variant="secondary" className="h-20 w-full flex-col gap-1">
-                <span className="text-xl">📍</span>
-                <span className="text-xs">เพิ่มสถานที่</span>
+                <span className="text-xl">💬</span>
+                <span className="text-xs">ถามผู้ช่วย</span>
               </Button>
             </Link>
             <Link href="/map">

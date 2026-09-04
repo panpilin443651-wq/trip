@@ -113,24 +113,6 @@ export interface Expense {
   category: CategoryId;
 }
 
-export interface Place {
-  id: string;
-  name: string;
-  province: string;
-  note: string;
-  priority: Priority;
-  visited: boolean;
-  lat?: number;
-  lng?: number;
-}
-
-export interface ChecklistItem {
-  id: string;
-  group: string;
-  text: string;
-  done: boolean;
-}
-
 /**
  * แผนเที่ยวหนึ่งแผน — ทุกอย่างที่ผูกกับทริปนั้นอยู่ในก้อนเดียวกัน
  *
@@ -147,8 +129,6 @@ export interface AppState {
   trip: Trip;
   activities: Activity[];
   expenses: Expense[];
-  places: Place[];
-  checklist: ChecklistItem[];
 }
 
 /**

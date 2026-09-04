@@ -39,8 +39,6 @@ export function createDefaultState(name = "ทริปของฉัน"): App
     },
     activities: [],
     expenses: [],
-    places: [],
-    checklist: [],
   };
 }
 
@@ -187,12 +185,6 @@ export function normalizeState(raw: unknown): AppState {
     expenses: Array.isArray(input.expenses)
       ? input.expenses.filter((e) => e && typeof e.id === "string")
       : [],
-    places: Array.isArray(input.places)
-      ? input.places.filter((p) => p && typeof p.id === "string")
-      : [],
-    checklist: Array.isArray(input.checklist)
-      ? input.checklist.filter((c) => c && typeof c.id === "string")
-      : [],
   };
 }
 
@@ -249,8 +241,6 @@ export function activeTrip(library: TripLibrary): AppState {
 export function isTripEmpty(state: AppState): boolean {
   return (
     state.activities.length === 0 &&
-    state.places.length === 0 &&
-    state.checklist.length === 0 &&
     state.expenses.length === 0 &&
     state.trip.provinces.length === 0
   );
