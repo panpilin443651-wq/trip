@@ -6,7 +6,7 @@ import type { RestaurantHit } from "@/app/api/restaurants/route";
 import { addMinutesToTime } from "@/lib/format";
 import { googleMapsUrl } from "@/lib/place-search";
 import { useTrip } from "@/lib/trip-context";
-import { Badge, Button, Card, Input, SectionTitle, cn } from "./ui";
+import { Badge, Button, Card, SectionTitle, cn } from "./ui";
 
 /** จำนวนที่โชว์ก่อนกด "ดูเพิ่ม" */
 const PREVIEW = 10;
@@ -40,12 +40,15 @@ type Group = (typeof GROUPS)[number];
 export function DistrictPicks({
   province,
   district,
+  query,
   dayIndex,
   onAdded,
 }: {
   province: string;
   /** ว่าง = ทั้งจังหวัด */
   district: string;
+  /** คำค้นจากช่องค้นหาด้านบนของหน้า ใช้ช่องเดียวกันทั้งหน้าจะได้ไม่สับสน */
+  query: string;
   dayIndex: number;
   onAdded: (name: string) => void;
 }) {
@@ -63,7 +66,6 @@ export function DistrictPicks({
   } | null>(null);
 
   const [group, setGroup] = useState<Group>("ทั้งหมด");
-  const [query, setQuery] = useState("");
   const [showAll, setShowAll] = useState(false);
   const [added, setAdded] = useState<Set<string>>(new Set());
 
@@ -216,17 +218,6 @@ export function DistrictPicks({
         })}
       </div>
 
-      {all && all.length > 0 ? (
-        <Input
-          type="search"
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          placeholder="ค้นชื่อ หรือประเภท เช่น กาแฟ ก๋วยเตี๋ยว"
-          aria-label={`ค้นหาใน${where}`}
-          className="mb-3"
-        />
-      ) : null}
-
       {current === null ? (
         <p className="text-sm text-muted">กำลังโหลด…</p>
       ) : current.rows === null ? (
@@ -240,7 +231,8 @@ export function DistrictPicks({
         </p>
       ) : filtered && filtered.length === 0 ? (
         <p className="text-sm leading-relaxed text-muted">
-          ไม่พบที่ตรงกับที่ค้น — ลองพิมพ์สั้นลงหรือเปลี่ยนหมวด
+          ไม่พบที่ตรงกับ &ldquo;{query}&rdquo; ใน{where} —
+          ลองพิมพ์สั้นลง เปลี่ยนหมวด หรือดูทั้งจังหวัด
         </p>
       ) : filtered ? (
         <>

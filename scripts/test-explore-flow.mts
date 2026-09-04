@@ -123,5 +123,60 @@ const huahin = (OSM_RESTAURANTS["ประจวบคีรีขันธ์"]
 );
 check("ร้านหัวหินย้ายมาประจวบฯ แล้ว", huahin.length > 0, String(huahin.length));
 
+console.log("\nช่องค้นหาต้องอยู่ในจังหวัดที่เลือกเสมอ");
+
+/** เลียนแบบรายการที่ ExplorePlaceSearch ประกอบขึ้น */
+function searchRows(provinceName: string, district: string, q: string) {
+  const prov = PROVINCES.find((p) => p.name === provinceName)!;
+  const curated = (
+    district ? prov.places.filter((p) => p.district === district) : prov.places
+  ).filter(
+    (p) =>
+      !q ||
+      [p.name, p.tag, p.description].some((f) => f.toLowerCase().includes(q)),
+  );
+  const osmAll = OSM_PLACES[provinceName] ?? [];
+  const osm = (
+    district ? osmAll.filter((p) => p.district === district) : osmAll
+  ).filter((p) => !q || p.name.toLowerCase().includes(q));
+  return { curated, osm };
+}
+
+const rows = searchRows("เพชรบุรี", "บ้านแหลม", "");
+const namesElsewhere = new Set(
+  PROVINCES.filter((p) => p.name !== "เพชรบุรี").flatMap((p) =>
+    p.places.map((x) => x.name),
+  ),
+);
+check(
+  "ที่คัดไว้เองไม่มีของจังหวัดอื่นปน",
+  rows.curated.every((p) => !namesElsewhere.has(p.name)),
+);
+check(
+  "ที่คัดไว้เองอยู่ในอำเภอที่เลือกทั้งหมด",
+  rows.curated.every((p) => p.district === "บ้านแหลม"),
+);
+check(
+  "ผลจาก OSM อยู่ในอำเภอที่เลือกทั้งหมด",
+  rows.osm.every((p) => p.district === "บ้านแหลม"),
+);
+
+// คำที่มีอยู่ในหลายจังหวัด ต้องไม่ดึงของจังหวัดอื่นเข้ามา
+const watRows = searchRows("เพชรบุรี", "", "วัด");
+const pbiOsmNames = new Set((OSM_PLACES["เพชรบุรี"] ?? []).map((p) => p.name));
+check(
+  'ค้น "วัด" แล้วได้เฉพาะของเพชรบุรี',
+  watRows.osm.every((p) => pbiOsmNames.has(p.name)),
+);
+check(
+  'ค้น "วัด" ในเชียงใหม่ได้คนละชุด',
+  searchRows("เชียงใหม่", "", "วัด").osm.every((p) => !pbiOsmNames.has(p.name)),
+);
+check(
+  "ไม่ระบุอำเภอได้ผลกว้างกว่าหรือเท่ากับระบุอำเภอ",
+  searchRows("เพชรบุรี", "", "").osm.length >=
+    searchRows("เพชรบุรี", "บ้านแหลม", "").osm.length,
+);
+
 console.log(`\nรวมทั้งไฟล์: ผ่าน ${pass} · ไม่ผ่าน ${fail}`);
 process.exit(fail ? 1 : 0);

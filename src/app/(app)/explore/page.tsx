@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import type { DistrictCount } from "@/app/api/districts/route";
@@ -52,7 +53,14 @@ export default function ExplorePage() {
   const [tab, setTab] = useState<Tab>("places");
   const [scheduling, setScheduling] = useState<SuggestedPlace | null>(null);
   const [targetDay, setTargetDay] = useState(0);
-  const [toast, setToast] = useState<string | null>(null);
+  /**
+   * ข้อความแจ้งผล — มีปุ่มไปแผนที่ด้วยเมื่อเพิ่งใส่จุดแวะลงแผน
+   * เพราะขั้นถัดไปที่คนอยากทำคือดูว่าจุดที่เพิ่งใส่อยู่ตรงไหนเทียบกับที่อื่น
+   */
+  const [toast, setToast] = useState<{
+    text: string;
+    toMap?: boolean;
+  } | null>(null);
 
   /** ขั้นที่ 1 ของโฟลว์ — คำค้น กรองทั้งชื่อ ประเภท และคำอธิบาย */
   const [query, setQuery] = useState("");
@@ -157,9 +165,10 @@ export default function ExplorePage() {
     [places],
   );
 
-  function notify(message: string) {
-    setToast(message);
-    window.setTimeout(() => setToast(null), 2600);
+  function notify(text: string, toMap = false) {
+    setToast({ text, toMap });
+    // ปุ่มไปแผนที่ต้องอยู่นานพอให้กดทัน ข้อความเฉย ๆ ไม่ต้องค้างนาน
+    window.setTimeout(() => setToast(null), toMap ? 6000 : 2600);
   }
 
   function addToPlaces(place: SuggestedPlace) {
@@ -226,6 +235,7 @@ export default function ExplorePage() {
 
     notify(
       `สร้างโปรแกรม ${chosen.length} จุดในวันที่ ${targetDay + 1} แล้ว`,
+      true,
     );
     setPicked(new Set());
   }
@@ -256,7 +266,7 @@ export default function ExplorePage() {
         lng: scheduling.lng,
       },
     });
-    notify(`ใส่ "${scheduling.name}" ในแผนวันที่ ${targetDay + 1} แล้ว`);
+    notify(`ใส่ "${scheduling.name}" ในแผนวันที่ ${targetDay + 1} แล้ว`, true);
     setScheduling(null);
   }
 
@@ -410,10 +420,14 @@ export default function ExplorePage() {
       {tab === "places" ? (
         visiblePlaces.length === 0 ? (
           <Card>
+            {/*
+              อย่าบอกว่า "ไม่พบ" ลอย ๆ เพราะการ์ดจาก OpenStreetMap ข้างล่าง
+              อาจมีที่นั้นอยู่ ตอนเลือกจากรายการเลื่อนลงจะเข้าเคสนี้พอดี
+            */}
             <p className="text-sm leading-relaxed text-muted">
-              ไม่พบสถานที่ที่ตรงกับ &ldquo;{query}&rdquo;
-              {district ? ` ในอำเภอ${district}` : ""} — ลองพิมพ์สั้นลง
-              หรือกด &ldquo;ทั้งจังหวัด&rdquo; เพื่อดูให้กว้างขึ้น
+              {query
+                ? `ไม่มี "${query}" ในรายการที่คัดไว้เอง${district ? ` ของอำเภอ${district}` : ""} — ดูในการ์ด "วัด คาเฟ่ ร้านดัง" ด้านล่างได้`
+                : `ยังไม่มีสถานที่ที่คัดไว้เองใน${district || province.name} — เลื่อนลงไปดูจาก OpenStreetMap ได้`}
             </p>
           </Card>
         ) : (
@@ -531,9 +545,10 @@ export default function ExplorePage() {
         <DistrictPicks
           province={province.name}
           district={district}
+          query={query}
           dayIndex={targetDay}
           onAdded={(name) =>
-            notify(`ใส่ "${name}" ในแผนวันที่ ${targetDay + 1} แล้ว`)
+            notify(`ใส่ "${name}" ในแผนวันที่ ${targetDay + 1} แล้ว`, true)
           }
         />
       ) : null}
@@ -664,9 +679,17 @@ export default function ExplorePage() {
       {toast ? (
         <div
           role="status"
-          className="fixed inset-x-4 bottom-24 z-40 rounded-xl bg-accent-fill px-4 py-3 text-center text-sm font-medium text-canvas shadow-[var(--shadow-lift)] lg:inset-x-auto lg:right-8 lg:bottom-8 lg:max-w-sm"
+          className="fixed inset-x-4 bottom-24 z-40 rounded-2xl bg-accent-fill px-4 py-3 text-sm font-medium text-canvas shadow-[var(--shadow-lift)] lg:inset-x-auto lg:right-8 lg:bottom-8 lg:max-w-sm"
         >
-          {toast}
+          <p className="text-center">{toast.text}</p>
+          {toast.toMap ? (
+            <Link
+              href="/map"
+              className="mt-2 flex min-h-10 items-center justify-center gap-1.5 rounded-full bg-canvas px-4 text-sm font-medium text-brand"
+            >
+              🗺️ ดูบนแผนที่
+            </Link>
+          ) : null}
         </div>
       ) : null}
     </>
