@@ -82,10 +82,11 @@ export function ExploreChat({
 
       <ChatPanel
         className="mt-3 h-[26rem]"
+        composerAtTop
         endpoint="/api/explore-chat"
         store={exploreChatStore}
         starters={STARTERS}
-        intro="ถามว่าอยากไปไหน แล้วกดใส่แผนได้จากคำตอบเลย"
+        intro="พิมพ์คำถามในช่องด้านบน หรือกดคำถามตัวอย่างข้างล่างนี้ได้เลย"
         privacyNote="คำถามของคุณถูกส่งไปให้ Gemini (Google) พร้อมรายชื่อสถานที่ที่ค้นได้ — ไม่ได้ส่งข้อมูลทริป"
         buildBody={(messages) => ({ messages, province, district })}
         afterMessage={(message, info) => (

@@ -40,6 +40,7 @@ export function ChatPanel({
   privacyNote = "ข้อมูลทริปของคุณถูกส่งไปให้ Gemini (Google) ทุกครั้งที่ถาม",
   buildBody,
   afterMessage,
+  composerAtTop = false,
 }: {
   className?: string;
   endpoint?: string;
@@ -52,6 +53,14 @@ export function ChatPanel({
     message: ChatMessage,
     info: { streaming: boolean; isLast: boolean },
   ) => ReactNode;
+  /**
+   * วางช่องพิมพ์ไว้บนสุดแทนที่จะเป็นล่างสุด
+   *
+   * ใช้กับการ์ดที่ฝังกลางหน้าเว็บ ในป๊อปอัปช่องพิมพ์อยู่ล่างสุดแล้วหาเจอง่าย
+   * เพราะกล่องลอยเด่นอยู่กลางจอ แต่พอฝังในหน้าที่ยาว ช่องพิมพ์จะไปจมอยู่
+   * ท้ายการ์ด ใต้กล่องข้อความ และใกล้กับแถบลอยที่ยึดขอบล่างจอ
+   */
+  composerAtTop?: boolean;
 }) {
   const { state } = useTrip();
   // เก็บใน external store ไม่ใช่ useState ดูเหตุผลใน lib/chat/storage.ts
@@ -62,10 +71,19 @@ export function ChatPanel({
   );
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
-  const endRef = useRef<HTMLDivElement>(null);
+  const listRef = useRef<HTMLDivElement>(null);
 
+  /*
+   * เลื่อนเฉพาะกล่องข้อความ ไม่ใช่ทั้งหน้า
+   *
+   * เดิมใช้ scrollIntoView ซึ่งเลื่อน "ทุกชั้นที่เลื่อนได้" รวมถึงตัวหน้าเว็บด้วย
+   * ตอนแชทอยู่ในป๊อปอัปไม่มีปัญหาเพราะหน้าเว็บข้างหลังถูกล็อกไม่ให้เลื่อนอยู่แล้ว
+   * แต่พอเอามาวางกลางหน้าแนะนำเที่ยวที่ยาว ๆ ทุกก้อนข้อความที่สตรีมเข้ามา
+   * จะกระชากทั้งหน้าเลื่อนตาม จนแตะช่องพิมพ์แทบไม่ทัน
+   */
   useEffect(() => {
-    endRef.current?.scrollIntoView({ block: "end" });
+    const list = listRef.current;
+    if (list) list.scrollTop = list.scrollHeight;
   }, [messages]);
 
   async function send(question: string) {
@@ -154,110 +172,122 @@ export function ChatPanel({
     store.clearMessages();
   }
 
-  return (
-    <div className={cn("flex min-h-0 flex-1 flex-col", className)}>
-      <div className="min-h-0 flex-1 space-y-3 overflow-y-auto">
-        {messages.length === 0 ? (
-          <div className="rounded-2xl border border-dashed border-line px-4 py-5">
-            <p className="text-sm leading-relaxed text-muted">
-              {intro}
-            </p>
-            <div className="mt-3 flex flex-wrap gap-1.5">
-              {starters.map((q) => (
-                <button
-                  key={q}
-                  type="button"
-                  onClick={() => void send(q)}
-                  className="min-h-9 rounded-full border border-line px-3 text-xs text-muted transition-colors hover:border-brand hover:text-brand"
-                >
-                  {q}
-                </button>
-              ))}
+  const conversation = (
+        <div ref={listRef} className="min-h-0 flex-1 space-y-3 overflow-y-auto">
+          {messages.length === 0 ? (
+            <div className="px-1 py-1">
+              <p className="text-sm leading-relaxed text-muted">{intro}</p>
+              <div className="mt-3 flex flex-wrap gap-1.5">
+                {starters.map((q) => (
+                  <button
+                    key={q}
+                    type="button"
+                    onClick={() => void send(q)}
+                    className="min-h-9 rounded-full border border-line px-3 text-xs text-muted transition-colors hover:border-brand hover:text-brand"
+                  >
+                    {q}
+                  </button>
+                ))}
+              </div>
             </div>
-          </div>
-        ) : (
-          messages.map((m) => (
-            <div
-              key={m.id}
-              className={cn(
-                "flex flex-col",
-                m.role === "user" ? "items-end" : "items-start",
-              )}
-            >
+          ) : (
+            messages.map((m) => (
               <div
+                key={m.id}
                 className={cn(
-                  "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap",
-                  m.role === "user"
-                    ? "bg-brand text-canvas"
-                    : m.error
-                      ? "border border-danger/40 bg-card text-danger"
-                      : "border border-line bg-card text-ink",
+                  "flex flex-col",
+                  m.role === "user" ? "items-end" : "items-start",
                 )}
               >
-                {m.text || "…"}
+                <div
+                  className={cn(
+                    "max-w-[85%] rounded-2xl px-3.5 py-2.5 text-sm leading-relaxed whitespace-pre-wrap",
+                    m.role === "user"
+                      ? "bg-brand text-canvas"
+                      : m.error
+                        ? "border border-danger/40 bg-card text-danger"
+                        : "border border-line bg-card text-ink",
+                  )}
+                >
+                  {m.text || "…"}
+                </div>
+                {/* ปุ่มเสริมใต้คำตอบ เช่น ปุ่มใส่แผนในหน้าแนะนำเที่ยว
+                    streaming ให้รอจนพิมพ์จบก่อนค่อยไปหาชื่อสถานที่
+                    isLast ให้รู้ว่าอันไหนคือคำตอบล่าสุด จะได้ไม่ยิงคำขอย้อนหลัง
+                    ให้ทุกคำตอบเก่าที่โหลดมาจาก localStorage ตอนเปิดหน้า */}
+                {m.role === "model" && !m.error
+                  ? afterMessage?.(m, {
+                      streaming: busy && m.id === messages.at(-1)?.id,
+                      isLast: m.id === messages.at(-1)?.id,
+                    })
+                  : null}
               </div>
-              {/* ปุ่มเสริมใต้คำตอบ เช่น ปุ่มใส่แผนในหน้าแนะนำเที่ยว
-                  streaming ให้รอจนพิมพ์จบก่อนค่อยไปหาชื่อสถานที่
-                  isLast ให้รู้ว่าอันไหนคือคำตอบล่าสุด จะได้ไม่ยิงคำขอย้อนหลัง
-                  ให้ทุกคำตอบเก่าที่โหลดมาจาก localStorage ตอนเปิดหน้า */}
-              {m.role === "model" && !m.error
-                ? afterMessage?.(m, {
-                    streaming: busy && m.id === messages.at(-1)?.id,
-                    isLast: m.id === messages.at(-1)?.id,
-                  })
-                : null}
-            </div>
-          ))
-        )}
+            ))
+          )}
 
-        {busy && messages.at(-1)?.role === "user" ? (
-          <p className="px-1 text-xs text-faint">ผู้ช่วยกำลังพิมพ์…</p>
-        ) : null}
-
-        <div ref={endRef} />
-      </div>
-
-      <div className="mt-3 shrink-0 border-t border-line pt-3">
-        <div className="flex items-end gap-2">
-          <Textarea
-            rows={2}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => {
-              // Enter ส่ง / Shift+Enter ขึ้นบรรทัดใหม่
-              if (e.key === "Enter" && !e.shiftKey) {
-                e.preventDefault();
-                void send(input);
-              }
-            }}
-            placeholder="พิมพ์คำถาม…"
-            aria-label="คำถามถึงผู้ช่วย"
-            className="flex-1"
-          />
-          <Button
-            onClick={() => void send(input)}
-            disabled={busy || !input.trim()}
-            className="shrink-0"
-          >
-            {busy ? "…" : "ส่ง"}
-          </Button>
-        </div>
-
-        <div className="mt-2 flex items-center justify-between gap-3">
-          <p className="text-[11px] leading-relaxed text-faint">
-            {privacyNote}
-          </p>
-          {messages.length > 0 ? (
-            <button
-              type="button"
-              onClick={reset}
-              className="shrink-0 text-xs text-muted underline"
-            >
-              ล้างแชท
-            </button>
+          {busy && messages.at(-1)?.role === "user" ? (
+            <p className="px-1 text-xs text-faint">ผู้ช่วยกำลังพิมพ์…</p>
           ) : null}
+
         </div>
-      </div>
+  );
+
+  const composer = (
+        <div
+          className={cn(
+            "shrink-0",
+            composerAtTop
+              ? "mb-3 border-b border-line pb-3"
+              : "mt-3 border-t border-line pt-3",
+          )}
+        >
+          <div className="flex items-end gap-2">
+            <Textarea
+              rows={2}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => {
+                // Enter ส่ง / Shift+Enter ขึ้นบรรทัดใหม่
+                if (e.key === "Enter" && !e.shiftKey) {
+                  e.preventDefault();
+                  void send(input);
+                }
+              }}
+              placeholder="พิมพ์คำถาม…"
+              aria-label="คำถามถึงผู้ช่วย"
+              className="flex-1"
+            />
+            <Button
+              onClick={() => void send(input)}
+              disabled={busy || !input.trim()}
+              className="shrink-0"
+            >
+              {busy ? "…" : "ส่ง"}
+            </Button>
+          </div>
+
+          <div className="mt-2 flex items-center justify-between gap-3">
+            <p className="text-[11px] leading-relaxed text-faint">
+              {privacyNote}
+            </p>
+            {messages.length > 0 ? (
+              <button
+                type="button"
+                onClick={reset}
+                className="shrink-0 text-xs text-muted underline"
+              >
+                ล้างแชท
+              </button>
+            ) : null}
+          </div>
+        </div>
+  );
+
+  return (
+    <div className={cn("flex min-h-0 flex-1 flex-col", className)}>
+      {composerAtTop ? composer : null}
+      {conversation}
+      {composerAtTop ? null : composer}
     </div>
   );
 }
