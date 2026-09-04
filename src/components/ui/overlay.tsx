@@ -3,6 +3,37 @@
 import { useEffect, type ReactNode } from "react";
 import { Button } from "./primitives";
 
+/*
+ * ล็อกการเลื่อนหน้าแบบนับจำนวนผู้ถือ ไม่ใช่ต่างคนต่างจำค่าเดิมของตัวเอง
+ *
+ * แบบเดิมแต่ละกล่องจำค่า overflow ตอนที่ตัวเองเปิด พอมีสองกล่องเปิดซ้อนกัน
+ * แล้วปิดสลับลำดับ ค่าที่คืนกลับมาจะเป็น "hidden" ค้างไว้ ทั้งหน้าเลื่อนไม่ได้
+ * ต้องรีเฟรชถึงจะหาย
+ *
+ *   1. กล่อง ก เปิด  — จำค่าเดิม "" แล้วตั้งเป็น hidden
+ *   2. กล่อง ข เปิด  — จำค่าเดิม "hidden"
+ *   3. กล่อง ก ปิด   — คืนเป็น "" ทั้งที่ ข ยังเปิดอยู่
+ *   4. กล่อง ข ปิด   — คืนเป็น "hidden" ค้าง
+ *
+ * เกิดจริงเมื่อป๊อปอัปเตือนเกินงบเด้งขึ้นมาทับกล่องที่เปิดอยู่ก่อน
+ * เพราะตัวเตือนอยู่ใน layout จึงเด้งได้ทุกเมื่อจากทุกหน้า
+ */
+let lockCount = 0;
+let savedOverflow = "";
+
+function lockBodyScroll() {
+  if (lockCount === 0) {
+    savedOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+  }
+  lockCount += 1;
+}
+
+function unlockBodyScroll() {
+  lockCount = Math.max(0, lockCount - 1);
+  if (lockCount === 0) document.body.style.overflow = savedOverflow;
+}
+
 /** โมดัลที่เลื่อนขึ้นจากด้านล่างบนมือถือ และเป็นกล่องกลางจอบนจอใหญ่ */
 export function Sheet({
   open,
@@ -17,18 +48,25 @@ export function Sheet({
   children: ReactNode;
   footer?: ReactNode;
 }) {
+  /*
+   * แยกการล็อกการเลื่อนออกจากปุ่ม Escape โดยตั้งใจ
+   *
+   * onClose มักเป็นฟังก์ชันใหม่ทุกรอบที่ผู้เรียกเรนเดอร์ ถ้ารวมไว้ effect เดียว
+   * การล็อกจะถูกถอดแล้วใส่ใหม่ทุกครั้งที่พ่อแม่เรนเดอร์ ซึ่งไม่จำเป็นเลย
+   */
+  useEffect(() => {
+    if (!open) return;
+    lockBodyScroll();
+    return unlockBodyScroll;
+  }, [open]);
+
   useEffect(() => {
     if (!open) return;
     const onKey = (e: KeyboardEvent) => {
       if (e.key === "Escape") onClose();
     };
     document.addEventListener("keydown", onKey);
-    const previous = document.body.style.overflow;
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = previous;
-    };
+    return () => document.removeEventListener("keydown", onKey);
   }, [open, onClose]);
 
   if (!open) return null;

@@ -1,0 +1,110 @@
+/**
+ * ทดสอบการล็อกการเลื่อนหน้าเวลามีกล่องซ้อนกัน
+ *
+ * ใช้: node --experimental-strip-types --import ./scripts/alias-hooks.mjs scripts/test-scroll-lock.mts
+ *
+ * บั๊กเดิม: แต่ละกล่องจำค่า overflow ตอนตัวเองเปิด พอปิดสลับลำดับกัน
+ * ค่าจะค้างเป็น hidden ทั้งหน้าเลื่อนไม่ได้จนกว่าจะรีเฟรช
+ * เกิดจริงเมื่อป๊อปอัปเตือนเกินงบเด้งทับกล่องที่เปิดอยู่ก่อน
+ */
+let pass = 0;
+let fail = 0;
+const check = (n: string, c: boolean, e = "") =>
+  c ? (pass++, console.log("  ✓ " + n)) : (fail++, console.log("  ✗ " + n + " " + e));
+
+/** จำลอง document.body.style.overflow */
+let bodyOverflow = "";
+
+/* ── วิธีเดิม: ต่างคนต่างจำค่าของตัวเอง ───────────────────────── */
+function oldLock() {
+  const previous = bodyOverflow;
+  bodyOverflow = "hidden";
+  return () => {
+    bodyOverflow = previous;
+  };
+}
+
+/* ── วิธีใหม่: นับจำนวนผู้ถือ ────────────────────────────────── */
+let lockCount = 0;
+let savedOverflow = "";
+function newLock() {
+  if (lockCount === 0) {
+    savedOverflow = bodyOverflow;
+    bodyOverflow = "hidden";
+  }
+  lockCount += 1;
+  return () => {
+    lockCount = Math.max(0, lockCount - 1);
+    if (lockCount === 0) bodyOverflow = savedOverflow;
+  };
+}
+
+console.log("ยืนยันว่าบั๊กเดิมมีจริง");
+bodyOverflow = "";
+{
+  const closeA = oldLock(); // กล่อง ก เปิด
+  const closeB = oldLock(); // กล่อง ข เด้งทับ
+  closeA(); // ก ปิดก่อน
+  closeB(); // ข ปิดตาม
+  check("วิธีเดิมทำให้ค้างเป็น hidden", bodyOverflow === "hidden", bodyOverflow);
+}
+
+console.log("\nวิธีใหม่ — เปิดปิดตามลำดับปกติ");
+bodyOverflow = "";
+lockCount = 0;
+{
+  const close = newLock();
+  check("เปิดแล้วล็อก", bodyOverflow === "hidden");
+  close();
+  check("ปิดแล้วคืนค่า", bodyOverflow === "", bodyOverflow);
+}
+
+console.log("\nวิธีใหม่ — ซ้อนกันแล้วปิดสลับลำดับ (เคสที่พัง)");
+bodyOverflow = "";
+lockCount = 0;
+{
+  const closeA = newLock();
+  const closeB = newLock();
+  closeA();
+  check("ปิดตัวแรกแล้วยังล็อกอยู่ เพราะอีกตัวยังเปิด", bodyOverflow === "hidden");
+  closeB();
+  check("ปิดครบแล้วเลื่อนได้", bodyOverflow === "", bodyOverflow);
+}
+
+console.log("\nวิธีใหม่ — ซ้อนสามชั้น");
+bodyOverflow = "";
+lockCount = 0;
+{
+  const closes = [newLock(), newLock(), newLock()];
+  closes[1]();
+  closes[0]();
+  check("เหลือตัวเดียวยังล็อก", bodyOverflow === "hidden");
+  closes[2]();
+  check("ปิดครบแล้วเลื่อนได้", bodyOverflow === "", bodyOverflow);
+}
+
+console.log("\nวิธีใหม่ — เผลอปิดซ้ำ ต้องไม่ทำให้ตัวนับติดลบ");
+bodyOverflow = "";
+lockCount = 0;
+{
+  const close = newLock();
+  close();
+  close();
+  check("ตัวนับไม่ติดลบ", lockCount === 0, String(lockCount));
+  const again = newLock();
+  check("เปิดใหม่ยังล็อกได้ปกติ", bodyOverflow === "hidden");
+  again();
+  check("ปิดแล้วคืนค่าได้ปกติ", bodyOverflow === "", bodyOverflow);
+}
+
+console.log("\nวิธีใหม่ — หน้าที่ล็อกไว้ก่อนอยู่แล้ว ต้องคืนค่าเดิมไม่ใช่ค่าว่าง");
+bodyOverflow = "hidden";
+lockCount = 0;
+{
+  const close = newLock();
+  close();
+  check("คืนเป็น hidden ตามเดิม", bodyOverflow === "hidden", bodyOverflow);
+}
+
+console.log(`\nผ่าน ${pass} · ไม่ผ่าน ${fail}`);
+process.exit(fail ? 1 : 0);

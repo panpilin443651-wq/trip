@@ -7,6 +7,9 @@ import { ConfirmDialog, cn } from "@/components/ui";
 /**
  * ปุ่มออกจากระบบบนแถบบน — กดถึงได้จากทุกหน้า
  *
+ * มีคำกำกับไม่ใช่ไอคอนเปล่า เพราะ 🚪 อย่างเดียวเดาได้หลายอย่าง
+ * (ออกจากระบบ ปิดหน้า ออกจากทริป) คำบอกชัดกว่าและกดผิดยากขึ้น
+ *
  * มีถามยืนยันก่อน ต่างจากปุ่มเต็มในหน้าโปรไฟล์ ที่อยู่ในการ์ดหัวข้อ "บัญชี"
  * ซึ่งกดโดยไม่ตั้งใจได้ยาก ส่วนตรงนี้เป็นไอคอนเล็กข้างปุ่มสลับโหมดสี
  * บนมือถือนิ้วพลาดไปโดนแล้วต้องล็อกอินใหม่ทั้งที่กำลังวางแผนอยู่
@@ -26,14 +29,17 @@ export function SignOutIconButton({ className }: { className?: string }) {
         title="ออกจากระบบ"
         aria-label="ออกจากระบบ"
         className={cn(
-          "flex h-10 w-10 items-center justify-center rounded-xl border border-line",
-          "bg-card text-lg transition-colors hover:bg-danger-soft",
+          "flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border border-line",
+          "bg-card px-3 text-[13px] font-medium transition-colors hover:bg-danger-soft",
           "focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none",
           "disabled:opacity-60",
           className,
         )}
       >
         <span aria-hidden>{pending ? "…" : "🚪"}</span>
+        <span className="whitespace-nowrap">
+          ออก<span className="hidden min-[380px]:inline">จากระบบ</span>
+        </span>
       </button>
 
       <ConfirmDialog

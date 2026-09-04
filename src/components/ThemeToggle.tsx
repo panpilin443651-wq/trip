@@ -28,6 +28,15 @@ const getSnapshot = (): Theme =>
 /** ตอนเรนเดอร์ฝั่งเซิร์ฟเวอร์ยังไม่รู้ว่าผู้ใช้เลือกอะไร ตรงกับ data-theme ใน layout */
 const getServerSnapshot = (): Theme => "dark";
 
+/**
+ * สวิตช์เปิด/ปิดโหมดมืด พร้อมคำกำกับ
+ *
+ * ใช้สวิตช์แทนปุ่มไอคอนเปล่า เพราะไอคอนอย่างเดียวตอบไม่ได้ว่ากดแล้วจะได้อะไร
+ * และไม่รู้ว่าตอนนี้อยู่โหมดไหน สวิตช์บอกสถานะปัจจุบันในตัวอยู่แล้ว
+ *
+ * คำที่เขียนคือ "โหมดมืด" ซึ่งเป็นชื่อของสิ่งที่สวิตช์นี้ควบคุม ไม่ใช่ชื่อโหมด
+ * ที่กำลังใช้อยู่ ตำแหน่งสวิตช์เป็นตัวบอกว่าเปิดหรือปิด
+ */
 export function ThemeToggle({ className }: { className?: string }) {
   const theme = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
 
@@ -40,27 +49,45 @@ export function ThemeToggle({ className }: { className?: string }) {
     }
   }, []);
 
-  const next: Theme = theme === "dark" ? "light" : "dark";
-  const label = next === "light" ? "เปลี่ยนเป็นโหมดสว่าง" : "เปลี่ยนเป็นโหมดมืด";
+  const isDark = theme === "dark";
 
   return (
     <button
       type="button"
-      onClick={() => applyTheme(next)}
-      title={label}
-      aria-label={label}
+      role="switch"
+      aria-checked={isDark}
+      onClick={() => applyTheme(isDark ? "light" : "dark")}
+      title={isDark ? "ปิดโหมดมืด (ใช้โหมดสว่าง)" : "เปิดโหมดมืด"}
       className={cn(
-        "flex h-10 w-10 items-center justify-center rounded-xl border border-line",
-        "bg-card text-lg transition-colors hover:bg-brand-soft",
+        "flex min-h-10 shrink-0 items-center gap-2 rounded-full border border-line",
+        "bg-card px-2.5 text-[13px] font-medium transition-colors hover:bg-brand-soft",
         "focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none",
         className,
       )}
     >
+      <span aria-hidden>{isDark ? "🌙" : "☀️"}</span>
       {/*
-        โชว์ไอคอนของโหมดที่จะได้เมื่อกด ไม่ใช่โหมดปัจจุบัน
-        คนอ่านปุ่มจะได้รู้ว่ากดแล้วเกิดอะไร
+        จอแคบมากตัดคำว่า "โหมด" ออก เหลือ "มืด" ยังอ่านรู้เรื่องและไม่ดันแถบล้น
+        ยอมย่อคำดีกว่าปล่อยให้ปุ่มหลุดขอบจอ
       */}
-      <span aria-hidden>{next === "light" ? "☀️" : "🌙"}</span>
+      <span className="whitespace-nowrap">
+        <span className="hidden min-[380px]:inline">โหมด</span>มืด
+      </span>
+      {/* รางสวิตช์ — ตำแหน่งลูกกลมบอกว่าเปิดหรือปิด */}
+      <span
+        aria-hidden
+        className={cn(
+          "relative h-5 w-9 shrink-0 rounded-full transition-colors",
+          isDark ? "bg-brand" : "bg-line",
+        )}
+      >
+        <span
+          className={cn(
+            "absolute top-0.5 h-4 w-4 rounded-full bg-card transition-[left]",
+            isDark ? "left-[18px]" : "left-0.5",
+          )}
+        />
+      </span>
     </button>
   );
 }

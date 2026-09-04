@@ -18,7 +18,7 @@ export function TopBar() {
     // print-hide เพราะกฎโหมดพิมพ์ซ่อนแค่ nav กับ aside แถบนี้เป็น header
     // ถ้าไม่ซ่อน ปุ่มพวกนี้จะติดไปอยู่หัวกระดาษตอนบันทึก PDF
     <header className="print-hide sticky top-0 z-30 border-b border-line bg-canvas/90 backdrop-blur">
-      <div className="mx-auto flex h-14 w-full max-w-3xl items-center justify-between gap-3 px-4 lg:px-8">
+      <div className="mx-auto flex h-14 w-full max-w-3xl items-center gap-2 px-3 lg:gap-3 lg:px-8">
         <TripSwitcher />
         <div className="flex shrink-0 items-center gap-2">
           <ThemeToggle />

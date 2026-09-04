@@ -19,11 +19,11 @@ export function TripSwitcher() {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        className="flex min-w-0 items-center gap-2 rounded-xl px-2 py-1.5 text-left transition-colors hover:bg-brand-soft"
+        className="flex min-w-0 flex-1 items-center gap-2 rounded-xl px-1.5 py-1.5 text-left transition-colors hover:bg-brand-soft"
         aria-label="สลับแผนเที่ยว"
       >
         <span
-          className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-base ring-1 ring-accent/25"
+          className="hidden h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-accent-soft text-base ring-1 ring-accent/25 sm:flex"
           aria-hidden
         >
           ✈️
