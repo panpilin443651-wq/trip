@@ -382,9 +382,16 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
       ) : null}
 
       {toast ? (
-        <p role="status" className="mt-3 text-sm text-ok">
-          ✓ {toast}
-        </p>
+        <div
+          role="status"
+          className="mt-3 flex flex-wrap items-center gap-x-3 gap-y-1.5 text-sm text-ok"
+        >
+          <span>✓ {toast}</span>
+          {/* ขั้นถัดไปที่คนอยากทำคือดูว่าที่ที่เพิ่งใส่อยู่ตรงไหนเทียบกับที่อื่น */}
+          <Link href="/map" className="text-brand underline">
+            🗺️ ดูบนแผนที่
+          </Link>
+        </div>
       ) : null}
     </Card>
   );

@@ -39,6 +39,9 @@ const PAIRS = [
   ["ตัวอักษรเน้นบนพื้นหน้า", "accent", "canvas", TEXT],
   ["ตัวอักษรเน้นบนการ์ด", "accent", "card", TEXT],
   ["ป้ายเน้น (ตัวอักษรบนพื้นอ่อน)", "accent", "accent-soft", TEXT],
+  // แถบยืนยันหลังกดบันทึกลงแผนในผู้ช่วย AI
+  ["ข้อความยืนยันบนแถบเน้น", "ink", "accent-soft", TEXT],
+  ["ตัวอักษรรองบนแถบเน้น", "muted", "accent-soft", TEXT],
   ["ตัวเลขในวงกลมลำดับ", "canvas", "accent-fill", TEXT],
   ["ตัวอักษรบนปุ่มที่เลือก", "on-pick", "pick", TEXT],
   ["เมนูที่เลือกบนพื้นเหลืองอ่อน", "pick-text", "pick-soft", TEXT],

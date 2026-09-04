@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useEffect, useState } from "react";
 import type { PlacePicks } from "@/app/api/chat/places/route";
 import { defaultChatStore } from "@/lib/chat/storage";
@@ -33,11 +34,26 @@ const STARTERS = [
   "ช่วยดูแผนวันแรกให้หน่อย",
 ];
 
-export function TravelAssistant({ className }: { className?: string }) {
+export function TravelAssistant({
+  className,
+  onLeave,
+}: {
+  className?: string;
+  /**
+   * เรียกก่อนพาออกจากผู้ช่วยไปหน้าอื่น
+   *
+   * ตอนผู้ช่วยเปิดอยู่ในกล่องลอย การกดลิงก์จะเปลี่ยนหน้าอยู่ข้างหลังกล่อง
+   * แต่กล่องยังเปิดค้างทับอยู่ เพราะสถานะเปิด/ปิดอยู่ที่ปุ่มลอยซึ่งไม่ได้
+   * ถูกถอดตอนเปลี่ยนหน้า ผู้ใช้จะงงว่ากดแล้วไม่มีอะไรเกิดขึ้น
+   */
+  onLeave?: () => void;
+}) {
   const { state, dispatch, activitiesForDay } = useTrip();
   const { trip } = state;
   const [targetDay, setTargetDay] = useState(0);
   const [added, setAdded] = useState<Set<string>>(new Set());
+  /** ที่เพิ่งใส่ลงแผน — ใช้ยืนยันให้เห็นชัดว่ากดติดแล้ว */
+  const [saved, setSaved] = useState<{ name: string; day: number } | null>(null);
 
   /*
    * จังหวัดตั้งต้นของคำถามที่ไม่ได้ระบุที่ไหน ("มีอะไรน่ากินบ้าง")
@@ -75,6 +91,7 @@ export function TravelAssistant({ className }: { className?: string }) {
       },
     });
     setAdded((prev) => new Set(prev).add(`${row.name}::${row.province}`));
+    setSaved({ name: row.name, day: targetDay });
   }
 
   return (
@@ -95,6 +112,47 @@ export function TravelAssistant({ className }: { className?: string }) {
             ))}
           </Select>
         </Field>
+      ) : null}
+
+      {saved ? (
+        /*
+         * แถบยืนยันวางในเนื้อ ไม่ใช่ toast ลอยแบบหน้าอื่น
+         *
+         * ผู้ช่วยเปิดในกล่องลอยได้ ซึ่งอยู่ชั้น z-50 ส่วน toast ลอยของหน้าอื่น
+         * อยู่ z-40 ถ้าใช้แบบลอยจะไปอยู่หลังกล่องจนมองไม่เห็น
+         */
+        <div
+          role="status"
+          className="mb-3 rounded-xl bg-accent-soft px-3 py-2.5 text-sm text-ink"
+        >
+          <p className="leading-relaxed">
+            ✓ ใส่ <span className="font-medium">{saved.name}</span> ในแผนวันที่{" "}
+            {saved.day + 1} แล้ว
+          </p>
+          <div className="mt-2 flex flex-wrap gap-2">
+            <Link
+              href="/map"
+              onClick={onLeave}
+              className="flex min-h-9 items-center rounded-full bg-card px-3 text-xs font-medium text-brand"
+            >
+              🗺️ ดูบนแผนที่
+            </Link>
+            <Link
+              href="/settings"
+              onClick={onLeave}
+              className="flex min-h-9 items-center rounded-full bg-card px-3 text-xs font-medium text-brand"
+            >
+              📋 ดูแผนเที่ยว
+            </Link>
+            <button
+              type="button"
+              onClick={() => setSaved(null)}
+              className="flex min-h-9 items-center px-2 text-xs text-muted underline"
+            >
+              ปิด
+            </button>
+          </div>
+        </div>
       ) : null}
 
       <ChatPanel
@@ -195,7 +253,10 @@ function PlacePickRow({
   if (!rows || rows.length === 0) return null;
 
   return (
-    <div className="mt-2 flex max-w-[85%] flex-wrap gap-1.5">
+    <div className="mt-2 max-w-[85%]">
+      {/* ป้ายบอกหน้าที่ของแถวปุ่ม — ชื่อสถานที่ลอย ๆ อ่านไม่ออกว่ากดแล้วเกิดอะไร */}
+      <p className="mb-1 text-xs text-faint">กดเพื่อบันทึกลงแผน</p>
+      <div className="flex flex-wrap gap-1.5">
       {rows.map((row) => {
         const key = `${row.name}::${row.province}`;
         const done = added.has(key);
@@ -223,6 +284,7 @@ function PlacePickRow({
           </span>
         );
       })}
+      </div>
     </div>
   );
 }

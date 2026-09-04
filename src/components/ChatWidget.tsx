@@ -29,7 +29,10 @@ export function ChatWidget() {
       </button>
 
       <Sheet open={open} title="💬 ผู้ช่วย AI" onClose={() => setOpen(false)}>
-        <TravelAssistant className="flex h-[60dvh] flex-col" />
+        <TravelAssistant
+          className="flex h-[60dvh] flex-col"
+          onLeave={() => setOpen(false)}
+        />
       </Sheet>
     </>
   );
