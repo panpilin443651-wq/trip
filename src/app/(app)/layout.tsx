@@ -19,11 +19,18 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
   } = await supabase.auth.getUser();
   if (!user) redirect("/login");
 
+  /*
+   * TripProvider ต้องครอบทุกอย่าง รวมถึงแถบข้างและแถบล่าง
+   *
+   * แถบข้างมีตัวสลับแผนซึ่งเรียก useTrip() ถ้าอยู่นอก provider จะโยน error
+   * แล้วทั้งหน้าจอขาว ไม่ใช่แค่แถบข้างพัง — เคยพลาดมาแล้วตอนย้ายตัวสลับแผน
+   * เข้ามาไว้ในแถบข้าง
+   */
   return (
-    <div className="flex flex-1">
-      <SideNav />
-      <div className="flex min-w-0 flex-1 flex-col">
-        <TripProvider userId={user.id}>
+    <TripProvider userId={user.id}>
+      <div className="flex flex-1">
+        <SideNav />
+        <div className="flex min-w-0 flex-1 flex-col">
           <TopBar email={user.email ?? ""} />
           <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-24 lg:px-8 lg:pt-6 lg:pb-10">
             {children}
@@ -32,9 +39,9 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
           <ChatWidget />
           <SyncStatus />
           <ScrollLockGuard />
-        </TripProvider>
+        </div>
+        <BottomNav />
       </div>
-      <BottomNav />
-    </div>
+    </TripProvider>
   );
 }

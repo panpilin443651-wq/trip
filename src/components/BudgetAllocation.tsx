@@ -45,7 +45,7 @@ export function BudgetAllocation() {
 
   return (
     <Card as="section" className={cn("ring-1 ring-inset", tone.ring)}>
-      <SectionTitle emoji="🧩" title="การแบ่งงบลงหมวด" />
+      <SectionTitle title="การแบ่งงบลงหมวด" />
 
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
@@ -161,7 +161,7 @@ export function BudgetAllocation() {
 
       {allocation.tone === "empty" ? (
         <p className="mt-3 rounded-xl bg-canvas px-3 py-2.5 text-xs leading-relaxed text-muted">
-          💡 ตั้งงบรวมของทริปก่อน แล้วกดเกลี่ยส่วนที่เหลือ
+          ตั้งงบรวมของทริปก่อน แล้วกดเกลี่ยส่วนที่เหลือ
           ระบบจะแบ่งลงหมวดที่ยังว่างให้เอง
         </p>
       ) : null}

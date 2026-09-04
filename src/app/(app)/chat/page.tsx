@@ -13,7 +13,6 @@ export default function ChatPage() {
   return (
     <>
       <PageHeader
-        emoji="💬"
         title="ผู้ช่วย AI"
         subtitle="ถามวิธีใช้เว็บ หรือถามเรื่องทริปที่คุณวางไว้ก็ได้"
       />

@@ -107,7 +107,6 @@ export default function PlacesPage() {
   return (
     <>
       <PageHeader
-        emoji="📍"
         title="สถานที่ที่อยากไป"
         subtitle="Places to Visit — ตั้งความสำคัญและติ๊กเมื่อไปแล้ว"
         action={
@@ -159,7 +158,7 @@ export default function PlacesPage() {
               : "ไม่มีสถานที่ในตัวกรองนี้"
           }
           description="เพิ่มเองได้ หรือกดเพิ่มจากหน้าแนะนำเที่ยวก็ได้เหมือนกัน"
-          action={<Button onClick={openCreate}>➕ เพิ่มสถานที่</Button>}
+          action={<Button onClick={openCreate}>เพิ่มสถานที่</Button>}
         />
       ) : (
         <ul className="space-y-3">

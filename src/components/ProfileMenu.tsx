@@ -3,19 +3,16 @@
 import Link from "next/link";
 import { useState } from "react";
 import { SignOutIconButton } from "@/components/SignOutIconButton";
-import { ThemeToggle } from "@/components/ThemeToggle";
 import { Sheet } from "@/components/ui";
-import { SECONDARY_NAV } from "@/lib/nav";
 
 /**
- * ปุ่มโปรไฟล์มุมขวาบน — กดแล้วเปิดเมนูบัญชี
+ * ปุ่มโปรไฟล์มุมขวาบน — มีแค่ประวัติส่วนตัวกับออกจากระบบ
  *
- * ย้ายมาจากแถบล่างเพราะโปรไฟล์ไม่ใช่ปลายทางที่คนเข้าบ่อยเท่าสี่เมนูที่เหลือ
- * แถบล่างจึงเหลือสี่ช่อง ปุ่มใหญ่ขึ้น กดง่ายขึ้น
+ * ตั้งใจให้สั้น เมนูบัญชีที่ยาวเกินไปทำให้คนต้องอ่านทุกบรรทัดก่อนจะเจอสิ่งที่
+ * ต้องการ ส่วนเมนูอื่น ๆ ของแอปอยู่ในแถบข้าง (จอใหญ่) และแถบล่าง (จอเล็ก)
+ * ที่กดถึงได้โดยไม่ต้องเปิดเมนูนี้ก่อนอยู่แล้ว
  *
- * สวิตช์โหมดมืดกับปุ่มออกจากระบบย้ายเข้ามาอยู่ในนี้ด้วย เดิมอยู่บนแถบบน
- * ซึ่งพอมีคำกำกับแล้วกินที่จนชื่อแผนแทบไม่เหลือที่ ในเมนูมีที่ให้เขียนคำเต็ม
- * และยังกดถึงได้ในสองขั้นจากทุกหน้าเหมือนเดิม
+ * สวิตช์โหมดมืดย้ายไปอยู่ในหน้าประวัติส่วนตัว เพราะเป็นการตั้งค่า ไม่ใช่ทางลัด
  */
 export function ProfileMenu({ email }: { email: string }) {
   const [open, setOpen] = useState(false);
@@ -25,63 +22,37 @@ export function ProfileMenu({ email }: { email: string }) {
       <button
         type="button"
         onClick={() => setOpen(true)}
-        aria-label="โปรไฟล์และการตั้งค่า"
-        className="flex min-h-10 shrink-0 items-center gap-1.5 rounded-full border border-line bg-card px-3 text-[13px] font-medium transition-colors hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none"
+        aria-label="โปรไฟล์"
+        className="flex min-h-10 shrink-0 items-center gap-2 rounded-full border border-line bg-card px-3 text-sm font-medium transition-colors hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none"
       >
-        <span aria-hidden>👤</span>
+        <span
+          className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand"
+          aria-hidden
+        >
+          {(email.trim()[0] ?? "?").toUpperCase()}
+        </span>
         <span className="whitespace-nowrap">โปรไฟล์</span>
       </button>
 
-      <Sheet open={open} title="👤 โปรไฟล์" onClose={() => setOpen(false)}>
-        <div className="space-y-4">
-          <div className="flex items-center gap-3 rounded-2xl bg-canvas px-3 py-3">
-            <span
-              className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-xl"
-              aria-hidden
-            >
-              🧑‍✈️
-            </span>
-            <div className="min-w-0 flex-1">
-              <p className="truncate text-sm font-medium">{email || "ผู้ใช้"}</p>
-              <p className="text-xs text-muted">เข้าสู่ระบบอยู่</p>
-            </div>
-          </div>
-
-          <div className="flex flex-col gap-2">
-            <ThemeToggle className="w-full justify-between" />
-            <SignOutIconButton className="w-full justify-center" />
-          </div>
-
-          <div>
-            <p className="mb-2 text-[13px] font-medium text-muted">เมนูอื่น</p>
-            <ul className="space-y-1.5">
-              {SECONDARY_NAV.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setOpen(false)}
-                    className="flex min-h-11 items-center gap-3 rounded-2xl px-3 text-sm transition-colors hover:bg-brand-soft"
-                  >
-                    <span className="text-lg leading-none" aria-hidden>
-                      {item.emoji}
-                    </span>
-                    <span className="min-w-0 flex-1 truncate">{item.label}</span>
-                    <span className="shrink-0 text-muted" aria-hidden>
-                      ›
-                    </span>
-                  </Link>
-                </li>
-              ))}
-            </ul>
+      <Sheet open={open} title="โปรไฟล์" onClose={() => setOpen(false)}>
+        <div className="space-y-3">
+          <div className="rounded-2xl bg-canvas px-4 py-3">
+            <p className="truncate text-sm font-medium">{email || "ผู้ใช้"}</p>
+            <p className="mt-0.5 text-xs text-muted">เข้าสู่ระบบอยู่</p>
           </div>
 
           <Link
             href="/more"
             onClick={() => setOpen(false)}
-            className="block text-center text-sm text-brand underline"
+            className="flex min-h-12 items-center justify-between gap-3 rounded-2xl border border-line px-4 text-sm font-medium transition-colors hover:bg-brand-soft"
           >
-            เปิดหน้าโปรไฟล์เต็ม
+            ประวัติส่วนตัว
+            <span className="shrink-0 text-muted" aria-hidden>
+              ›
+            </span>
           </Link>
+
+          <SignOutIconButton className="w-full justify-center" />
         </div>
       </Sheet>
     </>

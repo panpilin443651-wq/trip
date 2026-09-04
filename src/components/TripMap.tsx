@@ -113,7 +113,7 @@ export default function TripMap({
             {point.activity.placeName ? (
               <>
                 <br />
-                📍 {point.activity.placeName}
+                {point.activity.placeName}
               </>
             ) : null}
             {point.activity.cost > 0 ? (

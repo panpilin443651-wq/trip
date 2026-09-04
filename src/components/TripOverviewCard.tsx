@@ -42,7 +42,7 @@ export function TripOverviewCard({
         <div className="min-w-0">
           {showTitle ? (
             <>
-              <p className="text-sm text-brand">✈️ Travel Planner</p>
+              <p className="text-sm text-brand">Travel Planner</p>
               <h1 className="mt-1 mb-2 text-2xl font-semibold break-words">
                 {trip.name || "ทริปของฉัน"}
               </h1>
@@ -51,8 +51,8 @@ export function TripOverviewCard({
 
           <p className="text-sm text-muted">
             {trip.provinces.length > 0
-              ? `📍 ${trip.provinces.join(" → ")}`
-              : "📍 ยังไม่ได้เลือกจังหวัด"}
+              ? trip.provinces.join(" → ")
+              : "ยังไม่ได้เลือกจังหวัด"}
           </p>
 
           <p className="mt-1.5 font-medium">

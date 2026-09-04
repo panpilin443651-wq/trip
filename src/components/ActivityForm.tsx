@@ -209,7 +209,7 @@ export function ActivityForm({
       <div className="space-y-4">
         {isEdit ? (
           <Field
-            label="📍 สถานที่"
+            label="สถานที่"
             hint="กดที่ช่องแล้วเลือกจากที่ดังในจังหวัดนี้ หรือพิมพ์ชื่อเองก็ได้"
           >
             <PlaceCombobox
@@ -223,7 +223,7 @@ export function ActivityForm({
         ) : (
           <div>
             <p className="mb-1.5 text-[13px] font-medium text-muted">
-              📍 สถานที่
+              สถานที่
             </p>
             <PlaceListInput
               value={places}

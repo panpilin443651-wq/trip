@@ -41,7 +41,7 @@ export function BudgetEstimator() {
 
   return (
     <Card as="section">
-      <SectionTitle emoji="🧮" title="ประมาณการค่าใช้จ่าย" />
+      <SectionTitle title="ประมาณการค่าใช้จ่าย" />
 
       <p className="mb-3 text-sm text-muted">
         คำนวณจาก {trip.dayCount} วัน • {trip.travelers} คน

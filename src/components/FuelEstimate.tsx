@@ -117,7 +117,7 @@ export function FuelEstimate() {
 
   return (
     <Card as="section">
-      <SectionTitle emoji="⛽" title="ค่าน้ำมันตามระยะทางจริง" />
+      <SectionTitle title="ค่าน้ำมันตามระยะทางจริง" />
 
       <p className="mb-3 text-sm text-muted">
         คิดจากระยะทางตามถนนจริงของทุกวันในแผนรวมกัน

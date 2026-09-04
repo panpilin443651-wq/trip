@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
 import { TripSwitcher } from "@/components/TripSwitcher";
 import { cn } from "@/lib/cn";
-import { NAV_ITEMS, PRIMARY_NAV } from "@/lib/nav";
+import { PRIMARY_NAV, SIDEBAR_NAV } from "@/lib/nav";
 import {
   isSidebarCollapsed,
   setSidebarCollapsed,
@@ -138,7 +138,7 @@ export function SideNav() {
 
         <nav aria-label="เมนูทั้งหมด" className="mt-1 min-h-0 flex-1 overflow-y-auto">
           <ul className="space-y-1">
-            {NAV_ITEMS.map((item) => {
+            {SIDEBAR_NAV.map((item) => {
               const active = isActive(item.href);
               return (
                 <li key={item.href}>

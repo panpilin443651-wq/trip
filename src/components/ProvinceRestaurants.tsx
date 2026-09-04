@@ -126,7 +126,6 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
   return (
     <Card as="section">
       <SectionTitle
-        emoji="🍜"
         title="ร้านดังในจังหวัด"
         action={
           all ? (
@@ -218,7 +217,7 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
                     </div>
                     {hit.openingHours ? (
                       <p className="mt-1 text-xs text-faint">
-                        🕒 {hit.openingHours}
+                        {hit.openingHours}
                       </p>
                     ) : null}
                     <a

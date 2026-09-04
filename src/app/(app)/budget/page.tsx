@@ -77,7 +77,6 @@ export default function BudgetPage() {
   return (
     <>
       <PageHeader
-        emoji="💰"
         title="งบประมาณ"
         subtitle="ค่าใช้จ่ายจากกิจกรรมจะถูกรวมเข้ามาอัตโนมัติ"
         action={
@@ -124,7 +123,6 @@ export default function BudgetPage() {
 
         <section>
           <SectionTitle
-            emoji="🗂️"
             title="แยกตามหมวด"
             action={
               <span className="text-xs text-muted">ช่องขวา = งบที่ตั้งไว้</span>
@@ -156,7 +154,7 @@ export default function BudgetPage() {
         <FuelEstimate />
 
         <Card as="section">
-          <SectionTitle emoji="📝" title="บันทึกช่วยจำเรื่องงบ" />
+          <SectionTitle title="บันทึกช่วยจำเรื่องงบ" />
 
           <Textarea
             value={note}

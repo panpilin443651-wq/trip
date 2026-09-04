@@ -70,14 +70,13 @@ export default function SettingsPage() {
   return (
     <>
       <PageHeader
-        emoji="⚙️"
         title="ตั้งค่าทริป"
         subtitle="ข้อมูลทริป แผนเที่ยวรายวัน งบประมาณ และข้อมูลที่บันทึกไว้"
       />
 
       <div className="space-y-4">
         <Card as="section">
-          <SectionTitle emoji="📅" title="รูปแบบการเดินทาง" />
+          <SectionTitle title="รูปแบบการเดินทาง" />
 
           <div className="grid grid-cols-2 gap-2">
             <button
@@ -173,7 +172,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card as="section">
-          <SectionTitle emoji="🧳" title="ข้อมูลทริป" />
+          <SectionTitle title="ข้อมูลทริป" />
           <div className="grid gap-4 sm:grid-cols-2">
             <Field label="ชื่อทริป" className="sm:col-span-2">
               <Input
@@ -236,7 +235,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card as="section">
-          <SectionTitle emoji="🗺️" title="แพลนการเที่ยว" />
+          <SectionTitle title="แพลนการเที่ยว" />
           <p className="mb-3 text-sm text-muted">
             เลือกจังหวัดที่จะไปในทริปนี้ ไปหลายจังหวัดในทริปเดียวได้
             ระบบจะใช้จังหวัดเหล่านี้แนะนำสถานที่และกิจกรรมให้
@@ -259,7 +258,7 @@ export default function SettingsPage() {
         </div>
 
         <Card as="section">
-          <SectionTitle emoji="💰" title="งบประมาณ" />
+          <SectionTitle title="งบประมาณ" />
 
           <Field
             label="งบรวมของทริป (บาท)"
@@ -296,7 +295,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card as="section">
-          <SectionTitle emoji="💾" title="ข้อมูลที่บันทึกไว้" />
+          <SectionTitle title="ข้อมูลที่บันทึกไว้" />
           <p className="mb-4 text-sm leading-relaxed text-muted">
             ข้อมูลทั้งหมดเก็บอยู่ในเบราว์เซอร์เครื่องนี้เท่านั้น
             หากเปลี่ยนเครื่องหรือล้างข้อมูลเบราว์เซอร์ ให้ใช้ Export
@@ -335,7 +334,7 @@ export default function SettingsPage() {
         </Card>
 
         <Card as="section">
-          <SectionTitle emoji="🔐" title="บัญชี" />
+          <SectionTitle title="บัญชี" />
           <SignOutButton />
         </Card>
       </div>

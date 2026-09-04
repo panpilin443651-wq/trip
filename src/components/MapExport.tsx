@@ -47,7 +47,7 @@ export function MapExport({
 
   return (
     <Card as="section">
-      <SectionTitle emoji="📲" title="เอาแผนที่ไปใช้ตอนเดินทาง" />
+      <SectionTitle title="เอาแผนที่ไปใช้ตอนเดินทาง" />
 
       <div className="space-y-2">
         {directions ? (

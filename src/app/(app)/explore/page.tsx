@@ -273,7 +273,6 @@ export default function ExplorePage() {
   return (
     <>
       <PageHeader
-        emoji="🧭"
         title="แนะนำเที่ยว"
         subtitle="เลือกจังหวัดแล้วหยิบสถานที่หรือกิจกรรมใส่แผนได้ทันที"
       />

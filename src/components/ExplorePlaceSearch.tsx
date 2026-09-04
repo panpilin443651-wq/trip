@@ -159,8 +159,8 @@ export function ExplorePlaceSearch({
 
   const where = district || province;
   const sections = [
-    { label: `⭐ คัดมาแนะนำใน${where}`, rows: curatedRows },
-    { label: `📍 จาก OpenStreetMap ใน${where}`, rows: osmRows },
+    { label: `คัดมาแนะนำใน${where}`, rows: curatedRows },
+    { label: `จาก OpenStreetMap ใน${where}`, rows: osmRows },
   ].filter((s) => s.rows.length > 0);
 
   const options = sections.flatMap((s) => s.rows);

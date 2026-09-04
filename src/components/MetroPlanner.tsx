@@ -95,7 +95,7 @@ export function MetroPlanner() {
                 <span className="text-muted">
                   🔄 เปลี่ยนสาย {route.transfers} ครั้ง
                 </span>
-                <span className="text-muted">⏱️ ~{route.minutes} นาที</span>
+                <span className="text-muted">~{route.minutes} นาที</span>
               </div>
 
               <ol className="space-y-2">

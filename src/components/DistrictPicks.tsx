@@ -176,7 +176,6 @@ export function DistrictPicks({
   return (
     <Card as="section" className="mt-4">
       <SectionTitle
-        emoji="🛕"
         title={`วัด คาเฟ่ ร้านดัง ใน${where}`}
         action={
           all ? (

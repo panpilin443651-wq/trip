@@ -2,7 +2,8 @@ import Link from "next/link";
 import { BuildInfo } from "@/components/BuildInfo";
 import { PageHeader } from "@/components/PageHeader";
 import { SignOutButton } from "@/components/SignOutButton";
-import { Card } from "@/components/ui";
+import { ThemeToggle } from "@/components/ThemeToggle";
+import { Card, SectionTitle } from "@/components/ui";
 import { createClient } from "@/lib/supabase/server";
 import { SECONDARY_NAV } from "@/lib/nav";
 
@@ -20,19 +21,20 @@ export default async function ProfilePage() {
 
   return (
     <>
-      <PageHeader emoji="👤" title="โปรไฟล์" subtitle="บัญชีและเมนูที่เหลือ" />
+      <PageHeader
+        title="ประวัติส่วนตัว"
+        subtitle="บัญชี การตั้งค่า และเมนูที่เหลือ"
+      />
 
-      <Card className="mb-4 flex items-center gap-3">
-        <span
-          className="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-2xl"
-          aria-hidden
-        >
-          🧑‍✈️
-        </span>
-        <div className="min-w-0 flex-1">
-          <p className="truncate font-medium">{user?.email ?? "ผู้ใช้"}</p>
-          <p className="text-sm text-muted">เข้าสู่ระบบอยู่</p>
-        </div>
+      <Card className="mb-4">
+        <p className="truncate font-medium">{user?.email ?? "ผู้ใช้"}</p>
+        <p className="mt-0.5 text-sm text-muted">เข้าสู่ระบบอยู่</p>
+      </Card>
+
+      {/* สวิตช์โหมดมืดอยู่ที่นี่ เพราะเป็นการตั้งค่า ไม่ใช่ทางลัดที่ต้องกดบ่อย */}
+      <Card className="mb-4">
+        <SectionTitle title="การแสดงผล" />
+        <ThemeToggle className="w-full justify-between" />
       </Card>
 
       <ul className="space-y-2">
@@ -40,12 +42,6 @@ export default async function ProfilePage() {
           <li key={item.href}>
             <Link href={item.href}>
               <Card className="flex items-center gap-3 transition-colors hover:border-brand">
-                <span
-                  className="flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-brand-soft text-xl leading-none"
-                  aria-hidden
-                >
-                  {item.emoji}
-                </span>
                 <div className="min-w-0 flex-1">
                   <p className="font-medium">{item.label}</p>
                   <p className="text-sm text-muted">{item.description}</p>
@@ -60,7 +56,7 @@ export default async function ProfilePage() {
       </ul>
 
       <Card className="mt-4">
-        <h2 className="text-base font-semibold">🔐 บัญชี</h2>
+        <h2 className="text-base font-semibold">บัญชี</h2>
         <p className="mt-1 mb-3 text-sm text-muted">
           ออกจากระบบแล้วแผนทริปยังอยู่ในบัญชีเหมือนเดิม เข้าใหม่เมื่อไหร่ก็เห็นครบ
         </p>

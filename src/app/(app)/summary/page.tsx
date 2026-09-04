@@ -90,13 +90,12 @@ export default function SummaryPage() {
 
       <div className="print-hide">
         <PageHeader
-          emoji="📄"
           title="สรุปแผนเที่ยว"
           subtitle="ไฟล์สำหรับเก็บไว้หรือส่งให้เพื่อน รวมทุกวันไว้หน้าเดียว"
         />
 
         <Card className="mb-5">
-          <SectionTitle emoji="💾" title="บันทึกแผน" />
+          <SectionTitle title="บันทึกแผน" />
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button className="flex-1" onClick={() => void saveImage()}>
               {imageState === "working" ? "กำลังสร้างรูป…" : "🖼️ บันทึกเป็นรูป PNG"}
@@ -160,7 +159,6 @@ export default function SummaryPage() {
         {days.map((day) => (
           <section key={day.index} className="break-inside-avoid">
             <SectionTitle
-              emoji="🗓️"
               title={
                 trip.dayCount === 1
                   ? "แผนการเที่ยว"
@@ -248,7 +246,7 @@ export default function SummaryPage() {
 
         {places.length > 0 ? (
           <section className="break-inside-avoid">
-            <SectionTitle emoji="📍" title="สถานที่ที่อยากไป" />
+            <SectionTitle title="สถานที่ที่อยากไป" />
             <Card>
               <ul className="space-y-1.5 text-sm">
                 {places.map((place) => (

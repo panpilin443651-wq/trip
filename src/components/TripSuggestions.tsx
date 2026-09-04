@@ -122,7 +122,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
   if (provinces.length === 0) {
     return (
       <Card as="section" className="bg-canvas">
-        <SectionTitle emoji="✨" title="แนะนำสำหรับทริปนี้" />
+        <SectionTitle title="แนะนำสำหรับทริปนี้" />
         <p className="text-sm text-muted">
           ยังไม่ได้เลือกจังหวัดในแพลนการเที่ยว เลือกก่อนแล้วระบบจะแนะนำ
           สถานที่และกิจกรรมของจังหวัดนั้นให้ที่นี่
@@ -151,7 +151,6 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
   return (
     <Card as="section">
       <SectionTitle
-        emoji="✨"
         title="แนะนำสำหรับทริปนี้"
         action={
           <span className="text-xs text-muted">
@@ -167,7 +166,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
       <div className="mb-3 flex gap-2 rounded-xl bg-line/50 p-1">
         {(
           [
-            ["places", `📍 สถานที่ (${countPlaces})`],
+            ["places", `สถานที่ (${countPlaces})`],
             ["activities", `🎯 กิจกรรม (${countActivities})`],
           ] as Array<[Tab, string]>
         ).map(([id, label]) => (

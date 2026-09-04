@@ -72,7 +72,7 @@ export function BudgetSummary({
 
       {!compact && status.tone === "empty" ? (
         <p className="mt-3 rounded-xl bg-canvas px-3 py-2.5 text-xs text-muted">
-          💡 ตั้งงบรวมของทริปได้ที่ช่องด้านล่าง แล้วระบบจะเตือนเมื่อใกล้เต็มหรือเกินงบ
+          ตั้งงบรวมของทริปได้ที่ช่องด้านล่าง แล้วระบบจะเตือนเมื่อใกล้เต็มหรือเกินงบ
         </p>
       ) : null}
     </Card>

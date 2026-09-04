@@ -43,13 +43,13 @@ export function PlaceDetailSheet({
   return (
     <Sheet
       open={!!place}
-      title={place ? `${place.emoji} ${place.name}` : ""}
+      title={place ? place.name : ""}
       onClose={onClose}
       footer={
         place ? (
           <div className="flex flex-col gap-2 sm:flex-row">
             <Button className="flex-1" onClick={() => onAddToTrip(place)}>
-              📅 ใส่ในโปรแกรมเที่ยว
+              ใส่ในโปรแกรมเที่ยว
             </Button>
             <a
               href={googleMapsUrl(`${place.name} ${province}`)}
@@ -58,7 +58,7 @@ export function PlaceDetailSheet({
               className="flex-1"
             >
               <Button variant="secondary" className="w-full">
-                🗺️ เปิดใน Google Maps
+                เปิดใน Google Maps
               </Button>
             </a>
           </div>
@@ -69,10 +69,10 @@ export function PlaceDetailSheet({
         <div className="space-y-4">
           <div className="flex flex-wrap gap-1.5">
             <Badge className="bg-brand-soft text-brand">{place.tag}</Badge>
-            <Badge>📍 {place.district ?? province}</Badge>
-            <Badge>⏱️ {formatDuration(place.durationMin)}</Badge>
+            <Badge>{place.district ?? province}</Badge>
+            <Badge>{formatDuration(place.durationMin)}</Badge>
             <Badge>
-              {place.fee > 0 ? `🎟️ ${formatTHB(place.fee)}` : "🎟️ ไม่มีค่าเข้า"}
+              {place.fee > 0 ? formatTHB(place.fee) : "ไม่มีค่าเข้า"}
             </Badge>
           </div>
 
@@ -83,11 +83,11 @@ export function PlaceDetailSheet({
 
           <dl className="space-y-2 text-sm">
             <div className="rounded-2xl bg-canvas px-3 py-2.5">
-              <dt className="text-xs text-muted">🕒 ช่วงที่ควรไป</dt>
+              <dt className="text-xs text-muted">ช่วงที่ควรไป</dt>
               <dd className="mt-0.5 leading-relaxed">{place.bestTime}</dd>
             </div>
             <div className="rounded-2xl bg-canvas px-3 py-2.5">
-              <dt className="text-xs text-muted">💡 เคล็ดลับ</dt>
+              <dt className="text-xs text-muted">เคล็ดลับ</dt>
               <dd className="mt-0.5 leading-relaxed">{place.tip}</dd>
             </div>
           </dl>
@@ -100,7 +100,7 @@ export function PlaceDetailSheet({
           >
             {isSaved
               ? "✓ อยู่ในรายการที่อยากไปแล้ว"
-              : "📍 เก็บไว้ในรายการที่อยากไป"}
+              : "เก็บไว้ในรายการที่อยากไป"}
           </Button>
 
           <p className="text-xs leading-relaxed text-faint">

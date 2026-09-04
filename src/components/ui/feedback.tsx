@@ -27,25 +27,22 @@ export function EmptyState({
 }
 
 export function StatTile({
-  emoji,
   label,
   value,
   valueClass,
 }: {
-  emoji: string;
   label: string;
   value: string;
   valueClass?: string;
 }) {
   return (
+    // ตัวเลขมาก่อนคำอธิบาย เพราะเป็นสิ่งที่คนกวาดตาหา
+    // ไม่มีอิโมจินำแล้ว ตัวเลขจึงขึ้นไปอยู่บนสุดของกล่องได้เลย
     <div className="rounded-2xl border border-line bg-card px-3 py-3">
-      <div className="text-lg leading-none" aria-hidden>
-        {emoji}
-      </div>
-      <div className={cn("mt-2 text-lg font-semibold tabular-nums", valueClass)}>
+      <div className={cn("text-xl font-semibold tabular-nums", valueClass)}>
         {value}
       </div>
-      <div className="mt-0.5 text-xs text-muted">{label}</div>
+      <div className="mt-1 text-xs text-muted">{label}</div>
     </div>
   );
 }

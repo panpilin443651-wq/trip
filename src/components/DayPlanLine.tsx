@@ -32,7 +32,7 @@ export function DayPlanLine({
   return (
     <div className={cn("px-1 text-sm text-muted", className)}>
       <p className="flex flex-wrap gap-x-3 gap-y-1">
-        {plan?.province ? <span>📍 {plan.province}</span> : null}
+        {plan?.province ? <span>{plan.province}</span> : null}
         {route ? <span>{route}</span> : null}
       </p>
       {note || legNotes.length > 0 ? (

@@ -58,7 +58,6 @@ export default function ChecklistPage() {
   return (
     <>
       <PageHeader
-        emoji="✅"
         title="Checklist"
         subtitle="ของที่ต้องเตรียมก่อนออกเดินทาง"
         action={

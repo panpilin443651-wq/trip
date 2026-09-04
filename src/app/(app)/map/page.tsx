@@ -115,7 +115,6 @@ export default function MapPage() {
   return (
     <>
       <PageHeader
-        emoji="🗺️"
         title="แผนที่และเส้นทาง"
         subtitle="หมุดเรียงตามลำดับเวลาของกิจกรรมในวันนั้น"
       />
@@ -134,7 +133,7 @@ export default function MapPage() {
           description="เพิ่มกิจกรรมในหน้าแผนเที่ยวก่อน แล้วปักหมุดสถานที่เพื่อดูเส้นทาง"
           action={
             <Link href="/settings#plan">
-              <Button>📋 ไปหน้าแผนเที่ยว</Button>
+              <Button>ไปหน้าแผนเที่ยว</Button>
             </Link>
           }
         />
@@ -165,7 +164,6 @@ export default function MapPage() {
             <>
               <div className="grid grid-cols-2 gap-2">
                 <StatTile
-                  emoji="🛣️"
                   label="ระยะทางรวม"
                   value={
                     loading
@@ -174,7 +172,6 @@ export default function MapPage() {
                   }
                 />
                 <StatTile
-                  emoji="⏱️"
                   label="เวลาเดินทางรวม"
                   value={
                     loading ? "…" : formatTravelTime(route?.totalDuration ?? 0)

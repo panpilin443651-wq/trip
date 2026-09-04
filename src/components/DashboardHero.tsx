@@ -43,7 +43,6 @@ export function DashboardHero({ trip }: { trip: Trip }) {
 
         {trip.provinces.length > 0 ? (
           <p className="mt-1.5 text-sm text-muted">
-            <span aria-hidden>📍 </span>
             {trip.provinces.join(" · ")}
           </p>
         ) : (

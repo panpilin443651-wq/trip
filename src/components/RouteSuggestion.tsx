@@ -106,7 +106,7 @@ export function RouteSuggestion({
   return (
     <>
       <Card className="border-accent/40 bg-accent-soft">
-        <SectionTitle emoji="🧭" title="จัดลำดับใหม่ได้" />
+        <SectionTitle title="จัดลำดับใหม่ได้" />
         <p className="text-sm leading-relaxed text-muted">
           ลำดับตอนนี้เดินทางวนไปมา ถ้าสลับจุดแวะใหม่จะเหลือระยะทาง{" "}
           <span className="font-medium text-ink">

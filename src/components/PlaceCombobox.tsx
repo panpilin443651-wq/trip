@@ -164,7 +164,7 @@ export function PlaceCombobox({
     },
     {
       key: "osm",
-      label: `📍 ที่เที่ยวอื่นใน ${dayProvince}`,
+      label: `ที่เที่ยวอื่นใน ${dayProvince}`,
       items: osmOptions,
     },
     { key: "search", label: "🔎 ค้นจากแผนที่", items: remoteOptions },

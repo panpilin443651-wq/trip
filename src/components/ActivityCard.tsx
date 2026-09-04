@@ -101,7 +101,7 @@ export function ActivityCard({
             {category.emoji} {category.label}
           </Badge>
           {otherProvince ? (
-            <Badge className="bg-accent-soft text-accent">📍 {otherProvince}</Badge>
+            <Badge className="bg-accent-soft text-accent">{otherProvince}</Badge>
           ) : null}
           {activity.cost > 0 ? (
             <Badge className="bg-brand-soft text-brand">

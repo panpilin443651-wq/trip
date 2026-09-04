@@ -91,7 +91,6 @@ export function ItineraryPlanner() {
     <>
       <Card as="section">
         <SectionTitle
-          emoji="📋"
           title="แผนเที่ยว"
           action={
             <Button size="sm" onClick={openCreate}>
@@ -128,9 +127,9 @@ export function ItineraryPlanner() {
             description="เพิ่มกิจกรรมแรก หรือหยิบจากที่แนะนำด้านล่างก็ได้"
             action={
               <div className="flex flex-wrap justify-center gap-2">
-                <Button onClick={openCreate}>➕ เพิ่มกิจกรรม</Button>
+                <Button onClick={openCreate}>เพิ่มกิจกรรม</Button>
                 <Link href="/explore">
-                  <Button variant="secondary">🧭 ดูที่แนะนำ</Button>
+                  <Button variant="secondary">ดูที่แนะนำ</Button>
                 </Link>
               </div>
             }
@@ -156,9 +155,9 @@ export function ItineraryPlanner() {
                   รวม {dayActivities.length} กิจกรรม
                 </span>
                 <span className="text-muted">
-                  ⏱️ {formatDuration(totals.minutes)}
+                  {formatDuration(totals.minutes)}
                 </span>
-                <span className="font-semibold">💰 {formatTHB(totals.cost)}</span>
+                <span className="font-semibold">{formatTHB(totals.cost)}</span>
               </div>
               <p className="mt-2 text-xs text-faint">
                 ดูระยะทางระหว่างจุดแวะได้ที่{" "}

@@ -58,17 +58,14 @@ export default function DashboardPage() {
 
         <div className="grid grid-cols-3 gap-2">
           <StatTile
-            emoji="📋"
             label="กิจกรรมทั้งหมด"
             value={String(activities.length)}
           />
           <StatTile
-            emoji="⏱️"
             label="เวลารวมในแผน"
             value={formatDuration(totalMinutes)}
           />
           <StatTile
-            emoji="📍"
             label="ไปแล้ว / ทั้งหมด"
             value={`${visitedCount}/${places.length}`}
           />
@@ -95,7 +92,6 @@ export default function DashboardPage() {
 
         <section>
           <SectionTitle
-            emoji="🗓️"
             title={
               trip.dayCount === 1 ? "กิจกรรมในทริป" : `กิจกรรมวันที่ ${focusDay + 1}`
             }
@@ -118,10 +114,10 @@ export default function DashboardPage() {
               action={
                 <div className="flex flex-wrap justify-center gap-2">
                   <Link href="/settings#plan">
-                    <Button>➕ เพิ่มกิจกรรม</Button>
+                    <Button>เพิ่มกิจกรรม</Button>
                   </Link>
                   <Link href="/explore">
-                    <Button variant="secondary">🧭 ดูที่แนะนำ</Button>
+                    <Button variant="secondary">ดูที่แนะนำ</Button>
                   </Link>
                 </div>
               }
@@ -159,7 +155,7 @@ export default function DashboardPage() {
         </section>
 
         <section>
-          <SectionTitle emoji="⚡" title="ทางลัด" />
+          <SectionTitle title="ทางลัด" />
           <div className="grid grid-cols-2 gap-2 sm:grid-cols-4">
             <Link href="/settings#plan">
               <Button variant="secondary" className="h-20 w-full flex-col gap-1">

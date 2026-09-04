@@ -43,7 +43,7 @@ export function DayPlanCard({ dayIndex }: { dayIndex: number }) {
       )}
     >
       <div className="mb-3 flex flex-wrap items-center justify-between gap-x-3 gap-y-1">
-        <h2 className="text-sm font-semibold">🧳 วันนี้ไปไหน เดินทางยังไง</h2>
+        <h2 className="text-sm font-semibold">วันนี้ไปไหน เดินทางยังไง</h2>
         {plan.province || route ? (
           <span className="text-xs text-accent">
             {route || plan.province}
