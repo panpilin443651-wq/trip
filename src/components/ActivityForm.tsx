@@ -192,7 +192,7 @@ export function ActivityForm({
       title={isEdit ? "แก้ไขรายการ" : "เพิ่มสถานที่"}
       onClose={onClose}
       footer={
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Button variant="secondary" className="flex-1" onClick={onClose}>
             ยกเลิก
           </Button>

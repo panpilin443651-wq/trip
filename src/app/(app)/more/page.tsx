@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { BuildInfo } from "@/components/BuildInfo";
 import { PageHeader } from "@/components/PageHeader";
-import { SignOutButton } from "@/components/SignOutButton";
+import { SignOutConfirmButton } from "@/components/SignOutConfirmButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { Card, SectionTitle } from "@/components/ui";
 import { createClient } from "@/lib/supabase/server";
@@ -60,7 +60,7 @@ export default async function ProfilePage() {
         <p className="mt-1 mb-3 text-sm text-muted">
           ออกจากระบบแล้วแผนทริปยังอยู่ในบัญชีเหมือนเดิม เข้าใหม่เมื่อไหร่ก็เห็นครบ
         </p>
-        <SignOutButton />
+        <SignOutConfirmButton className="w-full justify-center" />
       </Card>
 
       <BuildInfo />

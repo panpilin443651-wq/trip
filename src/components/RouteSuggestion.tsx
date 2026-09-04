@@ -134,7 +134,7 @@ export function RouteSuggestion({
         title="ลำดับใหม่ที่แนะนำ"
         onClose={() => setPreviewOpen(false)}
         footer={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               variant="secondary"
               className="flex-1"

@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { PlacePhoto } from "@/components/PlacePhoto";
 import { Badge, Button, Sheet } from "@/components/ui";
 import type { SuggestedPlace } from "@/data/provinces";
 import { formatDuration, formatTHB } from "@/lib/format";
@@ -75,6 +76,9 @@ export function PlaceDetailSheet({
               {place.fee > 0 ? formatTHB(place.fee) : "ไม่มีค่าเข้า"}
             </Badge>
           </div>
+
+          {/* รูปมาก่อนคำอธิบาย เพราะคนดูรูปตัดสินใจเร็วกว่าอ่าน */}
+          <PlacePhoto name={place.name} province={province} />
 
           <p className="text-sm leading-relaxed">{place.description}</p>
 

@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { SignOutIconButton } from "@/components/SignOutIconButton";
+import { SignOutConfirmButton } from "@/components/SignOutConfirmButton";
 import { Sheet } from "@/components/ui";
 
 /**
@@ -52,7 +52,7 @@ export function ProfileMenu({ email }: { email: string }) {
             </span>
           </Link>
 
-          <SignOutIconButton className="w-full justify-center" />
+          <SignOutConfirmButton className="w-full justify-center" />
         </div>
       </Sheet>
     </>

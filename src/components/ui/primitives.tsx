@@ -69,7 +69,9 @@ export function Button({
         "inline-flex items-center justify-center gap-1.5 rounded-full font-medium transition-colors",
         "focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none",
         "disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none",
-        size === "md" ? "min-h-12 px-6 text-sm" : "min-h-9 px-4 text-[13px]",
+        // px-6 เคยทำให้สองปุ่มเรียงกันล้นขอบจอแคบ เพราะ flex ไม่ย่อ
+        // ให้เล็กกว่าความกว้างขั้นต่ำของเนื้อหา
+        size === "md" ? "min-h-12 px-5 text-sm" : "min-h-9 px-4 text-[13px]",
         BUTTON_VARIANTS[variant],
         className,
       )}

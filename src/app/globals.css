@@ -113,6 +113,13 @@ body {
   color: var(--color-ink);
   font-family: var(--font-sans);
   -webkit-tap-highlight-color: transparent;
+
+  /*
+   * ข้อความยาวติดกันโดยไม่มีช่องว่าง (ลิงก์ ชื่อสถานที่ภาษาอังกฤษ อีเมล)
+   * จะดันกล่องให้กว้างเกินจอแล้วทั้งหน้าเลื่อนแนวนอนได้
+   * ตั้งไว้ที่ body ทีเดียว ดีกว่าไล่ใส่ break-words ทีละจุดแล้วลืมบางที่
+   */
+  overflow-wrap: break-word;
 }
 
 /*

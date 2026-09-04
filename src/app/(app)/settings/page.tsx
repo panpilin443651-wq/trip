@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
-import { SignOutButton } from "@/components/SignOutButton";
+import { SignOutConfirmButton } from "@/components/SignOutConfirmButton";
 import { ItineraryPlanner } from "@/components/ItineraryPlanner";
 import { ProvincePicker } from "@/components/ProvincePicker";
 import {
@@ -335,7 +335,7 @@ export default function SettingsPage() {
 
         <Card as="section">
           <SectionTitle title="บัญชี" />
-          <SignOutButton />
+          <SignOutConfirmButton className="w-full justify-center" />
         </Card>
       </div>
 

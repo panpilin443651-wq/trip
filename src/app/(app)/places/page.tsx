@@ -264,7 +264,7 @@ export default function PlacesPage() {
         title={editingId ? "แก้ไขสถานที่" : "เพิ่มสถานที่"}
         onClose={() => setSheetOpen(false)}
         footer={
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             <Button
               variant="secondary"
               className="flex-1"
