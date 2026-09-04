@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from "react";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
 import { addMinutesToTime } from "@/lib/format";
+import { PlaceThumb } from "@/components/PlaceThumb";
 import { useTrip } from "@/lib/trip-context";
 import { Badge, Button, Card, Input, SectionTitle, cn } from "./ui";
 
@@ -202,6 +203,12 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
                       : "border-line",
                   )}
                 >
+                  <PlaceThumb
+                    name={hit.name}
+                    province={active}
+                    mapsUrl={hit.mapsUrl}
+                    skipLookup={!hit.notable}
+                  />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium break-words">
                       {hit.notable ? (

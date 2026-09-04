@@ -1,6 +1,8 @@
 "use client";
 
 import { CATEGORY_MAP } from "@/data/categories";
+import { PlaceThumb } from "@/components/PlaceThumb";
+import { googleMapsUrl } from "@/lib/place-search";
 import { addMinutesToTime, formatDuration, formatTHB } from "@/lib/format";
 import { hasCoords } from "@/lib/geo";
 import type { Activity } from "@/lib/types";
@@ -27,6 +29,20 @@ export function ActivityCard({
       : null;
   const category = CATEGORY_MAP[activity.category];
   const endTime = addMinutesToTime(activity.startTime, activity.durationMin);
+
+  /*
+   * ชื่อสำหรับใช้หารูป — ต้องเป็นชื่อสถานที่ล้วน
+   *
+   * placeName บางเส้นทางถูกเก็บเป็น "ชื่อที่ จังหวัด" ติดกัน ถ้าเอาไปค้นทั้งก้อน
+   * ตัวกรองความเกี่ยวข้องจะปฏิเสธผลที่ถูกต้อง เพราะชื่อหน้าวิกิพีเดียมีแค่ชื่อที่
+   */
+  const placeProvince = activity.province ?? "";
+  const rawPlace = activity.placeName || activity.title;
+  const lookupName = (
+    placeProvince && rawPlace.endsWith(placeProvince)
+      ? rawPlace.slice(0, -placeProvince.length)
+      : rawPlace
+  ).trim();
 
   return (
     <Card as="li" className="flex gap-3">
@@ -112,6 +128,15 @@ export function ActivityCard({
           )}
         </div>
       </div>
+
+      {/* รูปประกอบ ถ้าหาไม่ได้จะกลายเป็นปุ่มพาไปดูรูปใน Google Maps */}
+      {lookupName ? (
+        <PlaceThumb
+          name={lookupName}
+          province={placeProvince}
+          mapsUrl={googleMapsUrl(lookupName, activity.lat, activity.lng)}
+        />
+      ) : null}
     </Card>
   );
 }

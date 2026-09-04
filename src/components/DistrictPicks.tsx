@@ -4,6 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { OsmPlace } from "@/data/osm-places";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
 import { addMinutesToTime } from "@/lib/format";
+import { PlaceThumb } from "@/components/PlaceThumb";
 import { googleMapsUrl } from "@/lib/place-search";
 import { useTrip } from "@/lib/trip-context";
 import { Badge, Button, Card, SectionTitle, cn } from "./ui";
@@ -248,9 +249,12 @@ export function DistrictPicks({
                       : "border-line",
                   )}
                 >
-                  <span className="text-lg leading-none" aria-hidden>
-                    {row.emoji}
-                  </span>
+                  <PlaceThumb
+                    name={row.name}
+                    province={province}
+                    mapsUrl={googleMapsUrl(row.name, row.lat, row.lng)}
+                    skipLookup={!row.notable}
+                  />
                   <div className="min-w-0 flex-1">
                     <p className="text-sm font-medium break-words">
                       {row.notable ? (
