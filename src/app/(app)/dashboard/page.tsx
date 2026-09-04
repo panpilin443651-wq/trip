@@ -116,7 +116,7 @@ export default function DashboardPage() {
                   <Link href="/settings#plan">
                     <Button>เพิ่มกิจกรรม</Button>
                   </Link>
-                  <Link href="/explore">
+                  <Link href="/settings">
                     <Button variant="secondary">ดูที่แนะนำ</Button>
                   </Link>
                 </div>
@@ -175,7 +175,7 @@ export default function DashboardPage() {
                 <span className="text-xs">ดูแผนที่</span>
               </Button>
             </Link>
-            <Link href="/explore">
+            <Link href="/settings">
               <Button variant="secondary" className="h-20 w-full flex-col gap-1">
                 <span className="text-xl">🧭</span>
                 <span className="text-xs">แนะนำเที่ยว</span>

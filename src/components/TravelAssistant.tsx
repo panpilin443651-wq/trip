@@ -1,21 +1,25 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import type { PlacePicks } from "@/app/api/explore-chat/places/route";
+import type { PlacePicks } from "@/app/api/chat/places/route";
+import { defaultChatStore } from "@/lib/chat/storage";
+import { summarizeTrip } from "@/lib/chat/trip-summary";
 import type { ChatMessage } from "@/lib/chat/types";
 import type { PlaceRow } from "@/lib/explore-retrieval";
-import { exploreChatStore } from "@/lib/chat/storage";
-import { addMinutesToTime } from "@/lib/format";
+import { addDaysISO, addMinutesToTime, formatDateShort } from "@/lib/format";
 import { googleMapsUrl } from "@/lib/place-search";
 import { useTrip } from "@/lib/trip-context";
 import { ChatPanel } from "./ChatPanel";
-import { Button, Card, SectionTitle } from "./ui";
+import { Button, Field, Select } from "./ui";
 
 /**
- * ถามผู้ช่วยเรื่องที่เที่ยว แล้วกดใส่แผนได้จากคำตอบเลย
+ * ผู้ช่วยตัวเดียวของเว็บ — ตอบทั้งเรื่องที่เที่ยวและเรื่องการใช้งาน
  *
- * มีไว้เพราะหน้าแนะนำเที่ยวเลือกได้แค่ จังหวัด → อำเภอ ซึ่งไม่ครอบคลุมที่ที่
- * คนเรียกกันจริง — บางแสน (ต่ำกว่าอำเภอ) โคราช (ชื่อเล่น) เขาใหญ่ (คร่อมสองจังหวัด)
+ * เดิมมีสองตัวแยกกัน (ผู้ช่วยทั่วไปในปุ่มลอย กับผู้ช่วยแนะนำที่เที่ยวในหน้า
+ * แนะนำเที่ยว) ซึ่งทำให้ต้องเดาว่าคำถามนี้ควรถามตัวไหน รวมเป็นตัวเดียวแล้ว
+ * ฝั่งเซิร์ฟเวอร์ค้นสถานที่จริงจากคำถามทุกครั้ง ถ้าคำถามไม่ได้ถามถึงที่ไหน
+ * ก็จะไม่มีรายการสถานที่ต่อเข้า prompt เลย ผู้ช่วยจึงไม่พูดถึงที่เที่ยว
+ * ตอนถูกถามว่า "งบเหลือเท่าไร"
  *
  * ปุ่มใต้คำตอบขึ้นเฉพาะสถานที่ที่อยู่ในฐานข้อมูลของเว็บจริง ๆ ถ้าผู้ช่วยพูดถึง
  * ที่ที่ไม่มีในข้อมูล จะเป็นข้อความเฉย ๆ ไม่มีปุ่ม — ผู้ใช้จึงแยกออกเองว่า
@@ -25,27 +29,25 @@ import { Button, Card, SectionTitle } from "./ui";
 const STARTERS = [
   "เขาใหญ่มีที่เที่ยวอะไรบ้าง",
   "บางแสนกินอะไรดี",
-  "โคราชมีที่พักแนะนำไหม",
-  "ปายเที่ยว 2 วันไปไหนดี",
+  "งบเหลือเท่าไร",
+  "ช่วยดูแผนวันแรกให้หน่อย",
 ];
 
-export function ExploreChat({
-  province,
-  district,
-  dayIndex,
-  onAdded,
-}: {
-  province: string;
-  district: string;
-  dayIndex: number;
-  onAdded: (name: string) => void;
-}) {
-  const { dispatch, activitiesForDay } = useTrip();
+export function TravelAssistant({ className }: { className?: string }) {
+  const { state, dispatch, activitiesForDay } = useTrip();
+  const { trip } = state;
+  const [targetDay, setTargetDay] = useState(0);
   const [added, setAdded] = useState<Set<string>>(new Set());
+
+  /*
+   * จังหวัดตั้งต้นของคำถามที่ไม่ได้ระบุที่ไหน ("มีอะไรน่ากินบ้าง")
+   * ใช้จังหวัดแรกของทริป เพราะเป็นที่ที่ผู้ใช้กำลังวางแผนจะไปอยู่แล้ว
+   */
+  const province = trip.provinces[0] ?? "";
 
   /** ต่อท้ายกิจกรรมสุดท้ายของวัน เผื่อเวลาเดินทาง 30 นาที */
   function nextStartTime(): string {
-    const last = activitiesForDay(dayIndex).at(-1);
+    const last = activitiesForDay(targetDay).at(-1);
     if (!last) return "09:00";
     return addMinutesToTime(last.startTime, last.durationMin + 30);
   }
@@ -54,10 +56,14 @@ export function ExploreChat({
     dispatch({
       type: "addActivity",
       activity: {
-        dayIndex,
+        dayIndex: targetDay,
         startTime: nextStartTime(),
         durationMin:
-          row.category === "accommodation" ? 720 : row.category === "food" ? 60 : 90,
+          row.category === "accommodation"
+            ? 720
+            : row.category === "food"
+              ? 60
+              : 90,
         title: row.name,
         placeName: `${row.name} ${row.province}`,
         province: row.province,
@@ -69,39 +75,51 @@ export function ExploreChat({
       },
     });
     setAdded((prev) => new Set(prev).add(`${row.name}::${row.province}`));
-    onAdded(row.name);
   }
 
   return (
-    <Card as="section" className="mt-4">
-      <SectionTitle title="ถามผู้ช่วยเรื่องที่เที่ยว" />
-      <p className="mt-1 text-sm leading-relaxed text-muted">
-        ถามได้ละเอียดกว่าที่เลือกจากรายการ เช่นชื่อย่านอย่างบางแสน ชื่อเล่นอย่างโคราช
-        หรือที่ที่คร่อมหลายจังหวัดอย่างเขาใหญ่
-      </p>
+    <div className={className}>
+      {trip.dayCount > 1 ? (
+        /* บอกไว้ล่วงหน้าว่าปุ่ม "ใส่ในแผน" ใต้คำตอบจะลงวันไหน
+           ผู้ช่วยเปิดได้จากทุกหน้า จึงไม่มีบริบทวันจากหน้าที่เปิดอยู่ */
+        <Field label="ปุ่มใส่ในแผนจะลงวันที่" className="mb-3">
+          <Select
+            value={targetDay}
+            onChange={(e) => setTargetDay(Number(e.target.value))}
+          >
+            {Array.from({ length: trip.dayCount }, (_, index) => (
+              <option key={index} value={index}>
+                วันที่ {index + 1} (
+                {formatDateShort(addDaysISO(trip.startDate, index))})
+              </option>
+            ))}
+          </Select>
+        </Field>
+      ) : null}
 
       <ChatPanel
-        className="mt-3 h-[26rem]"
-        composerAtTop
-        endpoint="/api/explore-chat"
-        store={exploreChatStore}
+        className="min-h-0 flex-1"
+        store={defaultChatStore}
         starters={STARTERS}
-        intro="พิมพ์คำถามในช่องด้านบน หรือกดคำถามตัวอย่างข้างล่างนี้ได้เลย"
-        privacyNote="คำถามของคุณถูกส่งไปให้ Gemini (Google) พร้อมรายชื่อสถานที่ที่ค้นได้ — ไม่ได้ส่งข้อมูลทริป"
-        buildBody={(messages) => ({ messages, province, district })}
+        intro="ถามได้ทั้งเรื่องไปเที่ยวไหนดี วิธีใช้เว็บ และทริปที่คุณกรอกไว้"
+        privacyNote="คำถามและข้อมูลทริปของคุณถูกส่งไปให้ Gemini (Google) ทุกครั้งที่ถาม"
+        buildBody={(messages) => ({
+          messages,
+          tripSummary: summarizeTrip(state),
+          province,
+        })}
         afterMessage={(message, info) => (
           <PlacePickRow
             message={message}
             streaming={info.streaming}
             isLast={info.isLast}
             province={province}
-            district={district}
             added={added}
             onAdd={addToPlan}
           />
         )}
       />
-    </Card>
+    </div>
   );
 }
 
@@ -126,7 +144,6 @@ function PlacePickRow({
   streaming,
   isLast,
   province,
-  district,
   added,
   onAdd,
 }: {
@@ -134,11 +151,10 @@ function PlacePickRow({
   streaming: boolean;
   isLast: boolean;
   province: string;
-  district: string;
   added: Set<string>;
   onAdd: (row: PlaceRow) => void;
 }) {
-  // เก็บผลคู่กับ id ของข้อความที่ขอไป ตามแบบเดียวกับการ์ดอื่นในหน้านี้
+  // เก็บผลคู่กับ id ของข้อความที่ขอไป ตามแบบเดียวกับการ์ดอื่นในเว็บ
   // ถ้าเทียบ id ไม่ตรงถือว่ายังไม่ได้โหลด แทนที่จะล้าง state ใน effect
   const [result, setResult] = useState<{ id: string; rows: PlaceRow[] } | null>(
     null,
@@ -150,14 +166,13 @@ function PlacePickRow({
 
     let cached = pickCache.get(message.id);
     if (!cached) {
-      cached = fetch("/api/explore-chat/places", {
+      cached = fetch("/api/chat/places", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           question: findQuestion(message.id),
           answer: message.text,
           province,
-          district,
         }),
         signal: AbortSignal.timeout(15000),
       })
@@ -174,7 +189,7 @@ function PlacePickRow({
     return () => {
       cancelled = true;
     };
-  }, [message.id, message.text, streaming, isLast, province, district]);
+  }, [message.id, message.text, streaming, isLast, province]);
 
   const rows = result?.id === message.id ? result.rows : null;
   if (!rows || rows.length === 0) return null;
@@ -217,7 +232,7 @@ function PlacePickRow({
  * อ่านจากที่เก็บโดยตรง เพราะ ChatPanel ส่งมาให้แค่ข้อความเดียว
  */
 function findQuestion(replyId: string): string {
-  const all = exploreChatStore.getSnapshot();
+  const all = defaultChatStore.getSnapshot();
   const at = all.findIndex((m) => m.id === replyId);
   for (let i = at - 1; i >= 0; i -= 1) {
     if (all[i].role === "user") return all[i].text;

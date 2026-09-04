@@ -128,7 +128,7 @@ export function ItineraryPlanner() {
             action={
               <div className="flex flex-wrap justify-center gap-2">
                 <Button onClick={openCreate}>เพิ่มกิจกรรม</Button>
-                <Link href="/explore">
+                <Link href="/settings">
                   <Button variant="secondary">ดูที่แนะนำ</Button>
                 </Link>
               </div>

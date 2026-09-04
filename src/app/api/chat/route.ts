@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { BUILD_SHA, BUILD_TIME } from "@/lib/build-info";
 import { guardChatRequest, parseMessages } from "@/lib/chat/guard";
 import { buildSystemPrompt } from "@/lib/chat/knowledge";
+import { retrieve } from "@/lib/explore-retrieval";
 import { readUpstreamError, streamGemini } from "@/lib/gemini/chat-stream";
 import {
   GEMINI_API_KEY,
@@ -27,7 +28,12 @@ export async function POST(request: Request) {
   const blocked = await guardChatRequest();
   if (blocked) return blocked;
 
-  let body: { messages?: unknown; tripSummary?: unknown };
+  let body: {
+    messages?: unknown;
+    tripSummary?: unknown;
+    province?: unknown;
+    district?: unknown;
+  };
   try {
     body = await request.json();
   } catch {
@@ -44,8 +50,21 @@ export async function POST(request: Request) {
       ? body.tripSummary.slice(0, MAX_SUMMARY_CHARS)
       : "";
 
+  /*
+   * ค้นสถานที่จริงจากคำถามล่าสุดก่อน แล้วยัดเข้า prompt
+   *
+   * ค้นจากคำถามล่าสุดเท่านั้น ไม่รวมทั้งบทสนทนา ไม่งั้นคำถามแรกจะลากผลของมัน
+   * ติดมาทุกครั้งที่ถามต่อ · ถ้าคำถามไม่ได้ถามถึงที่ไหน retrieve จะคืนรายการว่าง
+   * แล้วส่วนแนะนำสถานที่จะไม่ถูกต่อเข้า prompt เลย
+   */
+  const question = parsed.messages.at(-1)?.text ?? "";
+  const found = retrieve(question.slice(0, MAX_CHARS_PER_MESSAGE), {
+    province: typeof body.province === "string" ? body.province : "",
+    district: typeof body.district === "string" ? body.district : "",
+  });
+
   return streamGemini({
-    systemPrompt: buildSystemPrompt(tripSummary),
+    systemPrompt: buildSystemPrompt(tripSummary, found.context),
     messages: parsed.messages,
     maxCharsPerMessage: MAX_CHARS_PER_MESSAGE,
     label: "chat",

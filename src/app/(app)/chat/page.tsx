@@ -1,4 +1,4 @@
-import { ChatPanel } from "@/components/ChatPanel";
+import { TravelAssistant } from "@/components/TravelAssistant";
 import { PageHeader } from "@/components/PageHeader";
 import { Card } from "@/components/ui";
 import { isGeminiConfigured } from "@/lib/gemini/config";
@@ -14,12 +14,12 @@ export default function ChatPage() {
     <>
       <PageHeader
         title="ผู้ช่วย AI"
-        subtitle="ถามวิธีใช้เว็บ หรือถามเรื่องทริปที่คุณวางไว้ก็ได้"
+        subtitle="ถามได้ทั้งไปเที่ยวไหนดี วิธีใช้เว็บ และทริปที่คุณวางไว้"
       />
 
       {isGeminiConfigured ? (
         // หักความสูงของหัวหน้าและ padding ของ main ออก ให้ช่องพิมพ์อยู่ติดล่างพอดี
-        <ChatPanel className="h-[calc(100dvh-17rem)] min-h-80 lg:h-[calc(100dvh-15rem)]" />
+        <TravelAssistant className="flex h-[calc(100dvh-17rem)] min-h-80 flex-col lg:h-[calc(100dvh-15rem)]" />
       ) : (
         <Card as="section">
           <h2 className="text-base font-semibold">ยังไม่ได้ตั้งค่าผู้ช่วย AI</h2>

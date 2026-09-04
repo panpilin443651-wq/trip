@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { ExploreTab } from "@/components/ExploreTab";
 import { useMemo, useRef, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import { SignOutConfirmButton } from "@/components/SignOutConfirmButton";
@@ -22,6 +23,13 @@ import { buildBreakdown, TONE_CLASSES } from "@/lib/budget";
 import { cn } from "@/lib/cn";
 import { addDaysISO, formatDateThai, formatTHB } from "@/lib/format";
 import { useTrip } from "@/lib/trip-context";
+
+type TabId = "settings" | "explore";
+
+const TABS: Array<{ id: TabId; label: string }> = [
+  { id: "settings", label: "ตั้งค่าทริป" },
+  { id: "explore", label: "แนะนำเที่ยว" },
+];
 
 export default function SettingsPage() {
   const { state, dispatch, exportJSON, importJSON, resetAll } = useTrip();
@@ -62,6 +70,17 @@ export default function SettingsPage() {
     }
   }
 
+  const [tab, setTab] = useState<TabId>("settings");
+  /*
+   * เปิดแท็บแนะนำเที่ยวครั้งแรกเมื่อไหร่ค่อยเรนเดอร์ แล้วจากนั้นเก็บไว้ในหน้า
+   * ซ่อนเอาแทนการถอดทิ้ง
+   *
+   * ถ้าเรนเดอร์ตั้งแต่แรกจะยิงขอข้อมูลจังหวัดทันทีที่เปิดหน้าตั้งค่า ทั้งที่
+   * คนส่วนใหญ่มาแก้ข้อมูลทริปเฉย ๆ · ถ้าถอดทิ้งทุกครั้งที่สลับแท็บ จังหวัด
+   * อำเภอ และคำค้นที่เลือกไว้จะหายหมด ต้องเลือกใหม่ทุกรอบ
+   */
+  const [exploreOpened, setExploreOpened] = useState(false);
+
   const orphanedCount =
     pendingDayCount === null
       ? 0
@@ -71,10 +90,45 @@ export default function SettingsPage() {
     <>
       <PageHeader
         title="ตั้งค่าทริป"
-        subtitle="ข้อมูลทริป แผนเที่ยวรายวัน งบประมาณ และข้อมูลที่บันทึกไว้"
+        subtitle="เลือกที่เที่ยว จัดแผนรายวัน ตั้งงบ และดูข้อมูลที่บันทึกไว้"
       />
 
-      <div className="space-y-4">
+      {/* แท็บ ไม่ใช่หน้าละหน้า — เลือกที่เที่ยวกับจัดลงวันเป็นงานเดียวกัน
+          คนสลับไปมาบ่อย ถ้าแยกหน้าจะต้องเลื่อนหาตำแหน่งเดิมใหม่ทุกครั้ง */}
+      <div
+        role="tablist"
+        aria-label="มุมมองของหน้าตั้งค่าทริป"
+        className="mb-4 flex gap-1.5"
+      >
+        {TABS.map((item) => (
+          <button
+            key={item.id}
+            type="button"
+            role="tab"
+            aria-selected={tab === item.id}
+            onClick={() => {
+              setTab(item.id);
+              if (item.id === "explore") setExploreOpened(true);
+            }}
+            className={cn(
+              "min-h-10 flex-1 rounded-full border px-4 text-sm font-medium transition-colors",
+              tab === item.id
+                ? "border-pick bg-pick text-on-pick"
+                : "border-line text-muted hover:text-ink",
+            )}
+          >
+            {item.label}
+          </button>
+        ))}
+      </div>
+
+      {exploreOpened ? (
+        <div className={cn(tab !== "explore" && "hidden")}>
+          <ExploreTab />
+        </div>
+      ) : null}
+
+      <div className={cn("space-y-4", tab === "explore" && "hidden")}>
         <Card as="section">
           <SectionTitle title="รูปแบบการเดินทาง" />
 

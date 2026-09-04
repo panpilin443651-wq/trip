@@ -1,7 +1,6 @@
 import type { ChatMessage } from "./types";
 
 export const CHAT_STORAGE_KEY = "travel-planner:chat";
-export const EXPLORE_CHAT_STORAGE_KEY = "travel-planner:explore-chat";
 
 /**
  * เก็บย้อนหลังแค่ 40 ข้อความ ตัดของเก่าทิ้ง
@@ -113,8 +112,15 @@ export function createChatStore(storageKey: string): ChatStore {
   };
 }
 
-/** ผู้ช่วยทั่วไป — คีย์เดิม ประวัติที่ผู้ใช้มีอยู่แล้วจึงไม่หาย */
+/**
+ * ผู้ช่วยของเว็บ — เหลือชุดเดียวแล้ว
+ *
+ * ยังทำเป็นโรงงานไว้แทนที่จะกลับไปเป็นตัวแปรระดับโมดูล เพราะเป็นที่เดียว
+ * ที่รับประกันได้ว่าถ้าวันหนึ่งมีแชทหลายชุดอีก มันจะไม่เขียนทับกันเงียบ ๆ
+ * (เคยเกิดมาแล้วตอนมีผู้ช่วยสองตัว) และมีเทสต์คุมอยู่แล้ว
+ *
+ * ประวัติของผู้ช่วยแนะนำที่เที่ยวตัวเก่าค้างอยู่ใน localStorage คีย์
+ * "travel-planner:explore-chat" ไม่มีใครอ่านแล้ว ปล่อยไว้เพราะแค่ไม่กี่ KB
+ * และการไล่ลบข้อมูลเก่าของผู้ใช้โดยไม่ได้ขอมีความเสี่ยงมากกว่าที่ได้
+ */
 export const defaultChatStore = createChatStore(CHAT_STORAGE_KEY);
-
-/** ผู้ช่วยแนะนำที่เที่ยวในหน้า /explore */
-export const exploreChatStore = createChatStore(EXPLORE_CHAT_STORAGE_KEY);
