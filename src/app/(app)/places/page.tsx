@@ -140,7 +140,7 @@ export default function PlacesPage() {
             className={cn(
               "min-h-10 shrink-0 rounded-full border px-4 text-sm font-medium transition-colors",
               filter === item.id
-                ? "border-brand bg-brand text-canvas"
+                ? "border-pick bg-pick text-on-pick"
                 : "border-line bg-card text-muted hover:text-ink",
             )}
           >

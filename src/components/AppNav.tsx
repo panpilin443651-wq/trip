@@ -43,13 +43,13 @@ export function BottomNav() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   "flex min-h-16 flex-col items-center justify-center gap-1 pt-1.5 pb-1 text-[11px] font-medium transition-colors",
-                  active ? "text-brand" : "text-muted",
+                  active ? "text-pick-text" : "text-muted",
                 )}
               >
                 <span
                   className={cn(
                     "flex h-7 w-12 items-center justify-center rounded-full transition-colors",
-                    active ? "bg-brand-soft" : "bg-transparent",
+                    active ? "bg-pick-soft" : "bg-transparent",
                   )}
                 >
                   <NavIcon name={item.icon} className="h-5 w-5" />
@@ -151,7 +151,7 @@ export function SideNav() {
                       "flex min-h-11 items-center gap-3 rounded-xl text-sm font-medium transition-colors",
                       collapsed ? "justify-center px-0" : "px-3",
                       active
-                        ? "bg-brand-soft text-brand"
+                        ? "bg-pick-soft text-pick-text"
                         : "text-muted hover:bg-canvas hover:text-ink",
                     )}
                   >

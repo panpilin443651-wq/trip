@@ -30,6 +30,18 @@
   --color-accent-fill: #2bb8cf;
   --color-accent-soft: #0c3244;
 
+  /*
+   * pick = สีของ "สิ่งที่เลือกอยู่" — ชิป แท็บ และเมนูที่เปิดค้าง
+   *
+   * แยกจาก warn ทั้งที่เป็นเหลืองเหมือนกัน เพราะคนละความหมาย
+   * warn บอกว่าใกล้เต็มงบ pick บอกว่าอันนี้คือที่เลือกไว้
+   * เลือกโทนอำพันให้ต่างจากเหลืองของ warn พอที่จะไม่อ่านสลับกัน
+   */
+  --color-pick: #fbbf24;
+  --color-on-pick: #2a1f04;
+  --color-pick-soft: #3a2e10;
+  --color-pick-text: #fbbf24;
+
   /* ok ต้องเขียวพอที่จะไม่ถูกอ่านว่าเป็นฟ้าครามของ accent */
   --color-ok: #5fd98c;
   --color-ok-soft: #0d3524;
@@ -84,6 +96,11 @@
   --color-accent: #0d6f80;
   --color-accent-fill: #0c6c7d;
   --color-accent-soft: #dbf2f7;
+
+  --color-pick: #e0a51c;
+  --color-on-pick: #241a02;
+  --color-pick-soft: #fbeecb;
+  --color-pick-text: #8a6206;
 
   --color-ok: #0d7350;
   --color-ok-soft: #e2f5ee;
@@ -192,6 +209,11 @@ input[type="time"]::-webkit-calendar-picker-indicator {
      */
     --color-accent-fill: #0e6070;
     --color-accent-soft: #e6f6f9;
+    /* ตอนพิมพ์ต้องเข้มพอให้ตัวอักษรขาวอ่านออก และต่างจากเหลืองของ warn */
+    --color-pick: #a35a00;
+    --color-on-pick: #ffffff;
+    --color-pick-soft: #fdf3dc;
+    --color-pick-text: #a35a00;
     --color-ok: #146b52;
     --color-ok-soft: #e6f4ef;
     --color-warn: #7d5d08;

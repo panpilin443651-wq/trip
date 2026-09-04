@@ -206,7 +206,7 @@ export function DistrictPicks({
                 "min-h-9 rounded-full border px-3 text-xs transition-colors",
                 "disabled:cursor-not-allowed disabled:opacity-40",
                 group === name
-                  ? "border-brand bg-brand text-canvas"
+                  ? "border-pick bg-pick text-on-pick"
                   : "border-line text-muted hover:text-ink",
               )}
             >

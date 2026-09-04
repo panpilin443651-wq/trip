@@ -150,7 +150,7 @@ export function ProvinceRestaurants({ dayIndex }: { dayIndex: number }) {
               className={cn(
                 "min-h-9 rounded-full border px-3 text-sm transition-colors",
                 name === active
-                  ? "border-brand bg-brand-soft text-brand"
+                  ? "border-pick bg-pick-soft text-pick-text"
                   : "border-line text-muted hover:bg-brand-soft",
               )}
             >

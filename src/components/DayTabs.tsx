@@ -38,7 +38,7 @@ export function DayTabs({
               className={cn(
                 "min-h-11 shrink-0 rounded-xl border px-4 text-sm font-medium transition-colors",
                 active
-                  ? "border-brand bg-brand text-canvas"
+                  ? "border-pick bg-pick text-on-pick"
                   : "border-line bg-card text-muted hover:text-ink",
               )}
             >

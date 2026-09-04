@@ -85,7 +85,7 @@ export default function SettingsPage() {
               className={cn(
                 "rounded-xl border px-4 py-4 text-left transition-colors",
                 isDayTrip
-                  ? "border-brand bg-brand-soft"
+                  ? "border-pick bg-pick-soft"
                   : "border-line bg-card hover:bg-brand-soft",
               )}
             >
@@ -104,7 +104,7 @@ export default function SettingsPage() {
               className={cn(
                 "rounded-xl border px-4 py-4 text-left transition-colors",
                 !isDayTrip
-                  ? "border-brand bg-brand-soft"
+                  ? "border-pick bg-pick-soft"
                   : "border-line bg-card hover:bg-brand-soft",
               )}
             >

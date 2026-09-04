@@ -68,7 +68,7 @@ export function BudgetEstimator() {
             className={cn(
               "min-h-16 rounded-xl border px-2 py-2 text-center transition-colors",
               item.id === style
-                ? "border-brand bg-brand-soft"
+                ? "border-pick bg-pick-soft"
                 : "border-line bg-card hover:bg-brand-soft",
             )}
           >

@@ -316,7 +316,7 @@ export default function ExplorePage() {
               className={cn(
                 "min-h-10 shrink-0 rounded-full border px-3.5 text-sm font-medium transition-colors",
                 item.id === provinceId
-                  ? "border-brand bg-brand text-canvas"
+                  ? "border-pick bg-pick text-on-pick"
                   : "border-line bg-card text-muted hover:text-ink",
               )}
             >
@@ -366,7 +366,7 @@ export default function ExplorePage() {
               className={cn(
                 "min-h-9 rounded-full border px-3 text-xs transition-colors",
                 district === ""
-                  ? "border-brand bg-brand text-canvas"
+                  ? "border-pick bg-pick text-on-pick"
                   : "border-line text-muted hover:text-ink",
               )}
             >
@@ -383,7 +383,7 @@ export default function ExplorePage() {
                   className={cn(
                     "min-h-9 rounded-full border px-3 text-xs transition-colors",
                     district === name
-                      ? "border-brand bg-brand text-canvas"
+                      ? "border-pick bg-pick text-on-pick"
                       : "border-line text-muted hover:text-ink",
                   )}
                 >
@@ -439,7 +439,7 @@ export default function ExplorePage() {
                   key={place.id}
                   className={cn(
                     "transition-colors",
-                    isPicked ? "border-brand bg-brand-soft" : null,
+                    isPicked ? "border-pick bg-pick-soft" : null,
                   )}
                 >
                   <div className="flex items-start gap-3">
@@ -455,7 +455,7 @@ export default function ExplorePage() {
                       className={cn(
                         "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs transition-colors",
                         isPicked
-                          ? "border-brand bg-brand text-canvas"
+                          ? "border-pick bg-pick text-on-pick"
                           : "border-line text-transparent hover:border-brand",
                       )}
                     >

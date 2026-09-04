@@ -179,7 +179,7 @@ export function FuelEstimate() {
               className={cn(
                 "min-h-14 rounded-xl border px-2 py-2 text-center text-sm transition-colors",
                 trip.fuel.kmPerLitre === v.kmPerLitre
-                  ? "border-brand bg-brand-soft"
+                  ? "border-pick bg-pick-soft"
                   : "border-line bg-card hover:bg-brand-soft",
               )}
             >

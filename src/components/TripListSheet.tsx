@@ -47,7 +47,7 @@ export function TripListSheet({
               key={t.id}
               className={cn(
                 "rounded-xl border p-3",
-                t.isActive ? "border-brand bg-brand-soft" : "border-line",
+                t.isActive ? "border-pick bg-pick-soft" : "border-line",
               )}
             >
               <button
@@ -63,7 +63,7 @@ export function TripListSheet({
                     {t.name || "ไม่มีชื่อ"}
                   </span>
                   {t.isActive ? (
-                    <span className="shrink-0 text-xs text-brand">
+                    <span className="shrink-0 text-xs text-pick-text">
                       กำลังดูอยู่
                     </span>
                   ) : null}
