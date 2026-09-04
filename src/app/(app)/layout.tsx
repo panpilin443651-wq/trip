@@ -23,7 +23,7 @@ export default async function AppLayout({ children }: LayoutProps<"/">) {
       <SideNav />
       <div className="flex min-w-0 flex-1 flex-col">
         <TripProvider userId={user.id}>
-          <TopBar />
+          <TopBar email={user.email ?? ""} />
           <main className="mx-auto w-full max-w-3xl flex-1 px-4 pt-5 pb-24 lg:px-8 lg:pt-6 lg:pb-10">
             {children}
           </main>

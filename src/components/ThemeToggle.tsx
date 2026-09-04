@@ -66,13 +66,7 @@ export function ThemeToggle({ className }: { className?: string }) {
       )}
     >
       <span aria-hidden>{isDark ? "🌙" : "☀️"}</span>
-      {/*
-        จอแคบมากตัดคำว่า "โหมด" ออก เหลือ "มืด" ยังอ่านรู้เรื่องและไม่ดันแถบล้น
-        ยอมย่อคำดีกว่าปล่อยให้ปุ่มหลุดขอบจอ
-      */}
-      <span className="whitespace-nowrap">
-        <span className="hidden min-[380px]:inline">โหมด</span>มืด
-      </span>
+      <span className="whitespace-nowrap">โหมดมืด</span>
       {/* รางสวิตช์ — ตำแหน่งลูกกลมบอกว่าเปิดหรือปิด */}
       <span
         aria-hidden
