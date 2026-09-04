@@ -1,12 +1,14 @@
 import { NextResponse } from "next/server";
 import { GEMINI_API_KEY } from "./config";
-import {
-  describeFetchError,
-  isThinkingUnsupported,
-  readUpstreamError,
-  upstreamHint,
-} from "./errors";
+import { describeFetchError, readUpstreamError, upstreamHint } from "./errors";
 import { candidateModels, pickModel, rememberModel } from "./models";
+import {
+  nextThinking,
+  preferredThinking,
+  rememberThinking,
+  thinkingConfigFor,
+  type ThinkingBudget,
+} from "./thinking";
 import { geminiTextStream } from "./sse";
 
 /**
@@ -75,11 +77,11 @@ function upstreamError(
 
 export async function streamGemini(options: StreamOptions): Promise<Response> {
   /**
-   * ประกอบคำขอ — แยกเป็นฟังก์ชันเพราะต้องยิงได้ทั้งแบบปิดและเปิดโหมดคิด
+   * ประกอบคำขอ — แยกเป็นฟังก์ชันเพราะต้องยิงซ้ำด้วยค่าโหมดคิดที่ต่างกัน
    *
-   * @param thinking เปิดโหมดคิดก่อนตอบไหม ปกติปิด ดู THINKING_OFF
+   * @param budget งบคิดก่อนตอบ null = ไม่ส่งฟิลด์นี้เลย (ดู ./thinking)
    */
-  const buildPayload = (thinking: boolean) => ({
+  const buildPayload = (budget: ThinkingBudget) => ({
     systemInstruction: { parts: [{ text: options.systemPrompt }] },
     contents: options.messages.map((m) => ({
       role: m.role,
@@ -90,7 +92,7 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
       // โทเคนช่วงคิดก็นับรวมในนี้ด้วย ตั้งไว้ 1200 เคยทำให้เจอ MAX_TOKENS
       // ตั้งแต่คำตอบสั้น ๆ
       maxOutputTokens: 4000,
-      ...(thinking ? {} : { thinkingConfig: { thinkingBudget: 0 } }),
+      ...thinkingConfigFor(budget),
     },
   });
 
@@ -98,7 +100,10 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
   const timeLeft = () => TOTAL_BUDGET_MS - (Date.now() - startedAt);
 
   /** ยิงไปที่รุ่นหนึ่ง ๆ — แยกออกมาเพราะต้องเรียกซ้ำตอนหารุ่นสำรอง */
-  async function callGemini(model: string, thinking = false): Promise<Response> {
+  async function callGemini(
+    model: string,
+    budget: ThinkingBudget,
+  ): Promise<Response> {
     return fetch(
       `https://generativelanguage.googleapis.com/v1beta/models/` +
         `${model}:streamGenerateContent?alt=sse`,
@@ -108,7 +113,7 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
           "Content-Type": "application/json",
           "x-goog-api-key": GEMINI_API_KEY,
         },
-        body: JSON.stringify(buildPayload(thinking)),
+        body: JSON.stringify(buildPayload(budget)),
         // เหลือเท่าไรก็ใช้เท่านั้น จะได้ไม่ทะลุงบรวม
         signal: AbortSignal.timeout(Math.max(1_000, Math.min(PER_CALL_MS, timeLeft()))),
       },
@@ -119,25 +124,29 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
   const worthRetrying = (status: number) => status === 404 || status === 503;
 
   let model = pickModel();
-  /** ต้องเปิดโหมดคิดไหม ตั้งเป็น true เฉพาะตอนรุ่นนั้นไม่รู้จัก thinkingConfig */
-  let thinking = false;
+  let budget = preferredThinking(model);
   let upstream: Response;
   try {
-    upstream = await callGemini(model, thinking);
+    upstream = await callGemini(model, budget);
 
     /*
-     * รุ่นเก่าไม่รู้จัก thinkingConfig แล้วตอบ 400 แทนที่จะเมินฟิลด์ที่ไม่รู้จัก
-     * ยิงใหม่แบบไม่ส่ง ไม่งั้นผู้ช่วยจะพังทั้งตัวกับรุ่นเหล่านั้น
-     * ต้องอ่าน body ตรงนี้เลยเพราะอ่านซ้ำไม่ได้ ถ้าไม่ใช่เรื่องโหมดคิดก็ตอบกลับไปเลย
+     * รุ่นที่ไม่รับค่าโหมดคิดตอบ 400 กลับมา แต่บอกแค่ว่า
+     * "Request contains an invalid argument." ไม่ได้บอกเลยว่าฟิลด์ไหนผิด
+     * จะดักด้วยข้อความไม่ได้ จึงไล่ลองขั้นถัดไปในลำดับแทน แล้วจำไว้ว่า
+     * รุ่นนี้รับแบบไหน ครั้งต่อไปจะยิงถูกตั้งแต่ครั้งแรก
+     *
+     * ต้องอ่าน body ทุกครั้งที่เจอ 400 เพราะอ่านซ้ำไม่ได้ และเก็บไว้ตอบกลับ
+     * ถ้าไล่จนสุดลำดับแล้วยังไม่ผ่าน แปลว่า 400 นั้นมาจากเรื่องอื่น
      */
-    if (upstream.status === 400) {
-      const detail = await readUpstreamError(upstream);
-      if (isThinkingUnsupported(detail)) {
-        thinking = true;
-        upstream = await callGemini(model, thinking);
-      } else {
-        return upstreamError(options.label, model, 400, detail);
+    let last400 = "";
+    while (upstream.status === 400) {
+      last400 = await readUpstreamError(upstream);
+      const step = nextThinking(budget);
+      if (step === undefined || timeLeft() < 3_000) {
+        return upstreamError(options.label, model, 400, last400);
       }
+      budget = step;
+      upstream = await callGemini(model, budget);
     }
 
     // รุ่นที่ตั้งไว้ใช้ไม่ได้ ให้ไล่ลองรุ่นอื่นที่คีย์นี้มี
@@ -149,9 +158,13 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
       for (const candidate of candidates.slice(0, MAX_CANDIDATES)) {
         // หมดงบแล้วหยุดลอง ปล่อยให้ตอบด้วยผลของรุ่นล่าสุดดีกว่าโดนฆ่ากลางคัน
         if (timeLeft() < 3_000) break;
-        const next = await callGemini(candidate, thinking);
+        const candidateBudget = preferredThinking(candidate);
+        const next = await callGemini(candidate, candidateBudget);
         if (next.ok) {
           model = candidate;
+          // ต้องย้ายค่าโหมดคิดตามรุ่นที่ชนะด้วย ไม่งั้นตอนจำจะจำค่าของรุ่นแรก
+          // ไปให้รุ่นนี้ แล้วครั้งหน้าจะยิงด้วยค่าที่ไม่เคยพิสูจน์ว่าใช้ได้
+          budget = candidateBudget;
           upstream = next;
           rememberModel(candidate);
           break;
@@ -191,6 +204,8 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
   }
 
   rememberModel(model);
+  // ยิงผ่านแล้ว จำไว้ว่ารุ่นนี้รับค่าโหมดคิดแบบนี้ จะได้ไม่ต้องไล่ลองอีก
+  rememberThinking(model, budget);
 
   return new Response(geminiTextStream(upstream.body), {
     headers: {

@@ -10,10 +10,17 @@
  */
 import {
   describeFetchError,
-  isThinkingUnsupported,
   readUpstreamError,
   upstreamHint,
 } from "@/lib/gemini/errors";
+import {
+  nextThinking,
+  preferredThinking,
+  rememberThinking,
+  resetThinkingMemory,
+  THINKING_LADDER,
+  thinkingConfigFor,
+} from "@/lib/gemini/thinking";
 
 let pass = 0;
 let fail = 0;
@@ -75,19 +82,40 @@ console.log("\nคำแนะนำตามรหัสสถานะ");
   check("รหัสที่ไม่รู้จักมีข้อความกลาง ๆ", upstreamHint(418, "").length > 0);
 }
 
-console.log("\nรุ่นที่ไม่รู้จัก thinkingConfig");
+console.log("\nลำดับการลองโหมดคิดก่อนตอบ");
 {
   /*
-   * เราปิดโหมดคิดก่อนตอบเพื่อให้ตอบไว แต่รุ่นเก่าตอบ 400 กลับมาแทนที่จะเมิน
-   * ฟิลด์ที่ไม่รู้จัก ต้องจับให้ได้แล้วยิงใหม่แบบไม่ส่ง ไม่งั้นผู้ช่วยพังทั้งตัว
+   * รุ่นที่ไม่รับค่าโหมดคิดตอบแค่ "Request contains an invalid argument."
+   * ไม่ได้บอกว่าฟิลด์ไหนผิด จึงดักด้วยข้อความไม่ได้ ต้องไล่ลองแล้วจำเอา
+   * เคยลองดักด้วยคำว่า thinking/thought มาแล้วและพลาด เพราะข้อความจริง
+   * ของ Google ไม่มีคำพวกนั้นเลย
    */
+  resetThinkingMemory();
+
+  check("รุ่นใหม่เริ่มจากปิดสนิท", preferredThinking("รุ่นก") === 0);
+  check("ปิดสนิทไม่ได้ ลองคิดนิดเดียว", nextThinking(0) === 128);
+  check("คิดนิดเดียวไม่ได้ ลองไม่ส่งเลย", nextThinking(128) === null);
+  check("ไม่ส่งเลยคือขั้นสุดท้าย", nextThinking(null) === undefined);
+  check("ค่าที่ไม่อยู่ในลำดับไม่วนไม่จบ", nextThinking(999) === undefined);
+
+  // ค่าที่พิสูจน์แล้วต้องถูกจำ ไม่งั้นทุกคำถามจะเสียรอบลองผิดซ้ำ ๆ
+  rememberThinking("รุ่นก", null);
+  check("จำค่าที่ใช้ได้แล้ว", preferredThinking("รุ่นก") === null);
+  check("รุ่นอื่นไม่ถูกกระทบ", preferredThinking("รุ่นข") === 0);
+
+  // 0 เป็นค่าที่ถูกต้องและต่างจาก "ยังไม่เคยลอง" ต้องไม่สับสนกัน
+  resetThinkingMemory();
+  rememberThinking("รุ่นค", 0);
+  check("จำค่า 0 ได้ ไม่ถูกอ่านเป็นยังไม่เคยลอง", preferredThinking("รุ่นค") === 0);
+
+  check("ปิดสนิทส่งฟิลด์ไปด้วย", "thinkingConfig" in thinkingConfigFor(0));
+  check("ไม่ส่งเลยไม่มีฟิลด์", Object.keys(thinkingConfigFor(null)).length === 0);
   check(
-    "จับข้อความที่พูดถึง thinking ได้",
-    isThinkingUnsupported("Unknown name \"thinkingConfig\": Cannot find field."),
+    "ค่างบถูกส่งตรงตามที่ขอ",
+    JSON.stringify(thinkingConfigFor(128)) === '{"thinkingConfig":{"thinkingBudget":128}}',
+    JSON.stringify(thinkingConfigFor(128)),
   );
-  check("จับคำว่า thought ได้ด้วย", isThinkingUnsupported("thought budget not supported"));
-  check("ไม่เหมารวม 400 อื่น", !isThinkingUnsupported("API key not valid"));
-  check("ข้อความว่างไม่นับ", !isThinkingUnsupported(""));
+  check("ทุกขั้นในลำดับต่างกัน", new Set(THINKING_LADDER.map(String)).size === THINKING_LADDER.length);
 }
 
 console.log("\nอ่านข้อความผิดพลาดจาก Google");
