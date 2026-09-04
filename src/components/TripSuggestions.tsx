@@ -13,6 +13,7 @@ import { groupCount, rowsInScope } from "@/lib/district-groups";
 import { addMinutesToTime } from "@/lib/format";
 import {
   buildSuggestionRows,
+  byPlanDistricts,
   SUGGESTION_GROUPS,
   type SuggestionGroup,
   type SuggestionRow,
@@ -46,6 +47,25 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     () => (dayProvince ? [dayProvince] : trip.provinces),
     [dayProvince, trip.provinces],
   );
+
+  /*
+   * อำเภอที่เจาะไว้ในแพลนการเที่ยว — เฉพาะของจังหวัดที่การ์ดนี้กำลังแนะอยู่
+   *
+   * ถ้าไม่ได้เจาะอำเภอไว้เลยจะได้ null แปลว่าใช้ทั้งจังหวัดเหมือนเดิม
+   * ถ้าเจาะไว้แล้วหมวดไหนไม่มีของในอำเภอนั้น จะถอยไปทั้งจังหวัดให้เอง
+   * พร้อมบอกให้รู้ ไม่ปล่อยให้ปุ่มตายเหมือนที่เคยเจอกับการ์ดในแท็บแนะนำเที่ยว
+   */
+  const planDistricts = useMemo(() => {
+    const picked: Record<string, string[]> = {};
+    for (const name of provinceNames) {
+      const list = trip.districts[name] ?? [];
+      if (list.length > 0) picked[name] = list;
+    }
+    return picked;
+  }, [provinceNames, trip.districts]);
+
+  const scope = useMemo(() => byPlanDistricts(planDistricts), [planDistricts]);
+  const districtLabels = Object.values(planDistricts).flat();
 
   const [group, setGroup] = useState<Group>("ทั้งหมด");
   const [query, setQuery] = useState("");
@@ -119,18 +139,17 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
   /*
    * นับให้ตรงกับที่กดแล้วได้เห็นจริง — ใช้ตัวเดียวกับการ์ดในแท็บแนะนำเที่ยว
    * เคยเจอปุ่มบอก 0 แต่กดไปมีรายการขึ้น ซึ่งอ่านแล้วงง
-   * (การ์ดนี้ไม่ได้กรองอำเภอ จึงส่งอำเภอเป็นค่าว่างเสมอ)
    */
   const countFor = (name: Group) =>
-    all ? groupCount(all, "", name).count : 0;
+    all ? groupCount(all, scope, name).count : 0;
 
   const filtered = useMemo(() => {
     if (!all) return null;
     const q = query.trim().toLowerCase();
-    return rowsInScope(all, "", group).rows.filter((row) =>
+    return rowsInScope(all, scope, group).rows.filter((row) =>
       matchesQuery(row.haystack, q),
     );
-  }, [all, group, query]);
+  }, [all, scope, group, query]);
 
   function notify(message: string) {
     setToast(message);
@@ -169,6 +188,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     );
   }
 
+  const usingWholeProvince = all ? groupCount(all, scope, group).wide : false;
   const visible = filtered ? (expanded ? filtered : filtered.slice(0, PREVIEW)) : [];
 
   return (
@@ -180,8 +200,11 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
         }
       />
 
-      <p className="mb-3 text-sm text-muted">
-        จาก {provinceNames.join(" • ")}
+      <p className="mb-3 text-sm leading-relaxed text-muted">
+        จาก{" "}
+        {districtLabels.length > 0
+          ? `อ.${districtLabels.join(" • อ.")} (${provinceNames.join(" • ")})`
+          : provinceNames.join(" • ")}
         {all ? ` · ${all.length} แห่ง` : ""}
       </p>
 
@@ -223,6 +246,13 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
         aria-label="ค้นหารายการแนะนำ"
         className="mb-3"
       />
+
+      {usingWholeProvince ? (
+        <p className="mb-3 text-xs leading-relaxed text-muted">
+          อำเภอที่เลือกไว้ในแพลนไม่มี{group}ในฐานข้อมูล — กำลังแสดง{group}
+          ทั้งจังหวัดแทน
+        </p>
+      ) : null}
 
       {current === null ? (
         <p className="text-sm text-muted">กำลังโหลด…</p>

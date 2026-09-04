@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { OsmPlace } from "@/data/osm-places";
 import type { HotelHit } from "@/app/api/hotels/route";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
-import { groupCount, rowsInScope } from "@/lib/district-groups";
+import { byDistrict, groupCount, rowsInScope } from "@/lib/district-groups";
 import { addMinutesToTime } from "@/lib/format";
 import { PlaceThumb } from "@/components/PlaceThumb";
 import { googleMapsUrl } from "@/lib/place-search";
@@ -180,14 +180,15 @@ export function DistrictPicks({
     [all, district],
   );
 
+  const scope = byDistrict<Row>(district);
   const countFor = (name: Group) =>
-    all ? groupCount(all, district, name) : { count: 0, wide: false };
+    all ? groupCount(all, scope, name) : { count: 0, wide: false };
 
   const usingWholeProvince = countFor(group).wide;
 
   const filtered = useMemo(() => {
     if (!all) return null;
-    const rows = rowsInScope(all, district, group).rows;
+    const rows = rowsInScope(all, byDistrict<Row>(district), group).rows;
     const q = query.trim().toLowerCase();
     return rows
       .filter(

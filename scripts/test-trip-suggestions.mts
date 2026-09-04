@@ -11,6 +11,7 @@ import { PROVINCE_BY_NAME } from "@/data/provinces";
 import { groupCount, rowsInScope } from "@/lib/district-groups";
 import {
   buildSuggestionRows,
+  byPlanDistricts,
   SUGGESTION_GROUPS,
   type SuggestionRow,
 } from "@/lib/trip-suggestions";
@@ -169,11 +170,11 @@ console.log("\nปุ่มกรองต้องไม่โกหก");
   });
 
   for (const g of SUGGESTION_GROUPS) {
-    const shown = rowsInScope(rows, "", g).rows.length;
-    const count = groupCount(rows, "", g).count;
+    const shown = rowsInScope(rows, null, g).rows.length;
+    const count = groupCount(rows, null, g).count;
     check(`หมวด "${g}" ตัวเลขบนปุ่มตรงกับรายการที่ได้เห็น (${count})`, count === shown);
   }
-  check("หมวดทั้งหมดได้ครบทุกแถว", rowsInScope(rows, "", "ทั้งหมด").rows.length === rows.length);
+  check("หมวดทั้งหมดได้ครบทุกแถว", rowsInScope(rows, null, "ทั้งหมด").rows.length === rows.length);
 }
 
 console.log("\nค้นหา");
@@ -207,6 +208,63 @@ console.log("\nกิจกรรมอ่านเวลาและราค�
   check("อ่านราคากลางช่วงได้", fill.cost === 280, String(fill.cost));
 }
 
+console.log("\nขอบเขตอำเภอตามแพลนการเที่ยว");
+{
+  const rows = buildSuggestionRows({
+    curated: [province],
+    osmPlaces: {
+      [P]: [
+        osm("p1", "วัดในชะอำ", "วัด", "ชะอำ"),
+        osm("p2", "วัดในบ้านแหลม", "วัด", "บ้านแหลม"),
+      ],
+    },
+    restaurants: { [P]: [food("f1", "ร้านในชะอำ", "ร้านอาหาร", null)] },
+    hotels: {},
+  });
+
+  // ไม่ได้เจาะอำเภอไว้ = ไม่กรอง
+  check("แพลนไม่ได้เจาะอำเภอ ได้ทั้งจังหวัด", byPlanDistricts({}) === null);
+  check("อาเรย์ว่างก็ถือว่าไม่ได้เจาะ", byPlanDistricts({ [P]: [] }) === null);
+
+  const only = byPlanDistricts({ [P]: ["ชะอำ"] });
+  const temples = rowsInScope(rows, only, "วัด");
+  check("เจาะ อ.ชะอำ แล้วได้เฉพาะวัดในชะอำ",
+    temples.rows.length === 1 && temples.rows[0].name === "วัดในชะอำ",
+    temples.rows.map((r) => r.name).join(","));
+  check("ไม่ติดป้ายว่าถอยไปทั้งจังหวัด", !temples.wholeProvince);
+
+  /*
+   * กิจกรรมไม่มีอำเภอโดยธรรมชาติ เพราะเป็นสิ่งที่ทำ ไม่ใช่ที่ที่ไป
+   * ถ้ากรองแบบเข้มงวดจะหายหมดทันทีที่เจาะอำเภอ ซึ่งไม่ใช่สิ่งที่ผู้ใช้ตั้งใจ
+   */
+  const acts = rowsInScope(rows, only, "กิจกรรม");
+  check(`เจาะอำเภอแล้วกิจกรรมยังอยู่ครบ (${acts.rows.length} รายการ)`,
+    acts.rows.length > 0 && !acts.wholeProvince);
+
+  // หมวดที่อำเภอนั้นไม่มีของ ต้องถอยไปทั้งจังหวัดแทนหน้าจอว่าง
+  const stays = rowsInScope(rows, only, "ที่พัก");
+  check("อำเภอที่เลือกไม่มีที่พัก ก็ไม่ถึงกับหน้าจอว่าง", stays.rows.length === 0);
+
+  const inBanLaem = byPlanDistricts({ [P]: ["บ้านแหลม"] });
+  const food1 = rowsInScope(rows, inBanLaem, "ร้านอาหาร");
+  check("บ้านแหลมไม่มีร้าน ถอยไปแสดงร้านทั้งจังหวัด",
+    food1.rows.length === 1 && food1.wholeProvince);
+
+  // ชื่ออำเภอซ้ำข้ามจังหวัดได้ ("เมือง..." มีทุกจังหวัด) จึงต้องเทียบเป็นคู่
+  const wrongProvince = byPlanDistricts({ เชียงใหม่: ["ชะอำ"] });
+  const cross = rowsInScope(rows, wrongProvince, "วัด");
+  check("อำเภอของคนละจังหวัดไม่ถูกนับเข้ามา", cross.wholeProvince, "ควรถอยไปทั้งจังหวัด");
+
+  // ปุ่มยังต้องบอกจำนวนที่กดแล้วได้เห็นจริง แม้ตอนเจาะอำเภอ
+  let lying = 0;
+  for (const g of SUGGESTION_GROUPS) {
+    if (groupCount(rows, only, g).count !== rowsInScope(rows, only, g).rows.length) {
+      lying += 1;
+    }
+  }
+  check("ตอนเจาะอำเภอ ปุ่มก็ยังไม่โกหก", lying === 0, `ผิด ${lying} หมวด`);
+}
+
 console.log("\nขอบและของว่าง");
 {
   const empty = buildSuggestionRows({
@@ -216,7 +274,7 @@ console.log("\nขอบและของว่าง");
     hotels: {},
   });
   check("ไม่มีข้อมูลเลยได้รายการว่างโดยไม่ล่ม", empty.length === 0);
-  check("หมวดที่ไม่มีของนับเป็น 0", groupCount(empty, "", "วัด").count === 0);
+  check("หมวดที่ไม่มีของนับเป็น 0", groupCount(empty, null, "วัด").count === 0);
 
   const many = buildSuggestionRows({
     curated: [province],

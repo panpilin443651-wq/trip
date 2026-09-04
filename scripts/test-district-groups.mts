@@ -12,6 +12,7 @@ import { OSM_PLACES } from "@/data/osm-places";
 import { OSM_RESTAURANTS } from "@/data/osm-restaurants";
 import {
   ALL_GROUPS,
+  byDistrict,
   groupCount,
   rowsInScope,
   type GroupedRow,
@@ -24,6 +25,7 @@ const check = (n: string, c: boolean, e = "") =>
 
 interface Row extends GroupedRow {
   name: string;
+  district: string;
 }
 const row = (name: string, district: string, group: string): Row => ({
   name,
@@ -36,10 +38,10 @@ const GROUPS = ["วัด", "ที่เที่ยว", "คาเฟ่", "
 console.log("\nยังไม่เลือกอำเภอ — ดูทั้งจังหวัด");
 {
   const all = [row("ก", "เมือง", "วัด"), row("ข", "ชะอำ", "คาเฟ่")];
-  const r = rowsInScope(all, "", ALL_GROUPS);
+  const r = rowsInScope(all, byDistrict<Row>(""), ALL_GROUPS);
   check("ได้ทุกแถว", r.rows.length === 2);
   check("ไม่บอกว่าถอยไปทั้งจังหวัด", !r.wholeProvince);
-  check("กรองหมวดได้", rowsInScope(all, "", "วัด").rows.length === 1);
+  check("กรองหมวดได้", rowsInScope(all, byDistrict<Row>(""), "วัด").rows.length === 1);
 }
 
 console.log("\nเลือกอำเภอที่มีของในหมวดนั้น");
@@ -49,11 +51,11 @@ console.log("\nเลือกอำเภอที่มีของในห�
     row("วัดที่ชะอำ", "ชะอำ", "วัด"),
     row("คาเฟ่ชะอำ", "ชะอำ", "คาเฟ่"),
   ];
-  const r = rowsInScope(all, "ชะอำ", "วัด");
+  const r = rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด");
   check("ได้เฉพาะของอำเภอนั้น", r.rows.length === 1 && r.rows[0].name === "วัดที่ชะอำ");
   check("ไม่ถอยไปทั้งจังหวัด", !r.wholeProvince);
-  check("นับตรงกับที่จะได้เห็น", groupCount(all, "ชะอำ", "วัด").count === 1);
-  check("ไม่ติดป้ายทั้งจังหวัด", !groupCount(all, "ชะอำ", "วัด").wide);
+  check("นับตรงกับที่จะได้เห็น", groupCount(all, byDistrict<Row>("ชะอำ"), "วัด").count === 1);
+  check("ไม่ติดป้ายทั้งจังหวัด", !groupCount(all, byDistrict<Row>("ชะอำ"), "วัด").wide);
 }
 
 console.log("\nเลือกอำเภอที่ไม่มีของในหมวดนั้น — ต้องถอยไปทั้งจังหวัด");
@@ -62,11 +64,11 @@ console.log("\nเลือกอำเภอที่ไม่มีของ�
     row("วัดในเมือง", "เมือง", "วัด"),
     row("คาเฟ่ชะอำ", "ชะอำ", "คาเฟ่"),
   ];
-  const r = rowsInScope(all, "ชะอำ", "วัด");
+  const r = rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด");
   check("ยังได้รายการมาแสดง ไม่ใช่หน้าจอว่าง", r.rows.length === 1);
   check("บอกว่ากำลังดูทั้งจังหวัด", r.wholeProvince);
 
-  const c = groupCount(all, "ชะอำ", "วัด");
+  const c = groupCount(all, byDistrict<Row>("ชะอำ"), "วัด");
   // ปุ่มต้องไม่บอกว่า 0 แล้วกดไปเจอรายการ
   check("ปุ่มบอกจำนวนที่จะได้เห็นจริง", c.count === 1 && c.wide);
 }
@@ -74,11 +76,11 @@ console.log("\nเลือกอำเภอที่ไม่มีของ�
 console.log("\nไม่มีของในหมวดนั้นเลยทั้งจังหวัด");
 {
   const all = [row("คาเฟ่ชะอำ", "ชะอำ", "คาเฟ่")];
-  const r = rowsInScope(all, "ชะอำ", "วัด");
+  const r = rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด");
   check("ได้รายการว่าง", r.rows.length === 0);
   // ทั้งจังหวัดก็ว่าง บอกว่า "แสดงทั้งจังหวัดแทน" ไปก็สับสนเปล่า ๆ
   check("ไม่ขึ้นหมายเหตุว่าถอยไปทั้งจังหวัด", !r.wholeProvince);
-  check("ปุ่มนับเป็น 0 (กดไม่ได้ถูกแล้ว)", groupCount(all, "ชะอำ", "วัด").count === 0);
+  check("ปุ่มนับเป็น 0 (กดไม่ได้ถูกแล้ว)", groupCount(all, byDistrict<Row>("ชะอำ"), "วัด").count === 0);
 }
 
 console.log("\nแถวที่ไม่รู้อำเภอ");
@@ -86,14 +88,17 @@ console.log("\nแถวที่ไม่รู้อำเภอ");
   const all = [row("ไม่รู้อำเภอ", "", "วัด"), row("วัดชะอำ", "ชะอำ", "วัด")];
   check(
     "ไม่ถูกนับเข้าอำเภอใดอำเภอหนึ่ง",
-    rowsInScope(all, "ชะอำ", "วัด").rows.length === 1,
+    rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด").rows.length === 1,
   );
-  check("แต่ยังเห็นตอนดูทั้งจังหวัด", rowsInScope(all, "", "วัด").rows.length === 2);
+  check("แต่ยังเห็นตอนดูทั้งจังหวัด", rowsInScope(all, byDistrict<Row>(""), "วัด").rows.length === 2);
 }
 
 console.log("\nวัดกับข้อมูลจริงทั้งประเทศ");
 {
-  const rowsOf = (prov: string): GroupedRow[] => [
+  interface RealRow extends GroupedRow {
+    district: string;
+  }
+  const rowsOf = (prov: string): RealRow[] => [
     ...(OSM_PLACES[prov] ?? []).map((p) => ({
       district: p.district,
       group: p.kind === "วัด" ? "วัด" : "ที่เที่ยว",
@@ -122,8 +127,8 @@ console.log("\nวัดกับข้อมูลจริงทั้งป�
     for (const d of districts) {
       for (const g of GROUPS) {
         buttons += 1;
-        const { count, wide } = groupCount(all, d, g);
-        const shown = rowsInScope(all, d, g).rows.length;
+        const { count, wide } = groupCount(all, byDistrict<RealRow>(d), g);
+        const shown = rowsInScope(all, byDistrict<RealRow>(d), g).rows.length;
         // ตัวเลขบนปุ่มต้องเท่ากับจำนวนที่กดแล้วได้เห็นจริงเสมอ
         if (count !== shown) lying += 1;
         if (count === 0) {

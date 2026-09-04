@@ -1,5 +1,5 @@
 /**
- * เลือกว่าปุ่มกรองหมวดในการ์ด "วัด ร้านดัง ที่พัก" จะแสดงอะไร
+ * เลือกว่าปุ่มกรองหมวดจะแสดงอะไร เมื่อมีการจำกัดขอบเขตให้แคบกว่าจังหวัด
  *
  * ปัญหาที่แก้ — ชุดข้อมูล OpenStreetMap จำกัดจำนวนต่อ "จังหวัด" (จังหวัดละ
  * ไม่กี่สิบแห่ง) พอผู้ใช้เลือกอำเภอ ของที่มีอยู่จะกระจายไปสิบกว่าอำเภอ
@@ -11,43 +11,49 @@
  *
  * ที่ยังกดไม่ได้ 8% คือจังหวัดที่ไม่มีหมวดนั้นเลยจริง ๆ (13 จังหวัดไม่มีวัด
  * ในชุดข้อมูล) ซึ่งถูกแล้วที่จะกดไม่ได้
+ *
+ * ใช้สองที่ที่จำกัดขอบเขตคนละแบบ จึงรับเป็น **ฟังก์ชันตัดสิน** ไม่ใช่ชื่ออำเภอ
+ *   การ์ดในแท็บแนะนำเที่ยว  อำเภอเดียวที่ผู้ใช้กดเลือก
+ *   การ์ดแนะนำสำหรับทริปนี้ อำเภอที่เลือกไว้ในแพลนการเที่ยว ซึ่งมีได้หลายอำเภอ
+ *                          ต่อจังหวัด และต้องเก็บกิจกรรมที่ไม่มีอำเภอไว้ด้วย
  */
 
 /** หมวดรวมที่หมายถึง "ไม่กรอง" */
 export const ALL_GROUPS = "ทั้งหมด";
 
 export interface GroupedRow {
-  /** อำเภอที่ตั้ง ว่างได้ถ้าชุดข้อมูลไม่รู้ */
-  district: string;
   group: string;
 }
+
+/**
+ * เงื่อนไขว่าแถวไหนอยู่ในขอบเขตที่แคบลง
+ * `null` = ไม่จำกัดขอบเขต ใช้ทั้งจังหวัด
+ */
+export type ScopeFilter<T> = ((row: T) => boolean) | null;
 
 function inGroup<T extends GroupedRow>(rows: T[], group: string): T[] {
   return group === ALL_GROUPS ? rows : rows.filter((row) => row.group === group);
 }
 
 /**
- * แถวที่ควรแสดงสำหรับอำเภอและหมวดที่เลือก
+ * แถวที่ควรแสดงสำหรับขอบเขตและหมวดที่เลือก
  *
- * ถ้าอำเภอนั้นไม่มีของในหมวดที่เลือกเลย จะถอยไปใช้ทั้งจังหวัดแทนการขึ้นว่า
+ * ถ้าขอบเขตที่แคบลงไม่มีของในหมวดที่เลือกเลย จะถอยไปใช้ทั้งจังหวัดแทนการขึ้นว่า
  * "ไม่พบ" เพราะที่ที่อยู่คนละอำเภอในจังหวัดเดียวกันมักขับไปได้ในครึ่งชั่วโมง
  * — มีประโยชน์กว่าหน้าจอว่างเปล่าแน่นอน แต่ต้องบอกผู้ใช้ด้วยว่ากำลังดูทั้งจังหวัด
  */
 export function rowsInScope<T extends GroupedRow>(
   all: T[],
-  district: string,
+  narrow: ScopeFilter<T>,
   group: string,
 ): { rows: T[]; wholeProvince: boolean } {
-  if (!district) return { rows: inGroup(all, group), wholeProvince: false };
+  if (!narrow) return { rows: inGroup(all, group), wholeProvince: false };
 
-  const here = inGroup(
-    all.filter((row) => row.district === district),
-    group,
-  );
+  const here = inGroup(all.filter(narrow), group);
   if (here.length > 0) return { rows: here, wholeProvince: false };
 
   const wide = inGroup(all, group);
-  // ไม่มีทั้งในอำเภอและทั้งจังหวัด — ไม่ต้องบอกว่าถอยไปดูทั้งจังหวัด
+  // ไม่มีทั้งในขอบเขตแคบและทั้งจังหวัด — ไม่ต้องบอกว่าถอยไปดูทั้งจังหวัด
   // เพราะทั้งจังหวัดก็ว่างเหมือนกัน พูดไปก็สับสนเปล่า ๆ
   return { rows: wide, wholeProvince: wide.length > 0 };
 }
@@ -55,14 +61,21 @@ export function rowsInScope<T extends GroupedRow>(
 /**
  * ตัวเลขที่ขึ้นบนปุ่มหมวด
  *
- * ต้องเป็นจำนวนของสิ่งที่จะได้เห็นจริงเมื่อกด ไม่ใช่จำนวนในอำเภอ
+ * ต้องเป็นจำนวนของสิ่งที่จะได้เห็นจริงเมื่อกด ไม่ใช่จำนวนในขอบเขตแคบ
  * ไม่งั้นปุ่มจะบอกว่า 0 แต่กดแล้วมีรายการขึ้นมา
  */
 export function groupCount<T extends GroupedRow>(
   all: T[],
-  district: string,
+  narrow: ScopeFilter<T>,
   group: string,
 ): { count: number; wide: boolean } {
-  const { rows, wholeProvince } = rowsInScope(all, district, group);
+  const { rows, wholeProvince } = rowsInScope(all, narrow, group);
   return { count: rows.length, wide: wholeProvince };
+}
+
+/** ตัวช่วยที่ใช้บ่อย — จำกัดด้วยชื่ออำเภอเดียว ว่าง = ไม่จำกัด */
+export function byDistrict<T extends GroupedRow & { district: string }>(
+  district: string,
+): ScopeFilter<T> {
+  return district ? (row) => row.district === district : null;
 }

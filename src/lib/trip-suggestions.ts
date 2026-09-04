@@ -7,6 +7,7 @@ import {
   placeFill,
   type SuggestionFill,
 } from "./activity-search";
+import type { ScopeFilter } from "./district-groups";
 import { googleMapsUrl } from "./place-search";
 
 /**
@@ -247,4 +248,29 @@ export function buildSuggestionRows(
       Number(b.notable) - Number(a.notable) ||
       a.name.localeCompare(b.name, "th"),
   );
+}
+
+/**
+ * เงื่อนไขว่าแถวไหนอยู่ในอำเภอที่เลือกไว้ในแพลนการเที่ยว
+ *
+ * `trip.districts` เก็บเป็น { จังหวัด: [อำเภอ] } และ **อาเรย์ว่าง = ทั้งจังหวัด**
+ * ถ้าไม่มีจังหวัดไหนเจาะอำเภอไว้เลย จะคืน null แปลว่าไม่ต้องกรอง
+ *
+ * เทียบเป็นคู่ จังหวัด+อำเภอ ไม่ใช่ชื่ออำเภอลอย ๆ เพราะชื่ออำเภอซ้ำข้ามจังหวัดได้
+ * (มี "เมือง..." ทุกจังหวัด และชื่ออย่าง "ปากช่อง" ก็ไม่ได้มีที่เดียว)
+ *
+ * **กิจกรรมไม่มีอำเภอโดยธรรมชาติ** เพราะเป็นสิ่งที่ทำ ไม่ใช่ที่ที่ไป
+ * จึงต้องนับว่าอยู่ในขอบเขตเสมอ ไม่งั้นเจาะอำเภอปุ๊บกิจกรรมหายหมด
+ * ที่ที่คัดเองราว 7% ก็ยังไม่ได้ระบุอำเภอ ใช้กฎเดียวกันจะได้ไม่หายไปเงียบ ๆ
+ */
+export function byPlanDistricts(
+  districts: Record<string, string[]>,
+): ScopeFilter<SuggestionRow> {
+  const allowed = new Set<string>();
+  for (const [province, list] of Object.entries(districts)) {
+    for (const district of list) allowed.add(`${province}::${district}`);
+  }
+  if (allowed.size === 0) return null;
+  return (row) =>
+    !row.district || allowed.has(`${row.province}::${row.district}`);
 }
