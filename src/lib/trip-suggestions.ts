@@ -330,12 +330,44 @@ export function searchSuggestionRows(
   near: string,
   limit: number,
 ): { rows: SuggestionRow[]; total: number } {
-  const q = query.trim().toLowerCase();
-  if (!q) return { rows: [], total: 0 };
+  /*
+   * แยกคำด้วยช่องว่างแล้วต้องเจอ **ทุกคำ** ไม่ใช่หาทั้งประโยคเป็นก้อนเดียว
+   *
+   * เดิมใช้ haystack.includes(ทั้งประโยค) ซึ่งพังทันทีที่ผู้ใช้เคาะเว้นวรรค
+   * วัดจากของที่มีอยู่จริงในฐานข้อมูล — "ตลาดน้ำ อัมพวา" ได้ 0 ผล
+   * ทั้งที่ "ตลาดน้ำอัมพวา" ได้ 1 · "วัด เชียงใหม่" กับ "พระธาตุ ดอยสุเทพ"
+   * ก็ได้ 0 เหมือนกัน ทั้งที่เป็นวิธีพิมพ์ที่คนใช้กันปกติ
+   *
+   * ภาษาไทยเขียนติดกันอยู่แล้ว การแยกด้วยช่องว่างจึงไม่ทำให้คำไทยแตก
+   * แต่ช่วยให้พิมพ์ปนอังกฤษหรือเว้นวรรคเองได้
+   */
+  const terms = query
+    .trim()
+    .toLowerCase()
+    .split(/\s+/)
+    .filter(Boolean);
+  if (terms.length === 0) return { rows: [], total: 0 };
 
-  const hits = rows.filter((row) => row.haystack.includes(q));
+  const hits = rows.filter((row) =>
+    terms.every((term) => row.haystack.includes(term)),
+  );
+  /*
+   * ที่ชื่อมีทั้งประโยคติดกัน มักเป็นตัวที่ผู้ใช้หมายถึงที่สุด จึงดันขึ้นก่อน
+   *
+   * เทียบทั้งแบบมีช่องว่างและแบบเอาช่องว่างออก เพราะภาษาไทยเขียนติดกัน
+   * คนพิมพ์ "ตลาดน้ำ อัมพวา" ก็หมายถึง "ตลาดน้ำอัมพวา" นั่นเอง
+   * ถ้าไม่ทำ ที่ชื่อตรงเป๊ะจะไปอยู่ล่างกว่าที่แค่บังเอิญมีคำครบ
+   */
+  const whole = terms.join(" ");
+  const glued = terms.join("");
+  const exact = (row: SuggestionRow) => {
+    const name = row.name.toLowerCase();
+    return name.includes(whole) || name.includes(glued);
+  };
+
   const sorted = [...hits].sort(
     (a, b) =>
+      Number(exact(b)) - Number(exact(a)) ||
       Number(b.province === near) - Number(a.province === near) ||
       Number(b.notable) - Number(a.notable) ||
       // ชื่อสั้นกว่ามักเป็นตัวที่ผู้ใช้หมายถึง ("ตลาดน้ำอัมพวา" ก่อน
@@ -344,4 +376,39 @@ export function searchSuggestionRows(
       a.name.localeCompare(b.name, "th"),
   );
   return { rows: sorted.slice(0, limit), total: hits.length };
+}
+
+/**
+ * แถวจากชื่อที่ผู้ใช้พิมพ์เอง — ทางออกสุดท้ายเมื่อไม่เจอที่ไหนเลย
+ *
+ * ที่พักเล็ก ๆ ที่เพิ่งเปิดมักไม่มีทั้งในข้อมูลที่เราคัดมาและใน OpenStreetMap
+ * (เจอจริงกับ "ฟาร์มสุข Glamping ชะอม" ซึ่งค้นแล้วว่างทั้งสองทาง)
+ * ถ้าปิดทางแค่นั้นผู้ใช้จะใส่ที่ที่ตัวเองรู้จักลงแผนไม่ได้เลย ทั้งที่รู้ว่ามีจริง
+ *
+ * ไม่มีพิกัด จึงปักหมุดบนแผนที่ไม่ได้ แต่ลิงก์ Google Maps ยังใช้ได้
+ * เพราะค้นด้วยชื่อแทนพิกัดได้ ผู้ใช้จึงยังกดไปดูทางได้อยู่
+ */
+export function rowFromTypedName(name: string): SuggestionRow {
+  const clean = name.trim();
+  return {
+    key: `t-${clean}`,
+    name: clean,
+    emoji: "✏️",
+    group: "สถานที่",
+    hint: "เพิ่มเองจากชื่อที่พิมพ์ ยังไม่มีพิกัด",
+    province: "",
+    district: "",
+    notable: false,
+    mapsUrl: googleMapsUrl(clean),
+    haystack: lower(clean),
+    fill: {
+      title: clean,
+      placeName: clean,
+      province: "",
+      detail: "เพิ่มเองจากชื่อที่พิมพ์ — ยังไม่มีพิกัด ปักหมุดเองได้ที่หน้าแผนเที่ยว",
+      durationMin: PLACE_MINUTES,
+      cost: 0,
+      category: "attraction",
+    },
+  };
 }

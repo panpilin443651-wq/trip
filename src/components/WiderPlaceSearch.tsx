@@ -2,8 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { PlaceThumb } from "@/components/PlaceThumb";
+import { googleMapsUrl } from "@/lib/place-search";
 import {
   rowFromMapSearch,
+  rowFromTypedName,
   type SuggestionRow,
 } from "@/lib/trip-suggestions";
 import { Button } from "./ui";
@@ -112,10 +114,34 @@ export function WiderPlaceSearch({
       {current === null ? (
         <p className="mt-3 text-sm text-muted">กำลังค้น…</p>
       ) : rows.length === 0 ? (
-        <p className="mt-3 text-sm leading-relaxed text-muted">
-          ไม่พบ &ldquo;{q}&rdquo; ทั้งในฐานข้อมูลของเว็บและในแผนที่ —
-          ลองพิมพ์สั้นลงหรือใช้ชื่อที่คนเรียกกันทั่วไป
-        </p>
+        /*
+         * ไม่เจอที่ไหนเลย — ที่พักเล็ก ๆ ที่เพิ่งเปิดมักไม่มีทั้งในข้อมูลที่เราคัดมา
+         * และใน OpenStreetMap ถ้าปิดทางแค่บอกให้พิมพ์ใหม่ ผู้ใช้จะใส่ที่ที่ตัวเอง
+         * รู้จักลงแผนไม่ได้เลย ทั้งที่รู้ว่ามีจริง จึงให้เพิ่มเองด้วยชื่อที่พิมพ์ได้
+         */
+        <div className="mt-3 rounded-xl border border-dashed border-line px-3 py-4">
+          <p className="text-sm leading-relaxed text-muted">
+            ไม่พบ &ldquo;{q}&rdquo; ทั้งในฐานข้อมูลของเว็บและในแผนที่ —
+            ที่พักหรือร้านที่เพิ่งเปิดมักยังไม่มีใครลงข้อมูลไว้
+          </p>
+          <div className="mt-3 flex flex-wrap items-center gap-2">
+            <Button size="sm" onClick={() => onAdd(rowFromTypedName(q))}>
+              ➕ เพิ่ม &ldquo;{q}&rdquo; เอง
+            </Button>
+            <a
+              href={googleMapsUrl(q)}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-xs text-brand underline underline-offset-2"
+            >
+              ค้นชื่อนี้ใน Google Maps
+            </a>
+          </div>
+          <p className="mt-2 text-xs leading-relaxed text-faint">
+            เพิ่มเองจะยังไม่มีพิกัด จึงปักหมุดบนแผนที่ไม่ได้
+            แต่แก้ชื่อ เวลา และหมวดได้ที่หน้าแผนเที่ยว
+          </p>
+        </div>
       ) : (
         <>
           {current.fromMap ? (

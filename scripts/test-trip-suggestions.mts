@@ -13,6 +13,7 @@ import {
   buildSuggestionRows,
   byPlanDistricts,
   rowFromMapSearch,
+  rowFromTypedName,
   searchSuggestionRows,
   SUGGESTION_GROUPS,
   type SuggestionRow,
@@ -337,6 +338,79 @@ console.log("\nที่ที่ไม่มีในฐานข้อมู�
   check("เก็บที่อยู่เต็มไว้ในรายละเอียด", row.fill.detail.includes("ตำบลหนึ่ง"));
   // ไม่รู้จังหวัด จึงต้องปล่อยว่าง ไม่ใช่เดาเอา
   check("ไม่เดาจังหวัด", row.province === "");
+}
+
+console.log("\nคำค้นที่มีช่องว่าง");
+{
+  const rows = buildSuggestionRows({
+    curated: [],
+    osmPlaces: {
+      สมุทรสงคราม: [osm("m1", "ตลาดน้ำอัมพวา", "ตลาด", "อัมพวา")],
+      เชียงใหม่: [osm("m2", "วัดพระธาตุดอยสุเทพ", "วัด", "เมืองเชียงใหม่")],
+    },
+    restaurants: {},
+    hotels: {},
+  });
+
+  /*
+   * เดิมหาทั้งประโยคเป็นก้อนเดียว พังทันทีที่ผู้ใช้เคาะเว้นวรรค
+   * วัดจากของจริง — "ตลาดน้ำ อัมพวา" ได้ 0 ผล ทั้งที่ "ตลาดน้ำอัมพวา" ได้ 1
+   * และ "พระธาตุ ดอยสุเทพ" ก็ได้ 0 ทั้งที่เป็นวิธีพิมพ์ที่คนใช้กันปกติ
+   */
+  check("เว้นวรรคกลางชื่อก็ยังเจอ", searchSuggestionRows(rows, "ตลาดน้ำ อัมพวา", "", 5).total === 1);
+  check("เว้นวรรคหลายที่ก็เจอ", searchSuggestionRows(rows, "พระธาตุ ดอยสุเทพ", "", 5).total === 1);
+  check("ไม่เว้นวรรคก็ยังเจอเหมือนเดิม", searchSuggestionRows(rows, "ตลาดน้ำอัมพวา", "", 5).total === 1);
+  check("สลับลำดับคำก็เจอ", searchSuggestionRows(rows, "อัมพวา ตลาดน้ำ", "", 5).total === 1);
+
+  // ต้องเจอครบทุกคำ ไม่ใช่คำใดคำหนึ่ง ไม่งั้นผลจะกว้างจนไร้ประโยชน์
+  check(
+    "ต้องเจอครบทุกคำ",
+    searchSuggestionRows(rows, "ตลาดน้ำ ดอยสุเทพ", "", 5).total === 0,
+  );
+
+  check("ช่องว่างเกินมาไม่กวน", searchSuggestionRows(rows, "  ตลาดน้ำ   อัมพวา  ", "", 5).total === 1);
+
+  // ค้นด้วยคำที่อยู่ในอำเภอหรือจังหวัดก็ได้ เพราะ haystack รวมไว้แล้ว
+  check("ผสมชื่อกับจังหวัดได้", searchSuggestionRows(rows, "วัด เชียงใหม่", "", 5).total === 1);
+}
+
+console.log("\nจัดอันดับคำค้นที่มีช่องว่าง");
+{
+  const rows = buildSuggestionRows({
+    curated: [],
+    osmPlaces: {
+      สมุทรสงคราม: [
+        osm("m1", "ตลาดน้ำท่าค่า", "ตลาด", "อัมพวา"),
+        osm("m2", "ตลาดน้ำอัมพวา", "ตลาด", "อัมพวา"),
+      ],
+    },
+    restaurants: {},
+    hotels: {},
+  });
+  /*
+   * ภาษาไทยเขียนติดกัน คนพิมพ์ "ตลาดน้ำ อัมพวา" ก็หมายถึง "ตลาดน้ำอัมพวา"
+   * ถ้าไม่เทียบแบบเอาช่องว่างออก ที่ชื่อตรงเป๊ะจะไปอยู่ล่างกว่าที่แค่มีคำครบ
+   * (ท่าค่าอยู่ อ.อัมพวา จึงมีครบทั้งสองคำเหมือนกัน)
+   */
+  const r = searchSuggestionRows(rows, "ตลาดน้ำ อัมพวา", "", 5);
+  check("ที่ชื่อตรงเป๊ะขึ้นก่อน", r.rows[0]?.name === "ตลาดน้ำอัมพวา", r.rows[0]?.name);
+  check("แต่ตัวอื่นยังอยู่", r.total === 2);
+}
+
+console.log("\nเพิ่มเองด้วยชื่อที่พิมพ์");
+{
+  /*
+   * ที่พักเล็กที่เพิ่งเปิดไม่มีทั้งในข้อมูลที่คัดมาและใน OpenStreetMap
+   * เจอจริงกับ "ฟาร์มสุข Glamping ชะอม" ซึ่งค้นแล้วว่างทั้งสองทาง
+   * ถ้าปิดทางแค่บอกให้พิมพ์ใหม่ ผู้ใช้จะใส่ที่ที่ตัวเองรู้จักลงแผนไม่ได้เลย
+   */
+  const row = rowFromTypedName("  ฟาร์มสุข Glamping ชะอม  ");
+  check("ตัดช่องว่างหัวท้าย", row.name === "ฟาร์มสุข Glamping ชะอม");
+  check("ยังมีลิงก์ Google Maps ให้กดไปดูทาง", row.mapsUrl !== null);
+  check("ค้นด้วยชื่อเพราะไม่มีพิกัด", row.mapsUrl?.includes(encodeURIComponent("ฟาร์มสุข")) === true);
+  check("ไม่มีพิกัด จึงปักหมุดไม่ได้", row.fill.lat === undefined && row.fill.lng === undefined);
+  check("บอกในรายละเอียดว่าเพิ่มเอง", row.fill.detail.includes("เพิ่มเอง"));
+  check("ใส่แผนได้ด้วยชื่อที่พิมพ์", row.fill.title === "ฟาร์มสุข Glamping ชะอม");
 }
 
 console.log("\nขอบและของว่าง");
