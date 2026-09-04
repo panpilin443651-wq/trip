@@ -303,7 +303,11 @@ export default function ExplorePage() {
         <p className="mt-3 mb-1.5 text-[13px] font-medium text-muted">
           จังหวัดยอดนิยม
         </p>
-        <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4">
+        {/* จัดเป็น 2 แถวเสมอ ไม่ใช่ปล่อยให้ตัดบรรทัดเอง
+            ชิปสิบอันรวมกันกว้างราว 1,370px ถ้าใช้ flex-wrap บนมือถือจะกลายเป็น
+            4-5 บรรทัด แล้วดันเนื้อหาที่เหลือตกไปอยู่ใต้จอ · แบบนี้ได้ 2 บรรทัด
+            ทุกขนาดจอ บนเดสก์ท็อปเห็นครบไม่ต้องเลื่อน บนมือถือเลื่อนสั้นลงครึ่งหนึ่ง */}
+        <div className="no-scrollbar -mx-4 grid auto-cols-max grid-flow-col grid-rows-2 gap-2 overflow-x-auto px-4">
           {POPULAR.map((item) => (
             <button
               key={item.id}
@@ -315,7 +319,7 @@ export default function ExplorePage() {
                 setPicked(new Set());
               }}
               className={cn(
-                "min-h-10 shrink-0 rounded-full border px-3.5 text-sm font-medium transition-colors",
+                "min-h-10 rounded-full border px-3.5 text-sm font-medium transition-colors",
                 item.id === provinceId
                   ? "border-pick bg-pick text-on-pick"
                   : "border-line bg-card text-muted hover:text-ink",
