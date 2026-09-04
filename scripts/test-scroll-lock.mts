@@ -1,3 +1,4 @@
+import fs from "node:fs";
 /**
  * ทดสอบการล็อกการเลื่อนหน้าเวลามีกล่องซ้อนกัน
  *
@@ -134,6 +135,35 @@ lockCount = 0;
   releaseAll();
   check("เรียกตอนไม่มีล็อกอยู่ ไม่ทำอะไรเสียหาย", bodyOverflow === "" && lockCount === 0);
 }
+
+console.log("\nกล่องโมดัลต้องยิงไปวางที่ body");
+
+/*
+ * ตัวที่มี backdrop-filter จะกลายเป็นกรอบอ้างอิงของลูกที่เป็น position: fixed
+ * ตามสเปก แถบบนกับแถบเมนูล่างใช้ backdrop-blur อยู่ทั้งคู่ กล่องที่ถูกเรียก
+ * จากในนั้นจึงไปยึดกับแถบแทนที่จะเต็มจอ ถ้าไม่ยิงออกไปที่ body
+ *
+ * เคยพังจริง — กดโปรไฟล์แล้วเนื้อหาล้นออกนอกจอ กดทริปของฉันแล้วไปทับการ์ด
+ */
+const overlay = fs.readFileSync("src/components/ui/overlay.tsx", "utf8");
+check("Sheet ใช้ createPortal", overlay.includes("createPortal("));
+check("ยิงไปที่ document.body", overlay.includes("document.body"));
+check(
+  "กันกรณีไม่มี document (ตอนเรนเดอร์ฝั่งเซิร์ฟเวอร์)",
+  overlay.includes('typeof document === "undefined"'),
+);
+
+// ยืนยันว่าเหตุที่ต้องใช้ portal ยังอยู่จริง ไม่ใช่กันไว้เปล่า ๆ
+const topBar = fs.readFileSync("src/components/TopBar.tsx", "utf8");
+const appNav = fs.readFileSync("src/components/AppNav.tsx", "utf8");
+check(
+  "แถบบนหรือแถบเมนูล่างยังใช้ backdrop-blur อยู่",
+  topBar.includes("backdrop-blur") || appNav.includes("backdrop-blur"),
+);
+check(
+  "แถบบนยังเรียกกล่องที่ใช้ Sheet อยู่",
+  topBar.includes("ProfileMenu") || topBar.includes("TripSwitcher"),
+);
 
 console.log(`\nผ่าน ${pass} · ไม่ผ่าน ${fail}`);
 process.exit(fail ? 1 : 0);

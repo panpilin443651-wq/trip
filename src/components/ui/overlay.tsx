@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, type ReactNode } from "react";
+import { createPortal } from "react-dom";
 import { Button } from "./primitives";
 
 /*
@@ -84,7 +85,19 @@ export function Sheet({
 
   if (!open) return null;
 
-  return (
+  /*
+   * ต้องยิงไปวางที่ <body> ไม่ใช่วางตรงที่เรียกใช้
+   *
+   * ตัวที่มี backdrop-filter (แถบบนกับแถบเมนูล่างใช้ backdrop-blur อยู่)
+   * จะกลายเป็นกรอบอ้างอิงของลูกที่เป็น position: fixed ตามสเปก
+   * กล่องที่เรียกจากในแถบบนจึงไปยึดกับแถบบนซึ่งสูงแค่ 56px แทนที่จะเต็มจอ
+   * ผลคือเนื้อหาล้นออกนอกกรอบและไปทับเนื้อหาหน้าเว็บ
+   *
+   * ยิงออกไปที่ body แล้วไม่ต้องกังวลว่าใครเรียกจากตรงไหนอีก
+   */
+  if (typeof document === "undefined") return null;
+
+  return createPortal(
     <div className="fixed inset-0 z-50 flex items-end justify-center sm:items-center sm:p-4">
       <div
         className="absolute inset-0 bg-black/60 backdrop-blur-[2px]"
@@ -115,7 +128,8 @@ export function Sheet({
           </div>
         ) : null}
       </div>
-    </div>
+    </div>,
+    document.body,
   );
 }
 

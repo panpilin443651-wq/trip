@@ -97,12 +97,19 @@ export const NAV_ITEMS: NavItem[] = [
 export const PRIMARY_NAV = NAV_ITEMS.filter((item) => item.primary);
 
 /**
- * เมนูของแถบข้างบนจอใหญ่ — ไม่มีโปรไฟล์
+ * เมนูของแถบข้างบนจอใหญ่
  *
- * โปรไฟล์เข้าถึงได้จากปุ่มมุมขวาบนอยู่แล้ว ถ้าใส่ในแถบข้างด้วยจะมีสองทางเข้า
- * ไปที่เดียวกัน ซึ่งทำให้คนลังเลว่าต่างกันยังไง
+ * ตัดสองอันที่มีทางเข้าอื่นอยู่แล้วออก จะได้ไม่มีสองทางเข้าไปที่เดียวกัน
+ * ซึ่งทำให้คนลังเลว่าต่างกันยังไง
+ *
+ *   /more     โปรไฟล์ — อยู่ที่ปุ่มมุมขวาบน
+ *   /settings แผนเที่ยว — เข้าจากชื่อทริปด้านบนของแถบข้าง และจากหน้าหลัก
  */
-export const SIDEBAR_NAV = NAV_ITEMS.filter((item) => item.href !== "/more");
+const SIDEBAR_HIDDEN = new Set(["/more", "/settings"]);
+
+export const SIDEBAR_NAV = NAV_ITEMS.filter(
+  (item) => !SIDEBAR_HIDDEN.has(item.href),
+);
 
 /**
  * เมนูที่ไม่ได้อยู่บนแถบล่าง — ไปรวมกันในหน้าโปรไฟล์
