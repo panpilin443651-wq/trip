@@ -10,6 +10,7 @@
  */
 import {
   describeFetchError,
+  isThinkingUnsupported,
   readUpstreamError,
   upstreamHint,
 } from "@/lib/gemini/errors";
@@ -72,6 +73,21 @@ console.log("\nคำแนะนำตามรหัสสถานะ");
   );
   check("400 อื่น ๆ ไม่เดามั่ว", upstreamHint(400, "something else") === "คำขอถูกปฏิเสธ");
   check("รหัสที่ไม่รู้จักมีข้อความกลาง ๆ", upstreamHint(418, "").length > 0);
+}
+
+console.log("\nรุ่นที่ไม่รู้จัก thinkingConfig");
+{
+  /*
+   * เราปิดโหมดคิดก่อนตอบเพื่อให้ตอบไว แต่รุ่นเก่าตอบ 400 กลับมาแทนที่จะเมิน
+   * ฟิลด์ที่ไม่รู้จัก ต้องจับให้ได้แล้วยิงใหม่แบบไม่ส่ง ไม่งั้นผู้ช่วยพังทั้งตัว
+   */
+  check(
+    "จับข้อความที่พูดถึง thinking ได้",
+    isThinkingUnsupported("Unknown name \"thinkingConfig\": Cannot find field."),
+  );
+  check("จับคำว่า thought ได้ด้วย", isThinkingUnsupported("thought budget not supported"));
+  check("ไม่เหมารวม 400 อื่น", !isThinkingUnsupported("API key not valid"));
+  check("ข้อความว่างไม่นับ", !isThinkingUnsupported(""));
 }
 
 console.log("\nอ่านข้อความผิดพลาดจาก Google");

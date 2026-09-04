@@ -110,7 +110,12 @@ export async function GET() {
         },
         body: JSON.stringify({
           contents: [{ role: "user", parts: [{ text: "hi" }] }],
-          generationConfig: { maxOutputTokens: 2000 },
+          // ปิดโหมดคิดเหมือนของจริง ไม่งั้นหน้านี้จะช้ากว่าที่ใช้งานจริงมาก
+          // จนบอกไม่ได้ว่าปัญหาอยู่ตรงไหน
+          generationConfig: {
+            maxOutputTokens: 2000,
+            thinkingConfig: { thinkingBudget: 0 },
+          },
         }),
         signal: AbortSignal.timeout(20_000),
       },
