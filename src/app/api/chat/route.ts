@@ -3,7 +3,8 @@ import { BUILD_SHA, BUILD_TIME } from "@/lib/build-info";
 import { guardChatRequest, parseMessages } from "@/lib/chat/guard";
 import { buildSystemPrompt } from "@/lib/chat/knowledge";
 import { retrieve } from "@/lib/explore-retrieval";
-import { readUpstreamError, streamGemini } from "@/lib/gemini/chat-stream";
+import { streamGemini } from "@/lib/gemini/chat-stream";
+import { readUpstreamError } from "@/lib/gemini/errors";
 import {
   GEMINI_API_KEY,
   isGeminiConfigured,

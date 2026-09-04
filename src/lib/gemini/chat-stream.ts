@@ -1,5 +1,10 @@
 import { NextResponse } from "next/server";
 import { GEMINI_API_KEY } from "./config";
+import {
+  describeFetchError,
+  readUpstreamError,
+  upstreamHint,
+} from "./errors";
 import { candidateModels, pickModel, rememberModel } from "./models";
 import { geminiTextStream } from "./sse";
 
@@ -18,53 +23,19 @@ export interface GeminiMessage {
 }
 
 /**
- * ดึงข้อความผิดพลาดจริงที่ Google ส่งมา
+ * งบเวลารวมของทุกครั้งที่ยิงไปหา Gemini ในคำขอเดียว
  *
- * ต้องเอามาโชว์ด้วยเสมอ เพราะรหัสสถานะเดียวกันมาได้จากหลายสาเหตุมาก
- * โดยเฉพาะ 400 ที่เป็นได้ทั้งคีย์ผิด รูปแบบคำขอผิด และรุ่นไม่รองรับฟีเจอร์
- * ถ้าเดาเองจะพาไปแก้ผิดจุด
+ * ต้องคุมยอดรวม ไม่ใช่คุมทีละครั้ง เพราะตอนรุ่นหลักใช้ไม่ได้จะไล่ยิงรุ่นสำรอง
+ * ต่ออีกหลายครั้ง ถ้าให้แต่ละครั้งมีเวลา 30 วินาทีของตัวเอง ยอดรวมจะพุ่งไป
+ * เกินสองนาที ซึ่งนานกว่าที่ Vercel ยอมให้ฟังก์ชันทำงาน (Hobby 10 วินาที)
+ * แพลตฟอร์มจะฆ่าฟังก์ชันทิ้งก่อน แล้วผู้ใช้จะได้หน้า error ของ Vercel
+ * แทนข้อความที่เราเขียนไว้ ซึ่งบอกอะไรไม่ได้เลย
  */
-export async function readUpstreamError(res: Response): Promise<string> {
-  try {
-    const text = await res.text();
-    const data = JSON.parse(text) as {
-      error?: { message?: string; status?: string };
-    };
-    const detail = data.error?.message?.trim();
-    if (detail) return detail;
-    return text.slice(0, 300);
-  } catch {
-    return "";
-  }
-}
-
-/** คำแนะนำตามรหัสสถานะ ใช้คู่กับข้อความจริงจาก Google เสมอ */
-export function upstreamHint(status: number, detail: string): string {
-  if (status === 429) {
-    return "โควตาฟรีของ Gemini เต็มชั่วคราว รอสักครู่แล้วลองใหม่";
-  }
-  if (status === 503) {
-    return "รุ่นที่ใช้อยู่มีคนใช้แน่นชั่วคราว รอสักครู่แล้วลองใหม่";
-  }
-  if (status === 403) {
-    return "คีย์ไม่มีสิทธิ์เรียก — ตรวจว่าเปิดใช้ Generative Language API แล้ว และคีย์ไม่ได้ถูกจำกัดโดเมน/IP";
-  }
-  if (status === 400) {
-    // 400 มาได้หลายทาง แยกด้วยข้อความที่ Google ส่งมา
-    if (/API key not valid|API_KEY_INVALID/i.test(detail)) {
-      return "API key ไม่ถูกต้อง — คัดลอกคีย์จาก Google AI Studio มาใหม่";
-    }
-    if (/model name format|GenerateContentRequest.model/i.test(detail)) {
-      return (
-        "ชื่อรุ่นผิดรูป — ถ้าตั้ง GEMINI_MODEL ไว้ ให้ลบทิ้งแล้ว redeploy " +
-        "(แอปหารุ่นที่ใช้ได้เอง) หรือใส่แค่ชื่อล้วน ๆ เช่น gemini-3.6-flash " +
-        "ห้ามมีเครื่องหมายคำพูด ช่องว่าง หรือคำนำหน้า models/"
-      );
-    }
-    return "คำขอถูกปฏิเสธ";
-  }
-  return "ผู้ช่วยไม่ตอบสนอง ลองใหม่อีกครั้ง";
-}
+const TOTAL_BUDGET_MS = 25_000;
+/** ครั้งเดียวไม่ควรกินงบทั้งหมด เผื่อไว้ให้รุ่นสำรองได้ลองบ้าง */
+const PER_CALL_MS = 15_000;
+/** ลองรุ่นสำรองกี่ตัว — แต่ละตัวกินเวลาไป-กลับเต็ม ๆ หนึ่งรอบ */
+const MAX_CANDIDATES = 2;
 
 export interface StreamOptions {
   systemPrompt: string;
@@ -95,6 +66,9 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
     },
   };
 
+  const startedAt = Date.now();
+  const timeLeft = () => TOTAL_BUDGET_MS - (Date.now() - startedAt);
+
   /** ยิงไปที่รุ่นหนึ่ง ๆ — แยกออกมาเพราะต้องเรียกซ้ำตอนหารุ่นสำรอง */
   async function callGemini(model: string): Promise<Response> {
     return fetch(
@@ -107,7 +81,8 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
           "x-goog-api-key": GEMINI_API_KEY,
         },
         body: JSON.stringify(payload),
-        signal: AbortSignal.timeout(30_000),
+        // เหลือเท่าไรก็ใช้เท่านั้น จะได้ไม่ทะลุงบรวม
+        signal: AbortSignal.timeout(Math.max(1_000, Math.min(PER_CALL_MS, timeLeft()))),
       },
     );
   }
@@ -126,7 +101,9 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
     // ปิดรับผู้ใช้ใหม่แล้วยังโผล่ใน ListModels อยู่ แต่ตอบ 404 เวลาเรียกจริง
     if (worthRetrying(upstream.status)) {
       const candidates = (await candidateModels()).filter((m) => m !== model);
-      for (const candidate of candidates.slice(0, 4)) {
+      for (const candidate of candidates.slice(0, MAX_CANDIDATES)) {
+        // หมดงบแล้วหยุดลอง ปล่อยให้ตอบด้วยผลของรุ่นล่าสุดดีกว่าโดนฆ่ากลางคัน
+        if (timeLeft() < 3_000) break;
         const next = await callGemini(candidate);
         if (next.ok) {
           model = candidate;
@@ -141,9 +118,19 @@ export async function streamGemini(options: StreamOptions): Promise<Response> {
         }
       }
     }
-  } catch {
+  } catch (error) {
+    const { hint, detail } = describeFetchError(error);
+    // log ไว้ให้ตามดูใน Vercel ได้ เผื่อผู้ใช้ส่งภาพหน้าจอมาไม่ครบ
+    console.error(
+      `[${options.label}] ต่อ Gemini ไม่ได้ model=${JSON.stringify(model)} ` +
+        `ใช้เวลา ${Date.now() - startedAt}ms: ${detail}`,
+    );
     return NextResponse.json(
-      { error: "ต่อกับผู้ช่วยไม่ได้ — ตรวจการเชื่อมต่ออินเทอร์เน็ต" },
+      {
+        error:
+          `${hint} — รายละเอียด: ${detail} ` +
+          `[รุ่นที่ส่งไป: ${JSON.stringify(model)}]`,
+      },
       { status: 504 },
     );
   }
