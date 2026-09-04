@@ -19,6 +19,7 @@ import {
   type SuggestionRow,
 } from "@/lib/trip-suggestions";
 import { useTrip } from "@/lib/trip-context";
+import { WiderPlaceSearch } from "./WiderPlaceSearch";
 import { Button, Card, Input, SectionTitle } from "./ui";
 
 /** จำนวนที่โชว์ก่อนกด "ดูทั้งหมด" */
@@ -176,11 +177,15 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     return addMinutesToTime(last.startTime, last.durationMin + 30);
   }
 
+  /** คีย์ของแถวที่เพิ่งกดใส่ ใช้กับผลค้นหาซึ่งไม่ได้อยู่ใน planned */
+  const [justAdded, setJustAdded] = useState<Set<string>>(new Set());
+
   function add(row: SuggestionRow) {
     dispatch({
       type: "addActivity",
       activity: { dayIndex, startTime: nextStartTime(), ...row.fill },
     });
+    setJustAdded((prev) => new Set(prev).add(row.key));
     notify(`ใส่ "${row.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
   }
 
@@ -380,6 +385,14 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
           {expanded ? "ย่อรายการ" : `ดูทั้งหมด ${filtered.length} รายการ`}
         </button>
       ) : null}
+
+      <WiderPlaceSearch
+        query={query}
+        province={provinceNames[0] ?? ""}
+        exclude={new Set((filtered ?? []).map((row) => row.key))}
+        added={justAdded}
+        onAdd={add}
+      />
 
       {toast ? (
         <div

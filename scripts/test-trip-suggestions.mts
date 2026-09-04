@@ -12,6 +12,8 @@ import { groupCounts, scopedRows } from "@/lib/district-groups";
 import {
   buildSuggestionRows,
   byPlanDistricts,
+  rowFromMapSearch,
+  searchSuggestionRows,
   SUGGESTION_GROUPS,
   type SuggestionRow,
 } from "@/lib/trip-suggestions";
@@ -261,6 +263,80 @@ console.log("\nขอบเขตอำเภอตามแพลนการ�
     }
   }
   check("ตอนเจาะอำเภอ ปุ่มก็ยังไม่โกหก", lying === 0, `ผิด ${lying} หมวด`);
+}
+
+console.log("\nค้นข้ามจังหวัด");
+{
+  const rows = buildSuggestionRows({
+    curated: [province],
+    osmPlaces: {
+      [P]: [osm("p1", "ตลาดน้ำเพชรบุรี", "ตลาด")],
+      เชียงใหม่: [osm("p2", "ตลาดน้ำเชียงใหม่", "ตลาด", "เมืองเชียงใหม่")],
+      สมุทรสงคราม: [osm("p3", "ตลาดน้ำอัมพวา", "ตลาด", "อัมพวา")],
+    },
+    restaurants: {},
+    hotels: {},
+  });
+
+  const found = searchSuggestionRows(rows, "ตลาดน้ำ", "สมุทรสงคราม", 20);
+  const provincesFound = new Set(found.rows.map((r) => r.province));
+  /*
+   * ไม่ผูกกับจำนวนตายตัว เพราะข้อมูลที่คัดเองของเพชรบุรีก็มีคำว่า "ตลาดน้ำ"
+   * อยู่ในคำอธิบายด้วย เขียนเทสต์ครั้งแรกโดยเดาว่าจะได้ 3 แถวแล้วไม่ผ่านที่ 4
+   * — ตัวค้นถูกแล้ว เทสต์ต่างหากที่เดาข้อมูลผิด
+   */
+  check(`เจอครบทั้งสามจังหวัด (ทั้งหมด ${found.total} รายการ)`,
+    ["สมุทรสงคราม", "เชียงใหม่", P].every((n) => provincesFound.has(n)),
+    [...provincesFound].join(","));
+  // คนพิมพ์ตอนวางแผนเที่ยวสมุทรสงคราม ย่อมอยากได้ของสมุทรสงครามก่อน
+  check("จังหวัดที่กำลังวางแผนขึ้นก่อน", found.rows[0]?.province === "สมุทรสงคราม",
+    found.rows[0]?.province);
+  check("แต่ไม่ตัดจังหวัดอื่นทิ้ง", provincesFound.size >= 3);
+
+  const anywhere = searchSuggestionRows(rows, "ตลาดน้ำ", "", 20);
+  check("ไม่ระบุจังหวัดก็ยังค้นได้", anywhere.total === found.total && anywhere.total >= 3);
+  check("คำค้นว่างไม่คืนอะไร", searchSuggestionRows(rows, "   ", "", 10).total === 0);
+  check("ไม่เจอก็ไม่ล่ม", searchSuggestionRows(rows, "ไม่มีที่นี่", "", 10).total === 0);
+
+  const capped = searchSuggestionRows(rows, "ตลาดน้ำ", "", 2);
+  check("ตัดตามจำนวนที่ขอ แต่ยังบอกยอดจริง",
+    capped.rows.length === 2 && capped.total === found.total);
+
+  // ค้นได้ทุกหมวด ไม่ใช่เฉพาะสถานที่
+  const all = buildSuggestionRows({
+    curated: [province],
+    osmPlaces: { [P]: [osm("t", "วัดทดสอบ", "วัด")] },
+    restaurants: { [P]: [food("f", "คาเฟ่ทดสอบ", "คาเฟ่", null)] },
+    hotels: { [P]: [stay("h", "รีสอร์ตทดสอบ", "รีสอร์ต")] },
+  });
+  for (const [q, group] of [
+    ["วัดทดสอบ", "วัด"],
+    ["คาเฟ่ทดสอบ", "คาเฟ่"],
+    ["รีสอร์ตทดสอบ", "ที่พัก"],
+  ] as const) {
+    const r = searchSuggestionRows(all, q, "", 5);
+    check(`ค้นหมวด ${group} ได้`, r.rows[0]?.group === group, r.rows[0]?.group);
+  }
+  const act = searchSuggestionRows(all, province.activities[0].name, "", 5);
+  check("ค้นกิจกรรมได้ด้วย", act.rows[0]?.group === "กิจกรรม", act.rows[0]?.group);
+}
+
+console.log("\nที่ที่ไม่มีในฐานข้อมูล (ค้นจากแผนที่)");
+{
+  const row = rowFromMapSearch({
+    name: "ร้านลับหลังวัด",
+    display: "ร้านลับหลังวัด, ตำบลหนึ่ง, จังหวัดหนึ่ง",
+    lat: 13.1,
+    lng: 100.2,
+  });
+  check("มีลิงก์ Google Maps", row.mapsUrl !== null && row.mapsUrl.includes("google.com/maps"));
+  check("กดใส่แผนได้ (มีพิกัด)", row.fill.lat === 13.1 && row.fill.lng === 100.2);
+  // ไม่รู้ว่าเป็นหมวดไหน ลงเป็นสถานที่ไว้ก่อนแล้วให้ผู้ใช้แก้เองที่หน้าแผนเที่ยว
+  check("ลงหมวดสถานที่ไว้ก่อน", row.group === "สถานที่");
+  check("ตั้งเวลาเท่าที่เที่ยวทั่วไป", row.fill.durationMin === 90);
+  check("เก็บที่อยู่เต็มไว้ในรายละเอียด", row.fill.detail.includes("ตำบลหนึ่ง"));
+  // ไม่รู้จังหวัด จึงต้องปล่อยว่าง ไม่ใช่เดาเอา
+  check("ไม่เดาจังหวัด", row.province === "");
 }
 
 console.log("\nขอบและของว่าง");

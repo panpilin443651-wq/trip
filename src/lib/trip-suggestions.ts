@@ -274,3 +274,74 @@ export function byPlanDistricts(
   return (row) =>
     !row.district || allowed.has(`${row.province}::${row.district}`);
 }
+
+/**
+ * แถวจากการค้นหาแผนที่ (Nominatim) — ที่ที่ไม่มีในฐานข้อมูลของเว็บ
+ *
+ * ใช้เป็นทางออกสุดท้ายเมื่อค้นทั้งประเทศแล้วไม่เจอ เพราะ OpenStreetMap
+ * ที่เราคัดมามีเฉพาะที่ที่มีร่องรอยว่ามีตัวตนจริงจัง ที่เล็ก ๆ หรือที่เพิ่งเปิด
+ * จึงไม่อยู่ในนั้น แต่ผู้ใช้อาจรู้จักและอยากใส่ลงแผน
+ *
+ * ไม่รู้ว่าเป็นหมวดไหน จึงลงเป็น "สถานที่" ไว้ก่อน และตั้งเวลา 90 นาที
+ * เท่าที่เที่ยวทั่วไป ผู้ใช้แก้หมวดกับเวลาเองได้ที่หน้าแผนเที่ยว
+ */
+export function rowFromMapSearch(hit: {
+  name: string;
+  display: string;
+  lat: number;
+  lng: number;
+}): SuggestionRow {
+  return {
+    key: `g-${hit.lat},${hit.lng}`,
+    name: hit.name,
+    emoji: "📍",
+    group: "สถานที่",
+    hint: hit.display,
+    province: "",
+    district: "",
+    notable: false,
+    mapsUrl: googleMapsUrl(hit.name, hit.lat, hit.lng),
+    haystack: lower(hit.name, hit.display),
+    fill: {
+      title: hit.name,
+      placeName: hit.name,
+      province: "",
+      detail: hit.display,
+      durationMin: PLACE_MINUTES,
+      cost: 0,
+      category: "attraction",
+      lat: hit.lat,
+      lng: hit.lng,
+    },
+  };
+}
+
+/**
+ * ค้นแถวด้วยชื่อ แล้วเรียงให้ของจังหวัดที่กำลังวางแผนขึ้นก่อน
+ *
+ * คนพิมพ์ "ตลาดน้ำ" ตอนวางแผนเที่ยวสมุทรสงคราม ย่อมอยากได้ของสมุทรสงคราม
+ * ก่อนของจังหวัดอื่น แต่ไม่ตัดจังหวัดอื่นทิ้ง เพราะบางทีก็ตั้งใจหาข้ามจังหวัด
+ *
+ * @param near จังหวัดที่จะดันขึ้นก่อน ว่างได้
+ */
+export function searchSuggestionRows(
+  rows: SuggestionRow[],
+  query: string,
+  near: string,
+  limit: number,
+): { rows: SuggestionRow[]; total: number } {
+  const q = query.trim().toLowerCase();
+  if (!q) return { rows: [], total: 0 };
+
+  const hits = rows.filter((row) => row.haystack.includes(q));
+  const sorted = [...hits].sort(
+    (a, b) =>
+      Number(b.province === near) - Number(a.province === near) ||
+      Number(b.notable) - Number(a.notable) ||
+      // ชื่อสั้นกว่ามักเป็นตัวที่ผู้ใช้หมายถึง ("ตลาดน้ำอัมพวา" ก่อน
+      // "ร้านกาแฟหน้าตลาดน้ำอัมพวา") ท้ายสุดเรียงชื่อให้ลำดับคงที่ทุกครั้ง
+      a.name.length - b.name.length ||
+      a.name.localeCompare(b.name, "th"),
+  );
+  return { rows: sorted.slice(0, limit), total: hits.length };
+}
