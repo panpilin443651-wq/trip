@@ -7,6 +7,15 @@ export interface NavItem {
   description?: string;
 }
 
+/**
+ * เมนูทั้งหมดของแอป
+ *
+ * ห้าอันแรกเป็นแถบล่างบนมือถือ เรียงตามลำดับที่ใช้จริงตอนวางแผนทริป
+ * หาแรงบันดาลใจ (แนะนำเที่ยว) → ดูว่าอยู่ตรงไหน (แผนที่) → ลงแผน (แผนเที่ยว)
+ * โดยมีหน้าหลักเป็นจุดตั้งต้นและโปรไฟล์เป็นที่รวมของที่เหลือ
+ *
+ * ห้าอันเป็นจำนวนสูงสุดที่ยังกดถูกด้วยนิ้วโป้งบนมือถือ ที่เหลือไปอยู่ในโปรไฟล์
+ */
 export const NAV_ITEMS: NavItem[] = [
   {
     href: "/dashboard",
@@ -16,11 +25,11 @@ export const NAV_ITEMS: NavItem[] = [
     description: "ภาพรวมทริปทั้งหมด",
   },
   {
-    href: "/settings",
-    label: "ตั้งค่าทริป",
-    emoji: "⚙️",
+    href: "/explore",
+    label: "แนะนำเที่ยว",
+    emoji: "🧭",
     primary: true,
-    description: "ข้อมูลทริป แผนเที่ยวรายวัน จังหวัด และงบรวม",
+    description: "สถานที่และกิจกรรมตามจังหวัด",
   },
   {
     href: "/map",
@@ -28,6 +37,20 @@ export const NAV_ITEMS: NavItem[] = [
     emoji: "🗺️",
     primary: true,
     description: "เส้นทางและระยะทาง",
+  },
+  {
+    href: "/settings",
+    label: "แผนเที่ยว",
+    emoji: "🧳",
+    primary: true,
+    description: "ข้อมูลทริป แผนรายวัน จังหวัด และงบรวม",
+  },
+  {
+    href: "/more",
+    label: "โปรไฟล์",
+    emoji: "👤",
+    primary: true,
+    description: "บัญชี งบประมาณ สรุปแผน และเมนูที่เหลือ",
   },
   {
     href: "/budget",
@@ -64,14 +87,15 @@ export const NAV_ITEMS: NavItem[] = [
     primary: false,
     description: "ของที่ต้องเตรียม",
   },
-  {
-    href: "/explore",
-    label: "แนะนำเที่ยว",
-    emoji: "🧭",
-    primary: false,
-    description: "สถานที่และกิจกรรมตามจังหวัด",
-  },
 ];
 
 export const PRIMARY_NAV = NAV_ITEMS.filter((item) => item.primary);
-export const SECONDARY_NAV = NAV_ITEMS.filter((item) => !item.primary);
+
+/**
+ * เมนูที่ไม่ได้อยู่บนแถบล่าง — ไปรวมกันในหน้าโปรไฟล์
+ *
+ * ตัดหน้าโปรไฟล์เองออก ไม่งั้นหน้านั้นจะมีลิงก์ชี้กลับมาที่ตัวเอง
+ */
+export const SECONDARY_NAV = NAV_ITEMS.filter(
+  (item) => !item.primary && item.href !== "/more",
+);

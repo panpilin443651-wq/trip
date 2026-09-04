@@ -105,7 +105,7 @@ export function ActivitySearchInput({
         <ul
           id={listId}
           role="listbox"
-          className="absolute inset-x-0 top-full z-30 mt-1 max-h-72 overflow-y-auto rounded-xl border border-line bg-card py-1 shadow-lg"
+          className="absolute inset-x-0 top-full z-30 mt-1 max-h-72 overflow-y-auto rounded-xl border border-line bg-card py-1 shadow-[var(--shadow-lift)]"
         >
           {matches.map((item, index) => (
             <li key={item.key} role="option" aria-selected={index === active}>

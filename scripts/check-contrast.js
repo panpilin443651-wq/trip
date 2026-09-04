@@ -34,6 +34,7 @@ const PAIRS = [
   ["ตัวอักษรบนปุ่มหลัก", "canvas", "brand", TEXT],
   ["ตัวอักษรบนปุ่มหลักตอน hover", "canvas", "brand-dark", TEXT],
   ["ตัวอักษรบนพื้น brand อ่อน", "ink", "brand-soft", TEXT],
+  ["ตัวอักษรรองบนพื้น brand อ่อน", "muted", "brand-soft", TEXT],
   ["เมนู active (ตัวอักษรบนพื้นอ่อน)", "brand", "brand-soft", TEXT],
   ["ตัวอักษรเน้นบนพื้นหน้า", "accent", "canvas", TEXT],
   ["ตัวอักษรเน้นบนการ์ด", "accent", "card", TEXT],

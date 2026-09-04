@@ -3,8 +3,8 @@
 import Link from "next/link";
 import { useMemo } from "react";
 import { BudgetSummary } from "@/components/BudgetSummary";
+import { DashboardHero } from "@/components/DashboardHero";
 import { DayPlanLine } from "@/components/DayPlanLine";
-import { PageHeader } from "@/components/PageHeader";
 import { TripActions } from "@/components/TripActions";
 import { TripOverviewCard } from "@/components/TripOverviewCard";
 import {
@@ -47,16 +47,12 @@ export default function DashboardPage() {
 
   return (
     <>
-      <PageHeader
-        emoji="✈️"
-        title="Travel Planner"
-        subtitle={trip.name || "ทริปของฉัน"}
-      />
-
       <div className="space-y-4">
+        <DashboardHero trip={trip} />
+
         <TripActions />
 
-        <TripOverviewCard trip={trip} showCountdown editLink />
+        <TripOverviewCard trip={trip} editLink />
 
         <BudgetSummary breakdown={breakdown} compact />
 

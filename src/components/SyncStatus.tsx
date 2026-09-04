@@ -13,7 +13,7 @@ export function SyncStatus() {
     return (
       <div
         role="alert"
-        className="fixed inset-x-3 bottom-24 z-40 rounded-xl border border-danger/40 bg-danger-soft px-4 py-3 text-sm leading-relaxed text-danger shadow-lg lg:inset-x-auto lg:right-6 lg:bottom-6 lg:max-w-sm"
+        className="fixed inset-x-3 bottom-24 z-40 rounded-xl border border-danger/40 bg-danger-soft px-4 py-3 text-sm leading-relaxed text-danger shadow-[var(--shadow-lift)] lg:inset-x-auto lg:right-6 lg:bottom-6 lg:max-w-sm"
       >
         <p className="font-medium">⚠️ บันทึกขึ้น Supabase ไม่สำเร็จ</p>
         <p className="mt-1">{sync.message}</p>
@@ -28,7 +28,7 @@ export function SyncStatus() {
     return (
       <div
         role="status"
-        className="fixed inset-x-3 bottom-24 z-40 rounded-xl border border-ok/40 bg-ok-soft px-4 py-3 text-sm text-ok shadow-lg lg:inset-x-auto lg:right-6 lg:bottom-6 lg:max-w-sm"
+        className="fixed inset-x-3 bottom-24 z-40 rounded-xl border border-ok/40 bg-ok-soft px-4 py-3 text-sm text-ok shadow-[var(--shadow-lift)] lg:inset-x-auto lg:right-6 lg:bottom-6 lg:max-w-sm"
       >
         ✓ ย้ายแผนที่เคยบันทึกไว้ในเครื่องขึ้นบัญชีของคุณแล้ว
       </div>

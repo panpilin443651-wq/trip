@@ -13,7 +13,7 @@ export function Card({
   return (
     <Tag
       className={cn(
-        "rounded-2xl border border-line bg-card p-4 shadow-[0_1px_2px_rgba(0,0,0,0.25)]",
+        "rounded-3xl border border-line bg-card p-4 shadow-[var(--shadow-soft)]",
         className,
       )}
     >
@@ -45,8 +45,9 @@ export function SectionTitle({
 type ButtonVariant = "primary" | "secondary" | "ghost" | "danger";
 
 const BUTTON_VARIANTS: Record<ButtonVariant, string> = {
-  primary: "bg-brand text-canvas hover:bg-brand-dark active:bg-brand-dark",
-  secondary: "bg-card text-ink border border-line hover:bg-canvas",
+  primary:
+    "bg-brand text-canvas shadow-[var(--shadow-soft)] hover:bg-brand-dark active:bg-brand-dark",
+  secondary: "bg-card text-ink border border-line hover:bg-brand-soft",
   ghost: "bg-transparent text-muted hover:bg-line/60 hover:text-ink",
   danger: "bg-danger-soft text-danger hover:bg-danger hover:text-canvas",
 };
@@ -65,10 +66,10 @@ export function Button({
     <button
       {...props}
       className={cn(
-        "inline-flex items-center justify-center gap-1.5 rounded-xl font-medium transition-colors",
+        "inline-flex items-center justify-center gap-1.5 rounded-full font-medium transition-colors",
         "focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none",
-        "disabled:cursor-not-allowed disabled:opacity-50",
-        size === "md" ? "min-h-11 px-4 text-sm" : "min-h-9 px-3 text-[13px]",
+        "disabled:cursor-not-allowed disabled:opacity-50 disabled:shadow-none",
+        size === "md" ? "min-h-11 px-5 text-sm" : "min-h-9 px-4 text-[13px]",
         BUTTON_VARIANTS[variant],
         className,
       )}

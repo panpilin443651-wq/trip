@@ -424,7 +424,7 @@ export default function ExplorePage() {
       {toast ? (
         <div
           role="status"
-          className="fixed inset-x-4 bottom-24 z-40 rounded-xl bg-accent-fill px-4 py-3 text-center text-sm font-medium text-canvas shadow-lg lg:inset-x-auto lg:right-8 lg:bottom-8 lg:max-w-sm"
+          className="fixed inset-x-4 bottom-24 z-40 rounded-xl bg-accent-fill px-4 py-3 text-center text-sm font-medium text-canvas shadow-[var(--shadow-lift)] lg:inset-x-auto lg:right-8 lg:bottom-8 lg:max-w-sm"
         >
           {toast}
         </div>

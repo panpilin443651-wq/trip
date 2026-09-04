@@ -255,7 +255,7 @@ export default function PlacesPage() {
         type="button"
         onClick={openCreate}
         aria-label="เพิ่มสถานที่"
-        className="fixed right-5 bottom-24 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-canvas shadow-lg transition-colors hover:bg-brand-dark sm:hidden"
+        className="fixed right-5 bottom-24 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl text-canvas shadow-[var(--shadow-lift)] transition-colors hover:bg-brand-dark sm:hidden"
       >
         ＋
       </button>

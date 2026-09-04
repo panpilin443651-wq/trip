@@ -23,7 +23,7 @@ export function ChatWidget() {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="ถามผู้ช่วย AI"
-        className="fixed right-5 bottom-20 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl shadow-lg transition-colors hover:bg-brand-dark lg:bottom-6"
+        className="fixed right-5 bottom-20 z-30 flex h-14 w-14 items-center justify-center rounded-full bg-brand text-2xl shadow-[var(--shadow-lift)] transition-colors hover:bg-brand-dark lg:bottom-6"
       >
         💬
       </button>

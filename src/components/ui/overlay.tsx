@@ -44,7 +44,7 @@ export function Sheet({
         role="dialog"
         aria-modal="true"
         aria-label={title}
-        className="relative flex max-h-[90dvh] w-full flex-col rounded-t-3xl bg-card shadow-xl sm:max-w-lg sm:rounded-3xl"
+        className="relative flex max-h-[90dvh] w-full flex-col rounded-t-3xl bg-card shadow-[var(--shadow-lift)] sm:max-w-lg sm:rounded-3xl"
       >
         <div className="flex items-center justify-between border-b border-line px-5 py-4">
           <h2 className="text-base font-semibold">{title}</h2>

@@ -25,7 +25,7 @@ export function AuthShell({
           <p className="mt-1.5 text-sm text-muted">{subtitle}</p>
         </div>
 
-        <div className="rounded-2xl border border-line bg-card p-6 shadow-[0_1px_2px_rgba(0,0,0,0.25)]">
+        <div className="rounded-3xl border border-line bg-card p-6 shadow-[var(--shadow-soft)]">
           {children}
         </div>
 

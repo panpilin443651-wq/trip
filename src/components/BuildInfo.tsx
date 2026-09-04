@@ -4,7 +4,7 @@ import { BUILD_SHA, BUILD_TIME, IS_LOCAL_BUILD } from "@/lib/build-info";
  * บอกว่าเว็บที่เปิดอยู่มาจากโค้ดชุดไหน
  *
  * เป็น server component เพราะตัวแปรของ Vercel อ่านได้เฉพาะฝั่งเซิร์ฟเวอร์
- * เอาไว้ท้ายหน้า ⋯ เพิ่มเติม เทียบเลขนี้กับ commit ล่าสุดบน GitHub ได้เลย
+ * เอาไว้ท้ายหน้าโปรไฟล์ เทียบเลขนี้กับ commit ล่าสุดบน GitHub ได้เลย
  * ไม่ตรง = ยังไม่ได้ redeploy · ตรง = กำลังดูของใหม่จริง
  */
 export function BuildInfo() {

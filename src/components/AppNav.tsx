@@ -10,7 +10,12 @@ function useIsActive() {
   return (href: string) => pathname === href || pathname.startsWith(`${href}/`);
 }
 
-/** แถบล่างสำหรับมือถือ — ปุ่มใหญ่พอสำหรับนิ้ว */
+/**
+ * แถบล่างสำหรับมือถือ — ห้าเมนูหลัก ปุ่มใหญ่พอสำหรับนิ้ว
+ *
+ * ตัวที่เลือกอยู่มีเม็ดยาสีแบรนด์รองไอคอนไว้ ทำให้เห็นว่าอยู่หน้าไหน
+ * ได้จากหางตาโดยไม่ต้องอ่านตัวหนังสือ ซึ่งเล็กมากในแถบขนาดนี้
+ */
 export function BottomNav() {
   const isActive = useIsActive();
 
@@ -28,33 +33,24 @@ export function BottomNav() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "flex min-h-16 flex-col items-center justify-center gap-0.5 text-[11px] font-medium transition-colors",
+                  "flex min-h-16 flex-col items-center justify-center gap-1 pt-1.5 pb-1 text-[11px] font-medium transition-colors",
                   active ? "text-brand" : "text-muted",
                 )}
               >
-                <span className="text-xl leading-none" aria-hidden>
+                <span
+                  className={cn(
+                    "flex h-7 w-12 items-center justify-center rounded-full text-lg leading-none transition-colors",
+                    active ? "bg-brand-soft" : "bg-transparent",
+                  )}
+                  aria-hidden
+                >
                   {item.emoji}
                 </span>
-                {item.label}
+                <span className="max-w-full truncate px-0.5">{item.label}</span>
               </Link>
             </li>
           );
         })}
-        <li className="flex-1">
-          <Link
-            href="/more"
-            aria-current={isActive("/more") ? "page" : undefined}
-            className={cn(
-              "flex min-h-16 flex-col items-center justify-center gap-0.5 text-[11px] font-medium transition-colors",
-              isActive("/more") ? "text-brand" : "text-muted",
-            )}
-          >
-            <span className="text-xl leading-none" aria-hidden>
-              ⋯
-            </span>
-            เพิ่มเติม
-          </Link>
-        </li>
       </ul>
     </nav>
   );
@@ -67,7 +63,10 @@ export function SideNav() {
   return (
     <aside className="hidden w-64 shrink-0 border-r border-line bg-card lg:block">
       <div className="sticky top-0 flex h-dvh flex-col p-4">
-        <Link href="/dashboard" className="mb-6 flex items-center gap-3 px-2 py-2">
+        <Link
+          href="/dashboard"
+          className="mb-6 flex items-center gap-3 rounded-2xl px-2 py-2 transition-colors hover:bg-brand-soft"
+        >
           <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-accent-soft text-xl ring-1 ring-accent/25">
             ✈️
           </span>
