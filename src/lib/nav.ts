@@ -1,7 +1,10 @@
+import type { NavIconName } from "@/components/NavIcon";
+
 export interface NavItem {
   href: string;
   label: string;
-  emoji: string;
+  /** ไอคอนเส้นในแถบเมนู ใช้แทนอิโมจิเพื่อให้เปลี่ยนสีตามธีมได้ */
+  icon: NavIconName;
   /** แสดงบนแถบล่างของมือถือหรือไม่ */
   primary: boolean;
   description?: string;
@@ -21,28 +24,28 @@ export const NAV_ITEMS: NavItem[] = [
   {
     href: "/dashboard",
     label: "หน้าหลัก",
-    emoji: "🏠",
+    icon: "home",
     primary: true,
     description: "ภาพรวมทริปทั้งหมด",
   },
   {
     href: "/explore",
     label: "แนะนำเที่ยว",
-    emoji: "🧭",
+    icon: "compass",
     primary: true,
     description: "สถานที่และกิจกรรมตามจังหวัด",
   },
   {
     href: "/map",
     label: "แผนที่",
-    emoji: "🗺️",
+    icon: "map",
     primary: true,
     description: "เส้นทางและระยะทาง",
   },
   {
     href: "/settings",
     label: "แผนเที่ยว",
-    emoji: "🧳",
+    icon: "suitcase",
     primary: true,
     description: "ข้อมูลทริป แผนรายวัน จังหวัด และงบรวม",
   },
@@ -50,42 +53,42 @@ export const NAV_ITEMS: NavItem[] = [
     // อยู่มุมขวาบน ไม่ได้อยู่บนแถบล่าง แต่ยังอยู่ในแถบข้างของจอใหญ่
     href: "/more",
     label: "โปรไฟล์",
-    emoji: "👤",
+    icon: "user",
     primary: false,
     description: "บัญชี งบประมาณ สรุปแผน และเมนูที่เหลือ",
   },
   {
     href: "/budget",
     label: "งบประมาณ",
-    emoji: "💰",
+    icon: "wallet",
     primary: false,
     description: "ค่าใช้จ่ายแยกหมวด",
   },
   {
     href: "/summary",
     label: "สรุปแผน",
-    emoji: "📄",
+    icon: "document",
     primary: false,
     description: "ดูแผนทั้งทริป บันทึกเป็นรูปหรือ PDF",
   },
   {
     href: "/chat",
     label: "ผู้ช่วย AI",
-    emoji: "💬",
+    icon: "chat",
     primary: false,
     description: "ถามวิธีใช้เว็บและเรื่องทริปของคุณ",
   },
   {
     href: "/places",
     label: "สถานที่",
-    emoji: "📍",
+    icon: "pin",
     primary: false,
     description: "รายการที่อยากไป",
   },
   {
     href: "/checklist",
     label: "Checklist",
-    emoji: "✅",
+    icon: "checklist",
     primary: false,
     description: "ของที่ต้องเตรียม",
   },

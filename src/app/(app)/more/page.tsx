@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { BuildInfo } from "@/components/BuildInfo";
+import { NavIcon } from "@/components/NavIcon";
 import { PageHeader } from "@/components/PageHeader";
 import { SignOutConfirmButton } from "@/components/SignOutConfirmButton";
 import { ThemeToggle } from "@/components/ThemeToggle";
@@ -42,6 +43,7 @@ export default async function ProfilePage() {
           <li key={item.href}>
             <Link href={item.href}>
               <Card className="flex items-center gap-3 transition-colors hover:border-brand">
+                <NavIcon name={item.icon} className="h-5 w-5 shrink-0 text-muted" />
                 <div className="min-w-0 flex-1">
                   <p className="font-medium">{item.label}</p>
                   <p className="text-sm text-muted">{item.description}</p>

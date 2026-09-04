@@ -14,7 +14,7 @@ import { TRAVEL_STYLES } from "@/lib/estimate";
 
 function siteMap(): string {
   return NAV_ITEMS.map(
-    (item) => `- ${item.emoji} ${item.label} (${item.href}) — ${item.description}`,
+    (item) => `- ${item.label} (${item.href}) — ${item.description}`,
   ).join("\n");
 }
 

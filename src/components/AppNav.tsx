@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useSyncExternalStore } from "react";
+import { NavIcon } from "@/components/NavIcon";
 import { TripSwitcher } from "@/components/TripSwitcher";
 import { cn } from "@/lib/cn";
 import { PRIMARY_NAV, SIDEBAR_NAV } from "@/lib/nav";
@@ -47,12 +48,11 @@ export function BottomNav() {
               >
                 <span
                   className={cn(
-                    "flex h-7 w-12 items-center justify-center rounded-full text-lg leading-none transition-colors",
+                    "flex h-7 w-12 items-center justify-center rounded-full transition-colors",
                     active ? "bg-brand-soft" : "bg-transparent",
                   )}
-                  aria-hidden
                 >
-                  {item.emoji}
+                  <NavIcon name={item.icon} className="h-5 w-5" />
                 </span>
                 <span className="max-w-full truncate px-0.5">{item.label}</span>
               </Link>
@@ -155,9 +155,7 @@ export function SideNav() {
                         : "text-muted hover:bg-canvas hover:text-ink",
                     )}
                   >
-                    <span className="text-lg leading-none" aria-hidden>
-                      {item.emoji}
-                    </span>
+                    <NavIcon name={item.icon} className="h-5 w-5 shrink-0" />
                     {collapsed ? null : item.label}
                   </Link>
                 </li>
