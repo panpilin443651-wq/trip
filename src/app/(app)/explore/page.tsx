@@ -2,11 +2,13 @@
 
 import { useMemo, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import { PlaceDetailSheet } from "@/components/PlaceDetailSheet";
 import {
   Badge,
   Button,
   Card,
   Field,
+  Input,
   Select,
   Sheet,
 } from "@/components/ui";
@@ -50,6 +52,13 @@ export default function ExplorePage() {
   const [targetDay, setTargetDay] = useState(0);
   const [toast, setToast] = useState<string | null>(null);
 
+  /** ขั้นที่ 1 ของโฟลว์ — คำค้น กรองทั้งชื่อ ประเภท และคำอธิบาย */
+  const [query, setQuery] = useState("");
+  /** ขั้นที่ 3 — สถานที่ที่กำลังเปิดดูรายละเอียด (พร้อมแผนที่ของจุดนั้น) */
+  const [detail, setDetail] = useState<SuggestedPlace | null>(null);
+  /** ขั้นที่ 5 — ที่ที่ติ๊กไว้เพื่อสร้างเป็นโปรแกรมเที่ยวรวดเดียว */
+  const [picked, setPicked] = useState<Set<string>>(new Set());
+
   const province =
     PROVINCES.find((p) => p.id === provinceId) ?? PROVINCES[0];
 
@@ -67,13 +76,28 @@ export default function ExplorePage() {
     return [...found].sort((a, b) => a.localeCompare(b, "th"));
   }, [province]);
 
-  const visiblePlaces = useMemo(
-    () =>
-      district
-        ? province.places.filter((place) => place.district === district)
-        : province.places,
-    [province, district],
-  );
+  /**
+   * กรองตามอำเภอและคำค้น แล้วดันที่ติดดาวขึ้นบนสุด
+   *
+   * ค้นทั้งชื่อ ประเภท และคำอธิบาย เพราะคนมักจำได้แค่ว่า "ที่ดูนก" หรือ "นาเกลือ"
+   * มากกว่าจะจำชื่อเต็มของสถานที่
+   */
+  const visiblePlaces = useMemo(() => {
+    const byDistrict = district
+      ? province.places.filter((place) => place.district === district)
+      : province.places;
+    const q = query.trim().toLowerCase();
+    const matched = q
+      ? byDistrict.filter((place) =>
+          [place.name, place.tag, place.description].some((field) =>
+            field.toLowerCase().includes(q),
+          ),
+        )
+      : byDistrict;
+    return [...matched].sort(
+      (a, b) => Number(!!b.featured) - Number(!!a.featured),
+    );
+  }, [province, district, query]);
 
   const savedNames = useMemo(
     () => new Set(places.map((p) => p.name)),
@@ -111,6 +135,52 @@ export default function ExplorePage() {
     const last = existing.at(-1);
     if (!last) return "09:00";
     return addMinutesToTime(last.startTime, last.durationMin + 30);
+  }
+
+  /**
+   * ขั้นที่ 5 — เอาที่ติ๊กไว้ทั้งหมดใส่เป็นโปรแกรมของวันเดียว
+   *
+   * ไล่ต่อเวลาให้เองทีละจุด เผื่อเดินทางระหว่างจุด 30 นาที ผู้ใช้ยังแก้เวลา
+   * ทีหลังได้ที่หน้าแผนเที่ยว ที่นี่แค่ทำโครงให้ก่อนจะได้ไม่ต้องกรอกทีละอัน
+   */
+  function buildProgram() {
+    const chosen = visiblePlaces.filter((place) => picked.has(place.id));
+    if (chosen.length === 0) return;
+
+    let startTime = suggestedStartTime(targetDay);
+    for (const place of chosen) {
+      dispatch({
+        type: "addActivity",
+        activity: {
+          dayIndex: targetDay,
+          startTime,
+          durationMin: place.durationMin,
+          title: place.name,
+          placeName: `${place.name} ${province.name}`,
+          detail: `${place.description}
+💡 ${place.tip}`,
+          cost: place.fee,
+          category: place.fee > 0 ? "attraction" : "other",
+          lat: place.lat,
+          lng: place.lng,
+        },
+      });
+      startTime = addMinutesToTime(startTime, place.durationMin + 30);
+    }
+
+    notify(
+      `สร้างโปรแกรม ${chosen.length} จุดในวันที่ ${targetDay + 1} แล้ว`,
+    );
+    setPicked(new Set());
+  }
+
+  function togglePick(id: string) {
+    setPicked((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) next.delete(id);
+      else next.add(id);
+      return next;
+    });
   }
 
   function scheduleActivity() {
@@ -180,6 +250,20 @@ export default function ExplorePage() {
             </button>
           ))}
         </div>
+      </Card>
+
+      <Card className="mb-4">
+        <Field
+          label="ค้นหาสถานที่"
+          hint="พิมพ์ชื่อที่เที่ยว หรือประเภท เช่น วัด ดูนก นาเกลือ ตลาด"
+        >
+          <Input
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder="ค้นในจังหวัดที่เลือกอยู่"
+          />
+        </Field>
       </Card>
 
       <Card className="mb-4 bg-brand-soft ring-1 ring-brand/10">
@@ -259,69 +343,90 @@ export default function ExplorePage() {
       </div>
 
       {tab === "places" ? (
-        <ul className="space-y-3">
-          {visiblePlaces.map((place) => (
-            <Card as="li" key={place.id}>
-              <div className="flex items-start gap-3">
-                <span className="text-2xl leading-none" aria-hidden>
-                  {place.emoji}
-                </span>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-center gap-2">
-                    <h3 className="font-medium">{place.name}</h3>
-                    <Badge>{place.tag}</Badge>
-                  </div>
-                  <p className="mt-1 text-sm leading-relaxed text-muted">
-                    {place.description}
-                  </p>
-
-                  <dl className="mt-3 grid gap-1.5 text-sm sm:grid-cols-2">
-                    <div className="flex gap-1.5">
-                      <dt className="text-muted">⏱️ ควรเผื่อ</dt>
-                      <dd>{formatDuration(place.durationMin)}</dd>
-                    </div>
-                    <div className="flex gap-1.5">
-                      <dt className="text-muted">🎟️ ค่าเข้า</dt>
-                      <dd>
-                        {place.fee > 0 ? `~${formatTHB(place.fee)}` : "ไม่มีค่าเข้า"}
-                      </dd>
-                    </div>
-                    <div className="flex gap-1.5 sm:col-span-2">
-                      <dt className="shrink-0 text-muted">🕐 ช่วงที่เหมาะ</dt>
-                      <dd>{place.bestTime}</dd>
-                    </div>
-                  </dl>
-
-                  <p className="mt-2.5 rounded-xl bg-canvas px-3 py-2.5 text-sm leading-relaxed text-muted">
-                    💡 {place.tip}
-                  </p>
-
-                  <div className="mt-3 flex flex-wrap gap-2">
-                    <Button
-                      variant="secondary"
-                      size="sm"
-                      onClick={() => addToPlaces(place)}
-                      disabled={savedNames.has(place.name)}
+        visiblePlaces.length === 0 ? (
+          <Card>
+            <p className="text-sm leading-relaxed text-muted">
+              ไม่พบสถานที่ที่ตรงกับ &ldquo;{query}&rdquo;
+              {district ? ` ในอำเภอ${district}` : ""} — ลองพิมพ์สั้นลง
+              หรือกด &ldquo;ทั้งจังหวัด&rdquo; เพื่อดูให้กว้างขึ้น
+            </p>
+          </Card>
+        ) : (
+          <ul className="space-y-3">
+            {visiblePlaces.map((place) => {
+              const isPicked = picked.has(place.id);
+              return (
+                <Card
+                  as="li"
+                  key={place.id}
+                  className={cn(
+                    "transition-colors",
+                    isPicked ? "border-brand bg-brand-soft" : null,
+                  )}
+                >
+                  <div className="flex items-start gap-3">
+                    <button
+                      type="button"
+                      onClick={() => togglePick(place.id)}
+                      aria-pressed={isPicked}
+                      aria-label={
+                        isPicked
+                          ? `เอา ${place.name} ออกจากโปรแกรม`
+                          : `เลือก ${place.name} ใส่โปรแกรม`
+                      }
+                      className={cn(
+                        "mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs transition-colors",
+                        isPicked
+                          ? "border-brand bg-brand text-canvas"
+                          : "border-line text-transparent hover:border-brand",
+                      )}
                     >
-                      {savedNames.has(place.name)
-                        ? "✓ อยู่ในรายการแล้ว"
-                        : "➕ เพิ่มลงรายการ"}
-                    </Button>
-                    <Button
-                      size="sm"
-                      onClick={() => {
-                        setScheduling(place);
-                        setTargetDay(0);
-                      }}
+                      ✓
+                    </button>
+
+                    {/* กดที่เนื้อการ์ดเพื่อเปิดรายละเอียด + แผนที่ของจุดนี้ */}
+                    <button
+                      type="button"
+                      onClick={() => setDetail(place)}
+                      className="min-w-0 flex-1 text-left"
                     >
-                      📅 ใส่ในแผน
-                    </Button>
+                      <span className="flex flex-wrap items-center gap-2">
+                        <span className="text-xl leading-none" aria-hidden>
+                          {place.emoji}
+                        </span>
+                        <span className="font-medium">
+                          {place.featured ? (
+                            <span
+                              className="mr-1"
+                              title="ที่ที่คนมาอำเภอนี้มักไม่พลาด"
+                            >
+                              ⭐
+                            </span>
+                          ) : null}
+                          {place.name}
+                        </span>
+                        <Badge>{place.tag}</Badge>
+                      </span>
+                      <span className="mt-1 block text-sm leading-relaxed text-muted">
+                        {place.description}
+                      </span>
+                      <span className="mt-1.5 block text-xs text-faint">
+                        ⏱️ {formatDuration(place.durationMin)} ·{" "}
+                        {place.fee > 0
+                          ? `🎟️ ~${formatTHB(place.fee)}`
+                          : "🎟️ ไม่มีค่าเข้า"}
+                        {place.district ? ` · 📍 ${place.district}` : ""}
+                      </span>
+                      <span className="mt-2 block text-xs text-brand underline">
+                        ดูรายละเอียดและแผนที่ ›
+                      </span>
+                    </button>
                   </div>
-                </div>
-              </div>
-            </Card>
-          ))}
-        </ul>
+                </Card>
+              );
+            })}
+          </ul>
+        )
       ) : (
         <ul className="space-y-3">
           {province.activities.map((activity) => (
@@ -361,6 +466,65 @@ export default function ExplorePage() {
         ⚠️ ค่าเข้าและระยะเวลาเป็นค่าประมาณสำหรับใช้ตั้งงบและจัดตาราง
         ควรตรวจสอบกับแหล่งข้อมูลทางการอีกครั้งก่อนเดินทางจริง
       </p>
+
+      {/* ขั้นที่ 3-4 — รายละเอียดสถานที่พร้อมแผนที่ของจุดนั้น */}
+      <PlaceDetailSheet
+        place={detail}
+        province={province.name}
+        isSaved={detail ? savedNames.has(detail.name) : false}
+        onClose={() => setDetail(null)}
+        onSaveToList={addToPlaces}
+        onAddToTrip={(place) => {
+          setDetail(null);
+          setScheduling(place);
+          setTargetDay(0);
+        }}
+      />
+
+      {/*
+        ขั้นที่ 5 — แถบสร้างโปรแกรม โผล่เมื่อติ๊กอย่างน้อยหนึ่งที่
+        อยู่เหนือแถบเมนูล่างบนมือถือ ไม่งั้นจะโดนเมนูทับ
+      */}
+      {picked.size > 0 ? (
+        <div className="fixed inset-x-3 bottom-24 z-40 rounded-3xl border border-line bg-card p-3 shadow-[var(--shadow-lift)] lg:inset-x-auto lg:right-8 lg:bottom-8 lg:w-96">
+          <div className="mb-2 flex items-center justify-between gap-3">
+            <p className="text-sm font-medium">
+              เลือกไว้ {picked.size} ที่
+            </p>
+            <button
+              type="button"
+              onClick={() => setPicked(new Set())}
+              className="text-xs text-muted underline"
+            >
+              ล้างที่เลือก
+            </button>
+          </div>
+
+          {trip.dayCount > 1 ? (
+            <Select
+              value={targetDay}
+              onChange={(e) => setTargetDay(Number(e.target.value))}
+              aria-label="ใส่โปรแกรมในวันที่"
+              className="mb-2"
+            >
+              {Array.from({ length: trip.dayCount }, (_, index) => (
+                <option key={index} value={index}>
+                  วันที่ {index + 1} (
+                  {formatDateShort(addDaysISO(trip.startDate, index))})
+                </option>
+              ))}
+            </Select>
+          ) : null}
+
+          <Button className="w-full" onClick={buildProgram}>
+            🗓️ สร้างโปรแกรมเที่ยว
+          </Button>
+          <p className="mt-2 text-xs leading-relaxed text-faint">
+            เรียงตามลำดับในรายการ เริ่ม {suggestedStartTime(targetDay)} น.
+            เผื่อเดินทางระหว่างจุด 30 นาที แก้เวลาทีหลังได้ที่หน้าแผนเที่ยว
+          </p>
+        </div>
+      ) : null}
 
       <Sheet
         open={scheduling !== null}
