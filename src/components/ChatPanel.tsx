@@ -1,13 +1,8 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import {
-  clearMessages,
-  getServerSnapshot,
-  getSnapshot,
-  setMessages,
-  subscribe,
-} from "@/lib/chat/storage";
+import { type ChatStore, defaultChatStore } from "@/lib/chat/storage";
 import { summarizeTrip } from "@/lib/chat/trip-summary";
 import type { ChatMessage } from "@/lib/chat/types";
 import { cn } from "@/lib/cn";
@@ -24,15 +19,47 @@ const STARTERS = [
 ];
 
 /**
- * ตัวแชทจริง ใช้ซ้ำทั้งในปุ่มลอยและหน้าเต็ม
+ * ตัวแชทจริง ใช้ซ้ำทั้งในปุ่มลอย หน้าเต็ม และการ์ดในหน้าแนะนำเที่ยว
  *
- * ประวัติเก็บใน localStorage ฝั่งเบราว์เซอร์ ส่วนคำตอบสตรีมมาจาก /api/chat
- * ซึ่งเป็นตัวเดียวที่แตะ API key ของ Gemini
+ * ประวัติเก็บใน localStorage ฝั่งเบราว์เซอร์ ส่วนคำตอบสตรีมมาจากเซิร์ฟเวอร์
+ * ซึ่งเป็นฝั่งเดียวที่แตะ API key ของ Gemini
+ *
+ * prop ทุกตัวมีค่าเริ่มต้นเป็นพฤติกรรมเดิม ที่เรียกใช้อยู่แล้วจึงไม่ต้องแก้
+ *
+ * @param endpoint เส้นทาง API ที่จะยิงไป
+ * @param store ที่เก็บประวัติ แต่ละช่องต้องใช้คนละตัว ไม่งั้นเขียนทับกัน
+ * @param buildBody ประกอบ body ของคำขอ ค่าเริ่มต้นคือแนบสรุปทริปไปด้วย
+ * @param afterMessage เรนเดอร์เพิ่มใต้ฟองคำตอบที่พิมพ์จบแล้ว (ปุ่มใส่แผน)
  */
-export function ChatPanel({ className }: { className?: string }) {
+export function ChatPanel({
+  className,
+  endpoint = "/api/chat",
+  store = defaultChatStore,
+  starters = STARTERS,
+  intro = "👋 ถามได้ทั้งเรื่องวิธีใช้เว็บ และเรื่องทริปที่คุณกรอกไว้",
+  privacyNote = "ข้อมูลทริปของคุณถูกส่งไปให้ Gemini (Google) ทุกครั้งที่ถาม",
+  buildBody,
+  afterMessage,
+}: {
+  className?: string;
+  endpoint?: string;
+  store?: ChatStore;
+  starters?: string[];
+  intro?: string;
+  privacyNote?: string;
+  buildBody?: (messages: Array<{ role: string; text: string }>) => unknown;
+  afterMessage?: (
+    message: ChatMessage,
+    info: { streaming: boolean; isLast: boolean },
+  ) => ReactNode;
+}) {
   const { state } = useTrip();
   // เก็บใน external store ไม่ใช่ useState ดูเหตุผลใน lib/chat/storage.ts
-  const messages = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
+  const messages = useSyncExternalStore(
+    store.subscribe,
+    store.getSnapshot,
+    store.getServerSnapshot,
+  );
   const [input, setInput] = useState("");
   const [busy, setBusy] = useState(false);
   const endRef = useRef<HTMLDivElement>(null);
@@ -47,7 +74,7 @@ export function ChatPanel({ className }: { className?: string }) {
 
     const userMessage: ChatMessage = { id: newId(), role: "user", text };
     const history = [...messages, userMessage];
-    setMessages(history);
+    store.setMessages(history);
     setInput("");
     setBusy(true);
 
@@ -55,13 +82,15 @@ export function ChatPanel({ className }: { className?: string }) {
     let reply = "";
 
     try {
-      const res = await fetch("/api/chat", {
+      const wire = history.map((m) => ({ role: m.role, text: m.text }));
+      const res = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          messages: history.map((m) => ({ role: m.role, text: m.text })),
-          tripSummary: summarizeTrip(state),
-        }),
+        body: JSON.stringify(
+          buildBody
+            ? buildBody(wire)
+            : { messages: wire, tripSummary: summarizeTrip(state) },
+        ),
       });
 
       if (!res.ok || !res.body) {
@@ -77,20 +106,20 @@ export function ChatPanel({ className }: { className?: string }) {
           ...history,
           { id: replyId, role: "model" as const, text: message, error: true },
         ];
-        setMessages(failed);
+        store.setMessages(failed);
         return;
       }
 
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
       // ใส่ฟองเปล่าไว้ก่อน แล้วเติมข้อความเข้าไปทีละก้อนระหว่างสตรีม
-      setMessages([...history, { id: replyId, role: "model", text: "" }], false);
+      store.setMessages([...history, { id: replyId, role: "model", text: "" }], false);
 
       for (;;) {
         const { done, value } = await reader.read();
         if (done) break;
         reply += decoder.decode(value, { stream: true });
-        setMessages(
+        store.setMessages(
           [...history, { id: replyId, role: "model", text: reply }],
           false,
         );
@@ -104,7 +133,7 @@ export function ChatPanel({ className }: { className?: string }) {
           text: reply.trim() || "ผู้ช่วยไม่ได้ตอบอะไรกลับมา ลองถามใหม่อีกครั้ง",
         },
       ];
-      setMessages(done);
+      store.setMessages(done);
     } catch {
       const failed: ChatMessage[] = [
         ...history,
@@ -115,14 +144,14 @@ export function ChatPanel({ className }: { className?: string }) {
           error: true,
         },
       ];
-      setMessages(failed);
+      store.setMessages(failed);
     } finally {
       setBusy(false);
     }
   }
 
   function reset() {
-    clearMessages();
+    store.clearMessages();
   }
 
   return (
@@ -131,10 +160,10 @@ export function ChatPanel({ className }: { className?: string }) {
         {messages.length === 0 ? (
           <div className="rounded-2xl border border-dashed border-line px-4 py-5">
             <p className="text-sm leading-relaxed text-muted">
-              👋 ถามได้ทั้งเรื่องวิธีใช้เว็บ และเรื่องทริปที่คุณกรอกไว้
+              {intro}
             </p>
             <div className="mt-3 flex flex-wrap gap-1.5">
-              {STARTERS.map((q) => (
+              {starters.map((q) => (
                 <button
                   key={q}
                   type="button"
@@ -151,8 +180,8 @@ export function ChatPanel({ className }: { className?: string }) {
             <div
               key={m.id}
               className={cn(
-                "flex",
-                m.role === "user" ? "justify-end" : "justify-start",
+                "flex flex-col",
+                m.role === "user" ? "items-end" : "items-start",
               )}
             >
               <div
@@ -167,6 +196,16 @@ export function ChatPanel({ className }: { className?: string }) {
               >
                 {m.text || "…"}
               </div>
+              {/* ปุ่มเสริมใต้คำตอบ เช่น ปุ่มใส่แผนในหน้าแนะนำเที่ยว
+                  streaming ให้รอจนพิมพ์จบก่อนค่อยไปหาชื่อสถานที่
+                  isLast ให้รู้ว่าอันไหนคือคำตอบล่าสุด จะได้ไม่ยิงคำขอย้อนหลัง
+                  ให้ทุกคำตอบเก่าที่โหลดมาจาก localStorage ตอนเปิดหน้า */}
+              {m.role === "model" && !m.error
+                ? afterMessage?.(m, {
+                    streaming: busy && m.id === messages.at(-1)?.id,
+                    isLast: m.id === messages.at(-1)?.id,
+                  })
+                : null}
             </div>
           ))
         )}
@@ -206,7 +245,7 @@ export function ChatPanel({ className }: { className?: string }) {
 
         <div className="mt-2 flex items-center justify-between gap-3">
           <p className="text-[11px] leading-relaxed text-faint">
-            ข้อมูลทริปของคุณถูกส่งไปให้ Gemini (Google) ทุกครั้งที่ถาม
+            {privacyNote}
           </p>
           {messages.length > 0 ? (
             <button

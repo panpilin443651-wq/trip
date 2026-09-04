@@ -5,6 +5,7 @@ import { useEffect, useMemo, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
 import type { DistrictCount } from "@/app/api/districts/route";
 import { DistrictPicks } from "@/components/DistrictPicks";
+import { ExploreChat } from "@/components/ExploreChat";
 import { ExplorePlaceSearch } from "@/components/ExplorePlaceSearch";
 import { PlaceDetailSheet } from "@/components/PlaceDetailSheet";
 import {
@@ -551,6 +552,17 @@ export default function ExplorePage() {
           }
         />
       ) : null}
+
+      {/* ถามได้ลึกกว่าที่รายการด้านบนเลือกได้ วางไว้นอกเงื่อนไขแท็บ
+          เพราะคำถามเรื่องที่เที่ยวใช้ได้กับทั้งสองแท็บ */}
+      <ExploreChat
+        province={province.name}
+        district={district}
+        dayIndex={targetDay}
+        onAdded={(name) =>
+          notify(`ใส่ "${name}" ในแผนวันที่ ${targetDay + 1} แล้ว`, true)
+        }
+      />
 
       <p className="mt-5 text-xs leading-relaxed text-faint">
         ⚠️ ค่าเข้าและระยะเวลาเป็นค่าประมาณสำหรับใช้ตั้งงบและจัดตาราง

@@ -9,13 +9,15 @@ import { Sheet } from "./ui";
  * ปุ่มลอยเรียกผู้ช่วย AI ได้จากทุกหน้า
  *
  * ซ่อนตัวเองในหน้า /chat เพราะที่นั่นมีแชทเต็มหน้าอยู่แล้ว
+ * และซ่อนในหน้า /explore ที่มีการ์ดผู้ช่วยแนะนำที่เที่ยวอยู่ในหน้าแล้ว
+ * — สองช่องแชทในจอเดียวสับสน และปุ่มลอยจะไปทับแถบใส่แผนที่ลอยอยู่มุมเดียวกัน
  * ตำแหน่งบนมือถือต้องอยู่เหนือแถบเมนูล่าง (fixed bottom-0 สูง 16)
  */
 export function ChatWidget() {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
 
-  if (pathname === "/chat") return null;
+  if (pathname === "/chat" || pathname === "/explore") return null;
 
   return (
     <>
