@@ -1,4 +1,5 @@
 import { ProfileMenu } from "@/components/ProfileMenu";
+import { ThemeToggle } from "@/components/ThemeToggle";
 import { TripSwitcher } from "@/components/TripSwitcher";
 
 /**
@@ -6,7 +7,10 @@ import { TripSwitcher } from "@/components/TripSwitcher";
  *
  * ซ้าย  — ชื่อแผนที่เปิดอยู่ เฉพาะจอเล็กที่ไม่มีแถบข้าง จอใหญ่ตัวสลับแผน
  *         ไปอยู่บนสุดของแถบข้างซ้ายแทน
- * ขวา  — โปรไฟล์ ข้างในมีสวิตช์โหมดมืด ปุ่มออกจากระบบ และเมนูที่เหลือ
+ * ขวา  — สวิตช์โหมดมืด และปุ่มโปรไฟล์
+ *
+ * สวิตช์โหมดมืดเคยย้ายไปอยู่ในหน้าประวัติส่วนตัว แต่ลึกเกินไป (ต้องกดสามชั้น)
+ * จนผู้ใช้คิดว่าหายไปเลย ของที่คนสลับไปมาบ่อยต้องอยู่ตรงที่เห็นได้ทันที
  *
  * ทำเป็นแถบจริงแทนที่จะลอยปุ่มไว้มุมขวาบนของจอ เพราะหลายหน้ามีปุ่มของตัวเอง
  * อยู่ขวาบนของเนื้อหาอยู่แล้ว (เช่น "เพิ่มค่าใช้จ่าย" ในหน้างบ) ปุ่มลอยจะไปทับ
@@ -21,6 +25,7 @@ export function TopBar({ email }: { email: string }) {
         {/* จอใหญ่ตัวสลับแผนอยู่ในแถบข้างซ้ายแล้ว ไม่ต้องซ้ำบนแถบบน */}
         <TripSwitcher className="flex-1 lg:hidden" />
         <span className="hidden flex-1 lg:block" />
+        <ThemeToggle />
         <ProfileMenu email={email} />
       </div>
     </header>

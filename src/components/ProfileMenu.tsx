@@ -23,7 +23,7 @@ export function ProfileMenu({ email }: { email: string }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="โปรไฟล์"
-        className="flex min-h-10 shrink-0 items-center gap-2 rounded-full border border-line bg-card px-3 text-sm font-medium transition-colors hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none"
+        className="flex min-h-10 shrink-0 items-center gap-2 rounded-full border border-line bg-card px-2 text-sm font-medium sm:px-3 transition-colors hover:bg-brand-soft focus-visible:ring-2 focus-visible:ring-brand/40 focus-visible:outline-none"
       >
         <span
           className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-brand-soft text-xs font-semibold text-brand"
@@ -31,7 +31,12 @@ export function ProfileMenu({ email }: { email: string }) {
         >
           {(email.trim()[0] ?? "?").toUpperCase()}
         </span>
-        <span className="whitespace-nowrap">โปรไฟล์</span>
+        {/*
+          จอเล็กเหลือแค่วงกลมตัวอักษรแรก คืนที่ให้สวิตช์โหมดมืดที่มีคำกำกับ
+          วงกลมมุมขวาบนเป็นแบบที่คนคุ้นว่าคือบัญชีอยู่แล้ว ต่างจากสวิตช์
+          ที่ถ้าไม่มีคำก็เดาไม่ออกว่าคุมอะไร
+        */}
+        <span className="hidden whitespace-nowrap sm:inline">โปรไฟล์</span>
       </button>
 
       <Sheet open={open} title="โปรไฟล์" onClose={() => setOpen(false)}>

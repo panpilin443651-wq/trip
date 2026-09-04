@@ -3,8 +3,7 @@ import { BuildInfo } from "@/components/BuildInfo";
 import { NavIcon } from "@/components/NavIcon";
 import { PageHeader } from "@/components/PageHeader";
 import { SignOutConfirmButton } from "@/components/SignOutConfirmButton";
-import { ThemeToggle } from "@/components/ThemeToggle";
-import { Card, SectionTitle } from "@/components/ui";
+import { Card } from "@/components/ui";
 import { createClient } from "@/lib/supabase/server";
 import { SECONDARY_NAV } from "@/lib/nav";
 
@@ -30,12 +29,6 @@ export default async function ProfilePage() {
       <Card className="mb-4">
         <p className="truncate font-medium">{user?.email ?? "ผู้ใช้"}</p>
         <p className="mt-0.5 text-sm text-muted">เข้าสู่ระบบอยู่</p>
-      </Card>
-
-      {/* สวิตช์โหมดมืดอยู่ที่นี่ เพราะเป็นการตั้งค่า ไม่ใช่ทางลัดที่ต้องกดบ่อย */}
-      <Card className="mb-4">
-        <SectionTitle title="การแสดงผล" />
-        <ThemeToggle className="w-full justify-between" />
       </Card>
 
       <ul className="space-y-2">
