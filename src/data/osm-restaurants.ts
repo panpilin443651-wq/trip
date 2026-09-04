@@ -25,6 +25,11 @@ export interface OsmRestaurant {
   openingHours: string;
   /** มีหน้า Wikipedia หรือ Wikidata */
   notable: boolean;
+  /**
+   * อำเภอ/เขต เติมด้วย scripts/fill-osm-districts.js
+   * ว่างได้ ถ้าหาไม่เจอจากขอบเขตการปกครอง
+   */
+  district: string;
 }
 
 export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
@@ -38,7 +43,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.72129,
    "lng": 100.51687,
    "openingHours": "18:00-01:00",
-   "notable": true
+   "notable": true,
+   "district": "บางรัก"
   },
   {
    "id": "n13199916260",
@@ -49,7 +55,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.76888,
    "lng": 100.50288,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนคร"
   },
   {
    "id": "n13003837884",
@@ -60,7 +67,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.75281,
    "lng": 100.62625,
    "openingHours": "Mo-Sa 08:00-20:00",
-   "notable": true
+   "notable": true,
+   "district": "บางกะปิ"
   },
   {
    "id": "n13200160154",
@@ -71,7 +79,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.7681,
    "lng": 100.50324,
    "openingHours": "Mo-Su 08:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนคร"
   },
   {
    "id": "n4438022589",
@@ -82,7 +91,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.75253,
    "lng": 100.50474,
    "openingHours": "We-Sa 07:00-19:30",
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "n10300359847",
@@ -93,7 +103,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.77873,
    "lng": 100.47901,
    "openingHours": "Fr-Sa 13:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลัด"
   },
   {
    "id": "w226278556",
@@ -104,7 +115,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.72642,
    "lng": 100.57844,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "วัฒนา"
   },
   {
    "id": "n8555962836",
@@ -115,7 +127,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.68632,
    "lng": 100.62044,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พระโขนง"
   },
   {
    "id": "w673302291",
@@ -126,7 +139,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.76953,
    "lng": 100.50343,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "n13279414101",
@@ -137,7 +151,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.78032,
    "lng": 100.52068,
    "openingHours": "Mo-Su 07:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "ดุสิต"
   },
   {
    "id": "n7121562485",
@@ -148,7 +163,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.73185,
    "lng": 100.57966,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "วัฒนา"
   },
   {
    "id": "n10938884747",
@@ -159,7 +175,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.72066,
    "lng": 100.53031,
    "openingHours": "Mo-Su 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บางรัก"
   },
   {
    "id": "n2081842900",
@@ -170,7 +187,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.72351,
    "lng": 100.51395,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "บางรัก"
   },
   {
    "id": "n7192252385",
@@ -181,7 +199,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.75255,
    "lng": 100.4893,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนคร"
   },
   {
    "id": "w1280913156",
@@ -192,7 +211,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.71082,
    "lng": 100.5455,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "ยานนาวา"
   },
   {
    "id": "n14112861295",
@@ -203,7 +223,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.71555,
    "lng": 100.4628,
    "openingHours": "Mo-Su 09:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ภาษีเจริญ"
   },
   {
    "id": "n9632857472",
@@ -214,7 +235,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.73937,
    "lng": 100.5557,
    "openingHours": "Mo-Su 08:00-23:30",
-   "notable": false
+   "notable": false,
+   "district": "คลองเตย"
   },
   {
    "id": "n1702370757",
@@ -225,7 +247,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.60373,
    "lng": 100.51503,
    "openingHours": "Mo-Su 09:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งครุ"
   },
   {
    "id": "n13731513956",
@@ -236,7 +259,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.72102,
    "lng": 100.77135,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ลาดกระบัง"
   },
   {
    "id": "n10902425966",
@@ -247,7 +271,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.91135,
    "lng": 100.49097,
    "openingHours": "Mo-Sa 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": ""
   },
   {
    "id": "n8945472948",
@@ -258,7 +283,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.76702,
    "lng": 100.64983,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บางกะปิ"
   },
   {
    "id": "n8944027631",
@@ -269,7 +295,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.77861,
    "lng": 100.64823,
    "openingHours": "Mo-Fr 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บางกะปิ"
   },
   {
    "id": "n10269045648",
@@ -280,7 +307,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79762,
    "lng": 100.57221,
    "openingHours": "Mo-Su 09:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ห้วยขวาง"
   },
   {
    "id": "n11613644835",
@@ -291,7 +319,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.66147,
    "lng": 100.62175,
    "openingHours": "Mo-Sa 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บางนา"
   },
   {
    "id": "n7264332303",
@@ -302,7 +331,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69433,
    "lng": 100.33155,
    "openingHours": "06:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองแขม"
   },
   {
    "id": "n6843795859",
@@ -313,7 +343,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.74236,
    "lng": 100.54088,
    "openingHours": "10:00 - 21:30",
-   "notable": false
+   "notable": false,
+   "district": "ปทุมวัน"
   },
   {
    "id": "n8269208040",
@@ -324,7 +355,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.66893,
    "lng": 100.64265,
    "openingHours": "Mo-Sa 07:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "บางนา"
   },
   {
    "id": "n10219698572",
@@ -335,7 +367,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.86613,
    "lng": 100.66876,
    "openingHours": "Mo-Sa 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "บางเขน"
   },
   {
    "id": "w889455340",
@@ -346,7 +379,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.66893,
    "lng": 100.64265,
    "openingHours": "Mo-Sa 07:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "บางนา"
   },
   {
    "id": "n10767862718",
@@ -357,7 +391,44 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.83177,
    "lng": 100.6677,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คันนายาว"
+  },
+  {
+   "id": "n9526566130",
+   "name": "ChonSons (ชอนซันส์) - ดอนเมือง",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารเกาหลี",
+   "lat": 13.92681,
+   "lng": 100.58564,
+   "openingHours": "Mo-Su 10:30-20:00",
+   "notable": false,
+   "district": "ดอนเมือง"
+  },
+  {
+   "id": "n4241048828",
+   "name": "ครัวในฝัน",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.69165,
+   "lng": 100.62083,
+   "openingHours": "Th-Tu 11:00-21:00",
+   "notable": false,
+   "district": "พระโขนง"
+  },
+  {
+   "id": "n13232257401",
+   "name": "Cococano Cafe & Eatery",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "กาแฟ",
+   "lat": 13.69003,
+   "lng": 100.45207,
+   "openingHours": "Tu-Fr 08:00-17:00; Sa-Su 09:00-18:00",
+   "notable": false,
+   "district": "จอมทอง"
   }
  ],
  "กระบี่": [
@@ -370,7 +441,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.05643,
    "lng": 98.74994,
    "openingHours": "Su-Fr 09:00-20:00; Sa 09:00-16:30",
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n485553598",
@@ -381,7 +453,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.06346,
    "lng": 98.91623,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w677377950",
@@ -392,7 +465,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.63364,
    "lng": 99.03376,
    "openingHours": "Mo-Su 14:00-22:00",
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n6720964752",
@@ -403,7 +477,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.35725,
    "lng": 98.63917,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "อ่าวลึก"
   },
   {
    "id": "n4506524194",
@@ -414,7 +489,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.49392,
    "lng": 99.11069,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n3432501609",
@@ -425,7 +501,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.06512,
    "lng": 98.91606,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n13190650591",
@@ -436,7 +513,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.06283,
    "lng": 98.917,
    "openingHours": "Mo-Su 11:00-24:00",
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n633029472",
@@ -447,7 +525,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.03301,
    "lng": 98.82533,
    "openingHours": "Mo-Su 07:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n11404966169",
@@ -458,7 +537,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.06097,
    "lng": 98.75923,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n10720506913",
@@ -469,7 +549,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.94033,
    "lng": 99.20707,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "คลองท่อม"
   },
   {
    "id": "n4109211996",
@@ -480,7 +561,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.01206,
    "lng": 98.84012,
    "openingHours": "PH,Mo-Su 11:00-23:00",
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n13516746561",
@@ -491,7 +573,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.61616,
    "lng": 99.03319,
    "openingHours": "Su-Fr 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n2504519584",
@@ -502,7 +585,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.64786,
    "lng": 99.03716,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n13787306774",
@@ -513,7 +597,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.24974,
    "lng": 99.13016,
    "openingHours": "Mo-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาพนม"
   },
   {
    "id": "n654557901",
@@ -524,7 +609,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.64944,
    "lng": 99.039,
    "openingHours": "Mo-Su 17:00-22:00",
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "w926972243",
@@ -535,7 +621,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.58578,
    "lng": 98.74142,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "ปลายพระยา"
   },
   {
    "id": "n703026684",
@@ -546,7 +633,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.62485,
    "lng": 99.03117,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n9835374817",
@@ -557,7 +645,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.58431,
    "lng": 98.74204,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ปลายพระยา"
   },
   {
    "id": "n7235132985",
@@ -568,7 +657,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.55785,
    "lng": 99.06887,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n13243276767",
@@ -579,7 +669,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.93441,
    "lng": 99.20825,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองท่อม"
   },
   {
    "id": "n9337585017",
@@ -590,7 +681,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.59316,
    "lng": 99.03559,
    "openingHours": "Mo-Su 10:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n4707577689",
@@ -601,7 +693,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.06451,
    "lng": 98.91745,
    "openingHours": "Mo-Su 07:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n9366890256",
@@ -612,7 +705,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.63783,
    "lng": 99.03413,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n13321823202",
@@ -623,7 +717,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.60196,
    "lng": 99.03609,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n13230186357",
@@ -634,7 +729,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.73876,
    "lng": 98.77167,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n4137666897",
@@ -645,7 +741,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.49732,
    "lng": 99.11,
    "openingHours": "Mo-Su 09:00-18:00; PH open",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n9653889811",
@@ -656,7 +753,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.60865,
    "lng": 99.03648,
    "openingHours": "Mo-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n13971566560",
@@ -667,7 +765,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.29361,
    "lng": 98.79169,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "อ่าวลึก"
   },
   {
    "id": "n7018708885",
@@ -678,7 +777,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.59091,
    "lng": 99.03242,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "w1489340439",
@@ -689,7 +789,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.03263,
    "lng": 98.82375,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   }
  ],
  "ภูเก็ต": [
@@ -702,7 +803,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88578,
    "lng": 98.39069,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": true
+   "notable": true,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11876537369",
@@ -713,7 +815,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88595,
    "lng": 98.29757,
    "openingHours": "Su-Sa 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "n11115747606",
@@ -724,7 +827,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.89174,
    "lng": 98.3877,
    "openingHours": "Mo-Sa 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n2082867401",
@@ -735,7 +839,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.82658,
    "lng": 98.29687,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n13734207247",
@@ -746,7 +851,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.87943,
    "lng": 98.38285,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n4624928091",
@@ -757,7 +863,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.87849,
    "lng": 98.38071,
    "openingHours": "Mo-Su 12:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11802828169",
@@ -768,7 +875,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.98378,
    "lng": 98.28207,
    "openingHours": "Su 10:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "n8493478718",
@@ -779,7 +887,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.79089,
    "lng": 98.32818,
    "openingHours": "Th-Tu 10:00-17:00; We 00:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n6027503485",
@@ -790,7 +899,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.82576,
    "lng": 98.29641,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n13072075493",
@@ -801,7 +911,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88912,
    "lng": 98.38067,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n13545112109",
@@ -812,7 +923,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.8846,
    "lng": 98.39805,
    "openingHours": "Mo-Su 11:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n8353796917",
@@ -823,7 +935,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.02594,
    "lng": 98.40212,
    "openingHours": "Fr-We 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "n11549943405",
@@ -834,7 +947,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.83415,
    "lng": 98.29795,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n7979684485",
@@ -845,7 +959,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.82807,
    "lng": 98.34213,
    "openingHours": "Tu-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n6817459385",
@@ -856,7 +971,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.8941,
    "lng": 98.30495,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "w710389453",
@@ -867,7 +983,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.82386,
    "lng": 98.33241,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n5111230525",
@@ -878,7 +995,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88376,
    "lng": 98.38949,
    "openingHours": "Mo-Su 12:30-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n5187453721",
@@ -889,7 +1007,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.82194,
    "lng": 98.29909,
    "openingHours": "Mo-Su 07:30-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11854213040",
@@ -900,7 +1019,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.99459,
    "lng": 98.30421,
    "openingHours": "Mo-Su 12:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "n13200740801",
@@ -911,7 +1031,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.11804,
    "lng": 98.30844,
    "openingHours": "Mo-Su 09:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "n13388220087",
@@ -922,7 +1043,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.90377,
    "lng": 98.3041,
    "openingHours": "Mo-Su 14:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "w1167525528",
@@ -933,7 +1055,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.99235,
    "lng": 98.38248,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "n10951139655",
@@ -944,7 +1067,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.80836,
    "lng": 98.29937,
    "openingHours": "Mo-Su 18:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n10084794070",
@@ -955,7 +1079,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.8887,
    "lng": 98.38369,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11875846255",
@@ -966,7 +1091,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.83707,
    "lng": 98.29522,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n10992732031",
@@ -977,7 +1103,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88006,
    "lng": 98.38508,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n4571208091",
@@ -988,7 +1115,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88465,
    "lng": 98.39006,
    "openingHours": "Th-Tu 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w1051023497",
@@ -999,7 +1127,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.8049,
    "lng": 98.33673,
    "openingHours": "Mo-Su 14:00-02:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w1073027230",
@@ -1010,7 +1139,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.85135,
    "lng": 98.34885,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w259437952",
@@ -1021,21 +1151,11 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.82657,
    "lng": 98.29643,
    "openingHours": "08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   }
  ],
  "ปทุมธานี": [
-  {
-   "id": "n13514771489",
-   "name": "ก๋วยเตี๋ยวปากหม้อ พนมสารคาม บางปะอิน",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 14.26227,
-   "lng": 100.61426,
-   "openingHours": "",
-   "notable": true
-  },
   {
    "id": "n7314179585",
    "name": "LAMAI Garden Craft Cafe",
@@ -1045,7 +1165,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.95769,
    "lng": 100.75585,
    "openingHours": "Fr-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n12075542177",
@@ -1056,7 +1177,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.13436,
    "lng": 100.62009,
    "openingHours": "Mo-Su 07:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n9518429268",
@@ -1067,7 +1189,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.06317,
    "lng": 100.65863,
    "openingHours": "Mo-Fr 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n13433884915",
@@ -1078,7 +1201,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.96157,
    "lng": 100.64296,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n8333768134",
@@ -1089,7 +1213,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.00925,
    "lng": 100.52172,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปทุมธานี"
   },
   {
    "id": "n10913599013",
@@ -1100,7 +1225,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.98134,
    "lng": 100.68453,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n3431296279",
@@ -1111,7 +1237,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.91787,
    "lng": 100.60164,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": ""
   },
   {
    "id": "n12080926886",
@@ -1122,7 +1249,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.05655,
    "lng": 100.54883,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สามโคก"
   },
   {
    "id": "n11618747409",
@@ -1133,7 +1261,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.14462,
    "lng": 100.62407,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n7996871252",
@@ -1144,7 +1273,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.00532,
    "lng": 100.56388,
    "openingHours": "Mo-Su 17:00 - 00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปทุมธานี"
   },
   {
    "id": "n12808883030",
@@ -1155,18 +1285,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.03468,
    "lng": 100.7324,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
-  },
-  {
-   "id": "n9526566130",
-   "name": "ChonSons (ชอนซันส์) - ดอนเมือง",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารเกาหลี",
-   "lat": 13.92681,
-   "lng": 100.58564,
-   "openingHours": "Mo-Su 10:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n10844099391",
@@ -1177,7 +1297,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.98642,
    "lng": 100.61525,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n13363444891",
@@ -1188,7 +1309,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.08424,
    "lng": 100.62926,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n12827530352",
@@ -1199,7 +1321,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.98792,
    "lng": 100.7045,
    "openingHours": "Tu-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n9621446028",
@@ -1210,7 +1333,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.97422,
    "lng": 100.72625,
    "openingHours": "อาทิตย์-วันเสาร์",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n13511257795",
@@ -1221,7 +1345,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.99217,
    "lng": 100.65382,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n10146692015",
@@ -1232,7 +1357,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.92178,
    "lng": 100.70362,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n12997190116",
@@ -1243,7 +1369,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.05537,
    "lng": 100.66413,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n8230126478",
@@ -1254,7 +1381,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.96163,
    "lng": 100.58073,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปทุมธานี"
   },
   {
    "id": "n2073119933",
@@ -1265,7 +1393,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.07398,
    "lng": 100.61352,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n12548626104",
@@ -1276,7 +1405,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.0056,
    "lng": 100.69918,
    "openingHours": "Mo-Fr 08:00-17:00; Sa,Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n2073102582",
@@ -1287,7 +1417,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.07395,
    "lng": 100.61343,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n13286876466",
@@ -1298,7 +1429,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.97803,
    "lng": 100.46626,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ลาดหลุมแก้ว"
   },
   {
    "id": "n13859540708",
@@ -1309,7 +1441,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.91978,
    "lng": 100.6934,
    "openingHours": "Mo, We-Fr 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n11264958077",
@@ -1320,7 +1453,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.9566,
    "lng": 100.64277,
    "openingHours": "Mo-Su 05:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n12645499867",
@@ -1331,7 +1465,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.08878,
    "lng": 100.71086,
    "openingHours": "Tu-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n6770955342",
@@ -1342,7 +1477,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.05314,
    "lng": 100.52462,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สามโคก"
   },
   {
    "id": "n13012918811",
@@ -1353,7 +1489,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.07146,
    "lng": 100.48596,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "สามโคก"
   }
  ],
  "กาญจนบุรี": [
@@ -1366,7 +1503,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.14307,
    "lng": 98.44974,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n5464800821",
@@ -1377,7 +1515,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.97233,
    "lng": 99.63461,
    "openingHours": "Th-Tu 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าม่วง"
   },
   {
    "id": "n13201950795",
@@ -1388,7 +1527,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.86055,
    "lng": 99.80595,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่ามะกา"
   },
   {
    "id": "n5206045524",
@@ -1399,7 +1539,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.981,
    "lng": 98.6312,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n8360998027",
@@ -1410,7 +1551,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.02781,
    "lng": 99.52936,
    "openingHours": "Mo-Su 16:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n12480653536",
@@ -1421,7 +1563,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.13487,
    "lng": 99.35733,
    "openingHours": "Tu-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n3792429266",
@@ -1432,7 +1575,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.04159,
    "lng": 99.50358,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n6302601106",
@@ -1443,7 +1587,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.74207,
    "lng": 98.57728,
    "openingHours": "08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "n12550799937",
@@ -1454,7 +1599,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37271,
    "lng": 99.15029,
    "openingHours": "08:00-17:00; Tu off",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n12736440962",
@@ -1465,7 +1611,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.40729,
    "lng": 99.12554,
    "openingHours": "08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n12550771569",
@@ -1476,7 +1623,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37087,
    "lng": 99.1518,
    "openingHours": "09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n3793655124",
@@ -1487,7 +1635,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.9667,
    "lng": 99.73159,
    "openingHours": "Mo-Fr 06:30-17:15; Sa 06:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "ท่ามะกา"
   },
   {
    "id": "n5517788723",
@@ -1498,7 +1647,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.60189,
    "lng": 98.98945,
    "openingHours": "Mo-Su 08:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n3792192855",
@@ -1509,7 +1659,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.03211,
    "lng": 99.52265,
    "openingHours": "08:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n6075210585",
@@ -1520,7 +1671,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.03066,
    "lng": 99.52532,
    "openingHours": "Mo-Sa 12:00-00:00; Su 18:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n7099291605",
@@ -1531,7 +1683,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.64803,
    "lng": 98.58411,
    "openingHours": "08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "w1500200221",
@@ -1542,7 +1695,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.55337,
    "lng": 98.77301,
    "openingHours": "Mo-Th 10:00-21:00; Fr-Sa 10:00-21:30; Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "n14088644871",
@@ -1553,7 +1707,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.33698,
    "lng": 99.50664,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บ่อพลอย"
   },
   {
    "id": "n4865820421",
@@ -1564,7 +1719,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.03374,
    "lng": 99.51993,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n13765624240",
@@ -1575,7 +1731,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.95649,
    "lng": 99.75123,
    "openingHours": "Mo-Su 07:30-15:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่ามะกา"
   },
   {
    "id": "n8601996062",
@@ -1586,7 +1743,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.1451,
    "lng": 98.45004,
    "openingHours": "ปิดทุกวันพุธ",
-   "notable": false
+   "notable": false,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n8733018617",
@@ -1597,7 +1755,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.61047,
    "lng": 98.73441,
    "openingHours": "Sa-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "w607519883",
@@ -1608,7 +1767,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.0216,
    "lng": 99.55589,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n12550799938",
@@ -1619,7 +1779,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37286,
    "lng": 99.15033,
    "openingHours": "07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n12558659932",
@@ -1630,7 +1791,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.01895,
    "lng": 99.52805,
    "openingHours": "11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n4278025534",
@@ -1641,7 +1803,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.03384,
    "lng": 99.52004,
    "openingHours": "Mo-Su 16:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n3315619425",
@@ -1652,7 +1815,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.03855,
    "lng": 99.51434,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n7079465485",
@@ -1663,7 +1827,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.0259,
    "lng": 99.53493,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   }
  ],
  "เชียงใหม่": [
@@ -1676,7 +1841,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.73018,
    "lng": 98.94369,
    "openingHours": "",
-   "notable": true
+   "notable": true,
+   "district": "หางดง"
   },
   {
    "id": "n12801978151",
@@ -1687,7 +1853,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.83186,
    "lng": 99.00086,
    "openingHours": "Thu-Tue 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n13040779448",
@@ -1698,7 +1865,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.7283,
    "lng": 99.12603,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "สันกำแพง"
   },
   {
    "id": "n14061431101",
@@ -1709,7 +1877,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78952,
    "lng": 98.98368,
    "openingHours": "Mo-Su 10:30-18:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n8422805717",
@@ -1720,7 +1889,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.80093,
    "lng": 99.00406,
    "openingHours": "Mo-Su 11:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n9404324017",
@@ -1731,7 +1901,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.8422,
    "lng": 98.90575,
    "openingHours": "Mo-Su 06:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ริม"
   },
   {
    "id": "w1268327414",
@@ -1742,7 +1913,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.83104,
    "lng": 99.00522,
    "openingHours": "Mo-su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w1338800615",
@@ -1753,7 +1925,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.92218,
    "lng": 98.9388,
    "openingHours": "07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ริม"
   },
   {
    "id": "n5992335680",
@@ -1764,7 +1937,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.73616,
    "lng": 98.93074,
    "openingHours": "Mo-Su 09:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หางดง"
   },
   {
    "id": "n13870668983",
@@ -1775,7 +1949,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78131,
    "lng": 98.97719,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n7735597043",
@@ -1786,7 +1961,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.79175,
    "lng": 98.95533,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w1162793798",
@@ -1797,7 +1973,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.80396,
    "lng": 98.97244,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n8891761479",
@@ -1808,7 +1985,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.79564,
    "lng": 98.99222,
    "openingHours": "closed",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n8987752967",
@@ -1819,7 +1997,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.86573,
    "lng": 99.3556,
    "openingHours": "Mo-Su 08:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "แม่ออน"
   },
   {
    "id": "n2517098012",
@@ -1830,7 +2009,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.8099,
    "lng": 99.01306,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n9314302717",
@@ -1841,7 +2021,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.93614,
    "lng": 98.81865,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ริม"
   },
   {
    "id": "w623162100",
@@ -1852,7 +2033,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78527,
    "lng": 98.99217,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n7221644985",
@@ -1863,7 +2045,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.86555,
    "lng": 99.35551,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ออน"
   },
   {
    "id": "w658996891",
@@ -1874,7 +2057,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.79554,
    "lng": 98.99417,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n6203233287",
@@ -1885,7 +2069,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78507,
    "lng": 98.95327,
    "openingHours": "Tu-Su 09:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n4575222191",
@@ -1896,7 +2081,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.76801,
    "lng": 98.99702,
    "openingHours": "Mo-Su 08:30-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n13616287147",
@@ -1907,7 +2093,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.81156,
    "lng": 98.97923,
    "openingHours": "Th-Tu 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n5447299922",
@@ -1918,7 +2105,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.72367,
    "lng": 98.93315,
    "openingHours": "Mo-Tu 14:00-21:00; Th-Sa 11:00-21:00; Su 11:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "หางดง"
   },
   {
    "id": "n4458563051",
@@ -1929,7 +2117,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.86533,
    "lng": 99.35069,
    "openingHours": "Mon-Sun 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ออน"
   },
   {
    "id": "n3180206461",
@@ -1940,7 +2129,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.79888,
    "lng": 99.02397,
    "openingHours": "Mo-Su 11:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n5340666521",
@@ -1951,7 +2141,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.79385,
    "lng": 98.96918,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n6170094485",
@@ -1962,7 +2153,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.82373,
    "lng": 98.96307,
    "openingHours": "Tu-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n11886014037",
@@ -1973,7 +2165,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.74208,
    "lng": 99.04754,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "สารภี"
   },
   {
    "id": "n14069987674",
@@ -1984,7 +2177,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.77396,
    "lng": 99.01296,
    "openingHours": "Mo-Su 10:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n4180090391",
@@ -1995,7 +2189,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.81863,
    "lng": 98.96919,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   }
  ],
  "ชลบุรี": [
@@ -2008,7 +2203,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.91373,
    "lng": 100.87049,
    "openingHours": "Mo-Su 12:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n1310586978",
@@ -2019,7 +2215,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.44337,
    "lng": 101.18606,
    "openingHours": "Mo-Sa 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พนัสนิคม"
   },
   {
    "id": "n10923672713",
@@ -2030,7 +2227,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.33396,
    "lng": 100.93544,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n13741250408",
@@ -2041,7 +2239,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.73254,
    "lng": 100.93243,
    "openingHours": "Mo-Su 06:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "สัตหีบ"
   },
   {
    "id": "n11696322907",
@@ -2052,7 +2251,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.28241,
    "lng": 100.92935,
    "openingHours": "Mo-Fr 15:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n14004375876",
@@ -2063,7 +2263,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.66828,
    "lng": 100.91802,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "สัตหีบ"
   },
   {
    "id": "n7831005634",
@@ -2074,7 +2275,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.98292,
    "lng": 100.92022,
    "openingHours": "Mo-Su 10:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n12704606836",
@@ -2085,7 +2287,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.48027,
    "lng": 101.2618,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พนัสนิคม"
   },
   {
    "id": "n6611232189",
@@ -2096,7 +2299,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.32659,
    "lng": 100.92214,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n10813917487",
@@ -2107,7 +2311,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.28475,
    "lng": 100.92889,
    "openingHours": "Mo-Su 10:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n13245095016",
@@ -2118,7 +2323,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.29415,
    "lng": 100.91733,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n10813917486",
@@ -2129,7 +2335,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.27117,
    "lng": 100.94373,
    "openingHours": "Mo-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n10918354214",
@@ -2140,7 +2347,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.95829,
    "lng": 100.89977,
    "openingHours": "Mo-Su 15:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n8488249243",
@@ -2151,7 +2359,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.24079,
    "lng": 100.93073,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n13141969059",
@@ -2162,7 +2371,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.3776,
    "lng": 101.06268,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านบึง"
   },
   {
    "id": "n12030945029",
@@ -2173,7 +2383,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.93779,
    "lng": 100.91291,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n8210479106",
@@ -2184,7 +2395,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.87913,
    "lng": 100.89188,
    "openingHours": "Mo-Su 09:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n1548856491",
@@ -2195,7 +2407,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.93167,
    "lng": 100.8865,
    "openingHours": "11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n13834194401",
@@ -2206,7 +2419,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.88085,
    "lng": 100.89757,
    "openingHours": "Mo-Su 11:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n12797089842",
@@ -2217,7 +2431,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.92602,
    "lng": 100.88148,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n2804059842",
@@ -2228,7 +2443,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.93469,
    "lng": 100.88309,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n1597614807",
@@ -2239,7 +2455,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.95211,
    "lng": 100.88812,
    "openingHours": "08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n3616096751",
@@ -2250,7 +2467,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.8948,
    "lng": 100.90328,
    "openingHours": "Tu-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n12853222173",
@@ -2261,7 +2479,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.28722,
    "lng": 100.93618,
    "openingHours": "Mo-Su 06:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n8488210616",
@@ -2272,7 +2491,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.24085,
    "lng": 100.93071,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n3851390940",
@@ -2283,7 +2503,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.93344,
    "lng": 100.89889,
    "openingHours": "09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n3890299706",
@@ -2294,7 +2515,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.92023,
    "lng": 100.87813,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n8922970223",
@@ -2305,7 +2527,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.284,
    "lng": 100.92018,
    "openingHours": "Tu-Su 12:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n2868181413",
@@ -2316,7 +2539,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.93544,
    "lng": 100.88667,
    "openingHours": "Mo-Su 10:00-22:00;We off",
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n13622632702",
@@ -2327,7 +2551,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.84785,
    "lng": 100.90976,
    "openingHours": "Mo-Su 08:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สัตหีบ"
   }
  ],
  "นครราชสีมา": [
@@ -2340,7 +2565,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.53493,
    "lng": 101.37198,
    "openingHours": "Tu-Mo 16:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n11505552638",
@@ -2351,7 +2577,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.0214,
    "lng": 102.14026,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n7162131283",
@@ -2362,7 +2589,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97984,
    "lng": 102.06182,
    "openingHours": "Fr-We, PH 17:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n7266017587",
@@ -2373,7 +2601,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97749,
    "lng": 102.10016,
    "openingHours": "Mo-Fr 09:00-18:00; Sa-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "w1481015685",
@@ -2384,7 +2613,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.69862,
    "lng": 101.40761,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "w1484184752",
@@ -2395,7 +2625,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.73924,
    "lng": 102.21957,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "โชคชัย"
   },
   {
    "id": "n8932239448",
@@ -2406,7 +2637,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.45819,
    "lng": 102.26883,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "คง"
   },
   {
    "id": "w1229610353",
@@ -2417,7 +2649,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.62302,
    "lng": 101.84283,
    "openingHours": "Thu-Tue 09:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "ปักธงชัย"
   },
   {
    "id": "n7510496266",
@@ -2428,7 +2661,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.98005,
    "lng": 102.06129,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "w1446659968",
@@ -2439,7 +2673,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.54408,
    "lng": 101.32819,
    "openingHours": "Mo-Su 08:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n11738306469",
@@ -2450,7 +2685,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.66084,
    "lng": 101.39896,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n9720094898",
@@ -2461,7 +2697,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.92599,
    "lng": 102.09692,
    "openingHours": "Fr-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n11405073283",
@@ -2472,7 +2709,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97552,
    "lng": 102.09066,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n4733494336",
@@ -2483,7 +2721,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97291,
    "lng": 102.09224,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n3751114712",
@@ -2494,7 +2733,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97224,
    "lng": 102.1034,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n13440936956",
@@ -2505,7 +2745,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.93618,
    "lng": 102.18386,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n13273820651",
@@ -2516,7 +2757,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.65553,
    "lng": 101.34771,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n12573181083",
@@ -2527,7 +2769,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.00626,
    "lng": 102.26987,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n12240171939",
@@ -2538,7 +2781,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97518,
    "lng": 102.09233,
    "openingHours": "Mo,We-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n4243654339",
@@ -2549,7 +2793,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.28367,
    "lng": 102.3319,
    "openingHours": "10:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "โนนสูง"
   },
   {
    "id": "n10965864273",
@@ -2560,7 +2805,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97504,
    "lng": 102.09065,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n12618022395",
@@ -2571,7 +2817,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.55539,
    "lng": 101.47691,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n6782184892",
@@ -2582,7 +2829,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.92559,
    "lng": 101.99364,
    "openingHours": "เปิดทุกวัน",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n13984940767",
@@ -2593,7 +2841,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.77531,
    "lng": 101.56955,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "สีคิ้ว"
   },
   {
    "id": "n13091939501",
@@ -2604,7 +2853,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.99447,
    "lng": 102.12024,
    "openingHours": "Mo-Su 09:30-19.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n4735410721",
@@ -2615,7 +2865,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.97445,
    "lng": 102.09784,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n13013536560",
@@ -2626,7 +2877,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.66945,
    "lng": 101.39486,
    "openingHours": "Mo-We,Fr-Su 10:30-20:30; Th off",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n3418083343",
@@ -2637,7 +2889,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.98009,
    "lng": 102.07627,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n4559628598",
@@ -2648,7 +2901,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.65856,
    "lng": 101.38298,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n13377868211",
@@ -2659,7 +2913,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.70722,
    "lng": 101.41764,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   }
  ],
  "สุราษฎร์ธานี": [
@@ -2672,7 +2927,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.51981,
    "lng": 100.05255,
    "openingHours": "Tu-Su 11:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n13159048073",
@@ -2683,7 +2939,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.53483,
    "lng": 100.04213,
    "openingHours": "Mo-Su 08:00 -18:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n5219669822",
@@ -2694,7 +2951,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.78295,
    "lng": 99.97238,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n8219683718",
@@ -2705,7 +2963,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.55959,
    "lng": 100.03181,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n12728611715",
@@ -2716,7 +2975,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.74896,
    "lng": 100.00728,
    "openingHours": "Sun-Fri 9:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n12662094007",
@@ -2727,7 +2987,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.56703,
    "lng": 100.0006,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n10310243386",
@@ -2738,7 +2999,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.14519,
    "lng": 99.32644,
    "openingHours": "Mo-Su 15:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุราษฎร์ธานี"
   },
   {
    "id": "n12896411538",
@@ -2749,7 +3011,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.54056,
    "lng": 100.0403,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n8940173817",
@@ -2760,7 +3023,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.13939,
    "lng": 99.32743,
    "openingHours": "Mo-Su 06:00-11:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุราษฎร์ธานี"
   },
   {
    "id": "n6380706385",
@@ -2771,7 +3035,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.45725,
    "lng": 99.93458,
    "openingHours": "Mo-Fr 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n6280546485",
@@ -2782,7 +3047,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.47857,
    "lng": 99.95647,
    "openingHours": "Mo-Fr 06:00-16:30; Sa 06:00-11:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n12495671454",
@@ -2793,7 +3059,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.77052,
    "lng": 99.96399,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n6844119588",
@@ -2804,7 +3071,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.09,
    "lng": 99.83313,
    "openingHours": "Mo-Sa 12:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n11810944900",
@@ -2815,7 +3083,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.55929,
    "lng": 100.02932,
    "openingHours": "Mo-Su 09:00-02:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n13159145519",
@@ -2826,7 +3095,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.5115,
    "lng": 100.05521,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n6413357009",
@@ -2837,7 +3107,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.13681,
    "lng": 99.33065,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุราษฎร์ธานี"
   },
   {
    "id": "n7374120622",
@@ -2848,7 +3119,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.55684,
    "lng": 100.05403,
    "openingHours": "Tu-Su 01:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n12330516576",
@@ -2859,7 +3131,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.5647,
    "lng": 99.15877,
    "openingHours": "Mo-Su 07:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าชนะ"
   },
   {
    "id": "n5603845027",
@@ -2870,7 +3143,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.53465,
    "lng": 100.06795,
    "openingHours": "Mo-Su 15:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n3208702892",
@@ -2881,7 +3155,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.53036,
    "lng": 100.06085,
    "openingHours": "Mo-Su 08:00-23:55",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n4821571622",
@@ -2892,7 +3167,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.68979,
    "lng": 100.04331,
    "openingHours": "Mo-Su 09:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n4366636791",
@@ -2903,7 +3179,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.70906,
    "lng": 99.98945,
    "openingHours": "Mo-Su 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n11824092005",
@@ -2914,7 +3191,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.5694,
    "lng": 100.07758,
    "openingHours": "Tu-Su 13:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n12592475001",
@@ -2925,7 +3203,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.09417,
    "lng": 99.82931,
    "openingHours": "Mo-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n10744636764",
@@ -2936,7 +3215,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.47491,
    "lng": 100.03696,
    "openingHours": "Tu-Su 16:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n8819922117",
@@ -2947,7 +3227,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.07628,
    "lng": 99.83748,
    "openingHours": "We-Mo 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n9567351342",
@@ -2958,7 +3239,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.5742,
    "lng": 100.07992,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n13808309032",
@@ -2969,7 +3251,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.55674,
    "lng": 98.93035,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าชนะ"
   },
   {
    "id": "w1431671937",
@@ -2980,7 +3263,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.55991,
    "lng": 100.02979,
    "openingHours": "sunrise-sunset",
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n4132389614",
@@ -2991,7 +3275,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.0946,
    "lng": 99.82783,
    "openingHours": "Mo-Su 09:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   }
  ],
  "ขอนแก่น": [
@@ -3004,7 +3289,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43154,
    "lng": 102.82847,
    "openingHours": "Mo-Su,PH 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n2080924990",
@@ -3015,7 +3301,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44067,
    "lng": 102.83477,
    "openingHours": "Th-Tu 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n4758943740",
@@ -3026,7 +3313,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43314,
    "lng": 102.83781,
    "openingHours": "11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n8421890847",
@@ -3037,7 +3325,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.80212,
    "lng": 102.04782,
    "openingHours": "09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "สีชมพู"
   },
   {
    "id": "n11590631733",
@@ -3048,7 +3337,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.42101,
    "lng": 102.82341,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n12638631843",
@@ -3059,7 +3349,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.4635,
    "lng": 102.83894,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n12022823439",
@@ -3070,7 +3361,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43085,
    "lng": 102.83385,
    "openingHours": "Mo-Su 17:00-23:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n10108638309",
@@ -3081,7 +3373,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44306,
    "lng": 102.82798,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n6422632548",
@@ -3092,7 +3385,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43362,
    "lng": 102.84185,
    "openingHours": "17:30-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n10554519246",
@@ -3103,7 +3397,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.41476,
    "lng": 102.84131,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n5493839726",
@@ -3114,7 +3409,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.42896,
    "lng": 102.83087,
    "openingHours": "Mo,We-Su 17:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n13519375779",
@@ -3125,7 +3421,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.67964,
    "lng": 102.7099,
    "openingHours": "Mo-Su 06:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "อุบลรัตน์"
   },
   {
    "id": "n13143024530",
@@ -3136,7 +3433,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.42266,
    "lng": 102.83735,
    "openingHours": "17:00-03:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n5112174221",
@@ -3147,7 +3445,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.46046,
    "lng": 102.82848,
    "openingHours": "Mo-Su 09:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n6689924085",
@@ -3158,7 +3457,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.41521,
    "lng": 102.82247,
    "openingHours": "Mo-Su 12:05-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n727300730",
@@ -3169,7 +3469,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43237,
    "lng": 102.82549,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n4969808418",
@@ -3180,7 +3481,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.39595,
    "lng": 102.82897,
    "openingHours": "Mo-Su,PH 10:00-13:00,16:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n5255164070",
@@ -3191,7 +3493,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43017,
    "lng": 102.84073,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n733928262",
@@ -3202,7 +3505,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43431,
    "lng": 102.83239,
    "openingHours": "Mo-Su 11:30-14:00,17:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n4392175265",
@@ -3213,7 +3517,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.42987,
    "lng": 102.82264,
    "openingHours": "09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n3793703131",
@@ -3224,7 +3529,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.38423,
    "lng": 102.82486,
    "openingHours": "11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n4327887651",
@@ -3235,7 +3541,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.42307,
    "lng": 102.83724,
    "openingHours": "Mo-Fr 10:00-20:00, Sa-Su 10:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n9090482809",
@@ -3246,7 +3553,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.49051,
    "lng": 102.84667,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n12022812121",
@@ -3257,7 +3565,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43077,
    "lng": 102.83383,
    "openingHours": "Mo-Su 15:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n9588006520",
@@ -3268,7 +3577,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43441,
    "lng": 102.83326,
    "openingHours": "Mo-Su 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n3205690742",
@@ -3279,7 +3589,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.43614,
    "lng": 102.83607,
    "openingHours": "08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n5391613622",
@@ -3290,7 +3601,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.46181,
    "lng": 102.83154,
    "openingHours": "Mo-Sa 16:30-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n12573591873",
@@ -3301,7 +3613,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.7186,
    "lng": 102.0497,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "สีชมพู"
   },
   {
    "id": "n4279947495",
@@ -3312,7 +3625,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.45576,
    "lng": 102.78478,
    "openingHours": "Mo-Su 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n4311476701",
@@ -3323,7 +3637,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.41229,
    "lng": 102.81861,
    "openingHours": "07:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   }
  ],
  "สตูล": [
@@ -3336,7 +3651,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.80138,
    "lng": 100.09111,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "ควนโดน"
   },
   {
    "id": "n1224049093",
@@ -3347,7 +3663,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48802,
    "lng": 99.30562,
    "openingHours": "Mo-Th 14:00-21:00; Fr-Su 14:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n13922642856",
@@ -3358,7 +3675,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.86142,
    "lng": 99.7758,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n5660896223",
@@ -3369,7 +3687,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48635,
    "lng": 99.30433,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n4777985022",
@@ -3380,7 +3699,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.83003,
    "lng": 99.54233,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n3812054467",
@@ -3391,7 +3711,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48774,
    "lng": 99.30636,
    "openingHours": "7:30 - 22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n2544290326",
@@ -3402,7 +3723,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48975,
    "lng": 99.30981,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n9399258704",
@@ -3413,7 +3735,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.88419,
    "lng": 99.78572,
    "openingHours": "11:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n6369651585",
@@ -3424,7 +3747,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.4899,
    "lng": 99.30978,
    "openingHours": "Mo-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n2544290324",
@@ -3435,7 +3759,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48958,
    "lng": 99.30842,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n10153288817",
@@ -3446,7 +3771,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.8572,
    "lng": 99.72323,
    "openingHours": "Mo-Su 06:00-12:00",
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n5463276021",
@@ -3457,7 +3783,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48842,
    "lng": 99.30788,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n4787502121",
@@ -3468,7 +3795,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48681,
    "lng": 99.30348,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n4706002689",
@@ -3479,7 +3807,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48726,
    "lng": 99.30548,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n2670447098",
@@ -3490,7 +3819,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.49088,
    "lng": 99.3086,
    "openingHours": "Mo-Su,PH 12:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n5544312021",
@@ -3501,7 +3831,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.48834,
    "lng": 99.30791,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   }
  ],
  "พังงา": [
@@ -3514,7 +3845,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.67821,
    "lng": 98.24372,
    "openingHours": "Mo-Su 11:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n13569314352",
@@ -3525,7 +3857,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.12033,
    "lng": 98.37781,
    "openingHours": "11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   },
   {
    "id": "n5323230321",
@@ -3536,7 +3869,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.65861,
    "lng": 98.25362,
    "openingHours": "Mo-Su 13:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n10768403343",
@@ -3547,7 +3881,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66503,
    "lng": 98.24762,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n13991273820",
@@ -3558,7 +3893,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66749,
    "lng": 98.2533,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n4558080793",
@@ -3569,7 +3905,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.666,
    "lng": 98.253,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n6152748056",
@@ -3580,7 +3917,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.64342,
    "lng": 98.25102,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n12642251704",
@@ -3591,7 +3929,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.23728,
    "lng": 98.44668,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "n8046506084",
@@ -3602,7 +3941,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.67811,
    "lng": 98.24373,
    "openingHours": "Mo-Su 10:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n13798012177",
@@ -3613,7 +3953,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.36958,
    "lng": 98.43638,
    "openingHours": "Mo-Su 11:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "n3711960745",
@@ -3624,7 +3965,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66675,
    "lng": 98.24847,
    "openingHours": "17:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w1548548937",
@@ -3635,7 +3977,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.64246,
    "lng": 98.25076,
    "openingHours": "Mo-Fr 17:00-21:00 Saturday and Sunday 13.00-21.00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n8416783374",
@@ -3646,7 +3989,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.68843,
    "lng": 98.2524,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n3707542674",
@@ -3657,7 +4001,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.62912,
    "lng": 98.24279,
    "openingHours": "9:30-18:30",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n8046492048",
@@ -3668,7 +4013,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.70338,
    "lng": 98.25309,
    "openingHours": "Mo-Su 07:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n13140259765",
@@ -3679,7 +4025,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66685,
    "lng": 98.24838,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w650957881",
@@ -3690,7 +4037,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66205,
    "lng": 98.25297,
    "openingHours": "Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n6174780241",
@@ -3701,7 +4049,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.64683,
    "lng": 98.25173,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n3831835358",
@@ -3712,7 +4061,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66728,
    "lng": 98.25158,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w816145940",
@@ -3723,7 +4073,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.82758,
    "lng": 98.36379,
    "openingHours": "sunrise-sunset",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n8509179732",
@@ -3734,7 +4085,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.65671,
    "lng": 98.25482,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n5565569822",
@@ -3745,7 +4097,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.38685,
    "lng": 98.26998,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "w1330608249",
@@ -3756,7 +4109,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66712,
    "lng": 98.24806,
    "openingHours": "16.00-23.00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n8392890517",
@@ -3767,7 +4121,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.29252,
    "lng": 98.30184,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "w1330608250",
@@ -3778,7 +4133,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66703,
    "lng": 98.24807,
    "openingHours": "16.00-23.00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n10970178005",
@@ -3789,7 +4145,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.25379,
    "lng": 98.31175,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "w659722355",
@@ -3800,7 +4157,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.66599,
    "lng": 98.24663,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n10970111006",
@@ -3811,7 +4169,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.47766,
    "lng": 98.62441,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ทับปุด"
   },
   {
    "id": "w650957884",
@@ -3822,7 +4181,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.6623,
    "lng": 98.25357,
    "openingHours": "Mo-Su 06:00-12:00",
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n8389121917",
@@ -3833,7 +4193,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.41032,
    "lng": 98.24466,
    "openingHours": "Mo-Su 09:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   }
  ],
  "ฉะเชิงเทรา": [
@@ -3846,7 +4207,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.48429,
    "lng": 100.94845,
    "openingHours": "08:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n11687179069",
@@ -3857,7 +4219,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.66181,
    "lng": 100.95699,
    "openingHours": "Fr-Sa 09:00-04:30",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโพธิ์"
   },
   {
    "id": "w485522183",
@@ -3868,7 +4231,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.77091,
    "lng": 101.52323,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พนมสารคาม"
   },
   {
    "id": "n1304841790",
@@ -3879,7 +4243,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53884,
    "lng": 101.00838,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n13991721773",
@@ -3890,7 +4255,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.55394,
    "lng": 100.96421,
    "openingHours": "sa-su 16:00 - 21: 30",
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n12472995084",
@@ -3901,7 +4267,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.73472,
    "lng": 100.95481,
    "openingHours": "Fr-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   }
  ],
  "ประจวบคีรีขันธ์": [
@@ -3914,7 +4281,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.51264,
    "lng": 99.97929,
    "openingHours": "Mo-Su 07:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "w1257521820",
@@ -3925,7 +4293,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.55241,
    "lng": 99.96172,
    "openingHours": "Mo-Sa 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n7968173925",
@@ -3936,7 +4305,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.30528,
    "lng": 99.96009,
    "openingHours": "Mo, Tu, Th-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "n4097444419",
@@ -3947,7 +4317,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.55585,
    "lng": 99.93977,
    "openingHours": "We-Mo 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "w1384099744",
@@ -3958,7 +4329,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.57835,
    "lng": 99.95639,
    "openingHours": "We-Mo 06:00-10:00,11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n13754563752",
@@ -3969,7 +4341,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.10293,
    "lng": 99.77791,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "กุยบุรี"
   },
   {
    "id": "n4805269509",
@@ -3980,7 +4353,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.56489,
    "lng": 99.95992,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n12114993801",
@@ -3991,7 +4365,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.5658,
    "lng": 99.96006,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n8399901817",
@@ -4002,7 +4377,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.57141,
    "lng": 99.95976,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n1342032643",
@@ -4013,7 +4389,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.5708,
    "lng": 99.95715,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n8962170524",
@@ -4024,7 +4401,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.36627,
    "lng": 99.9992,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "n9536452417",
@@ -4035,7 +4413,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.20137,
    "lng": 100.00601,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "n10789405826",
@@ -4046,7 +4425,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.54147,
    "lng": 99.9446,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n4785491230",
@@ -4057,7 +4437,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.34665,
    "lng": 99.55994,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "w321076261",
@@ -4068,7 +4449,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.38895,
    "lng": 99.96709,
    "openingHours": "10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "n9655509048",
@@ -4079,7 +4461,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.417,
    "lng": 99.95637,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "w1208234305",
@@ -4090,7 +4473,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.55979,
    "lng": 99.95575,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n12209287934",
@@ -4101,7 +4485,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.55983,
    "lng": 99.94584,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n2402175729",
@@ -4112,7 +4497,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.34749,
    "lng": 99.56521,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "n13748248301",
@@ -4123,7 +4509,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.54182,
    "lng": 99.96229,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n12682723795",
@@ -4134,7 +4521,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.56054,
    "lng": 99.95391,
    "openingHours": "Mo-Sa 10:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n10696559836",
@@ -4145,7 +4533,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.98812,
    "lng": 99.49575,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บางสะพานน้อย"
   },
   {
    "id": "n4340645187",
@@ -4156,7 +4545,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.3536,
    "lng": 99.56865,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "n9871678910",
@@ -4167,7 +4557,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.11578,
    "lng": 99.36924,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "บางสะพานน้อย"
   },
   {
    "id": "n12293954160",
@@ -4178,7 +4569,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.38329,
    "lng": 99.99925,
    "openingHours": "Mo-Su 08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "n10296273809",
@@ -4189,7 +4581,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.53731,
    "lng": 99.96501,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n13417433230",
@@ -4200,7 +4593,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.34539,
    "lng": 99.56406,
    "openingHours": "Mo-Su 16:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "n6240876085",
@@ -4211,7 +4605,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.56022,
    "lng": 99.96311,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n11187338435",
@@ -4222,7 +4617,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.54188,
    "lng": 99.96373,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n3328203490",
@@ -4233,7 +4629,200 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.57874,
    "lng": 99.64783,
    "openingHours": "Mo-Su 07:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "ทับสะแก"
+  },
+  {
+   "id": "n12053619010",
+   "name": "Taboo Tapas Wine & Lounge Bar",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารอิตาเลียน",
+   "lat": 12.59991,
+   "lng": 99.94291,
+   "openingHours": "Tu off, Mo-Su 12:00-00:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "w1350835874",
+   "name": "ซิลเวอร์โอ๊คคอฟฟี่",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "กาแฟ",
+   "lat": 12.57647,
+   "lng": 99.91807,
+   "openingHours": "Mo-Su 08:00-17:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n3787587603",
+   "name": "Daddy Deli",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "เบอร์เกอร์",
+   "lat": 12.57467,
+   "lng": 99.91546,
+   "openingHours": "Mo-Su 07:30-21:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n5801097472",
+   "name": "60s town",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "",
+   "lat": 12.5795,
+   "lng": 99.86238,
+   "openingHours": "",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "w1384122340",
+   "name": "เซฟโซนหมูกระทะบุฟเฟ่ต์",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 12.58758,
+   "lng": 99.94859,
+   "openingHours": "Mo-Su 17:00-24:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n12814583759",
+   "name": "The Fire Bear",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 12.58213,
+   "lng": 99.9555,
+   "openingHours": "Mo-Su 10:00-20:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "w1383985688",
+   "name": "บ้านโก",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 12.58431,
+   "lng": 99.95507,
+   "openingHours": "Mo-Su 11:00-16:00,17:00-21:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n12470669901",
+   "name": "วีแอนด์จีคอฟ",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "กาแฟ",
+   "lat": 12.57143,
+   "lng": 99.94751,
+   "openingHours": "Fr-We 07:00-17:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n12307582801",
+   "name": "Veggie Tales Cafe",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 12.58341,
+   "lng": 99.95255,
+   "openingHours": "Th-Tu 10:00-20:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n9803783043",
+   "name": "Marzipan Patisserie Café & Bar",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "เค้ก",
+   "lat": 12.57657,
+   "lng": 99.91962,
+   "openingHours": "Mo-Su 08:00-20:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n8598965045",
+   "name": "โกหมาก",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "",
+   "lat": 12.59865,
+   "lng": 99.94927,
+   "openingHours": "11:00-16:00,17:00-21:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n11515562228",
+   "name": "ใจรัก คาเฟ่",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 12.56608,
+   "lng": 99.89074,
+   "openingHours": "Mo, We-Su 08:00-18:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n5216274221",
+   "name": "ขาหมูตรอกซุง หัวหิน",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "",
+   "lat": 12.57916,
+   "lng": 99.95549,
+   "openingHours": "Mo-Su 08:00-18:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n8601421575",
+   "name": "สรณะ หัวหิน",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 12.58175,
+   "lng": 99.95538,
+   "openingHours": "Tu-Su 07:00-16:30",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n12817060734",
+   "name": "ไอติมก้นโอ่ง",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 12.58606,
+   "lng": 99.95215,
+   "openingHours": "Mo-Su 10:30-19:00",
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n12848571020",
+   "name": "Golden Coffee",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 12.58534,
+   "lng": 99.95175,
+   "openingHours": "Mo-Su 07:00-20:00",
+   "notable": false,
+   "district": "หัวหิน"
   }
  ],
  "ลำปาง": [
@@ -4246,7 +4835,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.30346,
    "lng": 99.52522,
    "openingHours": "09.00 - 19.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n13437915313",
@@ -4257,7 +4847,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.44611,
    "lng": 99.63599,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n12136935004",
@@ -4268,7 +4859,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.25955,
    "lng": 99.47444,
    "openingHours": "We-Mo 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n12718621043",
@@ -4279,7 +4871,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.42535,
    "lng": 99.73553,
    "openingHours": "M0-SA 08.00-16.00",
-   "notable": false
+   "notable": false,
+   "district": "แม่เมาะ"
   },
   {
    "id": "n6353726985",
@@ -4290,7 +4883,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28469,
    "lng": 99.50458,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n11951764276",
@@ -4301,7 +4895,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28168,
    "lng": 99.48845,
    "openingHours": "09.00-23.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "w717124832",
@@ -4312,7 +4907,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.29082,
    "lng": 99.4927,
    "openingHours": "Mo-Su 17:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n3488626321",
@@ -4323,7 +4919,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28014,
    "lng": 99.49344,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n2774468207",
@@ -4334,7 +4931,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28811,
    "lng": 99.49549,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n9387654817",
@@ -4345,7 +4943,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.82506,
    "lng": 99.38699,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "n1688066548",
@@ -4356,7 +4955,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.82512,
    "lng": 99.38645,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "n9388105217",
@@ -4367,7 +4967,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.9207,
    "lng": 99.42865,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "n2774443653",
@@ -4378,7 +4979,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28851,
    "lng": 99.49549,
    "openingHours": "Mo-Su 05:30-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n9406963418",
@@ -4389,7 +4991,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.29546,
    "lng": 99.49348,
    "openingHours": "Mo-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n4511515890",
@@ -4400,7 +5003,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.31811,
    "lng": 99.36122,
    "openingHours": "Mo-Sa 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ห้างฉัตร"
   },
   {
    "id": "n3298508661",
@@ -4411,7 +5015,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.73212,
    "lng": 99.58143,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "แจ้ห่ม"
   },
   {
    "id": "n2772710493",
@@ -4422,7 +5027,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28976,
    "lng": 99.49606,
    "openingHours": "Mo-Su 16:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n5963235886",
@@ -4433,7 +5039,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28361,
    "lng": 99.48424,
    "openingHours": "PH,Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n5195455449",
@@ -4444,7 +5051,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.29404,
    "lng": 99.50545,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n14008335530",
@@ -4455,7 +5063,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28837,
    "lng": 99.50438,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n13380480630",
@@ -4466,7 +5075,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28982,
    "lng": 99.49839,
    "openingHours": "Th-Tu 11:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n10216775919",
@@ -4477,7 +5087,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28795,
    "lng": 99.47901,
    "openingHours": "Mo-Su 08:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n8212273928",
@@ -4488,7 +5099,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.32126,
    "lng": 99.74361,
    "openingHours": "08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่เมาะ"
   },
   {
    "id": "n4580465706",
@@ -4499,7 +5111,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.61827,
    "lng": 99.23455,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เถิน"
   },
   {
    "id": "n12407012602",
@@ -4510,7 +5123,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28946,
    "lng": 99.49826,
    "openingHours": "Mo-Fr 16:00-23:00; Sa-Su 12:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n13605494251",
@@ -4521,7 +5135,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28404,
    "lng": 99.47553,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n10548279330",
@@ -4532,7 +5147,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.2835,
    "lng": 99.4743,
    "openingHours": "Mo,We-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n9406627617",
@@ -4543,7 +5159,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.29073,
    "lng": 99.49175,
    "openingHours": "Mo-Su 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n3388727598",
@@ -4554,7 +5171,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28424,
    "lng": 99.49419,
    "openingHours": "Mo-Su 18:00-23:55",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "w1376976428",
@@ -4565,7 +5183,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.28889,
    "lng": 99.49259,
    "openingHours": "Mo-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   }
  ],
  "ระนอง": [
@@ -4578,7 +5197,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.97418,
    "lng": 98.6382,
    "openingHours": "Open every day",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n9411479447",
@@ -4589,7 +5209,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.97905,
    "lng": 98.66423,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n4483626027",
@@ -4600,7 +5221,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.97146,
    "lng": 98.65319,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n11445421566",
@@ -4611,7 +5233,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.60005,
    "lng": 98.58888,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "กะเปอร์"
   },
   {
    "id": "n2072438775",
@@ -4622,7 +5245,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.96237,
    "lng": 98.63334,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n13494964488",
@@ -4633,7 +5257,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.97486,
    "lng": 98.63851,
    "openingHours": "Mo-Sa 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n12941993803",
@@ -4644,7 +5269,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.96406,
    "lng": 98.63412,
    "openingHours": "Mo-Sa 09:30-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n6328147487",
@@ -4655,7 +5281,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.05049,
    "lng": 98.65994,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n5472164802",
@@ -4666,7 +5293,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.73117,
    "lng": 98.4015,
    "openingHours": "18:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n9404450000",
@@ -4677,7 +5305,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.58432,
    "lng": 98.5733,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "กะเปอร์"
   },
   {
    "id": "n2706701933",
@@ -4688,7 +5317,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.74038,
    "lng": 98.42081,
    "openingHours": "07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n12671232201",
@@ -4699,7 +5329,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.11701,
    "lng": 98.73956,
    "openingHours": "Mo-Su 08:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ละอุ่น"
   },
   {
    "id": "n6923653085",
@@ -4710,7 +5341,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.76024,
    "lng": 98.41112,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n5421088336",
@@ -4721,7 +5353,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.72778,
    "lng": 98.39495,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n4871825024",
@@ -4732,7 +5365,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.7285,
    "lng": 98.39559,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n13344361401",
@@ -4743,7 +5377,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.76462,
    "lng": 98.40673,
    "openingHours": "Mo-Su 08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n4859060221",
@@ -4754,7 +5389,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.96445,
    "lng": 98.6366,
    "openingHours": "Mo-Sa 07:00-20:00; Su 07:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n4506382026",
@@ -4765,7 +5401,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.95858,
    "lng": 98.62993,
    "openingHours": "Mo-Su 14:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w696465323",
@@ -4776,7 +5413,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.48919,
    "lng": 98.81545,
    "openingHours": "Mo-Su 06:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "กระบุรี"
   }
  ],
  "สมุทรสาคร": [
@@ -4789,7 +5427,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.58018,
    "lng": 100.37127,
    "openingHours": "Mo-Su 15:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n2077135174",
@@ -4800,7 +5439,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.5697,
    "lng": 100.28887,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n10855717526",
@@ -4811,7 +5451,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.65349,
    "lng": 100.25215,
    "openingHours": "Mo-Su 09:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "กระทุ่มแบน"
   },
   {
    "id": "n14108916857",
@@ -4822,7 +5463,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.57226,
    "lng": 100.27097,
    "openingHours": "06.00-20.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n12470544889",
@@ -4833,7 +5475,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.60567,
    "lng": 100.29832,
    "openingHours": "Mo-Su 17:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n10895321622",
@@ -4844,7 +5487,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.56454,
    "lng": 100.32667,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n7771994903",
@@ -4855,18 +5499,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.56381,
    "lng": 100.31776,
    "openingHours": "",
-   "notable": false
-  },
-  {
-   "id": "n7965434562",
-   "name": "Salt Lake de Maeklong",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 13.42656,
-   "lng": 100.03963,
-   "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n12344264710",
@@ -4877,7 +5511,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.50227,
    "lng": 100.17926,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n5273008216",
@@ -4888,7 +5523,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53193,
    "lng": 100.20965,
    "openingHours": "Mo-Su 06:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "n8318791569",
@@ -4899,7 +5535,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54915,
    "lng": 100.26927,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n11955338094",
@@ -4910,7 +5547,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.70735,
    "lng": 100.32637,
    "openingHours": "08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "กระทุ่มแบน"
   },
   {
    "id": "n5610500222",
@@ -4921,7 +5559,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.49369,
    "lng": 100.40672,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n13551229883",
@@ -4932,7 +5571,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.65255,
    "lng": 100.25264,
    "openingHours": "Mo-Su 15:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "กระทุ่มแบน"
   },
   {
    "id": "n13563150728",
@@ -4943,7 +5583,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.62728,
    "lng": 100.31485,
    "openingHours": "Mo-Su 15:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "กระทุ่มแบน"
   },
   {
    "id": "n5893901386",
@@ -4954,7 +5595,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.59018,
    "lng": 100.10824,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   }
  ],
  "เชียงราย": [
@@ -4967,7 +5609,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.83854,
    "lng": 99.76603,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n10199620588",
@@ -4978,7 +5621,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 20.28896,
    "lng": 100.0884,
    "openingHours": "Mo-Sa 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงแสน"
   },
   {
    "id": "n8164174679",
@@ -4989,7 +5633,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 20.43322,
    "lng": 99.8954,
    "openingHours": "Mo-Su 17:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สาย"
   },
   {
    "id": "w963169297",
@@ -5000,7 +5645,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90684,
    "lng": 99.83078,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w1127661768",
@@ -5011,7 +5657,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.92214,
    "lng": 99.85053,
    "openingHours": "Mo-Su 10:30-20:15",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n11893650113",
@@ -5022,7 +5669,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.89902,
    "lng": 99.82973,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w1127661764",
@@ -5033,7 +5681,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.92158,
    "lng": 99.84999,
    "openingHours": "Mo-Su 16:30-23:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n10201640190",
@@ -5044,7 +5693,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.86795,
    "lng": 99.83439,
    "openingHours": "Mo-Su 08:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n4648347234",
@@ -5055,7 +5705,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90127,
    "lng": 99.82229,
    "openingHours": "09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n3968871249",
@@ -5066,7 +5717,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 20.20012,
    "lng": 99.81683,
    "openingHours": "Mo-Su 08:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "แม่จัน"
   },
   {
    "id": "n9124114260",
@@ -5077,7 +5729,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90641,
    "lng": 99.82769,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w1197823633",
@@ -5088,7 +5741,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.96914,
    "lng": 99.84959,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w551185211",
@@ -5099,7 +5753,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.91391,
    "lng": 99.82855,
    "openingHours": "Mo-Th, Su 11:30-22:30; Fr, Sa 11:30-23:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w751059215",
@@ -5110,7 +5765,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.89658,
    "lng": 99.82755,
    "openingHours": "Tu-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n10743319577",
@@ -5121,7 +5777,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90628,
    "lng": 99.83808,
    "openingHours": "Mo-Su 11:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n6632634295",
@@ -5132,7 +5789,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 20.0044,
    "lng": 99.86799,
    "openingHours": "Mo-Sa 07:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n10199600350",
@@ -5143,7 +5801,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90692,
    "lng": 99.83127,
    "openingHours": "15.00-23.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n8523167938",
@@ -5154,7 +5813,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.9858,
    "lng": 99.88585,
    "openingHours": "Mo, Tu, Th-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n9141052700",
@@ -5165,7 +5825,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.92769,
    "lng": 99.83694,
    "openingHours": "We-Su 11:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n9292232344",
@@ -5176,7 +5837,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 20.0442,
    "lng": 99.86459,
    "openingHours": "Mo, Tu, Th-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n13520932101",
@@ -5187,7 +5849,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.84065,
    "lng": 99.67164,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n4652853462",
@@ -5198,7 +5861,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 20.27679,
    "lng": 100.08817,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงแสน"
   },
   {
    "id": "n12422032176",
@@ -5209,7 +5873,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.9759,
    "lng": 99.86242,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n4555833893",
@@ -5220,7 +5885,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.92365,
    "lng": 99.85052,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n2294308420",
@@ -5231,7 +5897,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.92174,
    "lng": 99.84521,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w1067053313",
@@ -5242,7 +5909,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.91291,
    "lng": 99.82917,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w997641687",
@@ -5253,7 +5921,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90334,
    "lng": 99.82183,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w967419247",
@@ -5264,7 +5933,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.92829,
    "lng": 99.83286,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n9144488192",
@@ -5275,7 +5945,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.90879,
    "lng": 99.85774,
    "openingHours": "10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n10296478235",
@@ -5286,7 +5957,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.9009,
    "lng": 99.83242,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   }
  ],
  "หนองคาย": [
@@ -5299,7 +5971,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87975,
    "lng": 102.7486,
    "openingHours": "Mo-Su 07:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n3476700780",
@@ -5310,7 +5983,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87152,
    "lng": 102.74285,
    "openingHours": "PH,Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n8190134244",
@@ -5321,7 +5995,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88171,
    "lng": 102.73781,
    "openingHours": "Mo-Su 11:00-23:45",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n6430015885",
@@ -5332,7 +6007,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88347,
    "lng": 102.74505,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "w145946007",
@@ -5343,7 +6019,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.80109,
    "lng": 102.67089,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "w1187774578",
@@ -5354,7 +6031,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.83463,
    "lng": 102.5907,
    "openingHours": "11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าบ่อ"
   },
   {
    "id": "n2397815386",
@@ -5365,7 +6043,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88475,
    "lng": 102.74564,
    "openingHours": "PH,Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13413069904",
@@ -5376,7 +6055,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.86903,
    "lng": 102.72814,
    "openingHours": "Mo-Fr 09:00-18:00; Sa-Su 09:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13423984903",
@@ -5387,7 +6067,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88355,
    "lng": 102.74203,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n12459843647",
@@ -5398,7 +6079,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.26547,
    "lng": 103.24183,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "รัตนวาปี"
   },
   {
    "id": "n10252334567",
@@ -5409,7 +6091,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87159,
    "lng": 102.74257,
    "openingHours": "PH,Mo-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13337686801",
@@ -5420,7 +6103,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.2086,
    "lng": 102.13872,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n10239676581",
@@ -5431,7 +6115,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87713,
    "lng": 102.73705,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13189913232",
@@ -5442,7 +6127,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87515,
    "lng": 102.74125,
    "openingHours": "08:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n10237784943",
@@ -5453,7 +6139,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87231,
    "lng": 102.74324,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n5934375686",
@@ -5464,7 +6151,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87173,
    "lng": 102.74229,
    "openingHours": "PH,Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n5474711831",
@@ -5475,7 +6163,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88166,
    "lng": 102.74735,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n6728742625",
@@ -5486,7 +6175,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.21254,
    "lng": 103.18121,
    "openingHours": "10:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "รัตนวาปี"
   },
   {
    "id": "n4355681289",
@@ -5497,7 +6187,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88513,
    "lng": 102.74622,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13951360301",
@@ -5508,7 +6199,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87992,
    "lng": 102.7431,
    "openingHours": "Mo, We, Fr 07:00-17:00; Sa-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n1111328364",
@@ -5519,7 +6211,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.88248,
    "lng": 102.73963,
    "openingHours": "Mo-Th 07:00-16:00; Fr 07:00-12:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n4263746290",
@@ -5530,7 +6223,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.8803,
    "lng": 102.74429,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n4265970307",
@@ -5541,7 +6235,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.84299,
    "lng": 102.5817,
    "openingHours": "Mo-Su 09:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าบ่อ"
   },
   {
    "id": "n4261864089",
@@ -5552,7 +6247,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.87232,
    "lng": 102.74369,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n4294173889",
@@ -5563,7 +6259,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.84541,
    "lng": 102.58021,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าบ่อ"
   }
  ],
  "ตราด": [
@@ -5576,7 +6273,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.24744,
    "lng": 102.50826,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตราด"
   },
   {
    "id": "n4725989722",
@@ -5587,7 +6285,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.05847,
    "lng": 102.30448,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n2708575181",
@@ -5598,7 +6297,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.04575,
    "lng": 102.29875,
    "openingHours": "Mo 12:00-22:00; Tu off; We-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n13073496357",
@@ -5609,7 +6309,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.36065,
    "lng": 102.38396,
    "openingHours": "Sa-We 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาสมิง"
   },
   {
    "id": "n13068090576",
@@ -5620,7 +6321,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.33588,
    "lng": 102.48332,
    "openingHours": "Mo-Su 11:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาสมิง"
   },
   {
    "id": "w1363889878",
@@ -5631,7 +6333,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.06283,
    "lng": 102.38046,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n11397859269",
@@ -5642,7 +6345,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.03888,
    "lng": 102.29508,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n6981997185",
@@ -5653,7 +6357,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.03919,
    "lng": 102.29627,
    "openingHours": "17:00-01:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "w1532961623",
@@ -5664,7 +6369,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.03948,
    "lng": 102.29629,
    "openingHours": "Mo-Su 12:00-22:00; We off",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n14022502041",
@@ -5675,7 +6381,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.1011,
    "lng": 102.27458,
    "openingHours": "Mo-Su 08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n4514589789",
@@ -5686,7 +6393,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.82162,
    "lng": 102.46746,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n1862810080",
@@ -5697,7 +6405,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.22588,
    "lng": 102.50492,
    "openingHours": "07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตราด"
   },
   {
    "id": "n3952605208",
@@ -5708,7 +6417,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.98934,
    "lng": 102.29912,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n7755823194",
@@ -5719,7 +6429,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.37225,
    "lng": 102.38582,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาสมิง"
   },
   {
    "id": "n4127280894",
@@ -5730,7 +6441,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.06449,
    "lng": 102.28617,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n5255326221",
@@ -5741,7 +6453,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.63309,
    "lng": 102.54749,
    "openingHours": "09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n13955606948",
@@ -5752,7 +6465,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.28979,
    "lng": 102.32147,
    "openingHours": "Mo-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาสมิง"
   },
   {
    "id": "n6425288285",
@@ -5763,7 +6477,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.07519,
    "lng": 102.28114,
    "openingHours": "Tu-Su 18:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n13789540901",
@@ -5774,7 +6489,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.04942,
    "lng": 102.29972,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n13976763618",
@@ -5785,7 +6501,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.0415,
    "lng": 102.29818,
    "openingHours": "07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n11247354879",
@@ -5796,7 +6513,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.07178,
    "lng": 102.2815,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n4737821944",
@@ -5807,7 +6525,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.04611,
    "lng": 102.29861,
    "openingHours": "06:00 - 20:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n9467666917",
@@ -5818,7 +6537,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.65001,
    "lng": 102.54297,
    "openingHours": "07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5511984177",
@@ -5829,7 +6549,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.63012,
    "lng": 102.54528,
    "openingHours": "07:30-10:00 open \"breakfast\";10:00-22:00 open",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n7293680987",
@@ -5840,7 +6561,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.60817,
    "lng": 102.54417,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n13972851195",
@@ -5851,7 +6573,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.0323,
    "lng": 102.29315,
    "openingHours": "Tu-Su 15:00-24:00, Mo off",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n6583597185",
@@ -5862,7 +6585,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.99648,
    "lng": 102.37125,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n7065072221",
@@ -5873,7 +6597,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.62072,
    "lng": 102.54436,
    "openingHours": "07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n7065063790",
@@ -5884,7 +6609,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 11.62951,
    "lng": 102.54608,
    "openingHours": "11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n14075998701",
@@ -5895,7 +6621,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.10121,
    "lng": 102.27459,
    "openingHours": "Mo-Su 08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   }
  ],
  "จันทบุรี": [
@@ -5908,7 +6635,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.46562,
    "lng": 102.21262,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ขลุง"
   },
   {
    "id": "n2813263413",
@@ -5919,18 +6647,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.91416,
    "lng": 102.31744,
    "openingHours": "",
-   "notable": false
-  },
-  {
-   "id": "n12696756023",
-   "name": "ข้าวมันไก่​สิงคโปร์​ เอ้กอี๊เอ้กเอ้ก",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 12.6781,
-   "lng": 101.6326,
-   "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "โป่งน้ำร้อน"
   },
   {
    "id": "n10902432008",
@@ -5941,7 +6659,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.48172,
    "lng": 102.13775,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "n10910607332",
@@ -5952,7 +6671,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.59031,
    "lng": 102.11292,
    "openingHours": "11.00 - 22.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n13954956707",
@@ -5963,7 +6683,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.47548,
    "lng": 102.10263,
    "openingHours": "Mo-Su 05:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "n10973348191",
@@ -5974,7 +6695,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.59031,
    "lng": 102.11295,
    "openingHours": "14.00-22.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w823469831",
@@ -5985,7 +6707,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.60318,
    "lng": 102.11659,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n12460608531",
@@ -5996,7 +6719,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61211,
    "lng": 102.10659,
    "openingHours": "11.00-21.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w554784566",
@@ -6007,18 +6731,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.612,
    "lng": 102.11378,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
-  },
-  {
-   "id": "n2715534234",
-   "name": "Tequila Sunrise Restaurant",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารพื้นเมือง",
-   "lat": 12.64423,
-   "lng": 101.63309,
-   "openingHours": "Mo-Su 11:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7775169561",
@@ -6029,7 +6743,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.60472,
    "lng": 102.12004,
    "openingHours": "Mo-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n12872752359",
@@ -6040,7 +6755,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.43917,
    "lng": 102.16041,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "n7611395555",
@@ -6051,7 +6767,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.57355,
    "lng": 102.11711,
    "openingHours": "Mo, We-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n8268971456",
@@ -6062,7 +6779,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.60126,
    "lng": 102.10661,
    "openingHours": "Mo-Su 09:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7610959432",
@@ -6073,7 +6791,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.5668,
    "lng": 102.10641,
    "openingHours": "Mo-Su 07:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n8285460156",
@@ -6084,7 +6803,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.58583,
    "lng": 102.1004,
    "openingHours": "Tu-Su 08:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7819245417",
@@ -6095,7 +6815,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61232,
    "lng": 102.10501,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7867087024",
@@ -6106,7 +6827,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61673,
    "lng": 102.11472,
    "openingHours": "Mo-Fr 07:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n5361587758",
@@ -6117,7 +6839,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61697,
    "lng": 102.13893,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7892200152",
@@ -6128,7 +6851,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.60397,
    "lng": 102.11625,
    "openingHours": "Mo-Sa 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n12676164876",
@@ -6139,7 +6863,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61079,
    "lng": 102.1142,
    "openingHours": "Tu-Su 11:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n10187648233",
@@ -6150,7 +6875,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.54323,
    "lng": 102.1162,
    "openingHours": "We-Su 10:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7805662045",
@@ -6161,7 +6887,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.62807,
    "lng": 102.14692,
    "openingHours": "Mo-Sa 07:30-17:00; Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7811728345",
@@ -6172,7 +6899,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.6209,
    "lng": 102.10331,
    "openingHours": "Mo-Sa 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n8011862367",
@@ -6183,7 +6911,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61467,
    "lng": 102.09157,
    "openingHours": "Mo-Su 11:00-15:00,16:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n7968516841",
@@ -6194,7 +6923,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.59669,
    "lng": 102.11193,
    "openingHours": "Mo-Fr 07:00-09:30,16:00-20:30; Sa,Su 14:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n8332741364",
@@ -6205,7 +6935,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.61335,
    "lng": 102.11436,
    "openingHours": "Mo-Sa 08:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n12582107547",
@@ -6216,7 +6947,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.62095,
    "lng": 102.03626,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าใหม่"
   },
   {
    "id": "w821749826",
@@ -6227,7 +6959,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.5396,
    "lng": 101.95187,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าใหม่"
   }
  ],
  "อุบลราชธานี": [
@@ -6240,7 +6973,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.31789,
    "lng": 105.49659,
    "openingHours": "Mo-Su 08:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "w1306293357",
@@ -6251,7 +6985,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.31785,
    "lng": 105.49661,
    "openingHours": "Mo-Su 08:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "n12473061079",
@@ -6262,7 +6997,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23842,
    "lng": 105.11246,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สว่างวีระวงศ์"
   },
   {
    "id": "n12918545398",
@@ -6273,7 +7009,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.32712,
    "lng": 105.28815,
    "openingHours": "Mo-Su 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พิบูลมังสาหาร"
   },
   {
    "id": "n3063279077",
@@ -6284,7 +7021,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23964,
    "lng": 104.85537,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n3488626311",
@@ -6295,7 +7033,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23937,
    "lng": 104.8231,
    "openingHours": "PH,Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n13923192144",
@@ -6306,7 +7045,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.11467,
    "lng": 104.91435,
    "openingHours": "17:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n7617293985",
@@ -6317,7 +7057,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.9934,
    "lng": 105.21955,
    "openingHours": "Mo-Su 06:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เขมราฐ"
   },
   {
    "id": "n9382913112",
@@ -6328,7 +7069,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.24568,
    "lng": 105.22609,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พิบูลมังสาหาร"
   },
   {
    "id": "n10312420028",
@@ -6339,7 +7081,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.59365,
    "lng": 105.22846,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "นาจะหลวย"
   },
   {
    "id": "n13028269801",
@@ -6350,7 +7093,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23387,
    "lng": 104.87086,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n7045755292",
@@ -6361,7 +7105,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.20208,
    "lng": 104.86271,
    "openingHours": "Tu-Su 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n9436741819",
@@ -6372,7 +7117,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23943,
    "lng": 104.86662,
    "openingHours": "Mo-Fr 15:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n12346596105",
@@ -6383,7 +7129,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.39253,
    "lng": 105.49958,
    "openingHours": "Mo-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "n12802543602",
@@ -6394,7 +7141,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.22819,
    "lng": 104.85342,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n6419154047",
@@ -6405,7 +7153,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.27451,
    "lng": 104.83294,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n13800946168",
@@ -6416,7 +7165,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23808,
    "lng": 104.82857,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n8423122967",
@@ -6427,7 +7177,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.24214,
    "lng": 104.8538,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n11795909642",
@@ -6438,7 +7189,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.26729,
    "lng": 104.81752,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n13996783401",
@@ -6449,7 +7201,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23425,
    "lng": 104.84894,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n13779596991",
@@ -6460,7 +7213,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.26976,
    "lng": 104.85403,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n5371740248",
@@ -6471,7 +7225,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.17721,
    "lng": 104.85658,
    "openingHours": "Mo-Sa 06:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n8944344128",
@@ -6482,7 +7237,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.26428,
    "lng": 104.92706,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n4322586827",
@@ -6493,7 +7249,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.1615,
    "lng": 104.88577,
    "openingHours": "10:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n13920385856",
@@ -6504,7 +7261,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23763,
    "lng": 104.86031,
    "openingHours": "mo-su 16:00-00.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n6912061099",
@@ -6515,7 +7273,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23324,
    "lng": 104.86604,
    "openingHours": "Mo-Su 06:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "w738400160",
@@ -6526,7 +7285,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.22867,
    "lng": 104.86484,
    "openingHours": "We-Su 06:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n6914317572",
@@ -6537,7 +7297,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.22853,
    "lng": 104.86523,
    "openingHours": "Tu-Su 08:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n12314233001",
@@ -6548,7 +7309,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23262,
    "lng": 104.8706,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n13700470101",
@@ -6559,7 +7321,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23811,
    "lng": 104.82763,
    "openingHours": "Sa-Th off",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   }
  ],
  "แม่ฮ่องสอน": [
@@ -6572,7 +7335,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.39093,
    "lng": 97.95525,
    "openingHours": "Mo-Su 10:30-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n7565709785",
@@ -6583,7 +7347,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.29829,
    "lng": 97.967,
    "openingHours": "Mo-Su 07:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "w376635364",
@@ -6594,7 +7359,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.16032,
    "lng": 97.92869,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n6697251385",
@@ -6605,7 +7371,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.3589,
    "lng": 98.44453,
    "openingHours": "Mo-Su 09:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n6445198886",
@@ -6616,7 +7383,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.29672,
    "lng": 98.46639,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n3201837796",
@@ -6627,7 +7395,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.3156,
    "lng": 98.45843,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n9430659217",
@@ -6638,7 +7407,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.35903,
    "lng": 98.44345,
    "openingHours": "Mo-Su 09:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n5456111425",
@@ -6649,7 +7419,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.35172,
    "lng": 98.44149,
    "openingHours": "Mo-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n7877556771",
@@ -6660,7 +7431,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.82648,
    "lng": 97.93333,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ขุนยวม"
   },
   {
    "id": "n10690036905",
@@ -6671,7 +7443,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.35808,
    "lng": 98.44822,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4140111973",
@@ -6682,7 +7455,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.51615,
    "lng": 98.24937,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางมะผ้า"
   },
   {
    "id": "n4655007989",
@@ -6693,7 +7467,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.64603,
    "lng": 97.9402,
    "openingHours": "Mo-Su 09:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ขุนยวม"
   },
   {
    "id": "n5426141921",
@@ -6704,7 +7479,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.36751,
    "lng": 98.439,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4160671091",
@@ -6715,7 +7491,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.37863,
    "lng": 98.37717,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n3076168533",
@@ -6726,7 +7503,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.36098,
    "lng": 98.43998,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4002357900",
@@ -6737,7 +7515,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.53399,
    "lng": 97.92895,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n3928754593",
@@ -6748,7 +7527,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.36045,
    "lng": 98.43953,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n10964718959",
@@ -6759,7 +7539,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.16581,
    "lng": 97.91994,
    "openingHours": "Mo-Tu,Th-Su 09:30-19:00; We off",
-   "notable": false
+   "notable": false,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n9307836119",
@@ -6770,7 +7551,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.29963,
    "lng": 98.46336,
    "openingHours": "Mo-Su 07:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "w1040725887",
@@ -6781,7 +7563,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.3572,
    "lng": 98.44086,
    "openingHours": "Tu-Su 08:30-16:30; Mo 00:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4326846690",
@@ -6792,7 +7575,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.35704,
    "lng": 98.43946,
    "openingHours": "Mo-Su 08:00-17:00; 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n7867497285",
@@ -6803,7 +7587,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.81921,
    "lng": 97.93723,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ขุนยวม"
   },
   {
    "id": "n9294894862",
@@ -6814,7 +7599,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.28617,
    "lng": 97.95823,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n10964829908",
@@ -6825,7 +7611,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.17867,
    "lng": 97.9232,
    "openingHours": "Tu-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n11405532494",
@@ -6836,7 +7623,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.35885,
    "lng": 98.44366,
    "openingHours": "Mo-Su 10:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n3859105917",
@@ -6847,7 +7635,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.34957,
    "lng": 98.45235,
    "openingHours": "Mo-Su 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "w742775709",
@@ -6858,7 +7647,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.29846,
    "lng": 97.96568,
    "openingHours": "Mo-Su 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n2532018374",
@@ -6869,7 +7659,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.33856,
    "lng": 98.4333,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4312634592",
@@ -6880,7 +7671,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.38631,
    "lng": 97.93798,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ลาน้อย"
   },
   {
    "id": "n6039100936",
@@ -6891,7 +7683,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.2936,
    "lng": 97.96381,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   }
  ],
  "อุดรธานี": [
@@ -6904,7 +7697,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40344,
    "lng": 102.80127,
    "openingHours": "Tu-Su 11:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w311510621",
@@ -6915,7 +7709,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.42546,
    "lng": 102.80855,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w1426675198",
@@ -6926,7 +7721,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40335,
    "lng": 102.80133,
    "openingHours": "Di-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n3341997993",
@@ -6937,7 +7733,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40615,
    "lng": 102.80063,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n3949487072",
@@ -6948,7 +7745,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40568,
    "lng": 102.80196,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n14051850619",
@@ -6959,7 +7757,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.4217,
    "lng": 102.78616,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n12438920000",
@@ -6970,7 +7769,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41401,
    "lng": 102.77676,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n11038497898",
@@ -6981,7 +7781,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.42776,
    "lng": 102.78689,
    "openingHours": "Mo-Fr 07:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n9750816549",
@@ -6992,7 +7793,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.17271,
    "lng": 102.77535,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองแสง"
   },
   {
    "id": "n13206457547",
@@ -7003,7 +7805,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.68026,
    "lng": 102.47022,
    "openingHours": "Mo-Su 07:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "บ้านผือ"
   },
   {
    "id": "n10542153144",
@@ -7014,7 +7817,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40677,
    "lng": 102.79055,
    "openingHours": "06:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n8420406627",
@@ -7025,7 +7829,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.7703,
    "lng": 102.18846,
    "openingHours": "Mo-Fr 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "น้ำโสม"
   },
   {
    "id": "n7867275970",
@@ -7036,7 +7841,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41931,
    "lng": 102.79269,
    "openingHours": "Mo-Su 17:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n12580586196",
@@ -7047,7 +7853,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39255,
    "lng": 102.80756,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n12383571701",
@@ -7058,7 +7865,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41366,
    "lng": 102.80838,
    "openingHours": "Mo-Su 13:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n13339621601",
@@ -7069,7 +7877,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41045,
    "lng": 102.78675,
    "openingHours": "Mo-Su 05:30-10:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n2377260995",
@@ -7080,7 +7889,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40869,
    "lng": 102.78183,
    "openingHours": "Tu-Fr 17:00-21:00; Sa,Su 11:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n13339732101",
@@ -7091,7 +7901,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.74214,
    "lng": 103.35963,
    "openingHours": "Mo-Su 08:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "บ้านดุง"
   },
   {
    "id": "n1313524092",
@@ -7102,7 +7913,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41171,
    "lng": 102.7764,
    "openingHours": "Mo-Su 16:30-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w783625701",
@@ -7113,7 +7925,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41479,
    "lng": 102.82063,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4107063578",
@@ -7124,7 +7937,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.408,
    "lng": 102.80251,
    "openingHours": "Mo-Su 09:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n12827631801",
@@ -7135,7 +7949,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39971,
    "lng": 102.77326,
    "openingHours": "Mo-Su 08:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w668487620",
@@ -7146,7 +7961,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.4044,
    "lng": 102.80196,
    "openingHours": "Mo-Su 08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n12880744717",
@@ -7157,7 +7973,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.417,
    "lng": 102.79665,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n10996691109",
@@ -7168,7 +7985,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.21241,
    "lng": 103.03382,
    "openingHours": "09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "กุมภวาปี"
   },
   {
    "id": "n12052370470",
@@ -7179,7 +7997,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40219,
    "lng": 102.78626,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   }
  ],
  "ระยอง": [
@@ -7192,7 +8011,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.77107,
    "lng": 101.27499,
    "openingHours": "Mo-Tue, Th-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "n12309377969",
@@ -7203,7 +8023,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.01759,
    "lng": 101.24294,
    "openingHours": "Mo-Su 06:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ปลวกแดง"
   },
   {
    "id": "n8394023173",
@@ -7214,7 +8035,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.72394,
    "lng": 101.08299,
    "openingHours": "Mo-Su 10:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านฉาง"
   },
   {
    "id": "n10813917488",
@@ -7225,7 +8047,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68657,
    "lng": 101.26019,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n8221537242",
@@ -7236,7 +8059,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.64127,
    "lng": 101.40972,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n8562439199",
@@ -7247,7 +8071,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.84347,
    "lng": 101.31157,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "n13628930189",
@@ -7258,7 +8083,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.619,
    "lng": 101.40646,
    "openingHours": "Mo-Su 17:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13798083513",
@@ -7269,7 +8095,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.69235,
    "lng": 101.49874,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12501222304",
@@ -7280,7 +8107,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.73753,
    "lng": 101.15766,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n3431296241",
@@ -7291,7 +8119,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68361,
    "lng": 101.24911,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w170076818",
@@ -7302,7 +8131,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.6685,
    "lng": 101.27806,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12247589701",
@@ -7313,7 +8143,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.74718,
    "lng": 101.26612,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "n5499932427",
@@ -7324,7 +8155,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.67638,
    "lng": 101.23288,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13377192643",
@@ -7335,7 +8167,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.77901,
    "lng": 101.73037,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "n4208379189",
@@ -7346,7 +8179,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.93696,
    "lng": 101.52199,
    "openingHours": "Th-Tu 07:30-15:30",
-   "notable": false
+   "notable": false,
+   "district": "วังจันทร์"
   },
   {
    "id": "n11402999094",
@@ -7357,7 +8191,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68129,
    "lng": 101.28104,
    "openingHours": "We-Su 7:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n7647941159",
@@ -7368,7 +8203,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.69843,
    "lng": 101.23856,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12890200172",
@@ -7379,7 +8215,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68503,
    "lng": 101.27168,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13191818239",
@@ -7390,7 +8227,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.69769,
    "lng": 101.21745,
    "openingHours": "Mo-Fr 17:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12513730713",
@@ -7401,7 +8239,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.89898,
    "lng": 101.29626,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปลวกแดง"
   },
   {
    "id": "n12238679607",
@@ -7412,7 +8251,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.67983,
    "lng": 101.27469,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n11890713916",
@@ -7423,7 +8263,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.82117,
    "lng": 101.06074,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "นิคมพัฒนา"
   },
   {
    "id": "n13394628449",
@@ -7434,7 +8275,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.85163,
    "lng": 101.24519,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "n11890693784",
@@ -7445,7 +8287,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.81808,
    "lng": 101.18695,
    "openingHours": "We-Mo 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "นิคมพัฒนา"
   },
   {
    "id": "n2288516036",
@@ -7456,7 +8299,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.66378,
    "lng": 101.24502,
    "openingHours": "Mo-Sa 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13508148925",
@@ -7467,7 +8311,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.67751,
    "lng": 101.23782,
    "openingHours": "We-Sa 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n8643804677",
@@ -7478,7 +8323,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68735,
    "lng": 101.24783,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n10844035594",
@@ -7489,7 +8335,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.97197,
    "lng": 101.20169,
    "openingHours": "Mo-Su 09:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "ปลวกแดง"
   },
   {
    "id": "n2915999363",
@@ -7500,7 +8347,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.7239,
    "lng": 101.0496,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านฉาง"
   },
   {
    "id": "n9038467858",
@@ -7511,7 +8359,32 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68769,
    "lng": 101.2487,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
+  },
+  {
+   "id": "n12696756023",
+   "name": "ข้าวมันไก่​สิงคโปร์​ เอ้กอี๊เอ้กเอ้ก",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 12.6781,
+   "lng": 101.6326,
+   "openingHours": "Mo-Su 08:00-17:00",
+   "notable": false,
+   "district": "แกลง"
+  },
+  {
+   "id": "n2715534234",
+   "name": "Tequila Sunrise Restaurant",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารพื้นเมือง",
+   "lat": 12.64423,
+   "lng": 101.63309,
+   "openingHours": "Mo-Su 11:30-21:30",
+   "notable": false,
+   "district": "แกลง"
   }
  ],
  "สมุทรปราการ": [
@@ -7524,7 +8397,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.62899,
    "lng": 100.66449,
    "openingHours": "17:00-01:00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n14119409155",
@@ -7535,7 +8409,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.65389,
    "lng": 100.67557,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n10146598260",
@@ -7546,7 +8421,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69242,
    "lng": 100.53411,
    "openingHours": "Mo-Su 06:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "w1324384337",
@@ -7557,7 +8433,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.66173,
    "lng": 100.66994,
    "openingHours": "Sat-Sun 9.00-17.00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n13525493663",
@@ -7568,7 +8445,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.68999,
    "lng": 100.6695,
    "openingHours": "Mo-Fr 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n12304722062",
@@ -7579,7 +8457,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69494,
    "lng": 100.64857,
    "openingHours": "Mo-Fr 10:30-19:30; Sa-Su 10:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n12564841222",
@@ -7590,7 +8469,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.63479,
    "lng": 100.60069,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n13516033485",
@@ -7601,7 +8481,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.65178,
    "lng": 100.67353,
    "openingHours": "Mon-Sun 7-17.30",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "w1217371092",
@@ -7612,7 +8493,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.71666,
    "lng": 100.53722,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": ""
   },
   {
    "id": "n9369395112",
@@ -7623,7 +8505,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.61946,
    "lng": 100.69576,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n13172449777",
@@ -7634,7 +8517,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.63906,
    "lng": 100.52514,
    "openingHours": "Th-Mo 07:00-13:30",
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n9075687674",
@@ -7645,7 +8529,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.6255,
    "lng": 100.64127,
    "openingHours": "Mo-Su 08:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n12531276586",
@@ -7656,7 +8541,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.59666,
    "lng": 100.60154,
    "openingHours": "Mo-Su 06:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n7541287630",
@@ -7667,7 +8553,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.6657,
    "lng": 100.58396,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n12675566950",
@@ -7678,7 +8565,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.59273,
    "lng": 100.59871,
    "openingHours": "08:00-15:00; We off",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n3431296248",
@@ -7689,18 +8577,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.58378,
    "lng": 100.60924,
    "openingHours": "",
-   "notable": false
-  },
-  {
-   "id": "n4241048828",
-   "name": "ครัวในฝัน",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.69165,
-   "lng": 100.62083,
-   "openingHours": "Th-Tu 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n9901991143",
@@ -7711,7 +8589,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54816,
    "lng": 100.78556,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บางบ่อ"
   },
   {
    "id": "n14074644902",
@@ -7722,18 +8601,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69558,
    "lng": 100.64866,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
-  },
-  {
-   "id": "n13232257401",
-   "name": "Cococano Cafe & Eatery",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "กาแฟ",
-   "lat": 13.69003,
-   "lng": 100.45207,
-   "openingHours": "Tu-Fr 08:00-17:00; Sa-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n11384865828",
@@ -7744,7 +8613,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.61645,
    "lng": 100.73636,
    "openingHours": "th-tu  18.00-23.00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n13045051101",
@@ -7755,7 +8625,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.59602,
    "lng": 100.60616,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n13179815878",
@@ -7766,7 +8637,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.65962,
    "lng": 100.53417,
    "openingHours": "Mo-Su 07:00-14:30",
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n12578959348",
@@ -7777,7 +8649,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.62086,
    "lng": 100.61789,
    "openingHours": "Sa-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n13045217302",
@@ -7788,7 +8661,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.58875,
    "lng": 100.59812,
    "openingHours": "Mo-Su 10:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n12511999901",
@@ -7799,7 +8673,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69449,
    "lng": 100.6431,
    "openingHours": "We-Mo 09:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n8012665075",
@@ -7810,7 +8685,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69025,
    "lng": 100.5305,
    "openingHours": "18:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n12578966799",
@@ -7821,7 +8697,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.59264,
    "lng": 100.59845,
    "openingHours": "Mo-Th 07:00-17:00; Fr-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n5160197921",
@@ -7832,7 +8709,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53309,
    "lng": 100.61761,
    "openingHours": "Mo-Su 10:00-23:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n12513366301",
@@ -7843,7 +8721,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69369,
    "lng": 100.643,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   }
  ],
  "นนทบุรี": [
@@ -7856,7 +8735,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82817,
    "lng": 100.43949,
    "openingHours": "Sa-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n9801738501",
@@ -7867,7 +8747,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.93903,
    "lng": 100.44885,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n12396209227",
@@ -7878,7 +8759,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.8225,
    "lng": 100.4514,
    "openingHours": "Mo-Su 10:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "n9141630555",
@@ -7889,7 +8771,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.94739,
    "lng": 100.44166,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w658126143",
@@ -7900,7 +8783,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.8338,
    "lng": 100.46956,
    "openingHours": "Mo-Su 10:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n13919542316",
@@ -7911,7 +8795,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.85726,
    "lng": 100.44149,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางใหญ่"
   },
   {
    "id": "w777177147",
@@ -7922,7 +8807,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82454,
    "lng": 100.45986,
    "openingHours": "Mo-Sa 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "n3431296272",
@@ -7933,7 +8819,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.88001,
    "lng": 100.5503,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n12676574797",
@@ -7944,7 +8831,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82906,
    "lng": 100.48777,
    "openingHours": "Mo-Su 08:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n8355290841",
@@ -7955,7 +8843,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82681,
    "lng": 100.37515,
    "openingHours": "Sa,Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางใหญ่"
   },
   {
    "id": "n13196081351",
@@ -7966,7 +8855,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.83481,
    "lng": 100.41318,
    "openingHours": "16.00-00.00",
-   "notable": false
+   "notable": false,
+   "district": "บางใหญ่"
   },
   {
    "id": "n13362994336",
@@ -7977,7 +8867,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.88339,
    "lng": 100.49369,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n8744734212",
@@ -7988,7 +8879,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.84588,
    "lng": 100.47818,
    "openingHours": "Mo-Fr 16:00-21:00; Sa-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n6506411571",
@@ -7999,7 +8891,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.84699,
    "lng": 100.51535,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n4879591125",
@@ -8010,7 +8903,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.92321,
    "lng": 100.47686,
    "openingHours": "Mo-Su 16:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n5549402925",
@@ -8021,7 +8915,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.88457,
    "lng": 100.41009,
    "openingHours": "Mo-Su 06:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางบัวทอง"
   },
   {
    "id": "n6393340939",
@@ -8032,7 +8927,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.81843,
    "lng": 100.49901,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n7708856922",
@@ -8043,7 +8939,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.88535,
    "lng": 100.49155,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n14051858570",
@@ -8054,7 +8951,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.8651,
    "lng": 100.46769,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w560610617",
@@ -8065,7 +8963,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.84863,
    "lng": 100.52958,
    "openingHours": "Mo-Sa 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w1420659005",
@@ -8076,7 +8975,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.87181,
    "lng": 100.4656,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n7168720159",
@@ -8087,7 +8987,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.89648,
    "lng": 100.55232,
    "openingHours": "Mo-Su 11:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n6762896963",
@@ -8098,7 +8999,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.84845,
    "lng": 100.51445,
    "openingHours": "Mo-Su 09:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n9739214938",
@@ -8109,7 +9011,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.91715,
    "lng": 100.45557,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n5894230285",
@@ -8120,7 +9023,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.91897,
    "lng": 100.54347,
    "openingHours": "Mo-Su 11:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n6324755190",
@@ -8131,7 +9035,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.88462,
    "lng": 100.52421,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n6158072395",
@@ -8142,7 +9047,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82979,
    "lng": 100.47043,
    "openingHours": "Mo-Sa 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n9739218026",
@@ -8153,7 +9059,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.89827,
    "lng": 100.55403,
    "openingHours": "Mo-Su 11:00-23:45",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w1511471839",
@@ -8164,7 +9071,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.91988,
    "lng": 100.43808,
    "openingHours": "Mo-Su 17:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n14060931004",
@@ -8175,7 +9083,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.85291,
    "lng": 100.43714,
    "openingHours": "Mo-Tu 10:00-19:00; Th-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "บางใหญ่"
   }
  ],
  "สุรินทร์": [
@@ -8188,7 +9097,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.31993,
    "lng": 103.67302,
    "openingHours": "07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าตูม"
   },
   {
    "id": "n10938956473",
@@ -8199,7 +9109,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.50287,
    "lng": 103.67003,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "กาบเชิง"
   },
   {
    "id": "n513430010",
@@ -8210,7 +9121,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.88787,
    "lng": 103.49732,
    "openingHours": "08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n12856643755",
@@ -8221,7 +9133,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.3224,
    "lng": 103.84328,
    "openingHours": "Mo-Su 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "รัตนบุรี"
   },
   {
    "id": "w1199480694",
@@ -8232,7 +9145,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.87614,
    "lng": 103.51038,
    "openingHours": "Mo-Fr 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n3488626310",
@@ -8243,7 +9157,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.8759,
    "lng": 103.53064,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n3502218645",
@@ -8254,7 +9169,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.96457,
    "lng": 103.47501,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "w1278766776",
@@ -8265,7 +9181,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.45384,
    "lng": 103.68693,
    "openingHours": "Tue-Sun 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "กาบเชิง"
   },
   {
    "id": "n3502217412",
@@ -8276,7 +9193,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.88639,
    "lng": 103.49196,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   }
  ],
  "ร้อยเอ็ด": [
@@ -8289,7 +9207,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.00062,
    "lng": 103.48557,
    "openingHours": "เปิดทุกวัน",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสมเด็จ"
   },
   {
    "id": "n10844178037",
@@ -8300,7 +9219,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.0525,
    "lng": 103.69265,
    "openingHours": "Mo-Su 08:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "ธวัชบุรี"
   },
   {
    "id": "n12470818618",
@@ -8311,7 +9231,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11515,
    "lng": 103.49583,
    "openingHours": "Mo-Su 17:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสมเด็จ"
   },
   {
    "id": "n12624634390",
@@ -8322,7 +9243,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.02071,
    "lng": 103.94904,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เสลภูมิ"
   },
   {
    "id": "n13666326333",
@@ -8333,7 +9255,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.01879,
    "lng": 103.64015,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13061273492",
@@ -8344,7 +9267,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.06225,
    "lng": 103.63456,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n10845395087",
@@ -8355,7 +9279,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.31358,
    "lng": 104.20414,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "หนองพอก"
   },
   {
    "id": "n10566191226",
@@ -8366,7 +9291,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.03396,
    "lng": 103.64344,
    "openingHours": "Mo-Su 06:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n4257333090",
@@ -8377,7 +9303,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.05953,
    "lng": 103.64162,
    "openingHours": "Mo-Su 18:30-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n3646166941",
@@ -8388,7 +9315,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.07082,
    "lng": 103.66158,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13800712446",
@@ -8399,7 +9327,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.12259,
    "lng": 104.11764,
    "openingHours": "Mo-Sa 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เสลภูมิ"
   },
   {
    "id": "n3488626313",
@@ -8410,7 +9339,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.06348,
    "lng": 103.61796,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13625386083",
@@ -8421,7 +9351,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.07706,
    "lng": 103.68892,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงขวัญ"
   },
   {
    "id": "n13347190901",
@@ -8432,7 +9363,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.8454,
    "lng": 103.71571,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสรวง"
   },
   {
    "id": "n13966745201",
@@ -8443,7 +9375,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.30003,
    "lng": 104.17269,
    "openingHours": "Tu-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองพอก"
   },
   {
    "id": "n13347113601",
@@ -8454,7 +9387,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.05469,
    "lng": 103.65249,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   }
  ],
  "มหาสารคาม": [
@@ -8467,7 +9401,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.24787,
    "lng": 103.26593,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "กันทรวิชัย"
   },
   {
    "id": "n12970340127",
@@ -8478,7 +9413,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.17174,
    "lng": 103.30671,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n12513270913",
@@ -8489,7 +9425,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44557,
    "lng": 102.95979,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เชียงยืน"
   },
   {
    "id": "n10007886496",
@@ -8500,7 +9437,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.17496,
    "lng": 103.28015,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n12608852754",
@@ -8511,7 +9449,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44685,
    "lng": 102.95857,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงยืน"
   },
   {
    "id": "n13179789500",
@@ -8522,7 +9461,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.74607,
    "lng": 103.13527,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "นาเชือก"
   },
   {
    "id": "n12608852753",
@@ -8533,7 +9473,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44665,
    "lng": 102.95875,
    "openingHours": "08.00-20.00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงยืน"
   },
   {
    "id": "n13533633415",
@@ -8544,7 +9485,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.17964,
    "lng": 103.20979,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n13925611547",
@@ -8555,7 +9497,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.19267,
    "lng": 103.29307,
    "openingHours": "Mo-Su 11:00-01:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n3488626314",
@@ -8566,7 +9509,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.20187,
    "lng": 103.27663,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n7409797122",
@@ -8577,7 +9521,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.06102,
    "lng": 103.0691,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "บรบือ"
   },
   {
    "id": "n8167005310",
@@ -8588,7 +9533,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.24227,
    "lng": 103.26727,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "กันทรวิชัย"
   },
   {
    "id": "n13983501750",
@@ -8599,7 +9545,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.19571,
    "lng": 103.28318,
    "openingHours": "17.00 - 23.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n12154726830",
@@ -8610,7 +9557,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.19273,
    "lng": 103.29313,
    "openingHours": "Mo-Su 16:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   }
  ],
  "พิษณุโลก": [
@@ -8623,7 +9571,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82558,
    "lng": 100.26298,
    "openingHours": "Mo-Su 08:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n10118162932",
@@ -8634,7 +9583,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82623,
    "lng": 100.25817,
    "openingHours": "Mo-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "w1420176396",
@@ -8645,7 +9595,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82332,
    "lng": 100.23665,
    "openingHours": "Mo-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n14048148824",
@@ -8656,7 +9607,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.18246,
    "lng": 100.99706,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "n13072626934",
@@ -8667,7 +9619,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.79461,
    "lng": 100.23296,
    "openingHours": "Mi - Mo 10:00 - 19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n12586548921",
@@ -8678,7 +9631,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.57407,
    "lng": 100.68452,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "n2587396700",
@@ -8689,7 +9643,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82775,
    "lng": 100.26547,
    "openingHours": "Mo-Su 06:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "w436649775",
@@ -8700,7 +9655,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.75088,
    "lng": 100.19771,
    "openingHours": "9:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n10648186305",
@@ -8711,7 +9667,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.81646,
    "lng": 100.23973,
    "openingHours": "Mo-Su 09:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n3488626317",
@@ -8722,7 +9679,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.84029,
    "lng": 100.23366,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "w577040993",
@@ -8733,7 +9691,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.81179,
    "lng": 100.25676,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n9518776717",
@@ -8744,7 +9703,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.79208,
    "lng": 100.26552,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n5658540921",
@@ -8755,7 +9715,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.80023,
    "lng": 100.20862,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n8869091217",
@@ -8766,7 +9727,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.77393,
    "lng": 100.27548,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n5783076154",
@@ -8777,7 +9739,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.81463,
    "lng": 100.26543,
    "openingHours": "Mo-Su 07:30-09:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n9853367358",
@@ -8788,7 +9751,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.84551,
    "lng": 100.34404,
    "openingHours": "Mo-Su 08:30-18:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n9264106717",
@@ -8799,7 +9763,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.81297,
    "lng": 100.26049,
    "openingHours": "Mo-Su 17:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n10203225617",
@@ -8810,7 +9775,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.76195,
    "lng": 100.20077,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "w736401554",
@@ -8821,7 +9787,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.58334,
    "lng": 100.62904,
    "openingHours": "07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "n9121734717",
@@ -8832,7 +9799,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.79736,
    "lng": 100.16106,
    "openingHours": "Mo-Su 10:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "บางระกำ"
   },
   {
    "id": "n4918774521",
@@ -8843,7 +9811,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.85554,
    "lng": 100.22659,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n4914648522",
@@ -8854,7 +9823,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.81469,
    "lng": 100.26555,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n4543110997",
@@ -8865,7 +9835,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.80207,
    "lng": 100.26606,
    "openingHours": "Mo-Su 10:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n7192290095",
@@ -8876,7 +9847,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.22459,
    "lng": 101.03298,
    "openingHours": "Mo-Su 08:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "n5125803728",
@@ -8887,7 +9859,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.80325,
    "lng": 100.21919,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n10636155905",
@@ -8898,7 +9871,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82659,
    "lng": 100.26352,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n10311175509",
@@ -8909,7 +9883,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.92898,
    "lng": 100.63833,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "วังทอง"
   },
   {
    "id": "n10675919386",
@@ -8920,7 +9895,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82792,
    "lng": 100.26547,
    "openingHours": "Tu-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n6110304485",
@@ -8931,7 +9907,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.82147,
    "lng": 100.26345,
    "openingHours": "Mo-Su 11:30-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n11919628669",
@@ -8942,7 +9919,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.81322,
    "lng": 100.26349,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   }
  ],
  "สงขลา": [
@@ -8955,7 +9933,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00221,
    "lng": 100.47523,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n9784528274",
@@ -8966,7 +9945,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.19683,
    "lng": 100.59033,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n9176407779",
@@ -8977,7 +9957,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.15292,
    "lng": 100.60192,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n8344367551",
@@ -8988,7 +9969,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00677,
    "lng": 100.49602,
    "openingHours": "Mo-Sa 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n13004405533",
@@ -8999,7 +9981,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.01069,
    "lng": 100.48527,
    "openingHours": "Mo-Sa 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w979865589",
@@ -9010,7 +9993,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.16142,
    "lng": 100.60983,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n13520883769",
@@ -9021,7 +10005,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.0175,
    "lng": 100.46175,
    "openingHours": "Mo-Su 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n3488626323",
@@ -9032,7 +10017,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.0038,
    "lng": 100.46915,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n11911755618",
@@ -9043,7 +10029,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00741,
    "lng": 100.48237,
    "openingHours": "Mo-Fr 11:00-21:00; Sa-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12303467201",
@@ -9054,7 +10041,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.0043,
    "lng": 100.48358,
    "openingHours": "Tu-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n6824545586",
@@ -9065,7 +10053,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.0043,
    "lng": 100.47447,
    "openingHours": "Mo-Fr 11:00-20:00; Sa-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n8367487142",
@@ -9076,7 +10065,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.90376,
    "lng": 100.46969,
    "openingHours": "Tu-Su 09:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n13685726201",
@@ -9087,7 +10077,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00803,
    "lng": 100.47535,
    "openingHours": "Mo-Su 05:00-11:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w496651242",
@@ -9098,7 +10089,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.19706,
    "lng": 100.58864,
    "openingHours": "Mo-Tu,Th-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n11886628462",
@@ -9109,7 +10101,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.01493,
    "lng": 100.47127,
    "openingHours": "12:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12346018233",
@@ -9120,7 +10113,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00183,
    "lng": 100.49506,
    "openingHours": "Mo-Fr 16:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n6023851285",
@@ -9131,7 +10125,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.99872,
    "lng": 100.47483,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n11886066564",
@@ -9142,7 +10137,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00522,
    "lng": 100.48806,
    "openingHours": "09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n3313352901",
@@ -9153,7 +10149,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.97573,
    "lng": 100.4283,
    "openingHours": "10:00-14:30,16:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12320192402",
@@ -9164,7 +10161,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.20575,
    "lng": 100.59225,
    "openingHours": "Mo-Su 08:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n7677797080",
@@ -9175,7 +10173,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.19657,
    "lng": 100.58938,
    "openingHours": "We-Mo 9:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n11461449960",
@@ -9186,7 +10185,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00747,
    "lng": 100.50514,
    "openingHours": "Mo-Su 06:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n3371690204",
@@ -9197,7 +10197,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.9953,
    "lng": 100.4562,
    "openingHours": "Mo-Su 11:00-22:00; Mo[3],Tu[3] off",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w142455608",
@@ -9208,7 +10209,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.99923,
    "lng": 100.47413,
    "openingHours": "17:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n7007049260",
@@ -9219,7 +10221,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.64102,
    "lng": 100.42538,
    "openingHours": "15:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "สะเดา"
   },
   {
    "id": "n13439069109",
@@ -9230,7 +10233,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.99686,
    "lng": 100.48649,
    "openingHours": "Mo-Su 17:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n4481017792",
@@ -9241,7 +10245,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.99973,
    "lng": 100.47375,
    "openingHours": "Mo-Su 16:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n1675606006",
@@ -9252,7 +10257,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.01527,
    "lng": 100.4741,
    "openingHours": "10:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n4162783498",
@@ -9263,7 +10269,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00071,
    "lng": 100.49149,
    "openingHours": "Mo-Sa 09:30-15:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w96846997",
@@ -9274,32 +10281,11 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.00423,
    "lng": 100.47059,
    "openingHours": "10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   }
  ],
  "เพชรบุรี": [
-  {
-   "id": "n12053619010",
-   "name": "Taboo Tapas Wine & Lounge Bar",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารอิตาเลียน",
-   "lat": 12.59991,
-   "lng": 99.94291,
-   "openingHours": "Tu off, Mo-Su 12:00-00:00",
-   "notable": false
-  },
-  {
-   "id": "w1350835874",
-   "name": "ซิลเวอร์โอ๊คคอฟฟี่",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "กาแฟ",
-   "lat": 12.57647,
-   "lng": 99.91807,
-   "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
-  },
   {
    "id": "n7863265532",
    "name": "Laciana by the Sea",
@@ -9309,7 +10295,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.62356,
    "lng": 99.95428,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n7645438379",
@@ -9320,18 +10307,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.68302,
    "lng": 99.77629,
    "openingHours": "We-Su 8:00-16:00",
-   "notable": false
-  },
-  {
-   "id": "n3787587603",
-   "name": "Daddy Deli",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "เบอร์เกอร์",
-   "lat": 12.57467,
-   "lng": 99.91546,
-   "openingHours": "Mo-Su 07:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่ายาง"
   },
   {
    "id": "n11353518749",
@@ -9342,18 +10319,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.71131,
    "lng": 99.94481,
    "openingHours": "Mo-Su 06:00-19:00",
-   "notable": false
-  },
-  {
-   "id": "n5801097472",
-   "name": "60s town",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "",
-   "lat": 12.5795,
-   "lng": 99.86238,
-   "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n13813974239",
@@ -9364,7 +10331,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.10637,
    "lng": 99.94776,
    "openingHours": "Fr-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n13469906030",
@@ -9375,7 +10343,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.8021,
    "lng": 99.801,
    "openingHours": "Mo-Fr 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่ายาง"
   },
   {
    "id": "n13533975272",
@@ -9386,40 +10355,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.11283,
    "lng": 99.93545,
    "openingHours": "Mo-Sa 07:30-16:00",
-   "notable": false
-  },
-  {
-   "id": "w1384122340",
-   "name": "เซฟโซนหมูกระทะบุฟเฟ่ต์",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 12.58758,
-   "lng": 99.94859,
-   "openingHours": "Mo-Su 17:00-24:00",
-   "notable": false
-  },
-  {
-   "id": "n12814583759",
-   "name": "The Fire Bear",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 12.58213,
-   "lng": 99.9555,
-   "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
-  },
-  {
-   "id": "w1383985688",
-   "name": "บ้านโก",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 12.58431,
-   "lng": 99.95507,
-   "openingHours": "Mo-Su 11:00-16:00,17:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n3474623875",
@@ -9430,7 +10367,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.11447,
    "lng": 99.71177,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองหญ้าปล้อง"
   },
   {
    "id": "n11050667926",
@@ -9441,84 +10379,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.09926,
    "lng": 99.93205,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
-  },
-  {
-   "id": "n12470669901",
-   "name": "วีแอนด์จีคอฟ",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "กาแฟ",
-   "lat": 12.57143,
-   "lng": 99.94751,
-   "openingHours": "Fr-We 07:00-17:00",
-   "notable": false
-  },
-  {
-   "id": "n12307582801",
-   "name": "Veggie Tales Cafe",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 12.58341,
-   "lng": 99.95255,
-   "openingHours": "Th-Tu 10:00-20:00",
-   "notable": false
-  },
-  {
-   "id": "n9803783043",
-   "name": "Marzipan Patisserie Café & Bar",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "เค้ก",
-   "lat": 12.57657,
-   "lng": 99.91962,
-   "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
-  },
-  {
-   "id": "n8598965045",
-   "name": "โกหมาก",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "",
-   "lat": 12.59865,
-   "lng": 99.94927,
-   "openingHours": "11:00-16:00,17:00-21:00",
-   "notable": false
-  },
-  {
-   "id": "n11515562228",
-   "name": "ใจรัก คาเฟ่",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 12.56608,
-   "lng": 99.89074,
-   "openingHours": "Mo, We-Su 08:00-18:00",
-   "notable": false
-  },
-  {
-   "id": "n5216274221",
-   "name": "ขาหมูตรอกซุง หัวหิน",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "",
-   "lat": 12.57916,
-   "lng": 99.95549,
-   "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
-  },
-  {
-   "id": "n8601421575",
-   "name": "สรณะ หัวหิน",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 12.58175,
-   "lng": 99.95538,
-   "openingHours": "Tu-Su 07:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n7851673285",
@@ -9529,18 +10391,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.07882,
    "lng": 99.93896,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
-  },
-  {
-   "id": "n12817060734",
-   "name": "ไอติมก้นโอ่ง",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 12.58606,
-   "lng": 99.95215,
-   "openingHours": "Mo-Su 10:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n13624967101",
@@ -9551,7 +10403,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.29507,
    "lng": 99.82334,
    "openingHours": "Mo-Su 06:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาย้อย"
   },
   {
    "id": "n12347705659",
@@ -9562,7 +10415,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 12.59303,
    "lng": 99.76643,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แก่งกระจาน"
   },
   {
    "id": "n4313204311",
@@ -9573,18 +10427,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.10861,
    "lng": 99.94772,
    "openingHours": "Mo-Su,PH 10:00-24:00",
-   "notable": false
-  },
-  {
-   "id": "n12848571020",
-   "name": "Golden Coffee",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 12.58534,
-   "lng": 99.95175,
-   "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n14127937984",
@@ -9595,7 +10439,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.05037,
    "lng": 99.94054,
    "openingHours": "11.00-19.30",
-   "notable": false
+   "notable": false,
+   "district": "บ้านลาด"
   },
   {
    "id": "n13505784959",
@@ -9606,7 +10451,20 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.11239,
    "lng": 99.93522,
    "openingHours": "07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
+  },
+  {
+   "id": "n10885732411",
+   "name": "ยุ้งเกลือ บ้านแหลม",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารทะเล",
+   "lat": 13.22897,
+   "lng": 99.97041,
+   "openingHours": "Th-Tu 07:30-17:00",
+   "notable": false,
+   "district": "บ้านแหลม"
   }
  ],
  "นครปฐม": [
@@ -9619,7 +10477,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79734,
    "lng": 100.32976,
    "openingHours": "Tu-Su 11:00-23:59",
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "n8808122157",
@@ -9630,7 +10489,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.11912,
    "lng": 100.11497,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n10821344041",
@@ -9641,7 +10501,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82641,
    "lng": 100.04407,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n8579859339",
@@ -9652,7 +10513,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.80006,
    "lng": 100.31199,
    "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "n9642298929",
@@ -9663,7 +10525,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79128,
    "lng": 100.30333,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "n9939265424",
@@ -9674,7 +10537,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.00657,
    "lng": 100.25976,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n8372541158",
@@ -9685,7 +10549,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79051,
    "lng": 100.32794,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "n12550854823",
@@ -9696,7 +10561,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.73861,
    "lng": 100.18848,
    "openingHours": "Mo, Tu, Th-Su 10:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "w1355839555",
@@ -9707,7 +10573,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.74883,
    "lng": 100.31853,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "n7798165930",
@@ -9718,7 +10585,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.69075,
    "lng": 100.25079,
    "openingHours": "Sa, Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "n13068703093",
@@ -9729,7 +10597,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.80827,
    "lng": 100.03921,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n6451440581",
@@ -9740,7 +10609,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.80166,
    "lng": 99.99479,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n12149279443",
@@ -9751,7 +10621,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.01077,
    "lng": 100.21977,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n13466127819",
@@ -9762,7 +10633,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82557,
    "lng": 100.06,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n11264130370",
@@ -9773,7 +10645,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79972,
    "lng": 100.32752,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "n4248697292",
@@ -9784,7 +10657,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.00264,
    "lng": 99.98946,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "กำแพงแสน"
   },
   {
    "id": "n6501331185",
@@ -9795,7 +10669,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79918,
    "lng": 100.28924,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w375765952",
@@ -9806,7 +10681,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.77286,
    "lng": 100.17985,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "นครชัยศรี"
   },
   {
    "id": "n10844079876",
@@ -9817,7 +10693,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.019,
    "lng": 99.99204,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "กำแพงแสน"
   },
   {
    "id": "n9807796255",
@@ -9828,7 +10705,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.83296,
    "lng": 100.06176,
    "openingHours": "Fri-Wed 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n13640729895",
@@ -9839,7 +10717,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.80229,
    "lng": 100.04262,
    "openingHours": "Mo-Fr 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n10821344042",
@@ -9850,7 +10729,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82621,
    "lng": 100.04484,
    "openingHours": "We-Mo 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "w1458445535",
@@ -9861,7 +10741,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.96185,
    "lng": 99.98622,
    "openingHours": "Tu-Fr 10:00-17:00; Tu-Su 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "กำแพงแสน"
   },
   {
    "id": "n13645816877",
@@ -9872,7 +10753,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.01652,
    "lng": 100.17525,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n12802536229",
@@ -9883,7 +10765,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.81758,
    "lng": 100.05769,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n8490837278",
@@ -9894,7 +10777,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.87955,
    "lng": 100.05726,
    "openingHours": "Mo-Su 05:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n9849950090",
@@ -9905,7 +10789,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79134,
    "lng": 100.30347,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "n4603512866",
@@ -9916,7 +10801,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.81917,
    "lng": 100.05521,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n4488028019",
@@ -9927,7 +10813,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.95977,
    "lng": 100.20119,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n9252677517",
@@ -9938,7 +10825,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.79792,
    "lng": 99.96206,
    "openingHours": "Mo-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   }
  ],
  "นครศรีธรรมราช": [
@@ -9951,7 +10839,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.44364,
    "lng": 99.96152,
    "openingHours": "Mo-Sa 10:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n14114212924",
@@ -9962,7 +10851,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.09101,
    "lng": 99.97624,
    "openingHours": "08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ชะอวด"
   },
   {
    "id": "n13137384784",
@@ -9973,7 +10863,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.38909,
    "lng": 99.54874,
    "openingHours": "11.00-21.00",
-   "notable": false
+   "notable": false,
+   "district": "ฉวาง"
   },
   {
    "id": "n11028895253",
@@ -9984,7 +10875,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88592,
    "lng": 99.90152,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ชะอวด"
   },
   {
    "id": "n12260484567",
@@ -9995,7 +10887,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.40707,
    "lng": 99.97628,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n8301900217",
@@ -10006,7 +10899,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.16547,
    "lng": 99.70907,
    "openingHours": "Th-Tu 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n3926846504",
@@ -10017,7 +10911,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.20447,
    "lng": 99.8758,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ขนอม"
   },
   {
    "id": "n14102371829",
@@ -10028,7 +10923,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.33164,
    "lng": 99.65811,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ช้างกลาง"
   },
   {
    "id": "n4237233990",
@@ -10039,7 +10935,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.44364,
    "lng": 99.96157,
    "openingHours": "Mo-Sa 10:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n11334971958",
@@ -10050,7 +10947,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.70017,
    "lng": 99.93856,
    "openingHours": "08.30",
-   "notable": false
+   "notable": false,
+   "district": "ท่าศาลา"
   },
   {
    "id": "n8156928722",
@@ -10061,7 +10959,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.43678,
    "lng": 99.96805,
    "openingHours": "Mo-Fr 07:00-15:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n7282083176",
@@ -10072,7 +10971,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.52955,
    "lng": 99.81144,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พรหมคีรี"
   },
   {
    "id": "n2408851431",
@@ -10083,7 +10983,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.4407,
    "lng": 99.96908,
    "openingHours": "15:00-23:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n8517693618",
@@ -10094,7 +10995,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.09897,
    "lng": 99.90696,
    "openingHours": "Mo-Su 08:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ขนอม"
   },
   {
    "id": "w314086767",
@@ -10105,7 +11007,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 8.36804,
    "lng": 100.04358,
    "openingHours": "0630 - 1900",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   }
  ],
  "พัทลุง": [
@@ -10118,7 +11021,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.88477,
    "lng": 99.83323,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ป่าพะยอม"
   },
   {
    "id": "w1310866266",
@@ -10129,7 +11033,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.62375,
    "lng": 100.07883,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n10839352235",
@@ -10140,7 +11045,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.35988,
    "lng": 100.13412,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางแก้ว"
   },
   {
    "id": "n4540598692",
@@ -10151,7 +11057,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.6795,
    "lng": 100.01167,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ควนขนุน"
   },
   {
    "id": "n12133855227",
@@ -10162,7 +11069,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.61635,
    "lng": 100.07719,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n12418413459",
@@ -10173,7 +11081,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.35429,
    "lng": 100.1226,
    "openingHours": "06.30-19.00",
-   "notable": false
+   "notable": false,
+   "district": "ตะโหมด"
   },
   {
    "id": "n12133898140",
@@ -10184,7 +11093,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.61833,
    "lng": 100.06785,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n13799957294",
@@ -10195,7 +11105,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.73649,
    "lng": 99.98294,
    "openingHours": "Mo-Fr 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ควนขนุน"
   },
   {
    "id": "n12133898102",
@@ -10206,7 +11117,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.61142,
    "lng": 100.06484,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n13799957293",
@@ -10217,7 +11129,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.68723,
    "lng": 100.00718,
    "openingHours": "Mo-Fr 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ควนขนุน"
   },
   {
    "id": "n12134023745",
@@ -10228,7 +11141,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.6202,
    "lng": 100.06785,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n4310486191",
@@ -10239,7 +11153,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.73534,
    "lng": 99.95796,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ควนขนุน"
   },
   {
    "id": "n13683926201",
@@ -10250,7 +11165,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.56594,
    "lng": 99.92965,
    "openingHours": "Mo-Su 06:30-19:30",
-   "notable": false
+   "notable": false,
+   "district": "ศรีนครินทร์"
   }
  ],
  "แพร่": [
@@ -10263,7 +11179,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.13689,
    "lng": 100.22063,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13680893061",
@@ -10274,7 +11191,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.1486,
    "lng": 100.14373,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n11171029679",
@@ -10285,7 +11203,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.26611,
    "lng": 100.1822,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "หนองม่วงไข่"
   },
   {
    "id": "n13592792613",
@@ -10296,7 +11215,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.05481,
    "lng": 100.23472,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n5278003337",
@@ -10307,7 +11227,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.97027,
    "lng": 100.0678,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เด่นชัย"
   },
   {
    "id": "n13671727428",
@@ -10318,7 +11239,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.14157,
    "lng": 100.14253,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n7967851285",
@@ -10329,7 +11251,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.11505,
    "lng": 100.13527,
    "openingHours": "Mo-Su 17:00-23:30",
-   "notable": false
+   "notable": false,
+   "district": "สูงเม่น"
   },
   {
    "id": "n4381993894",
@@ -10340,7 +11263,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.14875,
    "lng": 100.14929,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n5363103524",
@@ -10351,7 +11275,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.13483,
    "lng": 100.15397,
    "openingHours": "Tu-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n10859522430",
@@ -10362,7 +11287,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.14662,
    "lng": 100.14286,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n2142472610",
@@ -10373,7 +11299,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.05028,
    "lng": 100.24293,
    "openingHours": "10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w776105262",
@@ -10384,7 +11311,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.3114,
    "lng": 100.29708,
    "openingHours": "Mo-Su 06:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "ร้องกวาง"
   },
   {
    "id": "n12872771455",
@@ -10395,7 +11323,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.21712,
    "lng": 100.19499,
    "openingHours": "Sa-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n3961396577",
@@ -10406,7 +11335,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.14343,
    "lng": 100.13704,
    "openingHours": "09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   }
  ],
  "เพชรบูรณ์": [
@@ -10419,7 +11349,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.6497,
    "lng": 100.99615,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n4420366089",
@@ -10430,7 +11361,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.79517,
    "lng": 101.04178,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n5367517521",
@@ -10441,7 +11373,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.76446,
    "lng": 101.02357,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n8903136393",
@@ -10452,7 +11385,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.87003,
    "lng": 100.99254,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บึงสามพัน"
   },
   {
    "id": "w577606689",
@@ -10463,7 +11397,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.79134,
    "lng": 101.05009,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n13964607588",
@@ -10474,7 +11409,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.13678,
    "lng": 100.76397,
    "openingHours": "08.30-17.00",
-   "notable": false
+   "notable": false,
+   "district": "ชนแดน"
   },
   {
    "id": "n5194354321",
@@ -10485,7 +11421,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.85765,
    "lng": 101.24625,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "หล่มเก่า"
   },
   {
    "id": "w664042243",
@@ -10496,7 +11433,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.80399,
    "lng": 100.97819,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n4611088992",
@@ -10507,7 +11445,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.77552,
    "lng": 101.24449,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n13154533306",
@@ -10518,7 +11457,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.69469,
    "lng": 101.04545,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n5311730621",
@@ -10529,7 +11469,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.79237,
    "lng": 100.98606,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n9510012617",
@@ -10540,7 +11481,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.78158,
    "lng": 101.23986,
    "openingHours": "Mo-Su 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n3922956630",
@@ -10551,7 +11493,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.78343,
    "lng": 101.24087,
    "openingHours": "sunrise-sunset",
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n9271108017",
@@ -10562,7 +11505,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.72679,
    "lng": 101.26447,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n9513199617",
@@ -10573,7 +11517,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.88222,
    "lng": 101.11504,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "หล่มเก่า"
   },
   {
    "id": "n14067234282",
@@ -10584,7 +11529,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.41748,
    "lng": 101.15815,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบูรณ์"
   },
   {
    "id": "n4735705024",
@@ -10595,7 +11541,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.42779,
    "lng": 101.15159,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบูรณ์"
   },
   {
    "id": "w574705109",
@@ -10606,7 +11553,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.77797,
    "lng": 101.01329,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   }
  ],
  "พระนครศรีอยุธยา": [
@@ -10619,7 +11567,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.50015,
    "lng": 100.67887,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าเรือ"
   },
   {
    "id": "n11677397710",
@@ -10630,7 +11579,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35677,
    "lng": 100.62673,
    "openingHours": "We-Mo 06:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "อุทัย"
   },
   {
    "id": "w806877141",
@@ -10641,7 +11591,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36935,
    "lng": 100.58464,
    "openingHours": "Tu-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n11021410147",
@@ -10652,7 +11603,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36144,
    "lng": 100.66812,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "อุทัย"
   },
   {
    "id": "n13356998608",
@@ -10663,7 +11615,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.29097,
    "lng": 100.62646,
    "openingHours": "Mo-Su 07:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "บางปะอิน"
   },
   {
    "id": "w1130666431",
@@ -10674,7 +11627,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.31972,
    "lng": 100.60471,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บางปะอิน"
   },
   {
    "id": "n4594207489",
@@ -10685,7 +11639,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.34888,
    "lng": 100.54735,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n12435579127",
@@ -10696,7 +11651,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36054,
    "lng": 100.57222,
    "openingHours": "09:00-17:30; Fr,Sa off",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n7888992085",
@@ -10707,7 +11663,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.34681,
    "lng": 100.5759,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n5340702123",
@@ -10718,7 +11675,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35321,
    "lng": 100.5703,
    "openingHours": "Th-Tu 11:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w253473514",
@@ -10729,7 +11687,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36008,
    "lng": 100.57744,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n12367054601",
@@ -10740,7 +11699,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.34437,
    "lng": 100.5564,
    "openingHours": "We-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w230405099",
@@ -10751,7 +11711,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36038,
    "lng": 100.57653,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n12258569332",
@@ -10762,7 +11723,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35577,
    "lng": 100.58015,
    "openingHours": "Mo-Su 09:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n13056238913",
@@ -10773,7 +11735,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35203,
    "lng": 100.59129,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n10729396526",
@@ -10784,7 +11747,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35423,
    "lng": 100.57992,
    "openingHours": "Mo-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n6713338085",
@@ -10795,7 +11759,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36033,
    "lng": 100.57235,
    "openingHours": "10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n4132208590",
@@ -10806,7 +11771,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35841,
    "lng": 100.57031,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n3935869769",
@@ -10817,7 +11783,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35663,
    "lng": 100.54849,
    "openingHours": "Mo-Su 06:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w313956672",
@@ -10828,7 +11795,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35632,
    "lng": 100.58298,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n4106732190",
@@ -10839,7 +11807,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35848,
    "lng": 100.57118,
    "openingHours": "08:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w738897305",
@@ -10850,7 +11819,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.366,
    "lng": 100.57356,
    "openingHours": "Mo-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n3144976442",
@@ -10861,7 +11831,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35973,
    "lng": 100.56874,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w751960765",
@@ -10872,7 +11843,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35894,
    "lng": 100.57811,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n13047773902",
@@ -10883,7 +11855,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.35332,
    "lng": 100.57242,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n3168379561",
@@ -10894,7 +11867,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.34064,
    "lng": 100.57731,
    "openingHours": "We-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n10660466493",
@@ -10905,7 +11879,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.34655,
    "lng": 100.56712,
    "openingHours": "09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w743359303",
@@ -10916,7 +11891,20 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36764,
    "lng": 100.53976,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
+  },
+  {
+   "id": "n13514771489",
+   "name": "ก๋วยเตี๋ยวปากหม้อ พนมสารคาม บางปะอิน",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 14.26227,
+   "lng": 100.61426,
+   "openingHours": "",
+   "notable": true,
+   "district": "บางปะอิน"
   }
  ],
  "มุกดาหาร": [
@@ -10929,7 +11917,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.54469,
    "lng": 104.72166,
    "openingHours": "Mo-Su 06:00-01:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n4715438091",
@@ -10940,7 +11929,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.54,
    "lng": 104.7211,
    "openingHours": "Mo-Su 07:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n14040635906",
@@ -10951,7 +11941,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.53417,
    "lng": 104.7134,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   }
  ],
  "น่าน": [
@@ -10964,7 +11955,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.18369,
    "lng": 100.92089,
    "openingHours": "Mo-Su 15:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n5572364122",
@@ -10975,7 +11967,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.3242,
    "lng": 100.71536,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "n13204573286",
@@ -10986,7 +11979,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.26701,
    "lng": 101.0112,
    "openingHours": "Mo-Su 09:00-20.30",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n12696263306",
@@ -10997,7 +11991,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.57126,
    "lng": 100.76978,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "w582233414",
@@ -11008,7 +12003,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.15275,
    "lng": 101.15398,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "บ่อเกลือ"
   },
   {
    "id": "n8045853168",
@@ -11019,7 +12015,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.91513,
    "lng": 100.88145,
    "openingHours": "Mo-Su 07:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "สันติสุข"
   },
   {
    "id": "n13935481737",
@@ -11030,7 +12027,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.77637,
    "lng": 100.75887,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n13703256370",
@@ -11041,7 +12039,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.32091,
    "lng": 100.88921,
    "openingHours": "Mo-Su 09:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงกลาง"
   },
   {
    "id": "w837040333",
@@ -11052,7 +12051,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.19834,
    "lng": 100.93512,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "w991037773",
@@ -11063,7 +12063,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.20744,
    "lng": 100.94185,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n7812114237",
@@ -11074,7 +12075,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.19837,
    "lng": 100.93513,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n6765709092",
@@ -11085,7 +12087,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78418,
    "lng": 100.78899,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ภูเพียง"
   },
   {
    "id": "n11076523255",
@@ -11096,7 +12099,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.76788,
    "lng": 100.75694,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "w526954625",
@@ -11107,7 +12111,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.11204,
    "lng": 100.80958,
    "openingHours": "Mo-Su 09:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าวังผา"
   },
   {
    "id": "n7393014985",
@@ -11118,7 +12123,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.17176,
    "lng": 100.92498,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n4064506514",
@@ -11129,7 +12135,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78109,
    "lng": 100.76969,
    "openingHours": "09:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n3614808877",
@@ -11140,7 +12147,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78686,
    "lng": 100.78917,
    "openingHours": "Mo-Sa 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n4721435391",
@@ -11151,7 +12159,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78928,
    "lng": 100.7867,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n8041657667",
@@ -11162,7 +12171,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.91603,
    "lng": 100.87951,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "สันติสุข"
   },
   {
    "id": "n13941651601",
@@ -11173,7 +12183,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.79012,
    "lng": 100.77035,
    "openingHours": "Mo-Su 08:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n2537988111",
@@ -11184,7 +12195,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.77529,
    "lng": 100.76969,
    "openingHours": "Mo-Su,PH 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n4361408595",
@@ -11195,7 +12207,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.75802,
    "lng": 100.76007,
    "openingHours": "Tu-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n4360858871",
@@ -11206,7 +12219,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.13589,
    "lng": 100.95325,
    "openingHours": "Mo-Su 08:00-18:30",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n7908397885",
@@ -11217,7 +12231,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.00056,
    "lng": 101.06575,
    "openingHours": "Mo-Su 06:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n3624146504",
@@ -11228,7 +12243,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78007,
    "lng": 100.7825,
    "openingHours": "PH,Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n13433825790",
@@ -11239,7 +12255,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.03901,
    "lng": 100.78687,
    "openingHours": "Mo,We-Su 09:00-17:00; 09:00-17:00; PH closed",
-   "notable": false
+   "notable": false,
+   "district": "ท่าวังผา"
   },
   {
    "id": "n4995809678",
@@ -11250,7 +12267,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.77832,
    "lng": 100.78384,
    "openingHours": "PH,Mo-Su 11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "ภูเพียง"
   },
   {
    "id": "n3716232518",
@@ -11261,7 +12279,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.1748,
    "lng": 100.91137,
    "openingHours": "sunrise-sunset",
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n3921306907",
@@ -11272,7 +12291,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.78119,
    "lng": 100.77257,
    "openingHours": "12:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n4360856270",
@@ -11283,7 +12303,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.0914,
    "lng": 101.15468,
    "openingHours": "08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บ่อเกลือ"
   }
  ],
  "ลพบุรี": [
@@ -11296,7 +12317,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.84554,
    "lng": 100.91086,
    "openingHours": "Mo-Su 11:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "พัฒนานิคม"
   },
   {
    "id": "n8889731349",
@@ -11307,7 +12329,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.77299,
    "lng": 100.69985,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n7447047110",
@@ -11318,7 +12341,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.07295,
    "lng": 100.80741,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "โคกสำโรง"
   },
   {
    "id": "n8909565464",
@@ -11329,7 +12353,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.77301,
    "lng": 100.69992,
    "openingHours": "Mo, We-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n8808188231",
@@ -11340,7 +12365,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.79411,
    "lng": 100.63584,
    "openingHours": "Mo, We-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n9420405324",
@@ -11351,7 +12377,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.81568,
    "lng": 100.99638,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "พัฒนานิคม"
   },
   {
    "id": "n8614138025",
@@ -11362,7 +12389,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.80293,
    "lng": 100.75227,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n13067970070",
@@ -11373,7 +12401,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.39334,
    "lng": 101.35887,
    "openingHours": "Mo-Su 05:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "ลำสนธิ"
   },
   {
    "id": "n13779441968",
@@ -11384,7 +12413,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.91861,
    "lng": 100.98627,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พัฒนานิคม"
   },
   {
    "id": "n7447047112",
@@ -11395,7 +12425,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.07259,
    "lng": 100.80679,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "โคกสำโรง"
   },
   {
    "id": "n12959099500",
@@ -11406,7 +12437,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.79266,
    "lng": 100.6235,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n11002584787",
@@ -11417,7 +12449,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.79559,
    "lng": 100.64335,
    "openingHours": "Mo 11:00-19:00; Tu-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   }
  ],
  "สุพรรณบุรี": [
@@ -11430,7 +12463,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37413,
    "lng": 99.87812,
    "openingHours": "Th-Tu 10:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n9255072017",
@@ -11441,7 +12475,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.82917,
    "lng": 100.11382,
    "openingHours": "Mo-Su 07:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เดิมบางนางบวช"
   },
   {
    "id": "n13051621236",
@@ -11452,7 +12487,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.32903,
    "lng": 99.86797,
    "openingHours": "Mo-Fr 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n13206036796",
@@ -11463,7 +12499,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.75716,
    "lng": 100.05734,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "สามชุก"
   },
   {
    "id": "n7619685009",
@@ -11474,7 +12511,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.17168,
    "lng": 100.1045,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "สองพี่น้อง"
   },
   {
    "id": "n13347957378",
@@ -11485,7 +12523,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.92723,
    "lng": 100.04865,
    "openingHours": "Mo-Su 08:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "เดิมบางนางบวช"
   },
   {
    "id": "n2965418276",
@@ -11496,7 +12535,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.48391,
    "lng": 100.11538,
    "openingHours": "Mo-Su 11:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w1130842034",
@@ -11507,7 +12547,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.467,
    "lng": 100.09084,
    "openingHours": "8.00-18.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n13086219944",
@@ -11518,7 +12559,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.77212,
    "lng": 99.92103,
    "openingHours": "Mo-Sa 13:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองหญ้าไซ"
   },
   {
    "id": "n13516119313",
@@ -11529,7 +12571,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.46408,
    "lng": 100.11028,
    "openingHours": "Mo-Fr 07:00-17:00; Sa-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n12147694189",
@@ -11540,7 +12583,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.45651,
    "lng": 100.09565,
    "openingHours": "Tu-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n13275145691",
@@ -11551,7 +12595,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.43319,
    "lng": 100.14388,
    "openingHours": "Tu-Fr 10:00-17:00; Sa 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n14069346319",
@@ -11562,7 +12607,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.56333,
    "lng": 100.01601,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n951384846",
@@ -11573,7 +12619,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.47598,
    "lng": 100.10354,
    "openingHours": "Mo-Su 06:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n1841339797",
@@ -11584,7 +12631,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.46842,
    "lng": 100.14888,
    "openingHours": "Mo-Su 10:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   }
  ],
  "เลย": [
@@ -11597,7 +12645,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.46487,
    "lng": 101.71626,
    "openingHours": "Mo-Su 11:00-14:00, 16:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n8221338951",
@@ -11608,7 +12657,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.4932,
    "lng": 101.70625,
    "openingHours": "Mo-Su 07:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n11932466407",
@@ -11619,7 +12669,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.29855,
    "lng": 101.95655,
    "openingHours": "Sa-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เอราวัณ"
   },
   {
    "id": "n2338939927",
@@ -11630,7 +12681,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.45535,
    "lng": 101.36765,
    "openingHours": "Mo-Su 06:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ภูเรือ"
   },
   {
    "id": "n12670379008",
@@ -11641,7 +12693,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.06618,
    "lng": 102.05196,
    "openingHours": "Mo-Su 17:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ผาขาว"
   },
   {
    "id": "n13947222301",
@@ -11652,7 +12705,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.47893,
    "lng": 101.72826,
    "openingHours": "Mo-Sa 07:00-16:00; Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n8221382343",
@@ -11663,7 +12717,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.49315,
    "lng": 101.70647,
    "openingHours": "Mo-Su 07:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n13949016301",
@@ -11674,7 +12729,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.48989,
    "lng": 101.72679,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n12511819825",
@@ -11685,7 +12741,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.89583,
    "lng": 101.65582,
    "openingHours": "Mo-Su 11:00-15:00,17:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n13660626251",
@@ -11696,7 +12753,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39377,
    "lng": 101.56557,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "วังสะพุง"
   },
   {
    "id": "n6991555785",
@@ -11707,7 +12765,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.89718,
    "lng": 101.675,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n4566763131",
@@ -11718,7 +12777,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.48711,
    "lng": 101.72869,
    "openingHours": "17:00-03:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n4647473192",
@@ -11729,7 +12789,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.48287,
    "lng": 101.72154,
    "openingHours": "Mo-Sa 11:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n4693397892",
@@ -11740,7 +12801,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.89287,
    "lng": 101.64771,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   }
  ],
  "ปราจีนบุรี": [
@@ -11753,7 +12815,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.13085,
    "lng": 101.46856,
    "openingHours": "08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปราจีนบุรี"
   },
   {
    "id": "n12723499519",
@@ -11764,7 +12827,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.07771,
    "lng": 101.51262,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ประจันตคาม"
   },
   {
    "id": "n12863075914",
@@ -11775,7 +12839,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.06942,
    "lng": 101.99146,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "นาดี"
   },
   {
    "id": "n5434377523",
@@ -11786,7 +12851,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.97997,
    "lng": 101.75257,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "กบินทร์บุรี"
   },
   {
    "id": "n14087623913",
@@ -11797,7 +12863,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.05344,
    "lng": 101.39086,
    "openingHours": "10.00-18.00 น.",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปราจีนบุรี"
   },
   {
    "id": "w431800572",
@@ -11808,7 +12875,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.87576,
    "lng": 101.56281,
    "openingHours": "6:00 - 17:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีมหาโพธิ"
   },
   {
    "id": "n11164355070",
@@ -11819,7 +12887,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.9053,
    "lng": 101.57782,
    "openingHours": "Mo-Sa 10:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีมหาโพธิ"
   },
   {
    "id": "n7008336988",
@@ -11830,7 +12899,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.00617,
    "lng": 101.70223,
    "openingHours": "Mo-Su 12:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "กบินทร์บุรี"
   }
  ],
  "ราชบุรี": [
@@ -11843,7 +12913,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.60789,
    "lng": 99.91043,
    "openingHours": "16:30-21:30,7",
-   "notable": false
+   "notable": false,
+   "district": "ดำเนินสะดวก"
   },
   {
    "id": "n9588376093",
@@ -11854,18 +12925,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54042,
    "lng": 99.82275,
    "openingHours": "8.30-18.00",
-   "notable": false
-  },
-  {
-   "id": "n11612424651",
-   "name": "ร้านข้าวใหม่ปลามัน",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.34126,
-   "lng": 99.88676,
-   "openingHours": "Mo-Su 10:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n8521302859",
@@ -11876,7 +12937,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.45616,
    "lng": 99.78902,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "w1533938233",
@@ -11887,18 +12949,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53498,
    "lng": 99.81239,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
-  },
-  {
-   "id": "n7877558792",
-   "name": "Hidden Tree Garden",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 13.40313,
-   "lng": 99.99262,
-   "openingHours": "We-Mo 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n13278716303",
@@ -11909,7 +12961,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.52523,
    "lng": 99.82332,
    "openingHours": "17:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n7944114685",
@@ -11920,7 +12973,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.85064,
    "lng": 99.84188,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n13202341458",
@@ -11931,7 +12985,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54718,
    "lng": 99.8402,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n8429233068",
@@ -11942,7 +12997,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53112,
    "lng": 99.8219,
    "openingHours": "Mo-Fr 08:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n14093887941",
@@ -11953,7 +13009,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82997,
    "lng": 99.92969,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "w934303419",
@@ -11964,7 +13021,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.50187,
    "lng": 99.7932,
    "openingHours": "Mo-Su 06:30-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n13658687225",
@@ -11975,18 +13033,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54019,
    "lng": 99.82676,
    "openingHours": "",
-   "notable": false
-  },
-  {
-   "id": "n5438845421",
-   "name": "Café 24th November",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 13.42527,
-   "lng": 99.95715,
-   "openingHours": "Mo-Su 07:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n12747261980",
@@ -11997,18 +13045,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.83067,
    "lng": 99.86857,
    "openingHours": "09:30-16:00",
-   "notable": false
-  },
-  {
-   "id": "n5731623545",
-   "name": "Oh! Krataay",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "",
-   "lat": 13.42372,
-   "lng": 99.99308,
-   "openingHours": "08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n13626605029",
@@ -12019,7 +13057,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.81614,
    "lng": 99.83466,
    "openingHours": "Tu-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n12874989909",
@@ -12030,7 +13069,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.83298,
    "lng": 99.86755,
    "openingHours": "Mo-Su 11:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n13108028549",
@@ -12041,18 +13081,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.8045,
    "lng": 99.86852,
    "openingHours": "11.30 - 21.00",
-   "notable": false
-  },
-  {
-   "id": "n10885732411",
-   "name": "ยุ้งเกลือ บ้านแหลม",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารทะเล",
-   "lat": 13.22897,
-   "lng": 99.97041,
-   "openingHours": "Th-Tu 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n4424533690",
@@ -12063,18 +13093,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54576,
    "lng": 99.35063,
    "openingHours": "Tu-Su 07:00-20:00",
-   "notable": false
-  },
-  {
-   "id": "n13111302122",
-   "name": "ร้านอาหารริมน้ำ สมุทรสงคราม",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.39285,
-   "lng": 99.9873,
-   "openingHours": "10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "สวนผึ้ง"
   },
   {
    "id": "n13609682210",
@@ -12085,7 +13105,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.46505,
    "lng": 99.88743,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "วัดเพลง"
   },
   {
    "id": "n7790179325",
@@ -12096,7 +13117,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.54889,
    "lng": 99.81695,
    "openingHours": "07.00 - 16.00 น.",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n5542795721",
@@ -12107,51 +13129,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53662,
    "lng": 99.82101,
    "openingHours": "Mo-Su 08:30-16:30",
-   "notable": false
-  },
-  {
-   "id": "n3806305851",
-   "name": "ครัวน้ำทิพย์ริมคลอง",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.42236,
-   "lng": 99.98401,
-   "openingHours": "10:00-20:00",
-   "notable": false
-  },
-  {
-   "id": "n5211677343",
-   "name": "เพื่อน",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.39151,
-   "lng": 99.9467,
-   "openingHours": "Mo-Su 11:00-23:00",
-   "notable": false
-  },
-  {
-   "id": "n12573781299",
-   "name": "Baan Khun Tawee",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.41039,
-   "lng": 99.99619,
-   "openingHours": "Mo-Fr 11:00-21:00; Sa, Su 10:00-21:00",
-   "notable": false
-  },
-  {
-   "id": "n5211642581",
-   "name": "Si Bang Chang Kitchen",
-   "kind": "ร้านอาหาร",
-   "emoji": "🍽️",
-   "cuisine": "อาหารไทย",
-   "lat": 13.42397,
-   "lng": 99.9557,
-   "openingHours": "Fr,Sa, Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   }
  ],
  "ตรัง": [
@@ -12164,7 +13143,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.40552,
    "lng": 99.51239,
    "openingHours": "Mo-Su 06:00-11:00",
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n13786280711",
@@ -12175,7 +13155,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.56848,
    "lng": 99.66765,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n7927921686",
@@ -12186,7 +13167,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.54167,
    "lng": 99.59431,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n14124415163",
@@ -12197,7 +13179,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.50563,
    "lng": 99.55885,
    "openingHours": "06:00-17.00",
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n13999723260",
@@ -12208,7 +13191,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.5271,
    "lng": 99.62543,
    "openingHours": "We-Mo 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n14122383571",
@@ -12219,7 +13203,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.5555,
    "lng": 99.6046,
    "openingHours": "10:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n14031043544",
@@ -12230,7 +13215,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.59781,
    "lng": 99.6891,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "นาโยง"
   },
   {
    "id": "n10149150217",
@@ -12241,7 +13227,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.20772,
    "lng": 99.71661,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ปะเหลียน"
   },
   {
    "id": "n10148916317",
@@ -12252,7 +13239,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.54702,
    "lng": 99.61358,
    "openingHours": "Mo-Su 10:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n617268801",
@@ -12263,7 +13251,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.55411,
    "lng": 99.60486,
    "openingHours": "Mo-Su,PH 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n6151554386",
@@ -12274,7 +13263,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.37228,
    "lng": 99.30859,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n13697069601",
@@ -12285,7 +13275,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.54125,
    "lng": 99.59865,
    "openingHours": "Mo-Su 05:00-12:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n12841063901",
@@ -12296,7 +13287,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.48644,
    "lng": 99.33116,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "สิเกา"
   },
   {
    "id": "n13695057901",
@@ -12307,7 +13299,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 7.54124,
    "lng": 99.59837,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   }
  ],
  "สระบุรี": [
@@ -12320,7 +13313,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.58706,
    "lng": 100.98361,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n13483145436",
@@ -12331,7 +13325,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37605,
    "lng": 101.00097,
    "openingHours": "08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n14109183865",
@@ -12342,7 +13337,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.33844,
    "lng": 100.85332,
    "openingHours": "Mo-Su 10:00-12:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n8806276637",
@@ -12353,7 +13349,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.71562,
    "lng": 100.80816,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พระพุทธบาท"
   },
   {
    "id": "n7947207173",
@@ -12364,7 +13361,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.74001,
    "lng": 100.82104,
    "openingHours": "Mo-Su 09:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "พระพุทธบาท"
   },
   {
    "id": "n8827011153",
@@ -12375,7 +13373,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.71694,
    "lng": 100.81181,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พระพุทธบาท"
   },
   {
    "id": "n8399370622",
@@ -12386,7 +13385,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.5268,
    "lng": 100.91449,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระบุรี"
   },
   {
    "id": "n8462654468",
@@ -12397,7 +13397,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.76291,
    "lng": 100.82416,
    "openingHours": "Fr-Su 09:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พระพุทธบาท"
   },
   {
    "id": "n10957082393",
@@ -12408,7 +13409,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.50796,
    "lng": 100.91517,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระบุรี"
   },
   {
    "id": "w1304281035",
@@ -12419,7 +13421,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.52977,
    "lng": 100.91539,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระบุรี"
   },
   {
    "id": "n13823319311",
@@ -12430,7 +13433,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37267,
    "lng": 100.97186,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n14020017963",
@@ -12441,7 +13445,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.59249,
    "lng": 100.91001,
    "openingHours": "Mo-Su 09:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n13660749217",
@@ -12452,7 +13457,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.57176,
    "lng": 100.91103,
    "openingHours": "08.00-15.00 น.",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระบุรี"
   },
   {
    "id": "n10117775740",
@@ -12463,7 +13469,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.3715,
    "lng": 100.96926,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n13644724847",
@@ -12474,7 +13481,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.36808,
    "lng": 100.8322,
    "openingHours": "Mo-Su 17:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n14108916360",
@@ -12485,7 +13493,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.78328,
    "lng": 101.04433,
    "openingHours": "06.00-13.00",
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n10117797669",
@@ -12496,7 +13505,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.37196,
    "lng": 100.96898,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n13238402112",
@@ -12507,7 +13517,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.40663,
    "lng": 100.89238,
    "openingHours": "Tu-Fr 09:00-16:00; Sa,Su 09:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n2669998064",
@@ -12518,7 +13529,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.52399,
    "lng": 100.92433,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระบุรี"
   },
   {
    "id": "n13707245556",
@@ -12529,7 +13541,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.4101,
    "lng": 100.85429,
    "openingHours": "Mo-Su 08:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n667881868",
@@ -12540,7 +13553,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.58989,
    "lng": 101.02342,
    "openingHours": "PH,Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n11031458606",
@@ -12551,7 +13565,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.59875,
    "lng": 101.00874,
    "openingHours": "Mo-Sa 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   }
  ],
  "พะเยา": [
@@ -12564,7 +13579,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.02245,
    "lng": 99.92079,
    "openingHours": "Tu-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "w543614180",
@@ -12575,7 +13591,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.16627,
    "lng": 99.89652,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n9447199817",
@@ -12586,7 +13603,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.34036,
    "lng": 100.12517,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "จุน"
   },
   {
    "id": "w742905483",
@@ -12597,7 +13615,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.09013,
    "lng": 99.90178,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n9844008554",
@@ -12608,7 +13627,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.56623,
    "lng": 100.29885,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ภูซาง"
   },
   {
    "id": "n13167252700",
@@ -12619,7 +13639,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.11883,
    "lng": 99.90696,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n4105198494",
@@ -12630,7 +13651,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.34228,
    "lng": 100.13104,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "จุน"
   },
   {
    "id": "n13924686501",
@@ -12641,7 +13663,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.54272,
    "lng": 100.29732,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "n13807667886",
@@ -12652,7 +13675,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.19339,
    "lng": 99.93924,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n10146935629",
@@ -12663,7 +13687,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.16392,
    "lng": 99.8972,
    "openingHours": "Sa,Su 07:00-11:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n3377504854",
@@ -12674,7 +13699,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.19192,
    "lng": 99.89278,
    "openingHours": "08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n3951424843",
@@ -12685,7 +13711,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.06144,
    "lng": 99.78092,
    "openingHours": "Mo, Tu, Th-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n13345977803",
@@ -12696,7 +13723,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.1698,
    "lng": 99.89689,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n11811329131",
@@ -12707,7 +13735,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.13478,
    "lng": 99.90887,
    "openingHours": "Mo-Su 09:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n6271588037",
@@ -12718,7 +13747,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.2056,
    "lng": 99.83629,
    "openingHours": "Th-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "w421207793",
@@ -12729,7 +13759,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 19.35472,
    "lng": 100.51087,
    "openingHours": "PH,Mo-Su 06:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ปง"
   }
  ],
  "ศรีสะเกษ": [
@@ -12742,7 +13773,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.64786,
    "lng": 104.64058,
    "openingHours": "15:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "n13252104882",
@@ -12753,7 +13785,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.71248,
    "lng": 104.19882,
    "openingHours": "14.30-22.00",
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   },
   {
    "id": "n12787511030",
@@ -12764,7 +13797,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.55287,
    "lng": 104.13292,
    "openingHours": "Tu-Su 08:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "ภูสิงห์"
   },
   {
    "id": "n13555705259",
@@ -12775,7 +13809,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.10116,
    "lng": 104.13,
    "openingHours": "Mo-Su 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "อุทุมพรพิสัย"
   },
   {
    "id": "w1164660267",
@@ -12786,7 +13821,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.11093,
    "lng": 104.33433,
    "openingHours": "Mo-Su 17:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "n8116369547",
@@ -12797,7 +13833,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.71757,
    "lng": 104.2024,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   },
   {
    "id": "n13068557054",
@@ -12808,7 +13845,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.1034,
    "lng": 104.32637,
    "openingHours": "08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "w759374344",
@@ -12819,7 +13857,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.12735,
    "lng": 104.14401,
    "openingHours": "Mo-Su,PH 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "อุทุมพรพิสัย"
   },
   {
    "id": "n1206519661",
@@ -12830,7 +13869,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.1223,
    "lng": 104.33313,
    "openingHours": "Mo-Su 10:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "n13904065026",
@@ -12841,7 +13881,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.65836,
    "lng": 104.222,
    "openingHours": "Mo-Sat 07.00-16.00",
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   }
  ],
  "นครสวรรค์": [
@@ -12854,7 +13895,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.27291,
    "lng": 100.34062,
    "openingHours": "Wen-Mon 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ตาคลี"
   },
   {
    "id": "n11617878346",
@@ -12865,7 +13907,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.47265,
    "lng": 100.17078,
    "openingHours": "Mo-Fr 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n13411304779",
@@ -12876,7 +13919,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.55699,
    "lng": 99.9809,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "โกรกพระ"
   },
   {
    "id": "n9347685558",
@@ -12887,7 +13931,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.89634,
    "lng": 99.39543,
    "openingHours": "Mo-Su 06:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่วงก์"
   },
   {
    "id": "w1257473984",
@@ -12898,7 +13943,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.73905,
    "lng": 100.11911,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n8356435915",
@@ -12909,7 +13955,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.53433,
    "lng": 100.64948,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ไพศาลี"
   },
   {
    "id": "n7940767458",
@@ -12920,7 +13967,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.71541,
    "lng": 100.10537,
    "openingHours": "Mo-Su 10:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n8589257423",
@@ -12931,7 +13979,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.86294,
    "lng": 99.64573,
    "openingHours": "06:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่วงก์"
   },
   {
    "id": "n5354600022",
@@ -12942,7 +13991,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70626,
    "lng": 100.13905,
    "openingHours": "Mo-Su 04:30-04:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n4478657289",
@@ -12953,7 +14003,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70184,
    "lng": 100.11823,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w1307952261",
@@ -12964,7 +14015,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.64489,
    "lng": 100.10734,
    "openingHours": "Sa-Th 10:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n4470799589",
@@ -12975,7 +14027,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70104,
    "lng": 100.11914,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w1537676426",
@@ -12986,7 +14039,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.74595,
    "lng": 100.00777,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w356475087",
@@ -12997,7 +14051,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70447,
    "lng": 100.12715,
    "openingHours": "07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n10556308187",
@@ -13008,7 +14063,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.69765,
    "lng": 100.12354,
    "openingHours": "11:00-14:00,17:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n10556308188",
@@ -13019,7 +14075,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.6976,
    "lng": 100.12336,
    "openingHours": "Mo-Fr 07:00-18:30; Sa-Su 07:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w1230066901",
@@ -13030,7 +14087,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70545,
    "lng": 100.05542,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n7756022346",
@@ -13041,7 +14099,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.73543,
    "lng": 100.02531,
    "openingHours": "08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w1230066900",
@@ -13052,7 +14111,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70513,
    "lng": 100.05537,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w356473831",
@@ -13063,7 +14123,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.70937,
    "lng": 100.13746,
    "openingHours": "06:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n6393121711",
@@ -13074,7 +14135,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.71886,
    "lng": 100.05746,
    "openingHours": "08:30-12:30,15:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   }
  ],
  "อุตรดิตถ์": [
@@ -13087,7 +14149,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.65482,
    "lng": 100.09063,
    "openingHours": "11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n13455355205",
@@ -13098,7 +14161,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.63703,
    "lng": 100.09461,
    "openingHours": "Mo-Sa 8.00-16.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n11528578963",
@@ -13109,7 +14173,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.63025,
    "lng": 100.08819,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n5955935787",
@@ -13120,7 +14185,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.59633,
    "lng": 100.12682,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n7721723362",
@@ -13131,7 +14197,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.61504,
    "lng": 100.08918,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n4170886509",
@@ -13142,7 +14209,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.58943,
    "lng": 100.13488,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   }
  ],
  "กำแพงเพชร": [
@@ -13155,7 +14223,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.10014,
    "lng": 99.49317,
    "openingHours": "Mo-Sa 07:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n11343583672",
@@ -13166,7 +14235,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.13073,
    "lng": 99.81713,
    "openingHours": "Mo-Su 06:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ขาณุวรลักษบุรี"
   },
   {
    "id": "w1228848461",
@@ -13177,7 +14247,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.09715,
    "lng": 99.48802,
    "openingHours": "Mo-Su 17:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n11633687969",
@@ -13188,7 +14259,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.12582,
    "lng": 99.31091,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1232445839",
@@ -13199,7 +14271,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.38812,
    "lng": 99.44394,
    "openingHours": "Mo-Su 06:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n8658169847",
@@ -13210,7 +14283,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.50238,
    "lng": 99.48266,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1308571318",
@@ -13221,7 +14295,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.46544,
    "lng": 99.50696,
    "openingHours": "Mo-Su 09:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1206374603",
@@ -13232,7 +14307,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.19583,
    "lng": 99.32975,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1228806449",
@@ -13243,7 +14319,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11179,
    "lng": 99.33364,
    "openingHours": "Mo-Fr 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1419333751",
@@ -13254,7 +14331,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.24622,
    "lng": 99.72035,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "คลองขลุง"
   },
   {
    "id": "w1306994421",
@@ -13265,7 +14343,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11969,
    "lng": 99.31926,
    "openingHours": "Mo-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1353078776",
@@ -13276,7 +14355,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11127,
    "lng": 99.5124,
    "openingHours": "Mo-Sa 07:30-16:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n13133824118",
@@ -13287,7 +14367,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.48692,
    "lng": 99.47401,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n9502035717",
@@ -13298,7 +14379,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.29032,
    "lng": 99.36338,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1222730435",
@@ -13309,7 +14391,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.0635,
    "lng": 99.37738,
    "openingHours": "Mo-Sa 06:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n9500249117",
@@ -13320,7 +14403,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.48184,
    "lng": 99.53462,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1409988548",
@@ -13331,7 +14415,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44714,
    "lng": 99.50151,
    "openingHours": "Mo-Su 09:00-14:00,16:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1385280815",
@@ -13342,7 +14427,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.18982,
    "lng": 99.45157,
    "openingHours": "Mo-Su 06:30-18:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1214446733",
@@ -13353,7 +14439,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11061,
    "lng": 99.51156,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n9507109417",
@@ -13364,7 +14451,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.50087,
    "lng": 100.02879,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ไทรงาม"
   },
   {
    "id": "w1374137862",
@@ -13375,7 +14463,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.9273,
    "lng": 99.46505,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ขาณุวรลักษบุรี"
   },
   {
    "id": "w1416066402",
@@ -13386,7 +14475,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.2009,
    "lng": 99.33225,
    "openingHours": "Mo-Su 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1319871038",
@@ -13397,7 +14487,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.49963,
    "lng": 99.68778,
    "openingHours": "Mo-Su 10:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1318787618",
@@ -13408,7 +14499,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.29409,
    "lng": 99.38734,
    "openingHours": "Mo-Su 08:00-16:30",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1228234407",
@@ -13419,7 +14511,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.21117,
    "lng": 99.72314,
    "openingHours": "Mo-Su 10:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองขลุง"
   },
   {
    "id": "w1288863841",
@@ -13430,7 +14523,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.09696,
    "lng": 99.36472,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1311694551",
@@ -13441,7 +14535,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.07024,
    "lng": 99.4068,
    "openingHours": "Th-Tu 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n12813254234",
@@ -13452,7 +14547,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.49768,
    "lng": 99.50074,
    "openingHours": "Mo-Su,PH 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n12550816401",
@@ -13463,7 +14559,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.44234,
    "lng": 99.52737,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1259696033",
@@ -13474,7 +14571,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.34455,
    "lng": 99.42453,
    "openingHours": "Mo-Su 08:00-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   }
  ],
  "สุโขทัย": [
@@ -13487,7 +14585,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01392,
    "lng": 99.82318,
    "openingHours": "Mo-Su 10:30-18:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n10628291805",
@@ -13498,7 +14597,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.17147,
    "lng": 99.84287,
    "openingHours": "Tu-Su 08:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n12417043646",
@@ -13509,7 +14609,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01542,
    "lng": 99.83096,
    "openingHours": "17.00-00.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n11515691069",
@@ -13520,7 +14621,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.53937,
    "lng": 99.80467,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n11703733168",
@@ -13531,7 +14633,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01711,
    "lng": 99.71522,
    "openingHours": "09:30-22:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n13919512443",
@@ -13542,7 +14645,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.31509,
    "lng": 99.63841,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งเสลี่ยม"
   },
   {
    "id": "n4681262689",
@@ -13553,7 +14657,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.61843,
    "lng": 99.82757,
    "openingHours": "Mo-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n11919287069",
@@ -13564,7 +14669,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.16543,
    "lng": 99.86925,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n9066422017",
@@ -13575,7 +14681,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01628,
    "lng": 99.80979,
    "openingHours": "Mo-Su 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n12360591496",
@@ -13586,7 +14693,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.09524,
    "lng": 99.8155,
    "openingHours": "We-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n703520064",
@@ -13597,7 +14705,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.00831,
    "lng": 99.81517,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n5691999823",
@@ -13608,7 +14717,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.00847,
    "lng": 99.81345,
    "openingHours": "Mo-Su 05:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n13310913243",
@@ -13619,7 +14729,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.55619,
    "lng": 99.75961,
    "openingHours": "17:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n4851391332",
@@ -13630,7 +14741,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01869,
    "lng": 99.7116,
    "openingHours": "Mo-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n13653801161",
@@ -13641,7 +14753,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.10551,
    "lng": 99.81682,
    "openingHours": "08:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n11702642419",
@@ -13652,7 +14765,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01763,
    "lng": 99.71005,
    "openingHours": "09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n5866962185",
@@ -13663,7 +14777,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01859,
    "lng": 99.71105,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n6175927240",
@@ -13674,7 +14789,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.32871,
    "lng": 99.51454,
    "openingHours": "Mo-Su 09:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งเสลี่ยม"
   },
   {
    "id": "n9796104117",
@@ -13685,7 +14801,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01388,
    "lng": 99.6984,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n6393119916",
@@ -13696,7 +14813,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01157,
    "lng": 99.80613,
    "openingHours": "08:30-12:30,15:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n4297401094",
@@ -13707,7 +14825,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01791,
    "lng": 99.82145,
    "openingHours": "Mo-Su 08:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n5029781121",
@@ -13718,7 +14837,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.02737,
    "lng": 99.81524,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n4920521125",
@@ -13729,7 +14849,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.01861,
    "lng": 99.70858,
    "openingHours": "Mo-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n7090129504",
@@ -13740,7 +14861,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.52735,
    "lng": 99.76846,
    "openingHours": "Mo-Su 06:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n8198319259",
@@ -13751,7 +14873,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39455,
    "lng": 99.7908,
    "openingHours": "Mo-Su 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n4851204321",
@@ -13762,7 +14885,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.02555,
    "lng": 99.87899,
    "openingHours": "Mo-Su 08:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n7202523383",
@@ -13773,7 +14897,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.33331,
    "lng": 99.50739,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งเสลี่ยม"
   }
  ],
  "บุรีรัมย์": [
@@ -13786,7 +14911,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.60316,
    "lng": 103.07865,
    "openingHours": "ทุกวัน 11.30-22.30",
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   },
   {
    "id": "n13987622214",
@@ -13797,7 +14923,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.9109,
    "lng": 103.07424,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n12467038179",
@@ -13808,7 +14935,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.29751,
    "lng": 103.20581,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "สตึก"
   },
   {
    "id": "n11092667934",
@@ -13819,7 +14947,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.15347,
    "lng": 102.91199,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ลำปลายมาศ"
   },
   {
    "id": "n12185336018",
@@ -13830,7 +14959,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.02913,
    "lng": 103.14819,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n13350713901",
@@ -13841,7 +14971,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.63761,
    "lng": 102.79417,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "นางรอง"
   },
   {
    "id": "n13350688001",
@@ -13852,7 +14983,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.63773,
    "lng": 102.79434,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "นางรอง"
   },
   {
    "id": "w1420708730",
@@ -13863,7 +14995,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.56406,
    "lng": 102.89966,
    "openingHours": "10:00–18:00 (Not Wednesday)",
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n13330515134",
@@ -13874,7 +15007,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.29157,
    "lng": 103.28974,
    "openingHours": "08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สตึก"
   },
   {
    "id": "n1655006049",
@@ -13885,7 +15019,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.63535,
    "lng": 102.78454,
    "openingHours": "Mo-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "นางรอง"
   },
   {
    "id": "n13088552044",
@@ -13896,7 +15031,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.65329,
    "lng": 103.1317,
    "openingHours": "09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "พลับพลาชัย"
   },
   {
    "id": "n4403700053",
@@ -13907,7 +15043,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.98973,
    "lng": 103.09238,
    "openingHours": "Mo-Sa 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n6439945541",
@@ -13918,7 +15055,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.98844,
    "lng": 103.10944,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n6439953395",
@@ -13929,7 +15067,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.98838,
    "lng": 103.1091,
    "openingHours": "Mo-Su 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n1130834487",
@@ -13940,7 +15079,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.99881,
    "lng": 103.1172,
    "openingHours": "Mo-Su 13:00-02:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n6337582538",
@@ -13951,7 +15091,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.99459,
    "lng": 103.0992,
    "openingHours": "We-Su 10:00-15:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n2623050214",
@@ -13962,7 +15103,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.64678,
    "lng": 102.79429,
    "openingHours": "09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "นางรอง"
   }
  ],
  "หนองบัวลำภู": [
@@ -13975,7 +15117,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.21178,
    "lng": 102.45517,
    "openingHours": "Mo-Su 06:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "n13296480678",
@@ -13986,7 +15129,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.23081,
    "lng": 102.50361,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "n6726995530",
@@ -13997,7 +15141,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.30123,
    "lng": 102.20491,
    "openingHours": "ก",
-   "notable": false
+   "notable": false,
+   "district": "นากลาง"
   },
   {
    "id": "n11276640148",
@@ -14008,7 +15153,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.95995,
    "lng": 102.26552,
    "openingHours": "Mo-Fr 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีบุญเรือง"
   },
   {
    "id": "n6919446985",
@@ -14019,7 +15165,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.29731,
    "lng": 102.21058,
    "openingHours": "Mo-Sa 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "นากลาง"
   }
  ],
  "นครนายก": [
@@ -14032,7 +15179,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.31124,
    "lng": 101.29507,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n13190817160",
@@ -14043,7 +15191,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.23242,
    "lng": 101.28564,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครนายก"
   }
  ],
  "บึงกาฬ": [
@@ -14056,7 +15205,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.3687,
    "lng": 103.65217,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองบึงกาฬ"
   },
   {
    "id": "n11585742861",
@@ -14067,7 +15217,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.98161,
    "lng": 103.75307,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "เซกา"
   },
   {
    "id": "n13339891702",
@@ -14078,7 +15229,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.17834,
    "lng": 103.74335,
    "openingHours": "Mo-Su 06:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ศรีวิไล"
   },
   {
    "id": "n12578566967",
@@ -14089,7 +15241,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.95028,
    "lng": 104.04673,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   }
  ],
  "กาฬสินธุ์": [
@@ -14102,7 +15255,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71131,
    "lng": 103.45103,
    "openingHours": "09.00-18.00",
-   "notable": false
+   "notable": false,
+   "district": "หนองกุงศรี"
   },
   {
    "id": "n11610904259",
@@ -14113,7 +15267,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.53965,
    "lng": 104.04584,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "กุฉินารายณ์"
   },
   {
    "id": "n12479841559",
@@ -14124,7 +15279,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.80175,
    "lng": 103.58896,
    "openingHours": "Mo-Su 11.00-23.00",
-   "notable": false
+   "notable": false,
+   "district": "สหัสขันธ์"
   },
   {
    "id": "n12473563870",
@@ -14135,7 +15291,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.33176,
    "lng": 103.57897,
    "openingHours": "Mo-Su 07:30-16:30",
-   "notable": false
+   "notable": false,
+   "district": "กมลาไสย"
   },
   {
    "id": "n12441711420",
@@ -14146,7 +15303,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.65191,
    "lng": 103.9105,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ห้วยผึ้ง"
   },
   {
    "id": "n4587796067",
@@ -14157,7 +15315,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.26604,
    "lng": 103.58407,
    "openingHours": "Mo-Su 05:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "กมลาไสย"
   },
   {
    "id": "n10245130055",
@@ -14168,7 +15327,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.53775,
    "lng": 104.06386,
    "openingHours": "Mo-Su 11:30-24:00",
-   "notable": false
+   "notable": false,
+   "district": "กุฉินารายณ์"
   },
   {
    "id": "n5980499161",
@@ -14179,7 +15339,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.4397,
    "lng": 103.51537,
    "openingHours": "08:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n12369084797",
@@ -14190,7 +15351,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.65591,
    "lng": 103.84736,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ห้วยผึ้ง"
   },
   {
    "id": "n13061344217",
@@ -14201,7 +15363,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.54601,
    "lng": 104.05523,
    "openingHours": "Tu,Th 10:00-20:00; We,Fr-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "กุฉินารายณ์"
   },
   {
    "id": "n12320899323",
@@ -14212,7 +15375,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.64363,
    "lng": 103.90138,
    "openingHours": "Mo-Sa 10:30-22:30",
-   "notable": false
+   "notable": false,
+   "district": "ห้วยผึ้ง"
   },
   {
    "id": "n7660372723",
@@ -14223,7 +15387,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.6272,
    "lng": 103.93704,
    "openingHours": "Mo-Su 12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ห้วยผึ้ง"
   },
   {
    "id": "n13711221918",
@@ -14234,7 +15399,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.69786,
    "lng": 103.50653,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สหัสขันธ์"
   }
  ],
  "สระแก้ว": [
@@ -14247,7 +15413,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.51086,
    "lng": 102.24946,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "คลองหาด"
   },
   {
    "id": "n14028349145",
@@ -14258,7 +15425,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.45429,
    "lng": 102.29954,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คลองหาด"
   },
   {
    "id": "n2643952650",
@@ -14269,7 +15437,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.82601,
    "lng": 102.07311,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "n12459474582",
@@ -14280,7 +15449,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.67725,
    "lng": 102.51847,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "อรัญประเทศ"
   },
   {
    "id": "n2645055411",
@@ -14291,7 +15461,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.84245,
    "lng": 102.61946,
    "openingHours": "09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "โคกสูง"
   },
   {
    "id": "n1713090318",
@@ -14302,7 +15473,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.74515,
    "lng": 102.32149,
    "openingHours": "Mo-Fr 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "วัฒนานคร"
   },
   {
    "id": "n10748458186",
@@ -14313,7 +15485,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.53413,
    "lng": 102.16458,
    "openingHours": "Mo-Su 18:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "วังน้ำเย็น"
   },
   {
    "id": "n9991965117",
@@ -14324,7 +15497,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.66813,
    "lng": 102.5464,
    "openingHours": "Mo-Su 06:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "อรัญประเทศ"
   }
  ],
  "ยะลา": [
@@ -14337,7 +15511,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55923,
    "lng": 101.2921,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12771456796",
@@ -14348,7 +15523,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55723,
    "lng": 101.28785,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n13373337895",
@@ -14359,7 +15535,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55344,
    "lng": 101.29501,
    "openingHours": "We-Mo 07:00-11:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12500827143",
@@ -14370,7 +15547,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.53969,
    "lng": 101.30134,
    "openingHours": "Sa-Su 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12973195614",
@@ -14381,7 +15559,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55177,
    "lng": 101.309,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n13012056096",
@@ -14392,7 +15571,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.54078,
    "lng": 101.29175,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12765603397",
@@ -14403,7 +15583,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.54467,
    "lng": 101.29149,
    "openingHours": "Mo-Su 16:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12906152788",
@@ -14414,7 +15595,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.26656,
    "lng": 101.26371,
    "openingHours": "Mo-Su 08:30-23:30",
-   "notable": false
+   "notable": false,
+   "district": "บันนังสตา"
   },
   {
    "id": "n8440648954",
@@ -14425,7 +15607,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55065,
    "lng": 101.27373,
    "openingHours": "10:30-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n13697305181",
@@ -14436,7 +15619,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.56869,
    "lng": 101.29626,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n9500509883",
@@ -14447,7 +15631,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.556,
    "lng": 101.28638,
    "openingHours": "09:30-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12569126260",
@@ -14458,7 +15643,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 5.77676,
    "lng": 101.06178,
    "openingHours": "Mo-Fr 08:30-17:00; Sa-Su 09:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "n8451592912",
@@ -14469,7 +15655,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.54226,
    "lng": 101.28781,
    "openingHours": "07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12879388725",
@@ -14480,7 +15667,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.54991,
    "lng": 101.28419,
    "openingHours": "Mo-Su 09:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n9465582655",
@@ -14491,7 +15679,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55462,
    "lng": 101.28876,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n13765469118",
@@ -14502,7 +15691,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 5.77254,
    "lng": 101.0721,
    "openingHours": "Mo-Su 07:30-15:30",
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "n12513270912",
@@ -14513,7 +15703,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.5149,
    "lng": 101.2715,
    "openingHours": "Mo-Fr 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n12645466729",
@@ -14524,7 +15715,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55985,
    "lng": 101.2859,
    "openingHours": "Mo-Su 09:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n11906727236",
@@ -14535,7 +15727,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.56515,
    "lng": 101.29552,
    "openingHours": "09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n9468031095",
@@ -14546,7 +15739,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.54208,
    "lng": 101.2554,
    "openingHours": "Mo-Th,Sa-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n9892865273",
@@ -14557,7 +15751,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55488,
    "lng": 101.28686,
    "openingHours": "Mo-Su 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n9895021475",
@@ -14568,7 +15763,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.55135,
    "lng": 101.27316,
    "openingHours": "Mo, Tu, Th-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n9195130014",
@@ -14579,7 +15775,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.54158,
    "lng": 101.28915,
    "openingHours": "Mo-Sa 09:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   }
  ],
  "ชุมพร": [
@@ -14592,7 +15789,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.47946,
    "lng": 99.1956,
    "openingHours": "Mo-Su 11:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n12927874602",
@@ -14603,7 +15801,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.49596,
    "lng": 99.19733,
    "openingHours": "Mo-Su 10:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n5510079821",
@@ -14614,7 +15813,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.47678,
    "lng": 99.19622,
    "openingHours": "Mo-Su 11:30-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n8597318914",
@@ -14625,7 +15825,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.13387,
    "lng": 99.09431,
    "openingHours": "09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งตะโก"
   },
   {
    "id": "n13316715046",
@@ -14636,7 +15837,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.77299,
    "lng": 99.07956,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "ละแม"
   },
   {
    "id": "n4099506365",
@@ -14647,7 +15849,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.49881,
    "lng": 99.18089,
    "openingHours": "Mo-Fr 16:00-00:00; Sa-Su 11:00-00:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n11345609217",
@@ -14658,7 +15861,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 9.94303,
    "lng": 99.08048,
    "openingHours": "Mo-Su 07:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "หลังสวน"
   },
   {
    "id": "n9536940117",
@@ -14669,7 +15873,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.48273,
    "lng": 99.20168,
    "openingHours": "Mo-Su 06:30-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n12924903001",
@@ -14680,7 +15885,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.49351,
    "lng": 99.17882,
    "openingHours": "Mo-Su 05:00-10:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n5225792821",
@@ -14691,7 +15897,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.48448,
    "lng": 99.19676,
    "openingHours": "Tu-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n5225778622",
@@ -14702,7 +15909,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.46903,
    "lng": 99.18615,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n12672792001",
@@ -14713,7 +15921,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.43473,
    "lng": 99.25666,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n5511891021",
@@ -14724,7 +15933,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.4701,
    "lng": 99.18162,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n5458223822",
@@ -14735,7 +15945,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.49603,
    "lng": 99.17379,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n5836053085",
@@ -14746,7 +15957,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.49974,
    "lng": 99.17788,
    "openingHours": "Mo-Su 07:30-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n13646804698",
@@ -14757,7 +15969,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 10.36315,
    "lng": 99.25319,
    "openingHours": "09:30-24:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   }
  ],
  "ตาก": [
@@ -14770,7 +15983,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.68588,
    "lng": 98.56321,
    "openingHours": "10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n13162425250",
@@ -14781,7 +15995,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71327,
    "lng": 98.55019,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n14090741866",
@@ -14792,7 +16007,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.04707,
    "lng": 99.0569,
    "openingHours": "06:00-12:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านตาก"
   },
   {
    "id": "n13579713512",
@@ -14803,7 +16019,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.91526,
    "lng": 99.09139,
    "openingHours": "07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "w737503514",
@@ -14814,7 +16031,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.63733,
    "lng": 98.59817,
    "openingHours": "Mo-Su 08:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n11035170005",
@@ -14825,7 +16043,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71312,
    "lng": 98.56427,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n10145431417",
@@ -14836,7 +16055,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.72949,
    "lng": 98.57095,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n12459826043",
@@ -14847,7 +16067,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.06701,
    "lng": 99.27082,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n4565057090",
@@ -14858,7 +16079,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71173,
    "lng": 98.55809,
    "openingHours": "Mo-Su 16:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n3339840634",
@@ -14869,7 +16091,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71816,
    "lng": 98.58309,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n13533704064",
@@ -14880,7 +16103,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.87515,
    "lng": 99.12235,
    "openingHours": "Mo-Su 04:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "w689977263",
@@ -14891,7 +16115,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.51281,
    "lng": 98.7136,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "พบพระ"
   },
   {
    "id": "n4571275190",
@@ -14902,7 +16127,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71661,
    "lng": 98.57976,
    "openingHours": "Mo-Su 11:00-22:30",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n3339201907",
@@ -14913,7 +16139,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.97805,
    "lng": 98.52749,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ระมาด"
   },
   {
    "id": "n12408658001",
@@ -14924,7 +16151,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.86975,
    "lng": 99.13465,
    "openingHours": "Mo-Su 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n5865286084",
@@ -14935,7 +16163,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.05059,
    "lng": 99.07697,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านตาก"
   },
   {
    "id": "n4689988481",
@@ -14946,7 +16175,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71552,
    "lng": 98.55691,
    "openingHours": "08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "w759799775",
@@ -14957,7 +16187,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.86701,
    "lng": 99.11974,
    "openingHours": "Mo-Su 09:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n5643167321",
@@ -14968,7 +16199,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.8524,
    "lng": 99.11505,
    "openingHours": "Mo-Su 07:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n10962620205",
@@ -14979,7 +16211,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71422,
    "lng": 98.57429,
    "openingHours": "Mo-Su 10:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n4595642592",
@@ -14990,7 +16223,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.89155,
    "lng": 99.10663,
    "openingHours": "Mo-Su 11:00-23:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n10961201305",
@@ -15001,7 +16235,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.7123,
    "lng": 98.57213,
    "openingHours": "Mo-Su 14:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n12584413502",
@@ -15012,7 +16247,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.72047,
    "lng": 98.57908,
    "openingHours": "Tu-Su 07:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n3339840635",
@@ -15023,7 +16259,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71824,
    "lng": 98.58535,
    "openingHours": "08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n12591759502",
@@ -15034,7 +16271,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.70563,
    "lng": 98.60683,
    "openingHours": "Fr-We 07:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n3798121744",
@@ -15045,7 +16283,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71509,
    "lng": 98.57086,
    "openingHours": "Tu-Su 11:00-14:00, 16:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n2108036945",
@@ -15056,7 +16295,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71305,
    "lng": 98.55993,
    "openingHours": "Mo-Fr 10:00-24:00; Sa-Su 15:00-01:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n6310791789",
@@ -15067,7 +16307,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71742,
    "lng": 98.58141,
    "openingHours": "Mo-Su 18:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n2074905094",
@@ -15078,7 +16319,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.71404,
    "lng": 98.56192,
    "openingHours": "Tu-Su 08:00-23:00; Mo 18:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   }
  ],
  "สกลนคร": [
@@ -15091,7 +16333,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.13312,
    "lng": 104.14362,
    "openingHours": "Th-Tu 11:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13303063725",
@@ -15102,7 +16345,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.29214,
    "lng": 103.63796,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "วาริชภูมิ"
   },
   {
    "id": "n10180156973",
@@ -15113,7 +16357,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.21378,
    "lng": 104.09679,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n11806533144",
@@ -15124,7 +16369,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.78717,
    "lng": 103.72961,
    "openingHours": "Mo-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "คำตากล้า"
   },
   {
    "id": "n12896189601",
@@ -15135,7 +16381,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.16352,
    "lng": 104.14997,
    "openingHours": "Mo-Su 08:00-14:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13343937201",
@@ -15146,7 +16393,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.86285,
    "lng": 103.9326,
    "openingHours": "Mo-Fr 06:30-18:00; Sa-Su 06:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ภูพาน"
   }
  ],
  "สมุทรสงคราม": [
@@ -15159,7 +16407,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.40623,
    "lng": 100.00603,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "n13382660694",
@@ -15170,7 +16419,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.44691,
    "lng": 99.94762,
    "openingHours": "Mo-Su 07:30-17:00",
-   "notable": false
+   "notable": false,
+   "district": "อัมพวา"
   },
   {
    "id": "n5855030822",
@@ -15181,7 +16431,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.38709,
    "lng": 99.98372,
    "openingHours": "Mo-Fr 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "n12712099738",
@@ -15192,7 +16443,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.44224,
    "lng": 99.93672,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บางคนที"
   },
   {
    "id": "n5211691166",
@@ -15203,7 +16455,128 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 13.36728,
    "lng": 99.95543,
    "openingHours": "We off",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n7965434562",
+   "name": "Salt Lake de Maeklong",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 13.42656,
+   "lng": 100.03963,
+   "openingHours": "Mo-Su 10:00-18:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n11612424651",
+   "name": "ร้านข้าวใหม่ปลามัน",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.34126,
+   "lng": 99.88676,
+   "openingHours": "Mo-Su 10:00-20:30",
+   "notable": false,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "n7877558792",
+   "name": "Hidden Tree Garden",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 13.40313,
+   "lng": 99.99262,
+   "openingHours": "We-Mo 09:00-17:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n5438845421",
+   "name": "Café 24th November",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 13.42527,
+   "lng": 99.95715,
+   "openingHours": "Mo-Su 07:00-17:30",
+   "notable": false,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "n5731623545",
+   "name": "Oh! Krataay",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "",
+   "lat": 13.42372,
+   "lng": 99.99308,
+   "openingHours": "08:00-17:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n13111302122",
+   "name": "ร้านอาหารริมน้ำ สมุทรสงคราม",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.39285,
+   "lng": 99.9873,
+   "openingHours": "10:00-18:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n3806305851",
+   "name": "ครัวน้ำทิพย์ริมคลอง",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.42236,
+   "lng": 99.98401,
+   "openingHours": "10:00-20:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n5211677343",
+   "name": "เพื่อน",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.39151,
+   "lng": 99.9467,
+   "openingHours": "Mo-Su 11:00-23:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n12573781299",
+   "name": "Baan Khun Tawee",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.41039,
+   "lng": 99.99619,
+   "openingHours": "Mo-Fr 11:00-21:00; Sa, Su 10:00-21:00",
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n5211642581",
+   "name": "Si Bang Chang Kitchen",
+   "kind": "ร้านอาหาร",
+   "emoji": "🍽️",
+   "cuisine": "อาหารไทย",
+   "lat": 13.42397,
+   "lng": 99.9557,
+   "openingHours": "Fr,Sa, Su 11:00-20:00",
+   "notable": false,
+   "district": "อัมพวา"
   }
  ],
  "ลำพูน": [
@@ -15216,7 +16589,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.46231,
    "lng": 99.17756,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ทา"
   },
   {
    "id": "w1474360731",
@@ -15227,7 +16601,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.57979,
    "lng": 99.00547,
    "openingHours": "7.30-16.30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n4650836990",
@@ -15238,7 +16613,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.78314,
    "lng": 98.95363,
    "openingHours": "Mo-Su 10:00-23:55",
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "n9494423917",
@@ -15249,7 +16625,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.02019,
    "lng": 98.88435,
    "openingHours": "Mo-Su 08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "w602746210",
@@ -15260,7 +16637,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.58883,
    "lng": 99.04451,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n13573855096",
@@ -15271,7 +16649,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.5369,
    "lng": 99.01516,
    "openingHours": "Mo-Sa 16:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n3423229715",
@@ -15282,7 +16661,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.59435,
    "lng": 99.01789,
    "openingHours": "Tu-Su 10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n13573937532",
@@ -15293,7 +16673,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.53678,
    "lng": 99.01549,
    "openingHours": "Mo-Su 08:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n13206822548",
@@ -15304,7 +16685,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.58112,
    "lng": 99.10219,
    "openingHours": "Tu-Fr 17:00-22:00; Sa,Su 10:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n1059078014",
@@ -15315,7 +16697,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.58602,
    "lng": 99.04966,
    "openingHours": "12.00 - 19.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n10575980541",
@@ -15326,7 +16709,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.46155,
    "lng": 99.05317,
    "openingHours": "Mo-Sa 09:00-18:30; Su 06:30 - 20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n9494346917",
@@ -15337,7 +16721,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.47028,
    "lng": 98.92694,
    "openingHours": "Mo-Su 06:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "ป่าซาง"
   },
   {
    "id": "w483649118",
@@ -15348,7 +16733,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.55454,
    "lng": 99.04007,
    "openingHours": "08:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n6207735500",
@@ -15359,7 +16745,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.65276,
    "lng": 99.13853,
    "openingHours": "Tu-Su 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านธิ"
   },
   {
    "id": "n4041519989",
@@ -15370,7 +16757,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.45964,
    "lng": 99.18141,
    "openingHours": "Mo-Su 06:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "แม่ทา"
   },
   {
    "id": "n5632683725",
@@ -15381,7 +16769,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.57245,
    "lng": 99.00087,
    "openingHours": "07:00-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n12350716263",
@@ -15392,7 +16781,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 18.47214,
    "lng": 98.82035,
    "openingHours": "Mo-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "ป่าซาง"
   }
  ],
  "ชัยภูมิ": [
@@ -15405,7 +16795,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.76606,
    "lng": 102.00093,
    "openingHours": "Mo-Su 10:00-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n12684621440",
@@ -15416,7 +16807,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.80249,
    "lng": 102.02437,
    "openingHours": "Mo-Su 07:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n14014325424",
@@ -15427,7 +16819,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11126,
    "lng": 102.25831,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "แก้งคร้อ"
   },
   {
    "id": "n13640695511",
@@ -15438,7 +16831,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.81253,
    "lng": 102.03379,
    "openingHours": "Mo-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   }
  ],
  "ชัยนาท": [
@@ -15451,7 +16845,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.29316,
    "lng": 100.16886,
    "openingHours": "24/7",
-   "notable": false
+   "notable": false,
+   "district": "มโนรมย์"
   },
   {
    "id": "n9255226717",
@@ -15462,7 +16857,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.23655,
    "lng": 100.10429,
    "openingHours": "Mo-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   }
  ],
  "อ่างทอง": [
@@ -15475,7 +16871,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.49582,
    "lng": 100.44618,
    "openingHours": "Fr-We 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "ป่าโมก"
   },
   {
    "id": "w1328483724",
@@ -15486,7 +16883,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.59251,
    "lng": 100.45123,
    "openingHours": "PH,Mo-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1298963313",
@@ -15497,7 +16895,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.60645,
    "lng": 100.44699,
    "openingHours": "",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "n7734019434",
@@ -15508,7 +16907,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.59317,
    "lng": 100.45191,
    "openingHours": "PH,Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "n13688258241",
@@ -15519,7 +16919,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.55103,
    "lng": 100.31529,
    "openingHours": "Mo-Su 10:00-17:00",
-   "notable": false
+   "notable": false,
+   "district": "วิเศษชัยชาญ"
   },
   {
    "id": "n10267787881",
@@ -15530,7 +16931,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.59341,
    "lng": 100.44945,
    "openingHours": "PH,Mo-Su 08:00-19:20",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "n11459278608",
@@ -15541,7 +16943,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.58132,
    "lng": 100.46084,
    "openingHours": "10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1262489810",
@@ -15552,7 +16955,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.5827,
    "lng": 100.45196,
    "openingHours": "Mo-Su 10:00-19:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   }
  ],
  "ปัตตานี": [
@@ -15565,7 +16969,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.87099,
    "lng": 101.23792,
    "openingHours": "06:30-15:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "w1414592465",
@@ -15576,7 +16981,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.85613,
    "lng": 101.25158,
    "openingHours": "Mo-Su 08:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "n13012071913",
@@ -15587,7 +16993,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.86133,
    "lng": 101.24693,
    "openingHours": "Mo-Su 07:30-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "n13476272336",
@@ -15598,7 +17005,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.59776,
    "lng": 101.34336,
    "openingHours": "Mo-Su 08:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "ยะรัง"
   },
   {
    "id": "n13148970212",
@@ -15609,7 +17017,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.59893,
    "lng": 101.34133,
    "openingHours": "Mo-Fr 09:00-21:00; Sa,Su 13:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ยะรัง"
   },
   {
    "id": "n12624710845",
@@ -15620,7 +17029,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.86914,
    "lng": 101.25438,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "n4918100020",
@@ -15631,7 +17041,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.88171,
    "lng": 101.23466,
    "openingHours": "Mo-Sa 08:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "n9502088478",
@@ -15642,7 +17053,20 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.85732,
    "lng": 101.25147,
    "openingHours": "Mo-Th,Sa-Su 10:00+; Fr 14:00+",
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
+  },
+  {
+   "id": "n12770454489",
+   "name": "Floc Coff",
+   "kind": "คาเฟ่",
+   "emoji": "☕",
+   "cuisine": "กาแฟ",
+   "lat": 6.70055,
+   "lng": 101.61967,
+   "openingHours": "Mo-Su 10:00-22:00",
+   "notable": false,
+   "district": "สายบุรี"
   }
  ],
  "ยโสธร": [
@@ -15655,7 +17079,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.79918,
    "lng": 104.14325,
    "openingHours": "Mo-Su 11.00-22.00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "n5568699585",
@@ -15666,7 +17091,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.78749,
    "lng": 104.16984,
    "openingHours": "07:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   }
  ],
  "พิจิตร": [
@@ -15679,7 +17105,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.48804,
    "lng": 100.48078,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "สากเหล็ก"
   },
   {
    "id": "n9255420320",
@@ -15690,7 +17117,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.13344,
    "lng": 100.12497,
    "openingHours": "Mo-Su 07:30-17:30",
-   "notable": false
+   "notable": false,
+   "district": "บึงนาราง"
   },
   {
    "id": "n5982600634",
@@ -15701,7 +17129,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.11873,
    "lng": 100.12678,
    "openingHours": "Mo-Fr 06:00-21:00; Sa-Su 06:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "บึงนาราง"
   }
  ],
  "นครพนม": [
@@ -15714,7 +17143,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39559,
    "lng": 104.78572,
    "openingHours": "07:00-15:30; We off",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n6153867412",
@@ -15725,7 +17155,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 16.94529,
    "lng": 104.72748,
    "openingHours": "Mo-Su 09:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "ธาตุพนม"
   },
   {
    "id": "n7265936431",
@@ -15736,7 +17167,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.3521,
    "lng": 104.78788,
    "openingHours": "Mo-Su 06:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n13773187801",
@@ -15747,7 +17179,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41363,
    "lng": 104.77844,
    "openingHours": "Mo-Su 07:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n12570735664",
@@ -15758,7 +17191,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39137,
    "lng": 104.79028,
    "openingHours": "12:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n12827631601",
@@ -15769,7 +17203,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.37951,
    "lng": 104.79445,
    "openingHours": "Mo-Su 11:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n13957260601",
@@ -15780,7 +17215,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.38684,
    "lng": 104.79304,
    "openingHours": "Mo-Su 09:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n12545861111",
@@ -15791,7 +17227,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.9581,
    "lng": 104.21082,
    "openingHours": "Mo-Su 06:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพง"
   },
   {
    "id": "n13956750001",
@@ -15802,7 +17239,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.4043,
    "lng": 104.78768,
    "openingHours": "Mo-Su 06:00-13:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n13762360302",
@@ -15813,7 +17251,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.39501,
    "lng": 104.78194,
    "openingHours": "Mo-Su 08:30-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n11357794670",
@@ -15824,7 +17263,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.43383,
    "lng": 104.76188,
    "openingHours": "Mo-Su 09:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n12042748869",
@@ -15835,7 +17275,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.40439,
    "lng": 104.78572,
    "openingHours": "Mo-Su 10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n13969883901",
@@ -15846,7 +17287,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.41119,
    "lng": 104.72774,
    "openingHours": "Fr-Mo 12:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n12803456101",
@@ -15857,7 +17299,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.35804,
    "lng": 104.78911,
    "openingHours": "Mo-Su 07:00-16:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n7265936430",
@@ -15868,7 +17311,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 17.3521,
    "lng": 104.78792,
    "openingHours": "Mo-Sa 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   }
  ],
  "นราธิวาส": [
@@ -15881,18 +17325,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.39974,
    "lng": 101.69953,
    "openingHours": "Mo-Su 11:00-21:00",
-   "notable": false
-  },
-  {
-   "id": "n12770454489",
-   "name": "Floc Coff",
-   "kind": "คาเฟ่",
-   "emoji": "☕",
-   "cuisine": "กาแฟ",
-   "lat": 6.70055,
-   "lng": 101.61967,
-   "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "ยี่งอ"
   },
   {
    "id": "n6824545585",
@@ -15903,7 +17337,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.02136,
    "lng": 101.96106,
    "openingHours": "Mo-Su 07:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "สุไหงโก-ลก"
   },
   {
    "id": "n13012047380",
@@ -15914,7 +17349,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.0209,
    "lng": 101.96,
    "openingHours": "07:00-20:00; Fr 07:00-12:00,13:30-21:30",
-   "notable": false
+   "notable": false,
+   "district": "สุไหงโก-ลก"
   },
   {
    "id": "n10168652014",
@@ -15925,7 +17361,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.40507,
    "lng": 101.52789,
    "openingHours": "Mo-Sa 10:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "รือเสาะ"
   },
   {
    "id": "n13703381344",
@@ -15936,7 +17373,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.4485,
    "lng": 101.80935,
    "openingHours": "11:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n11915133116",
@@ -15947,7 +17385,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.40719,
    "lng": 101.80429,
    "openingHours": "10:00-18:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n11649286091",
@@ -15958,7 +17397,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.39153,
    "lng": 101.51618,
    "openingHours": "Mo-Su 10:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "รือเสาะ"
   },
   {
    "id": "n6885018072",
@@ -15969,7 +17409,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 5.94408,
    "lng": 101.771,
    "openingHours": "Mo-Su 10:00-18:30; Fr off",
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n12113834366",
@@ -15980,7 +17421,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.39765,
    "lng": 101.51989,
    "openingHours": "Mo-Sa 08:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "รือเสาะ"
   },
   {
    "id": "n6881453370",
@@ -15991,7 +17433,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 5.94037,
    "lng": 101.77028,
    "openingHours": "-17:00",
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n12770882131",
@@ -16002,7 +17445,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.02122,
    "lng": 101.96316,
    "openingHours": "Mo-Su 08:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "สุไหงโก-ลก"
   },
   {
    "id": "n10161828438",
@@ -16013,7 +17457,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.37817,
    "lng": 101.50847,
    "openingHours": "10:00-20:00",
-   "notable": false
+   "notable": false,
+   "district": "รือเสาะ"
   },
   {
    "id": "n11294733363",
@@ -16024,7 +17469,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.52548,
    "lng": 101.75876,
    "openingHours": "09:00-21:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n11259035941",
@@ -16035,7 +17481,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 5.94184,
    "lng": 101.76927,
    "openingHours": "Mo-Su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n9192915421",
@@ -16046,7 +17493,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 6.42489,
    "lng": 101.81604,
    "openingHours": "Tu-Su 10:30-19:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   }
  ],
  "สิงห์บุรี": [
@@ -16059,7 +17507,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.89419,
    "lng": 100.39424,
    "openingHours": "Mo-Su 15:00-23:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสิงห์บุรี"
   },
   {
    "id": "n13046949574",
@@ -16070,7 +17519,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.89265,
    "lng": 100.40038,
    "openingHours": "08:00-15:00; Th off",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสิงห์บุรี"
   },
   {
    "id": "n12330667367",
@@ -16081,7 +17531,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.76078,
    "lng": 100.40404,
    "openingHours": "Sa-Su 09.00-17.00",
-   "notable": false
+   "notable": false,
+   "district": "ท่าช้าง"
   },
   {
    "id": "n9876061567",
@@ -16092,7 +17543,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 14.89546,
    "lng": 100.39384,
    "openingHours": "Tu-Su",
-   "notable": false
+   "notable": false,
+   "district": "เมืองสิงห์บุรี"
   }
  ],
  "อุทัยธานี": [
@@ -16105,7 +17557,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.38469,
    "lng": 100.02675,
    "openingHours": "Su-Fr 15:00-21:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "w1341015585",
@@ -16116,7 +17569,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.45402,
    "lng": 99.58576,
    "openingHours": "Mo-su 09:00-19:00",
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "w1123531976",
@@ -16127,7 +17581,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.38632,
    "lng": 99.8448,
    "openingHours": "12.00-20.00",
-   "notable": false
+   "notable": false,
+   "district": "หนองฉาง"
   },
   {
    "id": "n14019501817",
@@ -16138,7 +17593,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.37652,
    "lng": 100.02207,
    "openingHours": "Mo-Su 16:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "w1012927442",
@@ -16149,7 +17605,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.38354,
    "lng": 100.01861,
    "openingHours": "Mo-Su 05:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   }
  ],
  "อำนาจเจริญ": [
@@ -16162,7 +17619,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.88178,
    "lng": 104.62264,
    "openingHours": "Mo-Sa 16:00-22:00",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "w832454599",
@@ -16173,7 +17631,8 @@ export const OSM_RESTAURANTS: Record<string, OsmRestaurant[]> = {
    "lat": 15.78357,
    "lng": 104.63971,
    "openingHours": "10:00-20:30",
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   }
  ]
 };

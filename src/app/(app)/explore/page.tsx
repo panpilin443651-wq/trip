@@ -1,14 +1,16 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PageHeader } from "@/components/PageHeader";
+import type { DistrictCount } from "@/app/api/districts/route";
+import { DistrictPicks } from "@/components/DistrictPicks";
+import { ExplorePlaceSearch } from "@/components/ExplorePlaceSearch";
 import { PlaceDetailSheet } from "@/components/PlaceDetailSheet";
 import {
   Badge,
   Button,
   Card,
   Field,
-  Input,
   Select,
   Sheet,
 } from "@/components/ui";
@@ -18,7 +20,7 @@ import {
   PROVINCES,
   type SuggestedPlace,
 } from "@/data/provinces";
-import { ProvinceSelect } from "@/components/ProvinceSelect";
+import { ProvinceCombobox } from "@/components/ProvinceCombobox";
 import { districtsOf } from "@/data/districts";
 import { cn } from "@/lib/cn";
 import {
@@ -65,7 +67,35 @@ export default function ExplorePage() {
   // อำเภอที่เลือกไว้เพื่อกรองสถานที่ ว่าง = ดูทั้งจังหวัด
   const [district, setDistrict] = useState<string>("");
 
-  // อำเภอที่มีสถานที่แนะนำจริง ไม่ต้องโชว์อำเภอที่ไม่มีอะไรเลย
+  /**
+   * อำเภอที่มีอะไรให้ดูจริง — รวมทั้งที่คัดไว้เองและที่มาจาก OpenStreetMap
+   *
+   * ผูกผลกับจังหวัดที่ขอไป ผลของจังหวัดเก่าจะถูกมองข้ามเองเมื่อคีย์ไม่ตรง
+   * จึงไม่ต้องล้างค่าเก่าใน effect ซึ่งติดกฎ react-hooks/set-state-in-effect
+   */
+  const [osmDistricts, setOsmDistricts] = useState<{
+    province: string;
+    rows: DistrictCount[];
+  }>({ province: "", rows: [] });
+
+  useEffect(() => {
+    let cancelled = false;
+    fetch(`/api/districts?province=${encodeURIComponent(province.name)}`, {
+      signal: AbortSignal.timeout(15000),
+    })
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("districts"))))
+      .then((rows: DistrictCount[]) => {
+        if (!cancelled) setOsmDistricts({ province: province.name, rows });
+      })
+      .catch(() => {
+        // ไม่ได้ก็ไม่เป็นไร ยังเหลืออำเภอจากรายการที่คัดไว้เอง
+        if (!cancelled) setOsmDistricts({ province: province.name, rows: [] });
+      });
+    return () => {
+      cancelled = true;
+    };
+  }, [province.name]);
+
   const districtsWithPlaces = useMemo(() => {
     const known = new Set(districtsOf(province.name));
     const found = new Set(
@@ -73,8 +103,22 @@ export default function ExplorePage() {
         .map((place) => place.district)
         .filter((d): d is string => !!d && known.has(d)),
     );
+    if (osmDistricts.province === province.name) {
+      for (const row of osmDistricts.rows) found.add(row.name);
+    }
     return [...found].sort((a, b) => a.localeCompare(b, "th"));
-  }, [province]);
+  }, [province, osmDistricts]);
+
+  /** จำนวนที่จะโชว์บนชิปอำเภอ — รวมทั้งสองแหล่ง */
+  const countInDistrict = (name: string) => {
+    const curated = province.places.filter((p) => p.district === name).length;
+    const osm =
+      osmDistricts.province === province.name
+        ? (osmDistricts.rows.find((r) => r.name === name)?.places ?? 0) +
+          (osmDistricts.rows.find((r) => r.name === name)?.food ?? 0)
+        : 0;
+    return curated + osm;
+  };
 
   /**
    * กรองตามอำเภอและคำค้น แล้วดันที่ติดดาวขึ้นบนสุด
@@ -98,6 +142,15 @@ export default function ExplorePage() {
       (a, b) => Number(!!b.featured) - Number(!!a.featured),
     );
   }, [province, district, query]);
+
+  /** ที่คัดไว้เองของอำเภอที่เลือก — ส่งให้ช่องค้นหาไปทำรายการ */
+  const curatedInDistrict = useMemo(
+    () =>
+      district
+        ? province.places.filter((place) => place.district === district)
+        : province.places,
+    [province, district],
+  );
 
   const savedNames = useMemo(
     () => new Set(places.map((p) => p.name)),
@@ -144,7 +197,10 @@ export default function ExplorePage() {
    * ทีหลังได้ที่หน้าแผนเที่ยว ที่นี่แค่ทำโครงให้ก่อนจะได้ไม่ต้องกรอกทีละอัน
    */
   function buildProgram() {
-    const chosen = visiblePlaces.filter((place) => picked.has(place.id));
+    // เลือกจากสถานที่ทั้งจังหวัด ไม่ใช่จากรายการที่กรองอยู่ตอนนี้
+    // เพราะคนติ๊กที่หนึ่งไว้แล้วพิมพ์ค้นต่อหรือสลับอำเภอได้
+    // ถ้าอ่านจากรายการที่กรองแล้ว ที่ติ๊กไว้ก่อนหน้าจะหายไปเงียบ ๆ
+    const chosen = province.places.filter((place) => picked.has(place.id));
     if (chosen.length === 0) return;
 
     let startTime = suggestedStartTime(targetDay);
@@ -213,15 +269,22 @@ export default function ExplorePage() {
       />
 
       <Card className="mb-4">
-        <Field label="เลือกจังหวัด" hint={`มีข้อมูลครบทั้ง ${PROVINCES.length} จังหวัด`}>
-          <ProvinceSelect
+        <Field
+          label="เลือกจังหวัด"
+          hint={`พิมพ์ชื่อจังหวัดได้เลย มีครบทั้ง ${PROVINCES.length} จังหวัด`}
+        >
+          <ProvinceCombobox
             value={province.name}
-            allowEmpty={false}
+            aria-label="เลือกจังหวัด"
             onChange={(name) => {
               const found = PROVINCE_BY_NAME.get(name);
               if (found) {
                 setProvinceId(found.id);
+                // เปลี่ยนจังหวัดแล้วอำเภอ คำค้น และที่ติ๊กไว้ใช้ต่อไม่ได้
+                // เพราะผูกกับจังหวัดเดิมทั้งหมด
                 setDistrict("");
+                setQuery("");
+                setPicked(new Set());
               }
             }}
           />
@@ -238,6 +301,8 @@ export default function ExplorePage() {
               onClick={() => {
                 setProvinceId(item.id);
                 setDistrict("");
+                setQuery("");
+                setPicked(new Set());
               }}
               className={cn(
                 "min-h-10 shrink-0 rounded-full border px-3.5 text-sm font-medium transition-colors",
@@ -255,13 +320,15 @@ export default function ExplorePage() {
       <Card className="mb-4">
         <Field
           label="ค้นหาสถานที่"
-          hint="พิมพ์ชื่อที่เที่ยว หรือประเภท เช่น วัด ดูนก นาเกลือ ตลาด"
+          hint="⭐ = ห้ามพลาด · เลือกอำเภอก่อนได้ รายการจะแคบลงตามอำเภอนั้น"
         >
-          <Input
-            type="search"
+          <ExplorePlaceSearch
             value={query}
-            onChange={(e) => setQuery(e.target.value)}
-            placeholder="ค้นในจังหวัดที่เลือกอยู่"
+            onChange={setQuery}
+            onPickCurated={setDetail}
+            province={province.name}
+            district={district}
+            curatedPlaces={curatedInDistrict}
           />
         </Field>
       </Card>
@@ -297,9 +364,7 @@ export default function ExplorePage() {
               ทั้งจังหวัด ({province.places.length})
             </button>
             {districtsWithPlaces.map((name) => {
-              const count = province.places.filter(
-                (place) => place.district === name,
-              ).length;
+              const count = countInDistrict(name);
               return (
                 <button
                   key={name}
@@ -461,6 +526,17 @@ export default function ExplorePage() {
           ))}
         </ul>
       )}
+
+      {tab === "places" ? (
+        <DistrictPicks
+          province={province.name}
+          district={district}
+          dayIndex={targetDay}
+          onAdded={(name) =>
+            notify(`ใส่ "${name}" ในแผนวันที่ ${targetDay + 1} แล้ว`)
+          }
+        />
+      ) : null}
 
       <p className="mt-5 text-xs leading-relaxed text-faint">
         ⚠️ ค่าเข้าและระยะเวลาเป็นค่าประมาณสำหรับใช้ตั้งงบและจัดตาราง

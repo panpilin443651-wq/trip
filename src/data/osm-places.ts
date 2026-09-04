@@ -20,6 +20,11 @@ export interface OsmPlace {
   lng: number;
   /** มีหน้า Wikipedia หรือ Wikidata — ใช้เป็นสัญญาณว่าเป็นที่ที่คนรู้จัก */
   notable: boolean;
+  /**
+   * อำเภอ/เขต เติมด้วย scripts/fill-osm-districts.js
+   * ว่างได้ ถ้าหาไม่เจอจากขอบเขตการปกครอง
+   */
+  district: string;
 }
 
 export const OSM_PLACES: Record<string, OsmPlace[]> = {
@@ -31,7 +36,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.92487,
    "lng": 98.63034,
-   "notable": true
+   "notable": true,
+   "district": "สะเมิง"
   },
   {
    "id": "w243766515",
@@ -40,7 +46,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.82144,
    "lng": 98.97471,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w250690123",
@@ -49,7 +56,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.79915,
    "lng": 98.99049,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n4688768142",
@@ -58,7 +66,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 18.38607,
    "lng": 98.6861,
-   "notable": true
+   "notable": true,
+   "district": "จอมทอง"
   },
   {
    "id": "w250585255",
@@ -67,7 +76,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 18.73835,
    "lng": 98.91875,
-   "notable": true
+   "notable": true,
+   "district": "หางดง"
   },
   {
    "id": "n6195212211",
@@ -76,7 +86,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.29948,
    "lng": 98.88166,
-   "notable": true
+   "notable": true,
+   "district": "เชียงดาว"
   },
   {
    "id": "w24039333",
@@ -85,7 +96,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.16732,
    "lng": 99.03502,
-   "notable": true
+   "notable": true,
+   "district": "แม่แตง"
   },
   {
    "id": "w195700868",
@@ -94,7 +106,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.80506,
    "lng": 98.90102,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w56175023",
@@ -103,7 +116,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.86,
    "lng": 99.09863,
-   "notable": true
+   "notable": true,
+   "district": "สันทราย"
   },
   {
    "id": "n2226179757",
@@ -112,7 +126,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.85441,
    "lng": 99.36653,
-   "notable": false
+   "notable": false,
+   "district": "แม่ออน"
   },
   {
    "id": "n1268221687",
@@ -121,7 +136,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 18.27127,
    "lng": 98.39677,
-   "notable": false
+   "notable": false,
+   "district": "แม่แจ่ม"
   },
   {
    "id": "n4441215452",
@@ -130,7 +146,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.39413,
    "lng": 98.92792,
-   "notable": false
+   "notable": false,
+   "district": "เชียงดาว"
   },
   {
    "id": "r10671658",
@@ -139,7 +156,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 18.78238,
    "lng": 98.94675,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w802360928",
@@ -148,7 +166,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 18.68757,
    "lng": 98.99334,
-   "notable": false
+   "notable": false,
+   "district": "สารภี"
   },
   {
    "id": "r5944547",
@@ -157,7 +176,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.92253,
    "lng": 99.18488,
-   "notable": true
+   "notable": true,
+   "district": "ฝาง"
   },
   {
    "id": "w200414775",
@@ -166,7 +186,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.81161,
    "lng": 98.97642,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w1547961751",
@@ -175,7 +196,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.79633,
    "lng": 98.98888,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w390400502",
@@ -184,7 +206,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 18.74993,
    "lng": 98.99937,
-   "notable": true
+   "notable": true,
+   "district": "สารภี"
   },
   {
    "id": "w105591056",
@@ -193,7 +216,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 18.80379,
    "lng": 98.94373,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n3997876063",
@@ -202,7 +226,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.60447,
    "lng": 98.73801,
-   "notable": true
+   "notable": true,
+   "district": "แม่วาง"
   },
   {
    "id": "r9227296",
@@ -211,7 +236,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.86791,
    "lng": 98.94117,
-   "notable": true
+   "notable": true,
+   "district": "แม่ริม"
   },
   {
    "id": "n6611787812",
@@ -220,7 +246,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.4006,
    "lng": 98.9264,
-   "notable": false
+   "notable": false,
+   "district": "เชียงดาว"
   },
   {
    "id": "w23973788",
@@ -229,7 +256,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.78229,
    "lng": 98.97927,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n7726206586",
@@ -238,7 +266,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.22363,
    "lng": 98.67328,
-   "notable": false
+   "notable": false,
+   "district": "แม่แตง"
   },
   {
    "id": "n2622883289",
@@ -247,7 +276,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 19.06937,
    "lng": 99.08184,
-   "notable": false
+   "notable": false,
+   "district": "แม่แตง"
   },
   {
    "id": "n8490785704",
@@ -256,7 +286,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.72522,
    "lng": 98.88934,
-   "notable": false
+   "notable": false,
+   "district": "เชียงดาว"
   },
   {
    "id": "r5944548",
@@ -265,7 +296,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.92729,
    "lng": 98.85282,
-   "notable": true
+   "notable": true,
+   "district": "แม่ริม"
   },
   {
    "id": "r17998804",
@@ -274,7 +306,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.79023,
    "lng": 98.98688,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "w170930952",
@@ -283,7 +316,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.78674,
    "lng": 99.00148,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n1596767830",
@@ -292,7 +326,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 18.81087,
    "lng": 98.94228,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n2207306647",
@@ -301,7 +336,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 18.92038,
    "lng": 98.91961,
-   "notable": false
+   "notable": false,
+   "district": "แม่ริม"
   },
   {
    "id": "n6195229710",
@@ -310,7 +346,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.29293,
    "lng": 98.95263,
-   "notable": true
+   "notable": true,
+   "district": "เชียงดาว"
   },
   {
    "id": "n1268227488",
@@ -319,7 +356,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.54205,
    "lng": 98.59836,
-   "notable": true
+   "notable": true,
+   "district": "จอมทอง"
   },
   {
    "id": "n9813613484",
@@ -328,7 +366,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.40054,
    "lng": 98.93114,
-   "notable": false
+   "notable": false,
+   "district": "เชียงดาว"
   },
   {
    "id": "n10609570159",
@@ -337,7 +376,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.79701,
    "lng": 98.95164,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   },
   {
    "id": "n4401893191",
@@ -346,7 +386,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.31377,
    "lng": 98.60411,
-   "notable": false
+   "notable": false,
+   "district": "แม่แตง"
   },
   {
    "id": "n1290217002",
@@ -355,7 +396,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 18.91034,
    "lng": 99.24582,
-   "notable": false
+   "notable": false,
+   "district": "ดอยสะเก็ด"
   },
   {
    "id": "n1614111156",
@@ -364,7 +406,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.78612,
    "lng": 99.23801,
-   "notable": false
+   "notable": false,
+   "district": "แม่ออน"
   },
   {
    "id": "r5625486",
@@ -373,7 +416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.53279,
    "lng": 98.54617,
-   "notable": true
+   "notable": true,
+   "district": "จอมทอง"
   },
   {
    "id": "n5988609528",
@@ -382,7 +426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.7879,
    "lng": 98.98832,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงใหม่"
   }
  ],
  "ลำปาง": [
@@ -393,7 +438,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.47722,
    "lng": 99.306,
-   "notable": true
+   "notable": true,
+   "district": "ห้างฉัตร"
   },
   {
    "id": "w493366662",
@@ -402,7 +448,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.2903,
    "lng": 99.50186,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n8244751264",
@@ -411,7 +458,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.00203,
    "lng": 99.40544,
-   "notable": true
+   "notable": true,
+   "district": "เมืองปาน"
   },
   {
    "id": "n261548252",
@@ -420,7 +468,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.84217,
    "lng": 99.46768,
-   "notable": true
+   "notable": true,
+   "district": "เมืองปาน"
   },
   {
    "id": "n3152446962",
@@ -429,7 +478,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.61456,
    "lng": 99.22047,
-   "notable": false
+   "notable": false,
+   "district": "เถิน"
   },
   {
    "id": "n11212240043",
@@ -438,7 +488,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.1085,
    "lng": 99.56823,
-   "notable": false
+   "notable": false,
+   "district": "วังเหนือ"
   },
   {
    "id": "n1482298381",
@@ -447,7 +498,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.29414,
    "lng": 99.50804,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n1397567186",
@@ -456,7 +508,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.30827,
    "lng": 99.51368,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n6597951595",
@@ -465,7 +518,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.25094,
    "lng": 99.47726,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "r10925148",
@@ -474,7 +528,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.78276,
    "lng": 99.16038,
-   "notable": true
+   "notable": true,
+   "district": "เถิน"
   },
   {
    "id": "w393228760",
@@ -483,7 +538,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.29468,
    "lng": 99.49699,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n11558454538",
@@ -492,7 +548,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.49101,
    "lng": 99.30293,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n3152427569",
@@ -501,7 +558,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.293,
    "lng": 99.50084,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n7947064477",
@@ -510,7 +568,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.22685,
    "lng": 99.68997,
-   "notable": false
+   "notable": false,
+   "district": "แม่เมาะ"
   },
   {
    "id": "n4364737392",
@@ -519,7 +578,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.28036,
    "lng": 99.51282,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n1921487077",
@@ -528,7 +588,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.28888,
    "lng": 99.4909,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "w311853380",
@@ -537,7 +598,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.28751,
    "lng": 99.51496,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "r5944643",
@@ -546,7 +608,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.37771,
    "lng": 99.66118,
-   "notable": true
+   "notable": true,
+   "district": "วังเหนือ"
   },
   {
    "id": "n6781875658",
@@ -555,7 +618,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.3012,
    "lng": 99.50903,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n13041156858",
@@ -564,7 +628,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.88264,
    "lng": 99.21041,
-   "notable": false
+   "notable": false,
+   "district": "เถิน"
   },
   {
    "id": "n6209059585",
@@ -573,7 +638,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.29139,
    "lng": 99.4991,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "w667983499",
@@ -582,7 +648,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.28486,
    "lng": 99.48466,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n1629253491",
@@ -591,7 +658,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.70634,
    "lng": 99.5546,
-   "notable": false
+   "notable": false,
+   "district": "แจ้ห่ม"
   },
   {
    "id": "w1518716477",
@@ -600,7 +668,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.3064,
    "lng": 99.46329,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "r6004034",
@@ -609,7 +678,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.42591,
    "lng": 99.27127,
-   "notable": true
+   "notable": true,
+   "district": "เถิน"
   },
   {
    "id": "w244114878",
@@ -618,7 +688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.28295,
    "lng": 99.56011,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n9871880526",
@@ -627,7 +698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.9793,
    "lng": 99.41024,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "w224325307",
@@ -636,7 +708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.32777,
    "lng": 99.28127,
-   "notable": false
+   "notable": false,
+   "district": "ห้างฉัตร"
   },
   {
    "id": "n11212167253",
@@ -645,7 +718,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.1922,
    "lng": 99.40474,
-   "notable": false
+   "notable": false,
+   "district": "เกาะคา"
   },
   {
    "id": "n3176037861",
@@ -654,7 +728,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.28754,
    "lng": 99.515,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "w387071642",
@@ -663,7 +738,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.29787,
    "lng": 99.49974,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n1470948310",
@@ -672,7 +748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.29042,
    "lng": 99.48081,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "n11281041200",
@@ -681,7 +758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.72414,
    "lng": 99.44347,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "n14031095262",
@@ -690,7 +768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.03392,
    "lng": 99.32838,
-   "notable": false
+   "notable": false,
+   "district": "เกาะคา"
   },
   {
    "id": "w1117602498",
@@ -699,7 +778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.31818,
    "lng": 99.74219,
-   "notable": false
+   "notable": false,
+   "district": "แม่เมาะ"
   },
   {
    "id": "w723189540",
@@ -708,7 +788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.28731,
    "lng": 99.48166,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   },
   {
    "id": "w401765168",
@@ -717,7 +798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.74675,
    "lng": 99.53157,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "n9807834330",
@@ -726,7 +808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.94827,
    "lng": 99.38558,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปาน"
   },
   {
    "id": "w385063946",
@@ -735,7 +818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.34543,
    "lng": 99.75709,
-   "notable": false
+   "notable": false,
+   "district": "แม่เมาะ"
   },
   {
    "id": "w672397304",
@@ -744,7 +828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.30097,
    "lng": 99.5096,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำปาง"
   }
  ],
  "แม่ฮ่องสอน": [
@@ -755,7 +840,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.55016,
    "lng": 97.95145,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n11168687044",
@@ -764,7 +850,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.49133,
    "lng": 97.95775,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n7991003687",
@@ -773,7 +860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.52858,
    "lng": 98.23616,
-   "notable": true
+   "notable": true,
+   "district": "ปางมะผ้า"
   },
   {
    "id": "w389705075",
@@ -782,7 +870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.3602,
    "lng": 98.44014,
-   "notable": true
+   "notable": true,
+   "district": "ปาย"
   },
   {
    "id": "n8693640283",
@@ -791,7 +880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.37065,
    "lng": 98.33092,
-   "notable": true
+   "notable": true,
+   "district": "ปาย"
   },
   {
    "id": "n619236695",
@@ -800,7 +890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.84722,
    "lng": 97.97602,
-   "notable": true
+   "notable": true,
+   "district": "สบเมย"
   },
   {
    "id": "n2533201089",
@@ -809,7 +900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 19.21105,
    "lng": 97.97863,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "w1134423614",
@@ -818,7 +910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.1611,
    "lng": 97.94144,
-   "notable": false
+   "notable": false,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n6622087800",
@@ -827,7 +920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.37125,
    "lng": 98.40205,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n5259720722",
@@ -836,7 +930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.34423,
    "lng": 98.45187,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "r12338888",
@@ -845,7 +940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.1232,
    "lng": 98.03066,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n12517708703",
@@ -854,7 +950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.65973,
    "lng": 98.24052,
-   "notable": false
+   "notable": false,
+   "district": "ปางมะผ้า"
   },
   {
    "id": "n1539444748",
@@ -863,7 +960,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.39702,
    "lng": 97.97029,
-   "notable": false
+   "notable": false,
+   "district": "แม่ลาน้อย"
   },
   {
    "id": "w389705076",
@@ -872,7 +970,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.36015,
    "lng": 98.44283,
-   "notable": true
+   "notable": true,
+   "district": "ปาย"
   },
   {
    "id": "n7995018028",
@@ -881,7 +980,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.06917,
    "lng": 98.64045,
-   "notable": true
+   "notable": true,
+   "district": "ปาย"
   },
   {
    "id": "w454768453",
@@ -890,7 +990,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.1541,
    "lng": 97.92023,
-   "notable": false
+   "notable": false,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n518653698",
@@ -899,7 +1000,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 19.30741,
    "lng": 98.47598,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n6479657585",
@@ -908,7 +1010,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.06932,
    "lng": 97.68252,
-   "notable": false
+   "notable": false,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n11212152540",
@@ -917,7 +1020,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.00097,
    "lng": 98.00641,
-   "notable": false
+   "notable": false,
+   "district": "สบเมย"
   },
   {
    "id": "n8011880686",
@@ -926,7 +1030,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.29616,
    "lng": 97.96407,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "r5944550",
@@ -935,7 +1040,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.17752,
    "lng": 97.75292,
-   "notable": true
+   "notable": true,
+   "district": "แม่สะเรียง"
   },
   {
    "id": "n2531880028",
@@ -944,7 +1050,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.44632,
    "lng": 98.31934,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n807465176",
@@ -953,7 +1060,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.42727,
    "lng": 97.99049,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "w1104620422",
@@ -962,7 +1070,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.29759,
    "lng": 97.96398,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n6263383858",
@@ -971,7 +1080,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.20446,
    "lng": 98.56346,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4664978289",
@@ -980,7 +1090,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 19.45923,
    "lng": 98.38097,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "w1111500084",
@@ -989,7 +1100,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.83059,
    "lng": 97.93282,
-   "notable": false
+   "notable": false,
+   "district": "ขุนยวม"
   },
   {
    "id": "n13306284597",
@@ -998,7 +1110,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.89464,
    "lng": 98.09089,
-   "notable": false
+   "notable": false,
+   "district": "ขุนยวม"
   },
   {
    "id": "w655640934",
@@ -1007,7 +1120,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.29665,
    "lng": 97.96396,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "r5944549",
@@ -1016,7 +1130,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.46809,
    "lng": 98.54347,
-   "notable": true
+   "notable": true,
+   "district": "ปาย"
   },
   {
    "id": "n2668138985",
@@ -1025,7 +1140,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.36893,
    "lng": 98.39555,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n13528785483",
@@ -1034,7 +1150,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.42306,
    "lng": 97.98421,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "w761317483",
@@ -1043,7 +1160,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.29807,
    "lng": 97.96739,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n10701335278",
@@ -1052,7 +1170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.61668,
    "lng": 98.43538,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n1651358688",
@@ -1061,7 +1180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.19283,
    "lng": 97.99736,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n820323678",
@@ -1070,7 +1190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.37572,
    "lng": 98.42763,
-   "notable": false
+   "notable": false,
+   "district": "ปาย"
   },
   {
    "id": "n4645410289",
@@ -1079,7 +1200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.5818,
    "lng": 98.20591,
-   "notable": false
+   "notable": false,
+   "district": "ปางมะผ้า"
   },
   {
    "id": "n11141697856",
@@ -1088,7 +1210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.57462,
    "lng": 98.21547,
-   "notable": false
+   "notable": false,
+   "district": "ปางมะผ้า"
   },
   {
    "id": "w761317482",
@@ -1097,7 +1220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.29795,
    "lng": 97.96796,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแม่ฮ่องสอน"
   },
   {
    "id": "n13360840822",
@@ -1106,7 +1230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.2379,
    "lng": 98.02745,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแม่ฮ่องสอน"
   }
  ],
  "กำแพงเพชร": [
@@ -1117,7 +1242,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.48855,
    "lng": 99.52234,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n11212239858",
@@ -1126,7 +1252,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.92456,
    "lng": 99.09598,
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n13608878261",
@@ -1135,7 +1262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.67713,
    "lng": 99.54081,
-   "notable": false
+   "notable": false,
+   "district": "พรานกระต่าย"
   },
   {
    "id": "w530434055",
@@ -1144,7 +1272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.47904,
    "lng": 99.51016,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1320736466",
@@ -1153,7 +1282,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.37305,
    "lng": 99.56693,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n13200749606",
@@ -1162,7 +1292,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.29531,
    "lng": 99.06544,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n11368162317",
@@ -1171,7 +1302,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.04191,
    "lng": 99.22777,
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "w558615260",
@@ -1180,7 +1312,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.47359,
    "lng": 99.50273,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1315327931",
@@ -1189,7 +1322,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.62578,
    "lng": 99.31912,
-   "notable": false
+   "notable": false,
+   "district": "โกสัมพีนคร"
   },
   {
    "id": "w1467945373",
@@ -1198,7 +1332,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.36287,
    "lng": 99.65227,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n11212240062",
@@ -1207,7 +1342,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.11516,
    "lng": 99.16061,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n13340494888",
@@ -1216,7 +1352,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.3773,
    "lng": 99.22382,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w539131006",
@@ -1225,7 +1362,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.25346,
    "lng": 99.61225,
-   "notable": false
+   "notable": false,
+   "district": "คลองขลุง"
   },
   {
    "id": "n6132354385",
@@ -1234,7 +1372,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.50447,
    "lng": 99.51777,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n13200749616",
@@ -1243,7 +1382,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.98465,
    "lng": 99.42897,
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n12118181497",
@@ -1252,7 +1392,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.33671,
    "lng": 99.27068,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "w1324976320",
@@ -1261,7 +1402,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.33157,
    "lng": 99.48026,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1491269449",
@@ -1270,7 +1412,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.47308,
    "lng": 99.89579,
-   "notable": false
+   "notable": false,
+   "district": "ไทรงาม"
   },
   {
    "id": "n6452311051",
@@ -1279,7 +1422,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.4879,
    "lng": 99.52294,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n11212240064",
@@ -1288,7 +1432,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.09459,
    "lng": 99.12385,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n13602698497",
@@ -1297,7 +1442,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.30984,
    "lng": 99.25977,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n12787055646",
@@ -1306,7 +1452,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.48927,
    "lng": 99.51543,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n13200749604",
@@ -1315,7 +1462,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.06073,
    "lng": 99.11473,
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n11402867369",
@@ -1324,7 +1472,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.56755,
    "lng": 99.32004,
-   "notable": false
+   "notable": false,
+   "district": "โกสัมพีนคร"
   },
   {
    "id": "w1324993438",
@@ -1333,7 +1482,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.3959,
    "lng": 99.52114,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "w1228232804",
@@ -1342,7 +1492,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.5852,
    "lng": 99.79887,
-   "notable": false
+   "notable": false,
+   "district": "ลานกระบือ"
   },
   {
    "id": "n13340440928",
@@ -1351,7 +1502,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.49946,
    "lng": 99.15637,
-   "notable": false
+   "notable": false,
+   "district": "โกสัมพีนคร"
   },
   {
    "id": "n13608878260",
@@ -1360,7 +1512,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.67574,
    "lng": 99.54088,
-   "notable": false
+   "notable": false,
+   "district": "พรานกระต่าย"
   },
   {
    "id": "n14045689851",
@@ -1369,7 +1522,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.4839,
    "lng": 99.53129,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n13200066638",
@@ -1378,7 +1532,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.09548,
    "lng": 99.51023,
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n11462545522",
@@ -1387,7 +1542,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.13975,
    "lng": 99.3014,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "r21139040",
@@ -1396,7 +1552,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.47398,
    "lng": 99.52524,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n11178725727",
@@ -1405,7 +1562,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.19301,
    "lng": 99.26034,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n13340559774",
@@ -1414,7 +1572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.34586,
    "lng": 99.21515,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n4133352589",
@@ -1423,7 +1582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.50368,
    "lng": 99.51516,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n13200749603",
@@ -1432,7 +1592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.92448,
    "lng": 99.09572,
-   "notable": false
+   "notable": false,
+   "district": "ปางศิลาทอง"
   },
   {
    "id": "n301611986",
@@ -1441,7 +1602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.32907,
    "lng": 99.25726,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n11212240072",
@@ -1450,7 +1612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.09935,
    "lng": 99.13921,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   },
   {
    "id": "n4133351690",
@@ -1459,7 +1622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.50032,
    "lng": 99.50941,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกำแพงเพชร"
   },
   {
    "id": "n13200749602",
@@ -1468,7 +1632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.37174,
    "lng": 99.04139,
-   "notable": false
+   "notable": false,
+   "district": "คลองลาน"
   }
  ],
  "พิษณุโลก": [
@@ -1479,7 +1644,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.68679,
    "lng": 100.80182,
-   "notable": true
+   "notable": true,
+   "district": "เนินมะปราง"
   },
   {
    "id": "n11081664163",
@@ -1488,7 +1654,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.70854,
    "lng": 100.57876,
-   "notable": true
+   "notable": true,
+   "district": "เนินมะปราง"
   },
   {
    "id": "w254010790",
@@ -1497,7 +1664,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.83022,
    "lng": 100.26174,
-   "notable": true
+   "notable": true,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "w1551643533",
@@ -1506,7 +1674,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.82866,
    "lng": 100.25977,
-   "notable": true
+   "notable": true,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n13645251752",
@@ -1515,7 +1684,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.73859,
    "lng": 100.98764,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n303924229",
@@ -1524,7 +1694,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.80566,
    "lng": 100.26736,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n13907755336",
@@ -1533,7 +1704,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.33338,
    "lng": 100.64426,
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "n11212240644",
@@ -1542,7 +1714,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.51185,
    "lng": 100.66121,
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "w767805811",
@@ -1551,7 +1724,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.30587,
    "lng": 100.44164,
-   "notable": false
+   "notable": false,
+   "district": "วัดโบสถ์"
   },
   {
    "id": "r12592460",
@@ -1560,7 +1734,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.29753,
    "lng": 100.77504,
-   "notable": true
+   "notable": true,
+   "district": "ชาติตระการ"
   },
   {
    "id": "w1551643538",
@@ -1569,7 +1744,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.82786,
    "lng": 100.25946,
-   "notable": true
+   "notable": true,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n12641275701",
@@ -1578,7 +1754,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.8203,
    "lng": 100.28932,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n4437653012",
@@ -1587,7 +1764,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.82136,
    "lng": 100.93961,
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "w474202407",
@@ -1596,7 +1774,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.82863,
    "lng": 100.26181,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n13528785460",
@@ -1605,7 +1784,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.2264,
    "lng": 100.98451,
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "n12679507501",
@@ -1614,7 +1794,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.84633,
    "lng": 100.40177,
-   "notable": false
+   "notable": false,
+   "district": "วังทอง"
   },
   {
    "id": "w771633048",
@@ -1623,7 +1804,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.30104,
    "lng": 100.6786,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n7116275386",
@@ -1632,7 +1814,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.82764,
    "lng": 100.26092,
-   "notable": true
+   "notable": true,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n11212239878",
@@ -1641,7 +1824,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.52131,
    "lng": 100.83502,
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "n13645251753",
@@ -1650,7 +1834,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.70616,
    "lng": 100.96785,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n9434518753",
@@ -1659,7 +1844,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.29879,
    "lng": 100.68258,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "w697316297",
@@ -1668,7 +1854,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.27607,
    "lng": 100.5999,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "w254013553",
@@ -1677,7 +1864,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.82625,
    "lng": 100.27801,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n2541783380",
@@ -1686,7 +1874,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.99308,
    "lng": 100.99185,
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "n13645251756",
@@ -1695,7 +1884,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.72589,
    "lng": 100.98193,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n13070930093",
@@ -1704,7 +1894,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.56229,
    "lng": 100.70744,
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "w1324449165",
@@ -1713,7 +1904,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.81559,
    "lng": 100.26216,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n11212152362",
@@ -1722,7 +1914,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.69994,
    "lng": 100.94561,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n13645296123",
@@ -1731,7 +1924,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.61639,
    "lng": 100.79073,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n11357323369",
@@ -1740,7 +1934,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.56429,
    "lng": 100.701,
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "w697326304",
@@ -1749,7 +1944,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.81902,
    "lng": 100.26012,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิษณุโลก"
   },
   {
    "id": "n2131210799",
@@ -1758,7 +1954,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.00662,
    "lng": 100.98683,
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "n13645251758",
@@ -1767,7 +1964,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.73769,
    "lng": 100.98709,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n11559095869",
@@ -1776,7 +1974,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.51952,
    "lng": 100.66615,
-   "notable": false
+   "notable": false,
+   "district": "เนินมะปราง"
   },
   {
    "id": "w759789297",
@@ -1785,7 +1984,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.27095,
    "lng": 100.60239,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n2541783399",
@@ -1794,7 +1994,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.99387,
    "lng": 100.99109,
-   "notable": false
+   "notable": false,
+   "district": "นครไทย"
   },
   {
    "id": "n5685331133",
@@ -1803,7 +2004,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.29963,
    "lng": 100.67978,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "w697315792",
@@ -1812,7 +2014,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.27482,
    "lng": 100.60849,
-   "notable": false
+   "notable": false,
+   "district": "ชาติตระการ"
   },
   {
    "id": "n2541915870",
@@ -1821,7 +2024,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.84454,
    "lng": 100.75101,
-   "notable": false
+   "notable": false,
+   "district": "วังทอง"
   },
   {
    "id": "w697315338",
@@ -1830,7 +2034,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.1021,
    "lng": 100.16216,
-   "notable": false
+   "notable": false,
+   "district": "พรหมพิราม"
   }
  ],
  "สุโขทัย": [
@@ -1841,7 +2046,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.6084,
    "lng": 99.47466,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "w1541260113",
@@ -1850,7 +2056,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.01743,
    "lng": 99.70761,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "w1473581201",
@@ -1859,7 +2066,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.31984,
    "lng": 99.82799,
-   "notable": true
+   "notable": true,
+   "district": "สวรรคโลก"
   },
   {
    "id": "w242175279",
@@ -1868,7 +2076,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.01688,
    "lng": 99.70555,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n3266940493",
@@ -1877,7 +2086,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.86477,
    "lng": 99.66942,
-   "notable": true
+   "notable": true,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n13744665058",
@@ -1886,7 +2096,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 17.17439,
    "lng": 99.4776,
-   "notable": false
+   "notable": false,
+   "district": "บ้านด่านลานหอย"
   },
   {
    "id": "n13595673484",
@@ -1895,7 +2106,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.20431,
    "lng": 99.46474,
-   "notable": false
+   "notable": false,
+   "district": "บ้านด่านลานหอย"
   },
   {
    "id": "n13587022133",
@@ -1904,7 +2116,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.54662,
    "lng": 99.47391,
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "w1476731820",
@@ -1913,7 +2126,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 17.23504,
    "lng": 99.821,
-   "notable": false
+   "notable": false,
+   "district": "สวรรคโลก"
   },
   {
    "id": "n13354904094",
@@ -1922,7 +2136,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.86003,
    "lng": 99.67177,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n4560917799",
@@ -1931,7 +2146,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.00273,
    "lng": 99.67827,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n13673867524",
@@ -1940,7 +2156,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.94399,
    "lng": 99.96987,
-   "notable": false
+   "notable": false,
+   "district": "กงไกรลาศ"
   },
   {
    "id": "w1473581214",
@@ -1949,7 +2166,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.32002,
    "lng": 99.82658,
-   "notable": true
+   "notable": true,
+   "district": "สวรรคโลก"
   },
   {
    "id": "w1498963617",
@@ -1958,7 +2176,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.20375,
    "lng": 99.682,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n13694876930",
@@ -1967,7 +2186,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.89858,
    "lng": 99.73047,
-   "notable": true
+   "notable": true,
+   "district": "คีรีมาศ"
   },
   {
    "id": "w840480716",
@@ -1976,7 +2196,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.05067,
    "lng": 99.79523,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n11428927769",
@@ -1985,7 +2206,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.56483,
    "lng": 99.46371,
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n13595533769",
@@ -1994,7 +2216,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.43343,
    "lng": 99.78216,
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "n2649312946",
@@ -2003,7 +2226,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.20405,
    "lng": 99.46506,
-   "notable": false
+   "notable": false,
+   "district": "บ้านด่านลานหอย"
   },
   {
    "id": "n14030894029",
@@ -2012,7 +2236,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.01862,
    "lng": 99.71283,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "w1396284929",
@@ -2021,7 +2246,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.23079,
    "lng": 99.82266,
-   "notable": false
+   "notable": false,
+   "district": "สวรรคโลก"
   },
   {
    "id": "w521965621",
@@ -2030,7 +2256,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.24556,
    "lng": 99.85384,
-   "notable": true
+   "notable": true,
+   "district": "สวรรคโลก"
   },
   {
    "id": "n1539859834",
@@ -2039,7 +2266,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.4393,
    "lng": 99.78644,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "w1105411962",
@@ -2048,7 +2276,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.07238,
    "lng": 99.89865,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n6947233185",
@@ -2057,7 +2286,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.86738,
    "lng": 99.67521,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n3266940492",
@@ -2066,7 +2296,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.86583,
    "lng": 99.66905,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n2959875487",
@@ -2075,7 +2306,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.95043,
    "lng": 99.64976,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n13354960317",
@@ -2084,7 +2316,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.01176,
    "lng": 99.70606,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "w1482448825",
@@ -2093,7 +2326,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.42987,
    "lng": 99.81227,
-   "notable": false
+   "notable": false,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "w1396586696",
@@ -2102,7 +2336,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.11685,
    "lng": 99.84258,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n303946773",
@@ -2111,7 +2346,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.01889,
    "lng": 99.67107,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "w1020776047",
@@ -2120,7 +2356,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.00546,
    "lng": 99.82581,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "n3266931466",
@@ -2129,7 +2366,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.86624,
    "lng": 99.67658,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n5160102821",
@@ -2138,7 +2376,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.82979,
    "lng": 99.6372,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   },
   {
    "id": "n303951521",
@@ -2147,7 +2386,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.01634,
    "lng": 99.69515,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุโขทัย"
   },
   {
    "id": "w1396284932",
@@ -2156,7 +2396,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.22944,
    "lng": 99.82343,
-   "notable": false
+   "notable": false,
+   "district": "สวรรคโลก"
   },
   {
    "id": "w1396286593",
@@ -2165,7 +2406,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.17702,
    "lng": 99.86423,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสำโรง"
   },
   {
    "id": "n14061307310",
@@ -2174,7 +2416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.43347,
    "lng": 99.78201,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสัชนาลัย"
   },
   {
    "id": "w1495798594",
@@ -2183,7 +2426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.93113,
    "lng": 99.9625,
-   "notable": false
+   "notable": false,
+   "district": "กงไกรลาศ"
   },
   {
    "id": "n5647749146",
@@ -2192,7 +2436,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.87019,
    "lng": 99.66319,
-   "notable": false
+   "notable": false,
+   "district": "คีรีมาศ"
   }
  ],
  "กระบี่": [
@@ -2203,7 +2448,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.0169,
    "lng": 98.83306,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "r12092903",
@@ -2212,7 +2458,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.27255,
    "lng": 98.92575,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n11708040169",
@@ -2221,7 +2468,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.11024,
    "lng": 98.78429,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n4467179689",
@@ -2230,7 +2478,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.07833,
    "lng": 98.92109,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w482984631",
@@ -2239,7 +2488,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.54973,
    "lng": 99.04487,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n6584006700",
@@ -2248,7 +2498,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.15639,
    "lng": 98.7685,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n305442093",
@@ -2257,7 +2508,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.49991,
    "lng": 99.0938,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n5422071420",
@@ -2266,7 +2518,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.53107,
    "lng": 99.0943,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n4826387921",
@@ -2275,7 +2528,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.59525,
    "lng": 99.07144,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n7162045788",
@@ -2284,7 +2538,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 7.90329,
    "lng": 99.11281,
-   "notable": false
+   "notable": false,
+   "district": "คลองท่อม"
   },
   {
    "id": "n5408638860",
@@ -2293,7 +2548,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.53061,
    "lng": 99.09375,
-   "notable": false
+   "notable": false,
+   "district": "เกาะลันตา"
   },
   {
    "id": "n12394437332",
@@ -2302,7 +2558,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 7.76102,
    "lng": 98.76558,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n4074531969",
@@ -2311,7 +2568,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 8.024,
    "lng": 98.87663,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w27813979",
@@ -2320,7 +2578,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.48582,
    "lng": 99.08299,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "r3283184",
@@ -2329,7 +2588,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.24752,
    "lng": 98.68131,
-   "notable": true
+   "notable": true,
+   "district": "อ่าวลึก"
   },
   {
    "id": "n5314772921",
@@ -2338,7 +2598,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.67663,
    "lng": 98.76612,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n11707792143",
@@ -2347,7 +2608,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.38153,
    "lng": 98.68655,
-   "notable": true
+   "notable": true,
+   "district": "อ่าวลึก"
   },
   {
    "id": "w659547702",
@@ -2356,7 +2618,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.04984,
    "lng": 98.81569,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n6186179473",
@@ -2365,7 +2628,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.08373,
    "lng": 98.87183,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n5821963988",
@@ -2374,7 +2638,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.23792,
    "lng": 98.91963,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n2457761526",
@@ -2383,7 +2648,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.00455,
    "lng": 98.84026,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w278488815",
@@ -2392,7 +2658,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.05459,
    "lng": 98.9192,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n4650920459",
@@ -2401,7 +2668,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.04687,
    "lng": 98.90755,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w51250515",
@@ -2410,7 +2678,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.63406,
    "lng": 99.02941,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "r3283122",
@@ -2419,7 +2688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 7.44626,
    "lng": 99.02394,
-   "notable": true
+   "notable": true,
+   "district": ""
   },
   {
    "id": "n6200723916",
@@ -2428,7 +2698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.17769,
    "lng": 98.75211,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n660225550",
@@ -2437,7 +2708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.0134,
    "lng": 98.842,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "r19745630",
@@ -2446,7 +2718,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.03892,
    "lng": 98.84433,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n6186046008",
@@ -2455,7 +2728,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.09767,
    "lng": 98.79033,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n3203070545",
@@ -2464,7 +2738,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.02265,
    "lng": 98.88525,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w278488817",
@@ -2473,7 +2748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.06157,
    "lng": 98.91964,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w1230045507",
@@ -2482,7 +2758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.07089,
    "lng": 98.91363,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "w51248133",
@@ -2491,7 +2768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.53811,
    "lng": 99.04829,
-   "notable": true
+   "notable": true,
+   "district": "เกาะลันตา"
   },
   {
    "id": "r2969526",
@@ -2500,7 +2778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 7.89252,
    "lng": 98.82671,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n2648988387",
@@ -2509,7 +2788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.13607,
    "lng": 98.73519,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n6604233573",
@@ -2518,7 +2798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.37978,
    "lng": 98.68798,
-   "notable": true
+   "notable": true,
+   "district": "อ่าวลึก"
   },
   {
    "id": "n713937622",
@@ -2527,7 +2808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.08194,
    "lng": 98.86886,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n6175179844",
@@ -2536,7 +2818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.04339,
    "lng": 98.82939,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกระบี่"
   },
   {
    "id": "n4421473489",
@@ -2545,7 +2828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.06106,
    "lng": 99.28033,
-   "notable": false
+   "notable": false,
+   "district": "ลำทับ"
   },
   {
    "id": "n6416929266",
@@ -2554,7 +2838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.04069,
    "lng": 98.92885,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกระบี่"
   }
  ],
  "บึงกาฬ": [
@@ -2565,7 +2850,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.1318,
    "lng": 103.88066,
-   "notable": true
+   "notable": true,
+   "district": "ศรีวิไล"
   },
   {
    "id": "n13960186197",
@@ -2574,7 +2860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 17.98535,
    "lng": 104.02557,
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   },
   {
    "id": "n13006336303",
@@ -2583,7 +2870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.25359,
    "lng": 103.81257,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบึงกาฬ"
   },
   {
    "id": "n11018975166",
@@ -2592,7 +2880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.95243,
    "lng": 104.10428,
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   },
   {
    "id": "n13942604050",
@@ -2601,7 +2890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.0993,
    "lng": 103.40502,
-   "notable": false
+   "notable": false,
+   "district": "โซ่พิสัย"
   },
   {
    "id": "n13955711271",
@@ -2610,7 +2900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.94977,
    "lng": 104.11002,
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   },
   {
    "id": "w666159416",
@@ -2619,7 +2910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.03821,
    "lng": 103.6113,
-   "notable": false
+   "notable": false,
+   "district": "พรเจริญ"
   },
   {
    "id": "w1529679811",
@@ -2628,7 +2920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 18.33158,
    "lng": 103.97172,
-   "notable": false
+   "notable": false,
+   "district": "บุ่งคล้า"
   },
   {
    "id": "n13341712401",
@@ -2637,7 +2930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.9557,
    "lng": 104.10102,
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   },
   {
    "id": "n13341739001",
@@ -2646,7 +2940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.95542,
    "lng": 104.10541,
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   },
   {
    "id": "n13938426155",
@@ -2655,7 +2950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.26388,
    "lng": 103.80549,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบึงกาฬ"
   },
   {
    "id": "n342573335",
@@ -2664,7 +2960,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.26147,
    "lng": 103.90672,
-   "notable": false
+   "notable": false,
+   "district": "บุ่งคล้า"
   },
   {
    "id": "n13938245025",
@@ -2673,7 +2970,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.26992,
    "lng": 103.80207,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบึงกาฬ"
   },
   {
    "id": "n11513170172",
@@ -2682,7 +2980,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.13981,
    "lng": 103.88549,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบึงกาฬ"
   },
   {
    "id": "n13247921007",
@@ -2691,7 +2990,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.21865,
    "lng": 103.88497,
-   "notable": false
+   "notable": false,
+   "district": "เซกา"
   },
   {
    "id": "n13938245026",
@@ -2700,7 +3000,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.26763,
    "lng": 103.7995,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบึงกาฬ"
   },
   {
    "id": "n13938426157",
@@ -2709,7 +3010,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.98094,
    "lng": 104.11233,
-   "notable": false
+   "notable": false,
+   "district": "บึงโขงหลง"
   },
   {
    "id": "n6205062894",
@@ -2718,7 +3020,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.30111,
    "lng": 103.30799,
-   "notable": false
+   "notable": false,
+   "district": "ปากคาด"
   }
  ],
  "เชียงราย": [
@@ -2729,7 +3032,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.12877,
    "lng": 99.39523,
-   "notable": true
+   "notable": true,
+   "district": "เวียงป่าเป้า"
   },
   {
    "id": "n3761342690",
@@ -2738,7 +3042,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 20.38167,
    "lng": 99.86833,
-   "notable": true
+   "notable": true,
+   "district": "แม่สาย"
   },
   {
    "id": "w393447653",
@@ -2747,7 +3052,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.99124,
    "lng": 99.86102,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n1226383329",
@@ -2756,7 +3062,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 20.24508,
    "lng": 100.10077,
-   "notable": true
+   "notable": true,
+   "district": "เชียงแสน"
   },
   {
    "id": "n13717711211",
@@ -2765,7 +3072,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.7491,
    "lng": 99.82116,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n5499015449",
@@ -2774,7 +3082,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.88255,
    "lng": 99.61616,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n2622028414",
@@ -2783,7 +3092,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.91504,
    "lng": 99.82272,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w330738968",
@@ -2792,7 +3102,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 19.92228,
    "lng": 99.81961,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n3761459720",
@@ -2801,7 +3112,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 20.30716,
    "lng": 99.81674,
-   "notable": false
+   "notable": false,
+   "district": "แม่ฟ้าหลวง"
   },
   {
    "id": "n2121910374",
@@ -2810,7 +3122,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 19.11479,
    "lng": 99.46215,
-   "notable": false
+   "notable": false,
+   "district": "เวียงป่าเป้า"
   },
   {
    "id": "w484142132",
@@ -2819,7 +3132,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.90644,
    "lng": 99.83099,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w965313905",
@@ -2828,7 +3142,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 19.95602,
    "lng": 99.85091,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w1546189874",
@@ -2837,7 +3152,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.62124,
    "lng": 99.97135,
-   "notable": false
+   "notable": false,
+   "district": "เทิง"
   },
   {
    "id": "r5944648",
@@ -2846,7 +3162,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.56055,
    "lng": 99.8634,
-   "notable": true
+   "notable": true,
+   "district": "พาน"
   },
   {
    "id": "n3939947273",
@@ -2855,7 +3172,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.91763,
    "lng": 99.78886,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w222739926",
@@ -2864,7 +3182,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 20.28729,
    "lng": 99.80956,
-   "notable": true
+   "notable": true,
+   "district": "แม่ฟ้าหลวง"
   },
   {
    "id": "n361391190",
@@ -2873,7 +3192,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 20.3524,
    "lng": 100.08148,
-   "notable": true
+   "notable": true,
+   "district": "เชียงแสน"
   },
   {
    "id": "n13717711206",
@@ -2882,7 +3202,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.62972,
    "lng": 99.805,
-   "notable": true
+   "notable": true,
+   "district": "พาน"
   },
   {
    "id": "w487637817",
@@ -2891,7 +3212,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.90716,
    "lng": 99.83099,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w971101242",
@@ -2900,7 +3222,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.91431,
    "lng": 99.82492,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n4411102607",
@@ -2909,7 +3232,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.74266,
    "lng": 99.53861,
-   "notable": false
+   "notable": false,
+   "district": "แม่สรวย"
   },
   {
    "id": "n6440382285",
@@ -2918,7 +3242,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.45752,
    "lng": 99.99468,
-   "notable": false
+   "notable": false,
+   "district": "ป่าแดด"
   },
   {
    "id": "w269747639",
@@ -2927,7 +3252,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 19.9921,
    "lng": 99.86072,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w1546190134",
@@ -2936,7 +3262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.62226,
    "lng": 99.97126,
-   "notable": false
+   "notable": false,
+   "district": "เทิง"
   },
   {
    "id": "n3761313770",
@@ -2945,7 +3272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 20.32378,
    "lng": 99.86476,
-   "notable": false
+   "notable": false,
+   "district": "แม่สาย"
   },
   {
    "id": "n775981375",
@@ -2954,7 +3282,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 20.35152,
    "lng": 100.0816,
-   "notable": true
+   "notable": true,
+   "district": "เชียงแสน"
   },
   {
    "id": "w1456759169",
@@ -2963,7 +3292,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 20.16942,
    "lng": 99.62285,
-   "notable": true
+   "notable": true,
+   "district": "แม่ฟ้าหลวง"
   },
   {
    "id": "n13717711215",
@@ -2972,7 +3302,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.76917,
    "lng": 99.84954,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w964921438",
@@ -2981,7 +3312,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.92635,
    "lng": 99.86796,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "w959789795",
@@ -2990,7 +3322,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.91294,
    "lng": 99.82919,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n2142152302",
@@ -2999,7 +3332,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 20.12695,
    "lng": 99.85986,
-   "notable": false
+   "notable": false,
+   "district": "แม่จัน"
   },
   {
    "id": "n2326556968",
@@ -3008,7 +3342,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 20.27446,
    "lng": 100.08556,
-   "notable": false
+   "notable": false,
+   "district": "เชียงแสน"
   },
   {
    "id": "w986855268",
@@ -3017,7 +3352,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 19.90406,
    "lng": 99.81937,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n13439931619",
@@ -3026,7 +3362,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.21243,
    "lng": 99.53058,
-   "notable": false
+   "notable": false,
+   "district": "เวียงป่าเป้า"
   },
   {
    "id": "n2313723117",
@@ -3035,7 +3372,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 20.27353,
    "lng": 100.07933,
-   "notable": true
+   "notable": true,
+   "district": "เชียงแสน"
   },
   {
    "id": "w483844901",
@@ -3044,7 +3382,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.90782,
    "lng": 99.82924,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n2082753285",
@@ -3053,7 +3392,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 20.34758,
    "lng": 99.83915,
-   "notable": true
+   "notable": true,
+   "district": "แม่สาย"
   },
   {
    "id": "r5724992",
@@ -3062,7 +3402,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.90531,
    "lng": 99.83407,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเชียงราย"
   },
   {
    "id": "n11442436439",
@@ -3071,7 +3412,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 20.24376,
    "lng": 100.12131,
-   "notable": false
+   "notable": false,
+   "district": "เชียงแสน"
   },
   {
    "id": "n6951279888",
@@ -3080,7 +3422,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.86983,
    "lng": 100.33278,
-   "notable": false
+   "notable": false,
+   "district": "ขุนตาล"
   }
  ],
  "ประจวบคีรีขันธ์": [
@@ -3091,7 +3434,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.45346,
    "lng": 99.98172,
-   "notable": true
+   "notable": true,
+   "district": "หัวหิน"
   },
   {
    "id": "r12113345",
@@ -3100,7 +3444,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 12.0942,
    "lng": 99.62057,
-   "notable": true
+   "notable": true,
+   "district": "กุยบุรี"
   },
   {
    "id": "n2452199735",
@@ -3109,7 +3454,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.19761,
    "lng": 100.0114,
-   "notable": true
+   "notable": true,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "w242679040",
@@ -3118,7 +3464,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 11.79769,
    "lng": 99.79785,
-   "notable": true
+   "notable": true,
+   "district": "เมืองประจวบคีรีขันธ์"
   },
   {
    "id": "n2545213845",
@@ -3127,7 +3474,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.33622,
    "lng": 99.99912,
-   "notable": true
+   "notable": true,
+   "district": "ปราณบุรี"
   },
   {
    "id": "w398660726",
@@ -3136,7 +3484,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.5016,
    "lng": 99.96517,
-   "notable": true
+   "notable": true,
+   "district": "หัวหิน"
   },
   {
    "id": "n4319159089",
@@ -3145,7 +3494,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.56241,
    "lng": 99.9454,
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n2569477498",
@@ -3154,7 +3504,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 11.19446,
    "lng": 99.56867,
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "n4733435826",
@@ -3163,7 +3514,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.40638,
    "lng": 99.9936,
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "n4303854840",
@@ -3172,7 +3524,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.13884,
    "lng": 99.64644,
-   "notable": false
+   "notable": false,
+   "district": "กุยบุรี"
   },
   {
    "id": "w192428839",
@@ -3181,7 +3534,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.15109,
    "lng": 99.98333,
-   "notable": true
+   "notable": true,
+   "district": "กุยบุรี"
   },
   {
    "id": "w243012019",
@@ -3190,7 +3544,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 12.20137,
    "lng": 99.96114,
-   "notable": true
+   "notable": true,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "n4797656719",
@@ -3199,7 +3554,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.20383,
    "lng": 99.99192,
-   "notable": false
+   "notable": false,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "n3247469292",
@@ -3208,7 +3564,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.51937,
    "lng": 99.97405,
-   "notable": true
+   "notable": true,
+   "district": "หัวหิน"
   },
   {
    "id": "n2501370842",
@@ -3217,7 +3574,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 11.81551,
    "lng": 99.7982,
-   "notable": true
+   "notable": true,
+   "district": "เมืองประจวบคีรีขันธ์"
   },
   {
    "id": "w451486555",
@@ -3226,7 +3584,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.53443,
    "lng": 99.96624,
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n4232913590",
@@ -3235,7 +3594,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.33902,
    "lng": 99.99846,
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "n2646992022",
@@ -3244,7 +3604,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 11.19607,
    "lng": 99.56868,
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "n5334973326",
@@ -3253,7 +3614,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 11.71849,
    "lng": 99.75743,
-   "notable": false
+   "notable": false,
+   "district": "เมืองประจวบคีรีขันธ์"
   },
   {
    "id": "n6032531403",
@@ -3262,7 +3624,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 11.59753,
    "lng": 99.55842,
-   "notable": false
+   "notable": false,
+   "district": "ทับสะแก"
   },
   {
    "id": "w253816464",
@@ -3271,7 +3634,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.71368,
    "lng": 99.75492,
-   "notable": true
+   "notable": true,
+   "district": "เมืองประจวบคีรีขันธ์"
   },
   {
    "id": "r12104353",
@@ -3280,7 +3644,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 11.56011,
    "lng": 99.5075,
-   "notable": true
+   "notable": true,
+   "district": "ทับสะแก"
   },
   {
    "id": "n4797656720",
@@ -3289,7 +3654,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.20415,
    "lng": 99.99164,
-   "notable": false
+   "notable": false,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "n1138549634",
@@ -3298,7 +3664,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.13531,
    "lng": 99.96013,
-   "notable": true
+   "notable": true,
+   "district": "กุยบุรี"
   },
   {
    "id": "n4026422554",
@@ -3307,7 +3674,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.51466,
    "lng": 99.98219,
-   "notable": true
+   "notable": true,
+   "district": "หัวหิน"
   },
   {
    "id": "n4063219058",
@@ -3316,7 +3684,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.57106,
    "lng": 99.9561,
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n9192058238",
@@ -3325,7 +3694,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.2235,
    "lng": 99.98532,
-   "notable": false
+   "notable": false,
+   "district": "สามร้อยยอด"
   },
   {
    "id": "n2664719771",
@@ -3334,7 +3704,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 11.50045,
    "lng": 99.46692,
-   "notable": false
+   "notable": false,
+   "district": "ทับสะแก"
   },
   {
    "id": "w398541585",
@@ -3343,7 +3714,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.50304,
    "lng": 99.96321,
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "r20440133",
@@ -3352,7 +3724,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.41481,
    "lng": 99.98793,
-   "notable": false
+   "notable": false,
+   "district": "ปราณบุรี"
   },
   {
    "id": "w263781656",
@@ -3361,7 +3734,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.20332,
    "lng": 99.54444,
-   "notable": true
+   "notable": true,
+   "district": "บางสะพาน"
   },
   {
    "id": "r12104352",
@@ -3370,7 +3744,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 11.64901,
    "lng": 99.72938,
-   "notable": true
+   "notable": true,
+   "district": ""
   },
   {
    "id": "n2029838337",
@@ -3379,7 +3754,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.17958,
    "lng": 100.00722,
-   "notable": false
+   "notable": false,
+   "district": "กุยบุรี"
   },
   {
    "id": "n5334904426",
@@ -3388,7 +3764,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 11.61593,
    "lng": 99.68924,
-   "notable": true
+   "notable": true,
+   "district": "ทับสะแก"
   },
   {
    "id": "n3262790738",
@@ -3397,7 +3774,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 11.24417,
    "lng": 99.47858,
-   "notable": false
+   "notable": false,
+   "district": "บางสะพาน"
   },
   {
    "id": "n2091887290",
@@ -3406,7 +3784,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.50157,
    "lng": 99.91501,
-   "notable": false
+   "notable": false,
+   "district": "หัวหิน"
   },
   {
    "id": "n4794667849",
@@ -3415,7 +3794,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.13308,
    "lng": 99.96043,
-   "notable": false
+   "notable": false,
+   "district": "กุยบุรี"
   },
   {
    "id": "n2668250448",
@@ -3424,7 +3804,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 11.79618,
    "lng": 99.68642,
-   "notable": false
+   "notable": false,
+   "district": "เมืองประจวบคีรีขันธ์"
   },
   {
    "id": "w262633401",
@@ -3433,7 +3814,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.04164,
    "lng": 99.90632,
-   "notable": false
+   "notable": false,
+   "district": "เมืองประจวบคีรีขันธ์"
   },
   {
    "id": "n2641014453",
@@ -3442,7 +3824,98 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 11.61165,
    "lng": 99.6872,
-   "notable": false
+   "notable": false,
+   "district": "ทับสะแก"
+  },
+  {
+   "id": "n3969590458",
+   "name": "พระบาทสมเด็จพระปกเกล้าเจ้าอยู่หัว รัชกาลที่ 7",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 12.56631,
+   "lng": 99.94473,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n4318214995",
+   "name": "จุดชมวิว 2",
+   "kind": "จุดชมวิว",
+   "emoji": "🌄",
+   "lat": 12.56377,
+   "lng": 99.94346,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n4024978211",
+   "name": "จุดชมวิวเขาหินเหล็กไฟ",
+   "kind": "ที่เที่ยว",
+   "emoji": "📍",
+   "lat": 12.56548,
+   "lng": 99.94369,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n3967382513",
+   "name": "จุดชมวิว 4",
+   "kind": "จุดชมวิว",
+   "emoji": "🌄",
+   "lat": 12.56593,
+   "lng": 99.94555,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n4109703479",
+   "name": "สวนสัตว์ หัวหิน",
+   "kind": "สวนสัตว์/อควาเรียม",
+   "emoji": "🐘",
+   "lat": 12.57668,
+   "lng": 99.88412,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n11933319502",
+   "name": "เขาดอนตะแบก",
+   "kind": "ยอดเขา",
+   "emoji": "⛰️",
+   "lat": 12.60567,
+   "lng": 99.91738,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n2089847314",
+   "name": "จุดชมวิว 5",
+   "kind": "จุดชมวิว",
+   "emoji": "🌄",
+   "lat": 12.56664,
+   "lng": 99.94665,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n3969589851",
+   "name": "จุดชมวิว 6",
+   "kind": "จุดชมวิว",
+   "emoji": "🌄",
+   "lat": 12.56803,
+   "lng": 99.94475,
+   "notable": false,
+   "district": "หัวหิน"
+  },
+  {
+   "id": "n5698451221",
+   "name": "พิพิธภัณฑ์ภาพวาด 4 มิติ",
+   "kind": "ที่เที่ยว",
+   "emoji": "📍",
+   "lat": 12.60715,
+   "lng": 99.9496,
+   "notable": false,
+   "district": "หัวหิน"
   }
  ],
  "เพชรบูรณ์": [
@@ -3453,7 +3926,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.70786,
    "lng": 100.99995,
-   "notable": true
+   "notable": true,
+   "district": "เขาค้อ"
   },
   {
    "id": "n3970808984",
@@ -3462,7 +3936,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.53692,
    "lng": 101.03261,
-   "notable": true
+   "notable": true,
+   "district": "เขาค้อ"
   },
   {
    "id": "n11212239863",
@@ -3471,7 +3946,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.72847,
    "lng": 101.75195,
-   "notable": false
+   "notable": false,
+   "district": "น้ำหนาว"
   },
   {
    "id": "n12008941169",
@@ -3480,7 +3956,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.56133,
    "lng": 101.04944,
-   "notable": false
+   "notable": false,
+   "district": "วิเชียรบุรี"
   },
   {
    "id": "n13361454454",
@@ -3489,7 +3966,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.49438,
    "lng": 100.98882,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "w1492457159",
@@ -3498,7 +3976,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.7775,
    "lng": 101.24698,
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "w1214453689",
@@ -3507,7 +3986,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.48685,
    "lng": 101.14436,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n9434420282",
@@ -3516,7 +3996,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.62935,
    "lng": 100.93926,
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n7330263785",
@@ -3525,7 +4006,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.44133,
    "lng": 101.13318,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบูรณ์"
   },
   {
    "id": "w1492461118",
@@ -3534,7 +4016,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.81379,
    "lng": 101.24712,
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "r6009661",
@@ -3543,7 +4026,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.47235,
    "lng": 101.37485,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบูรณ์"
   },
   {
    "id": "n3970808988",
@@ -3552,7 +4036,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.77517,
    "lng": 101.08762,
-   "notable": true
+   "notable": true,
+   "district": "เขาค้อ"
   },
   {
    "id": "n11612300266",
@@ -3561,7 +4046,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.72977,
    "lng": 101.36345,
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n11212239877",
@@ -3570,7 +4056,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.94729,
    "lng": 101.50706,
-   "notable": false
+   "notable": false,
+   "district": "น้ำหนาว"
   },
   {
    "id": "w1116101631",
@@ -3579,7 +4066,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.46552,
    "lng": 101.14476,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n5314649321",
@@ -3588,7 +4076,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.15368,
    "lng": 101.06703,
-   "notable": false
+   "notable": false,
+   "district": "หนองไผ่"
   },
   {
    "id": "n13359552141",
@@ -3597,7 +4086,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.42051,
    "lng": 101.1597,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบูรณ์"
   },
   {
    "id": "w1465656716",
@@ -3606,7 +4096,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.86844,
    "lng": 101.24677,
-   "notable": false
+   "notable": false,
+   "district": "หล่มเก่า"
   },
   {
    "id": "r6009657",
@@ -3615,7 +4106,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.73065,
    "lng": 101.55265,
-   "notable": true
+   "notable": true,
+   "district": "น้ำหนาว"
   },
   {
    "id": "n3970808985",
@@ -3624,7 +4116,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.82021,
    "lng": 101.1395,
-   "notable": true
+   "notable": true,
+   "district": "หล่มเก่า"
   },
   {
    "id": "n9434249150",
@@ -3633,7 +4126,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.72672,
    "lng": 101.75781,
-   "notable": false
+   "notable": false,
+   "district": "น้ำหนาว"
   },
   {
    "id": "n13361358252",
@@ -3642,7 +4136,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.47018,
    "lng": 101.14071,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n13352767414",
@@ -3651,7 +4146,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.72882,
    "lng": 101.75812,
-   "notable": false
+   "notable": false,
+   "district": "น้ำหนาว"
   },
   {
    "id": "n2439189994",
@@ -3660,7 +4156,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.61505,
    "lng": 100.98566,
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "w1457075197",
@@ -3669,7 +4166,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.57723,
    "lng": 101.06498,
-   "notable": false
+   "notable": false,
+   "district": "วิเชียรบุรี"
   },
   {
    "id": "n13361454455",
@@ -3678,7 +4176,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.49385,
    "lng": 100.98872,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n11212239947",
@@ -3687,7 +4186,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.7515,
    "lng": 101.5622,
-   "notable": false
+   "notable": false,
+   "district": "น้ำหนาว"
   },
   {
    "id": "n13361358282",
@@ -3696,7 +4196,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.46838,
    "lng": 101.13941,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n3058189695",
@@ -3705,7 +4206,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.41042,
    "lng": 100.87539,
-   "notable": false
+   "notable": false,
+   "district": "วังโป่ง"
   },
   {
    "id": "n13683816513",
@@ -3714,7 +4216,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.75322,
    "lng": 101.203,
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n3970808986",
@@ -3723,7 +4226,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.45522,
    "lng": 100.97767,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบูรณ์"
   },
   {
    "id": "n11577849114",
@@ -3732,7 +4236,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.75836,
    "lng": 101.50839,
-   "notable": false
+   "notable": false,
+   "district": "หล่มสัก"
   },
   {
    "id": "n13361358253",
@@ -3741,7 +4246,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.46924,
    "lng": 101.13965,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n9434420283",
@@ -3750,7 +4256,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.62928,
    "lng": 100.93912,
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n3970808987",
@@ -3759,7 +4266,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.55453,
    "lng": 100.96498,
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   },
   {
    "id": "n4628579941",
@@ -3768,7 +4276,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.87856,
    "lng": 101.10439,
-   "notable": false
+   "notable": false,
+   "district": "หล่มเก่า"
   },
   {
    "id": "n13361358285",
@@ -3777,7 +4286,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.46636,
    "lng": 101.13898,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเทพ"
   },
   {
    "id": "n13363592480",
@@ -3786,7 +4296,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.06643,
    "lng": 100.87324,
-   "notable": false
+   "notable": false,
+   "district": "ชนแดน"
   },
   {
    "id": "n3058189696",
@@ -3795,7 +4306,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.40543,
    "lng": 100.88312,
-   "notable": false
+   "notable": false,
+   "district": "วังโป่ง"
   },
   {
    "id": "n7109078086",
@@ -3804,7 +4316,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.78272,
    "lng": 101.09866,
-   "notable": false
+   "notable": false,
+   "district": "เขาค้อ"
   }
  ],
  "กรุงเทพมหานคร": [
@@ -3815,7 +4328,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.7266,
    "lng": 100.54581,
-   "notable": true
+   "notable": true,
+   "district": "ปทุมวัน"
   },
   {
    "id": "n7181818085",
@@ -3824,7 +4338,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.68317,
    "lng": 100.62572,
-   "notable": true
+   "notable": true,
+   "district": "พระโขนง"
   },
   {
    "id": "n13074433605",
@@ -3833,7 +4348,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.76369,
    "lng": 100.48889,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "w832285306",
@@ -3842,7 +4358,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 13.80672,
    "lng": 100.69642,
-   "notable": true
+   "notable": true,
+   "district": "คันนายาว"
   },
   {
    "id": "w706259602",
@@ -3851,7 +4368,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.86537,
    "lng": 100.70315,
-   "notable": true
+   "notable": true,
+   "district": "คลองสามวา"
   },
   {
    "id": "r20159195",
@@ -3860,7 +4378,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 13.71222,
    "lng": 100.57974,
-   "notable": true
+   "notable": true,
+   "district": "คลองเตย"
   },
   {
    "id": "r4051990",
@@ -3869,7 +4388,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.75466,
    "lng": 100.48518,
-   "notable": true
+   "notable": true,
+   "district": "บางกอกน้อย"
   },
   {
    "id": "n7328131724",
@@ -3878,7 +4398,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.74869,
    "lng": 100.49668,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "w560594892",
@@ -3887,7 +4408,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.75556,
    "lng": 100.50471,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "w1355626877",
@@ -3896,7 +4418,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 13.80496,
    "lng": 100.69853,
-   "notable": false
+   "notable": false,
+   "district": "คันนายาว"
   },
   {
    "id": "n4451735989",
@@ -3905,7 +4428,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.74741,
    "lng": 100.65292,
-   "notable": false
+   "notable": false,
+   "district": "บางกะปิ"
   },
   {
    "id": "n11064199105",
@@ -3914,7 +4438,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 13.78741,
    "lng": 100.71415,
-   "notable": false
+   "notable": false,
+   "district": "มีนบุรี"
   },
   {
    "id": "w539017238",
@@ -3923,7 +4448,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.74626,
    "lng": 100.54718,
-   "notable": true
+   "notable": true,
+   "district": "ปทุมวัน"
   },
   {
    "id": "r16713921",
@@ -3932,7 +4458,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.72418,
    "lng": 100.53546,
-   "notable": true
+   "notable": true,
+   "district": "บางรัก"
   },
   {
    "id": "w1429549932",
@@ -3941,7 +4468,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.67294,
    "lng": 100.44812,
-   "notable": true
+   "notable": true,
+   "district": "บางขุนเทียน"
   },
   {
    "id": "r18632531",
@@ -3950,7 +4478,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 13.82,
    "lng": 100.67758,
-   "notable": false
+   "notable": false,
+   "district": "คันนายาว"
   },
   {
    "id": "w198428496",
@@ -3959,7 +4488,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.73287,
    "lng": 100.53284,
-   "notable": true
+   "notable": true,
+   "district": "บางรัก"
   },
   {
    "id": "r20710624",
@@ -3968,7 +4498,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 13.75918,
    "lng": 100.49407,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "r20440796",
@@ -3977,7 +4508,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.7412,
    "lng": 100.50605,
-   "notable": true
+   "notable": true,
+   "district": "สัมพันธวงศ์"
   },
   {
    "id": "w333235243",
@@ -3986,7 +4518,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.768,
    "lng": 100.51066,
-   "notable": true
+   "notable": true,
+   "district": "ดุสิต"
   },
   {
    "id": "w23630232",
@@ -3995,7 +4528,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.75516,
    "lng": 100.49307,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "n11806216522",
@@ -4004,7 +4538,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.7458,
    "lng": 100.4903,
-   "notable": false
+   "notable": false,
+   "district": "พระนคร"
   },
   {
    "id": "n11064177405",
@@ -4013,7 +4548,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 13.78738,
    "lng": 100.71411,
-   "notable": false
+   "notable": false,
+   "district": "มีนบุรี"
   },
   {
    "id": "w241865727",
@@ -4022,7 +4558,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.71984,
    "lng": 100.53369,
-   "notable": true
+   "notable": true,
+   "district": "บางรัก"
   },
   {
    "id": "w1498869505",
@@ -4031,7 +4568,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.74404,
    "lng": 100.50125,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "n6475599885",
@@ -4040,7 +4578,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.76425,
    "lng": 100.48783,
-   "notable": true
+   "notable": true,
+   "district": "บางกอกน้อย"
   },
   {
    "id": "w48966995",
@@ -4049,7 +4588,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 13.74675,
    "lng": 100.53027,
-   "notable": true
+   "notable": true,
+   "district": "ปทุมวัน"
   },
   {
    "id": "w23610119",
@@ -4058,7 +4598,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.7589,
    "lng": 100.49732,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "w1388184387",
@@ -4067,7 +4608,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.7214,
    "lng": 100.55415,
-   "notable": true
+   "notable": true,
+   "district": "วัฒนา"
   },
   {
    "id": "w23486417",
@@ -4076,7 +4618,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.80807,
    "lng": 100.55549,
-   "notable": true
+   "notable": true,
+   "district": "จตุจักร"
   },
   {
    "id": "n6232721188",
@@ -4085,7 +4628,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.7445,
    "lng": 100.49124,
-   "notable": false
+   "notable": false,
+   "district": "พระนคร"
   },
   {
    "id": "n11064177307",
@@ -4094,7 +4638,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 13.78721,
    "lng": 100.71425,
-   "notable": false
+   "notable": false,
+   "district": "มีนบุรี"
   },
   {
    "id": "w1231343547",
@@ -4103,7 +4648,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.72782,
    "lng": 100.5394,
-   "notable": true
+   "notable": true,
+   "district": "บางรัก"
   },
   {
    "id": "n12282893164",
@@ -4112,7 +4658,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.74952,
    "lng": 100.5625,
-   "notable": true
+   "notable": true,
+   "district": "ราชเทวี"
   },
   {
    "id": "w1422673318",
@@ -4121,7 +4668,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.77249,
    "lng": 100.49449,
-   "notable": true
+   "notable": true,
+   "district": "บางพลัด"
   },
   {
    "id": "w205637198",
@@ -4130,7 +4678,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 13.75655,
    "lng": 100.50513,
-   "notable": true
+   "notable": true,
+   "district": "พระนคร"
   },
   {
    "id": "w462532630",
@@ -4139,7 +4688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.73869,
    "lng": 100.51225,
-   "notable": true
+   "notable": true,
+   "district": "สัมพันธวงศ์"
   },
   {
    "id": "w1387178428",
@@ -4148,7 +4698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.767,
    "lng": 100.5101,
-   "notable": true
+   "notable": true,
+   "district": "ดุสิต"
   },
   {
    "id": "w1182846804",
@@ -4157,7 +4708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.80577,
    "lng": 100.55257,
-   "notable": true
+   "notable": true,
+   "district": "จตุจักร"
   },
   {
    "id": "n4969530727",
@@ -4166,7 +4718,18 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.81978,
    "lng": 100.57587,
-   "notable": false
+   "notable": false,
+   "district": "จตุจักร"
+  },
+  {
+   "id": "w1003480959",
+   "name": "วัดกลางดาวคนอง",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 13.69694,
+   "lng": 100.48833,
+   "notable": true,
+   "district": "ธนบุรี"
   }
  ],
  "ขอนแก่น": [
@@ -4177,7 +4740,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.41079,
    "lng": 102.47058,
-   "notable": true
+   "notable": true,
+   "district": "หนองเรือ"
   },
   {
    "id": "w339532626",
@@ -4186,7 +4750,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.67822,
    "lng": 102.26703,
-   "notable": true
+   "notable": true,
+   "district": "เวียงเก่า"
   },
   {
    "id": "r1684796",
@@ -4195,7 +4760,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.56327,
    "lng": 102.95155,
-   "notable": true
+   "notable": true,
+   "district": "น้ำพอง"
   },
   {
    "id": "r2247212",
@@ -4204,7 +4770,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.63764,
    "lng": 102.54582,
-   "notable": false
+   "notable": false,
+   "district": "ภูเวียง"
   },
   {
    "id": "n11212240065",
@@ -4213,7 +4780,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.7894,
    "lng": 102.27736,
-   "notable": false
+   "notable": false,
+   "district": "เวียงเก่า"
   },
   {
    "id": "n13109953856",
@@ -4222,7 +4790,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.66706,
    "lng": 101.8943,
-   "notable": false
+   "notable": false,
+   "district": "ภูผาม่าน"
   },
   {
    "id": "n3247810068",
@@ -4231,7 +4800,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.61095,
    "lng": 102.92996,
-   "notable": false
+   "notable": false,
+   "district": "น้ำพอง"
   },
   {
    "id": "n13109858748",
@@ -4240,7 +4810,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 16.84592,
    "lng": 102.89622,
-   "notable": false
+   "notable": false,
+   "district": "เขาสวนกวาง"
   },
   {
    "id": "n5356141127",
@@ -4249,7 +4820,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.95504,
    "lng": 102.53917,
-   "notable": false
+   "notable": false,
+   "district": "แวงใหญ่"
   },
   {
    "id": "w1365254582",
@@ -4258,7 +4830,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.43183,
    "lng": 102.82522,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n13540942951",
@@ -4267,7 +4840,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.45753,
    "lng": 102.82829,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "r12601624",
@@ -4276,7 +4850,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.7407,
    "lng": 101.85413,
-   "notable": true
+   "notable": true,
+   "district": "ภูผาม่าน"
   },
   {
    "id": "n381897542",
@@ -4285,7 +4860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.44614,
    "lng": 102.83866,
-   "notable": true
+   "notable": true,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "r11648457",
@@ -4294,7 +4870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.40809,
    "lng": 102.8343,
-   "notable": true
+   "notable": true,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n1554990243",
@@ -4303,7 +4880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.62517,
    "lng": 102.56926,
-   "notable": false
+   "notable": false,
+   "district": "หนองเรือ"
   },
   {
    "id": "n11577815239",
@@ -4312,7 +4890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.61987,
    "lng": 102.57224,
-   "notable": false
+   "notable": false,
+   "district": "หนองเรือ"
   },
   {
    "id": "n13115862053",
@@ -4321,7 +4900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.82962,
    "lng": 101.98561,
-   "notable": false
+   "notable": false,
+   "district": "ชุมแพ"
   },
   {
    "id": "n1700620255",
@@ -4330,7 +4910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.87978,
    "lng": 102.90845,
-   "notable": false
+   "notable": false,
+   "district": "เปือยน้อย"
   },
   {
    "id": "n1600794988",
@@ -4339,7 +4920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 16.84635,
    "lng": 102.8966,
-   "notable": false
+   "notable": false,
+   "district": "เขาสวนกวาง"
   },
   {
    "id": "n5330444021",
@@ -4348,7 +4930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.7754,
    "lng": 102.62959,
-   "notable": false
+   "notable": false,
+   "district": "อุบลรัตน์"
   },
   {
    "id": "n4732243421",
@@ -4357,7 +4940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.6553,
    "lng": 102.76937,
-   "notable": false
+   "notable": false,
+   "district": "น้ำพอง"
   },
   {
    "id": "w456567389",
@@ -4366,7 +4950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.41861,
    "lng": 102.8184,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n1770382039",
@@ -4375,7 +4960,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.80453,
    "lng": 102.4177,
-   "notable": false
+   "notable": false,
+   "district": "แวงน้อย"
   },
   {
    "id": "n4559479722",
@@ -4384,7 +4970,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.4116,
    "lng": 102.88401,
-   "notable": true
+   "notable": true,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "r2247213",
@@ -4393,7 +4980,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.67827,
    "lng": 102.56608,
-   "notable": false
+   "notable": false,
+   "district": "ภูเวียง"
   },
   {
    "id": "n11212239864",
@@ -4402,7 +4990,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.8656,
    "lng": 102.64164,
-   "notable": false
+   "notable": false,
+   "district": "อุบลรัตน์"
   },
   {
    "id": "n13109953859",
@@ -4411,7 +5000,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.66617,
    "lng": 101.89615,
-   "notable": false
+   "notable": false,
+   "district": "ภูผาม่าน"
   },
   {
    "id": "w180682525",
@@ -4420,7 +5010,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.51436,
    "lng": 102.0978,
-   "notable": false
+   "notable": false,
+   "district": "ชุมแพ"
   },
   {
    "id": "n5360110521",
@@ -4429,7 +5020,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.48817,
    "lng": 102.8891,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n2358873457",
@@ -4438,7 +5030,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.46823,
    "lng": 102.83043,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n7883256008",
@@ -4447,7 +5040,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.43745,
    "lng": 102.84143,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n13109586091",
@@ -4456,7 +5050,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.09084,
    "lng": 102.60918,
-   "notable": false
+   "notable": false,
+   "district": "ชนบท"
   },
   {
    "id": "n1196797531",
@@ -4465,7 +5060,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.42609,
    "lng": 102.84625,
-   "notable": true
+   "notable": true,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n3331836305",
@@ -4474,7 +5070,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.65434,
    "lng": 102.60834,
-   "notable": false
+   "notable": false,
+   "district": "บ้านฝาง"
   },
   {
    "id": "n13110005091",
@@ -4483,7 +5080,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.72833,
    "lng": 101.84843,
-   "notable": false
+   "notable": false,
+   "district": "ภูผาม่าน"
   },
   {
    "id": "n5668246921",
@@ -4492,7 +5090,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.4394,
    "lng": 102.79569,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "n1223114500",
@@ -4501,7 +5100,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.47412,
    "lng": 102.82259,
-   "notable": false
+   "notable": false,
+   "district": "เมืองขอนแก่น"
   },
   {
    "id": "w556420041",
@@ -4510,7 +5110,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.70614,
    "lng": 103.07941,
-   "notable": false
+   "notable": false,
+   "district": "กระนวน"
   },
   {
    "id": "n5936097852",
@@ -4519,7 +5120,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.67819,
    "lng": 102.26733,
-   "notable": false
+   "notable": false,
+   "district": "เวียงเก่า"
   },
   {
    "id": "n5360191728",
@@ -4528,7 +5130,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.59582,
    "lng": 102.87283,
-   "notable": false
+   "notable": false,
+   "district": "น้ำพอง"
   }
  ],
  "หนองบัวลำภู": [
@@ -4539,7 +5142,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.79428,
    "lng": 102.58225,
-   "notable": false
+   "notable": false,
+   "district": "โนนสัง"
   },
   {
    "id": "n11212239950",
@@ -4548,7 +5152,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.3153,
    "lng": 102.11675,
-   "notable": false
+   "notable": false,
+   "district": "นาวัง"
   },
   {
    "id": "n13286868153",
@@ -4557,7 +5162,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.96142,
    "lng": 102.53982,
-   "notable": false
+   "notable": false,
+   "district": "โนนสัง"
   },
   {
    "id": "n5948148591",
@@ -4566,7 +5172,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.92744,
    "lng": 102.50921,
-   "notable": false
+   "notable": false,
+   "district": "โนนสัง"
   },
   {
    "id": "n4395597990",
@@ -4575,7 +5182,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.22279,
    "lng": 102.3981,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "w318494793",
@@ -4584,7 +5192,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.17662,
    "lng": 102.21175,
-   "notable": false
+   "notable": false,
+   "district": "นากลาง"
   },
   {
    "id": "n13285324689",
@@ -4593,7 +5202,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.20673,
    "lng": 102.46775,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "n3052649066",
@@ -4602,7 +5212,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.24402,
    "lng": 102.51361,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "n13285324688",
@@ -4611,7 +5222,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.28173,
    "lng": 102.45741,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "r2173782",
@@ -4620,7 +5232,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.90709,
    "lng": 102.27514,
-   "notable": false
+   "notable": false,
+   "district": "ศรีบุญเรือง"
   },
   {
    "id": "n11212240066",
@@ -4629,7 +5242,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.81584,
    "lng": 102.61012,
-   "notable": false
+   "notable": false,
+   "district": "โนนสัง"
   },
   {
    "id": "n408375194",
@@ -4638,7 +5252,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.22775,
    "lng": 102.51649,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองบัวลำภู"
   },
   {
    "id": "n13286294468",
@@ -4647,7 +5262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.29671,
    "lng": 102.18498,
-   "notable": false
+   "notable": false,
+   "district": "นากลาง"
   }
  ],
  "อุบลราชธานี": [
@@ -4658,7 +5274,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.41801,
    "lng": 105.30377,
-   "notable": true
+   "notable": true,
+   "district": "นาจะหลวย"
   },
   {
    "id": "n418091694",
@@ -4667,7 +5284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.39777,
    "lng": 105.50919,
-   "notable": true
+   "notable": true,
+   "district": "โขงเจียม"
   },
   {
    "id": "w1465437230",
@@ -4676,7 +5294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.23003,
    "lng": 104.86081,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n1203969733",
@@ -4685,7 +5304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.91838,
    "lng": 105.50471,
-   "notable": true
+   "notable": true,
+   "district": "บุณฑริก"
   },
   {
    "id": "w447796741",
@@ -4694,7 +5314,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 15.21068,
    "lng": 104.79382,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n4656928083",
@@ -4703,7 +5324,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.31069,
    "lng": 105.48594,
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "n14056324451",
@@ -4712,7 +5334,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.1956,
    "lng": 104.82718,
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n9590983387",
@@ -4721,7 +5344,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.78759,
    "lng": 104.92917,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งศรีอุดม"
   },
   {
    "id": "n14053787810",
@@ -4730,7 +5354,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 15.28403,
    "lng": 104.80768,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n14055757634",
@@ -4739,7 +5364,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.63615,
    "lng": 105.27686,
-   "notable": false
+   "notable": false,
+   "district": "ศรีเมืองใหม่"
   },
   {
    "id": "n4554534368",
@@ -4748,7 +5374,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 15.29328,
    "lng": 105.47573,
-   "notable": false
+   "notable": false,
+   "district": "สิรินธร"
   },
   {
    "id": "n9836746195",
@@ -4757,7 +5384,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.37036,
    "lng": 105.20995,
-   "notable": false
+   "notable": false,
+   "district": "น้ำยืน"
   },
   {
    "id": "n12314160700",
@@ -4766,7 +5394,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.4351,
    "lng": 105.10501,
-   "notable": false
+   "notable": false,
+   "district": "น้ำยืน"
   },
   {
    "id": "n11212240080",
@@ -4775,7 +5404,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.35233,
    "lng": 105.1848,
-   "notable": false
+   "notable": false,
+   "district": "น้ำยืน"
   },
   {
    "id": "n4331626405",
@@ -4784,7 +5414,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.16518,
    "lng": 104.77612,
-   "notable": true
+   "notable": true,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n14056261226",
@@ -4793,7 +5424,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.29998,
    "lng": 105.4746,
-   "notable": false
+   "notable": false,
+   "district": "สิรินธร"
   },
   {
    "id": "w1545310828",
@@ -4802,7 +5434,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.00596,
    "lng": 105.41911,
-   "notable": false
+   "notable": false,
+   "district": "เขมราฐ"
   },
   {
    "id": "n14053787163",
@@ -4811,7 +5444,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.27838,
    "lng": 104.85533,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n9836734061",
@@ -4820,7 +5454,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35268,
    "lng": 105.18497,
-   "notable": false
+   "notable": false,
+   "district": "น้ำยืน"
   },
   {
    "id": "w1161024710",
@@ -4829,7 +5464,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.24584,
    "lng": 105.24324,
-   "notable": false
+   "notable": false,
+   "district": "พิบูลมังสาหาร"
   },
   {
    "id": "n3699467709",
@@ -4838,7 +5474,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.45973,
    "lng": 105.57829,
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "n7776461218",
@@ -4847,7 +5484,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.24201,
    "lng": 105.22701,
-   "notable": true
+   "notable": true,
+   "district": "พิบูลมังสาหาร"
   },
   {
    "id": "n14056324459",
@@ -4856,7 +5494,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.45082,
    "lng": 105.25474,
-   "notable": false
+   "notable": false,
+   "district": "นาจะหลวย"
   },
   {
    "id": "n14049184106",
@@ -4865,7 +5504,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 15.22395,
    "lng": 104.86949,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n14041576361",
@@ -4874,7 +5514,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.23189,
    "lng": 104.86121,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n14049171479",
@@ -4883,7 +5524,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.22939,
    "lng": 104.85548,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "w578514423",
@@ -4892,7 +5534,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.20024,
    "lng": 104.86456,
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n10068844600",
@@ -4901,7 +5544,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.62076,
    "lng": 105.61686,
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "w1465633494",
@@ -4910,7 +5554,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.23476,
    "lng": 104.8634,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n14055749024",
@@ -4919,7 +5564,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.83234,
    "lng": 105.38646,
-   "notable": false
+   "notable": false,
+   "district": "โพธิ์ไทร"
   },
   {
    "id": "n1440391217",
@@ -4928,7 +5574,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.22768,
    "lng": 104.85776,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n14049171478",
@@ -4937,7 +5584,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.22482,
    "lng": 104.86025,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "w834777195",
@@ -4946,7 +5594,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.20677,
    "lng": 104.86136,
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n418091776",
@@ -4955,7 +5604,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.40303,
    "lng": 105.51907,
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "n2079322127",
@@ -4964,7 +5614,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.2275,
    "lng": 104.85617,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุบลราชธานี"
   },
   {
    "id": "n14053845799",
@@ -4973,7 +5624,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.04189,
    "lng": 105.22467,
-   "notable": false
+   "notable": false,
+   "district": "เขมราฐ"
   },
   {
    "id": "w556796905",
@@ -4982,7 +5634,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.1867,
    "lng": 104.86471,
-   "notable": false
+   "notable": false,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n11212240077",
@@ -4991,7 +5644,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.40396,
    "lng": 105.50178,
-   "notable": false
+   "notable": false,
+   "district": "โขงเจียม"
   },
   {
    "id": "n4348414695",
@@ -5000,7 +5654,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.15978,
    "lng": 104.83057,
-   "notable": true
+   "notable": true,
+   "district": "วารินชำราบ"
   },
   {
    "id": "n14056261227",
@@ -5009,7 +5664,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.29931,
    "lng": 105.48566,
-   "notable": false
+   "notable": false,
+   "district": "สิรินธร"
   }
  ],
  "กาฬสินธุ์": [
@@ -5020,7 +5676,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.05442,
    "lng": 103.62826,
-   "notable": true
+   "notable": true,
+   "district": "คำม่วง"
   },
   {
    "id": "w659666469",
@@ -5029,7 +5686,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.69317,
    "lng": 103.52431,
-   "notable": true
+   "notable": true,
+   "district": "สหัสขันธ์"
   },
   {
    "id": "n3746298252",
@@ -5038,7 +5696,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.65693,
    "lng": 103.84713,
-   "notable": true
+   "notable": true,
+   "district": "ห้วยผึ้ง"
   },
   {
    "id": "n7095446386",
@@ -5047,7 +5706,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.79358,
    "lng": 103.85779,
-   "notable": false
+   "notable": false,
+   "district": "สมเด็จ"
   },
   {
    "id": "n13979922151",
@@ -5056,7 +5716,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.89447,
    "lng": 103.24344,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "n13255521061",
@@ -5065,7 +5726,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.31873,
    "lng": 103.52014,
-   "notable": false
+   "notable": false,
+   "district": "ฆ้องชัย"
   },
   {
    "id": "n13255896179",
@@ -5074,7 +5736,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 16.60674,
    "lng": 103.4674,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n5483349258",
@@ -5083,7 +5746,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.72604,
    "lng": 103.52187,
-   "notable": false
+   "notable": false,
+   "district": "สหัสขันธ์"
   },
   {
    "id": "n13979922147",
@@ -5092,7 +5756,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.88006,
    "lng": 103.26473,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "n13968369590",
@@ -5101,7 +5766,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.43358,
    "lng": 103.50843,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n13979922123",
@@ -5110,7 +5776,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.87253,
    "lng": 103.27019,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "w1532728389",
@@ -5119,7 +5786,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.43237,
    "lng": 103.50687,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n13979922140",
@@ -5128,7 +5796,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.88765,
    "lng": 103.24886,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "n13979922141",
@@ -5137,7 +5806,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.88621,
    "lng": 103.24864,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "n5005318732",
@@ -5146,7 +5816,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.65019,
    "lng": 104.15606,
-   "notable": false
+   "notable": false,
+   "district": "เขาวง"
   },
   {
    "id": "w1174014752",
@@ -5155,7 +5826,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.45021,
    "lng": 103.51354,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n2521482823",
@@ -5164,7 +5836,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.3149,
    "lng": 103.519,
-   "notable": false
+   "notable": false,
+   "district": "กมลาไสย"
   },
   {
    "id": "n13979922146",
@@ -5173,7 +5846,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.87995,
    "lng": 103.26639,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "n6183268777",
@@ -5182,7 +5856,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.43433,
    "lng": 103.50356,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "w822802192",
@@ -5191,7 +5866,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.42793,
    "lng": 103.49909,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "w1444705226",
@@ -5200,7 +5876,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.69437,
    "lng": 103.52484,
-   "notable": false
+   "notable": false,
+   "district": "สหัสขันธ์"
   },
   {
    "id": "n13979922139",
@@ -5209,7 +5886,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.88938,
    "lng": 103.24818,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "w1174013964",
@@ -5218,7 +5896,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.42791,
    "lng": 103.49184,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n2521475748",
@@ -5227,7 +5906,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.31915,
    "lng": 103.52028,
-   "notable": false
+   "notable": false,
+   "district": "ฆ้องชัย"
   },
   {
    "id": "w1444698541",
@@ -5236,7 +5916,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.71041,
    "lng": 103.44999,
-   "notable": false
+   "notable": false,
+   "district": "หนองกุงศรี"
   },
   {
    "id": "n13980177731",
@@ -5245,7 +5926,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.43458,
    "lng": 103.49949,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาฬสินธุ์"
   },
   {
    "id": "n8292384317",
@@ -5254,7 +5936,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.69109,
    "lng": 103.937,
-   "notable": false
+   "notable": false,
+   "district": "ห้วยผึ้ง"
   },
   {
    "id": "n13979922148",
@@ -5263,7 +5946,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.88095,
    "lng": 103.27813,
-   "notable": false
+   "notable": false,
+   "district": "ท่าคันโท"
   },
   {
    "id": "n4218420790",
@@ -5272,7 +5956,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.52905,
    "lng": 104.20373,
-   "notable": false
+   "notable": false,
+   "district": "กุฉินารายณ์"
   },
   {
    "id": "n496885060",
@@ -5281,7 +5966,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.66311,
    "lng": 103.51738,
-   "notable": false
+   "notable": false,
+   "district": "สหัสขันธ์"
   },
   {
    "id": "n13256950242",
@@ -5290,7 +5976,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.53254,
    "lng": 104.1894,
-   "notable": false
+   "notable": false,
+   "district": "กุฉินารายณ์"
   },
   {
    "id": "n13255896178",
@@ -5299,7 +5986,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.70878,
    "lng": 103.46566,
-   "notable": false
+   "notable": false,
+   "district": "สหัสขันธ์"
   }
  ],
  "นครนายก": [
@@ -5310,7 +5998,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.30305,
    "lng": 101.15429,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "r17681528",
@@ -5319,7 +6008,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.15412,
    "lng": 101.16654,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n2411872508",
@@ -5328,7 +6018,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.35476,
    "lng": 101.37536,
-   "notable": true
+   "notable": true,
+   "district": "ปากพลี"
   },
   {
    "id": "n2678596386",
@@ -5337,7 +6028,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.28968,
    "lng": 101.38816,
-   "notable": true
+   "notable": true,
+   "district": "ปากพลี"
   },
   {
    "id": "n11609247784",
@@ -5346,7 +6038,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.33771,
    "lng": 101.15138,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "w1190957637",
@@ -5355,7 +6048,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.10845,
    "lng": 100.98349,
-   "notable": false
+   "notable": false,
+   "district": "องครักษ์"
   },
   {
    "id": "n8693775692",
@@ -5364,7 +6058,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.29332,
    "lng": 101.10124,
-   "notable": false
+   "notable": false,
+   "district": "บ้านนา"
   },
   {
    "id": "n11081116492",
@@ -5373,7 +6068,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.25925,
    "lng": 101.06637,
-   "notable": true
+   "notable": true,
+   "district": "บ้านนา"
   },
   {
    "id": "n6169106141",
@@ -5382,7 +6078,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.35286,
    "lng": 101.31156,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n11675957869",
@@ -5391,7 +6088,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.27545,
    "lng": 101.22313,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n501833975",
@@ -5400,7 +6098,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.36557,
    "lng": 101.40695,
-   "notable": false
+   "notable": false,
+   "district": "ปากพลี"
   },
   {
    "id": "n11080859491",
@@ -5409,7 +6108,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.1118,
    "lng": 100.98381,
-   "notable": false
+   "notable": false,
+   "district": "องครักษ์"
   },
   {
    "id": "w1307056783",
@@ -5418,7 +6118,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.1227,
    "lng": 101.00039,
-   "notable": false
+   "notable": false,
+   "district": "องครักษ์"
   },
   {
    "id": "w1486089415",
@@ -5427,7 +6128,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.21046,
    "lng": 101.2333,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n6169106139",
@@ -5436,7 +6138,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.46664,
    "lng": 101.31967,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n11675957769",
@@ -5445,7 +6148,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.26026,
    "lng": 101.23177,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "w1486089412",
@@ -5454,7 +6158,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.20638,
    "lng": 101.22493,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "n2411879170",
@@ -5463,7 +6168,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.38804,
    "lng": 101.42504,
-   "notable": false
+   "notable": false,
+   "district": "ปากพลี"
   },
   {
    "id": "w790294472",
@@ -5472,7 +6178,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.16449,
    "lng": 100.93439,
-   "notable": true
+   "notable": true,
+   "district": "องครักษ์"
   },
   {
    "id": "w743656739",
@@ -5481,7 +6188,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.20387,
    "lng": 101.21177,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "w1312834302",
@@ -5490,7 +6198,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.20405,
    "lng": 101.21849,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "w1486089406",
@@ -5499,7 +6208,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.21128,
    "lng": 101.22609,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   },
   {
    "id": "w1486089422",
@@ -5508,7 +6218,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.20865,
    "lng": 101.22522,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครนายก"
   }
  ],
  "นครราชสีมา": [
@@ -5519,7 +6230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.34721,
    "lng": 102.25659,
-   "notable": true
+   "notable": true,
+   "district": "ครบุรี"
   },
   {
    "id": "n7079813308",
@@ -5528,7 +6240,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.98316,
    "lng": 102.11405,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n13277614146",
@@ -5537,7 +6250,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.97558,
    "lng": 102.10692,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n3452272155",
@@ -5546,7 +6260,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.02508,
    "lng": 102.19371,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "w93308625",
@@ -5555,7 +6270,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.85353,
    "lng": 102.08191,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n6169106140",
@@ -5564,7 +6280,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.49361,
    "lng": 101.33342,
-   "notable": true
+   "notable": true,
+   "district": "ปากช่อง"
   },
   {
    "id": "w1445997480",
@@ -5573,7 +6290,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 14.47089,
    "lng": 102.12292,
-   "notable": false
+   "notable": false,
+   "district": "ครบุรี"
   },
   {
    "id": "n5447899121",
@@ -5582,7 +6300,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.3668,
    "lng": 101.77374,
-   "notable": false
+   "notable": false,
+   "district": "วังน้ำเขียว"
   },
   {
    "id": "n8127709117",
@@ -5591,7 +6310,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.7528,
    "lng": 101.5083,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n540143665",
@@ -5600,7 +6320,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 14.73095,
    "lng": 101.38995,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n5643475721",
@@ -5609,7 +6330,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 14.55315,
    "lng": 101.43356,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n6868982285",
@@ -5618,7 +6340,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.11893,
    "lng": 101.48296,
-   "notable": false
+   "notable": false,
+   "district": "ด่านขุนทด"
   },
   {
    "id": "n7050802785",
@@ -5627,7 +6350,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.70515,
    "lng": 101.41451,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "w554285251",
@@ -5636,7 +6360,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.85789,
    "lng": 102.02822,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "w1446659975",
@@ -5645,7 +6370,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.65346,
    "lng": 101.34871,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "r2180099",
@@ -5654,7 +6380,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.98071,
    "lng": 102.11688,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n6680177773",
@@ -5663,7 +6390,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.90781,
    "lng": 101.86202,
-   "notable": true
+   "notable": true,
+   "district": "สูงเนิน"
   },
   {
    "id": "n4397896153",
@@ -5672,7 +6400,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.58278,
    "lng": 101.44011,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n6169106138",
@@ -5681,7 +6410,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.46072,
    "lng": 101.36969,
-   "notable": true
+   "notable": true,
+   "district": "ปากช่อง"
   },
   {
    "id": "n502700456",
@@ -5690,7 +6420,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.34348,
    "lng": 101.89741,
-   "notable": false
+   "notable": false,
+   "district": "วังน้ำเขียว"
   },
   {
    "id": "n7524787285",
@@ -5699,7 +6430,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.85657,
    "lng": 102.18395,
-   "notable": false
+   "notable": false,
+   "district": "โชคชัย"
   },
   {
    "id": "n3913959822",
@@ -5708,7 +6440,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.64261,
    "lng": 101.86709,
-   "notable": false
+   "notable": false,
+   "district": "ปักธงชัย"
   },
   {
    "id": "n4357820289",
@@ -5717,7 +6450,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.3091,
    "lng": 102.36963,
-   "notable": false
+   "notable": false,
+   "district": "คง"
   },
   {
    "id": "w554300530",
@@ -5726,7 +6460,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.97958,
    "lng": 102.09779,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "w763217022",
@@ -5735,7 +6470,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.24564,
    "lng": 102.37105,
-   "notable": false
+   "notable": false,
+   "district": "โนนสูง"
   },
   {
    "id": "n1195449739",
@@ -5744,7 +6480,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.57395,
    "lng": 101.41194,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n4885467483",
@@ -5753,7 +6490,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.74841,
    "lng": 102.41828,
-   "notable": true
+   "notable": true,
+   "district": "หนองบุญมาก"
   },
   {
    "id": "n13274719971",
@@ -5762,7 +6500,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.83971,
    "lng": 101.5021,
-   "notable": false
+   "notable": false,
+   "district": "สีคิ้ว"
   },
   {
    "id": "n9434192096",
@@ -5771,7 +6510,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.68256,
    "lng": 101.69331,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n7523242685",
@@ -5780,7 +6520,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.84189,
    "lng": 102.19511,
-   "notable": false
+   "notable": false,
+   "district": "โชคชัย"
   },
   {
    "id": "n4807378221",
@@ -5789,7 +6530,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.53764,
    "lng": 101.37797,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n6680132070",
@@ -5798,7 +6540,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.9085,
    "lng": 101.86134,
-   "notable": false
+   "notable": false,
+   "district": "สูงเนิน"
   },
   {
    "id": "w761924542",
@@ -5807,7 +6550,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.96489,
    "lng": 102.07489,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "w312167241",
@@ -5816,7 +6560,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.22506,
    "lng": 102.49468,
-   "notable": false
+   "notable": false,
+   "district": "พิมาย"
   },
   {
    "id": "w1317554053",
@@ -5825,7 +6570,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.6938,
    "lng": 101.41109,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "n13769111127",
@@ -5834,7 +6580,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.95322,
    "lng": 102.01949,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n12870156483",
@@ -5843,7 +6590,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.56382,
    "lng": 102.01611,
-   "notable": false
+   "notable": false,
+   "district": "ปักธงชัย"
   },
   {
    "id": "n9434192098",
@@ -5852,7 +6600,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.68298,
    "lng": 101.69251,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   },
   {
    "id": "w666107864",
@@ -5861,7 +6610,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.95563,
    "lng": 102.04573,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครราชสีมา"
   },
   {
    "id": "n5484370550",
@@ -5870,7 +6620,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.61417,
    "lng": 101.26545,
-   "notable": false
+   "notable": false,
+   "district": "ปากช่อง"
   }
  ],
  "อุดรธานี": [
@@ -5881,7 +6632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.29635,
    "lng": 102.77668,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n685223269",
@@ -5890,7 +6642,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.4082,
    "lng": 103.24337,
-   "notable": true
+   "notable": true,
+   "district": "หนองหาน"
   },
   {
    "id": "n1986569689",
@@ -5899,7 +6652,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.73142,
    "lng": 102.35385,
-   "notable": true
+   "notable": true,
+   "district": "บ้านผือ"
   },
   {
    "id": "n3510112489",
@@ -5908,7 +6662,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.19312,
    "lng": 102.47524,
-   "notable": false
+   "notable": false,
+   "district": "หนองวัวซอ"
   },
   {
    "id": "n6053611903",
@@ -5917,7 +6672,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.292,
    "lng": 102.86481,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n13200249376",
@@ -5926,7 +6682,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.98252,
    "lng": 102.01786,
-   "notable": false
+   "notable": false,
+   "district": "นายูง"
   },
   {
    "id": "n11330703599",
@@ -5935,7 +6692,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.40083,
    "lng": 102.79476,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w1344565720",
@@ -5944,7 +6702,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.41238,
    "lng": 102.78662,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n2387806712",
@@ -5953,7 +6712,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.41321,
    "lng": 102.77894,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4357796591",
@@ -5962,7 +6722,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.21234,
    "lng": 103.03442,
-   "notable": false
+   "notable": false,
+   "district": "กุมภวาปี"
   },
   {
    "id": "n11212240087",
@@ -5971,7 +6732,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.92779,
    "lng": 102.25264,
-   "notable": false
+   "notable": false,
+   "district": "นายูง"
   },
   {
    "id": "n757650160",
@@ -5980,7 +6742,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.41234,
    "lng": 102.78198,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4514325692",
@@ -5989,7 +6752,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.38877,
    "lng": 102.81072,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w734228252",
@@ -5998,7 +6762,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.3591,
    "lng": 103.10149,
-   "notable": false
+   "notable": false,
+   "district": "หนองหาน"
   },
   {
    "id": "w1101878667",
@@ -6007,7 +6772,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.22307,
    "lng": 102.53118,
-   "notable": true
+   "notable": true,
+   "district": "หนองวัวซอ"
   },
   {
    "id": "n13252371767",
@@ -6016,7 +6782,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.8347,
    "lng": 103.07265,
-   "notable": false
+   "notable": false,
+   "district": "สร้างคอม"
   },
   {
    "id": "n4572582191",
@@ -6025,7 +6792,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.76717,
    "lng": 102.19059,
-   "notable": false
+   "notable": false,
+   "district": "น้ำโสม"
   },
   {
    "id": "w194714478",
@@ -6034,7 +6802,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.16184,
    "lng": 102.69977,
-   "notable": false
+   "notable": false,
+   "district": "หนองแสง"
   },
   {
    "id": "w668497979",
@@ -6043,7 +6812,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.41568,
    "lng": 102.79072,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4579367390",
@@ -6052,7 +6822,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.39268,
    "lng": 102.83657,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n757352767",
@@ -6061,7 +6832,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.40428,
    "lng": 102.79392,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w34843785",
@@ -6070,7 +6842,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.20627,
    "lng": 102.44173,
-   "notable": false
+   "notable": false,
+   "district": "หนองวัวซอ"
   },
   {
    "id": "n8750735917",
@@ -6079,7 +6852,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.42578,
    "lng": 102.80831,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "w230382116",
@@ -6088,7 +6862,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.40193,
    "lng": 102.80881,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4585547189",
@@ -6097,7 +6872,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.4141,
    "lng": 102.78434,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n757443041",
@@ -6106,7 +6882,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.41929,
    "lng": 102.78044,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n13252371693",
@@ -6115,7 +6892,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.8373,
    "lng": 103.07727,
-   "notable": false
+   "notable": false,
+   "district": "สร้างคอม"
   },
   {
    "id": "w733906215",
@@ -6124,7 +6902,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.41747,
    "lng": 102.7818,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4412683792",
@@ -6133,7 +6912,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.28719,
    "lng": 102.45724,
-   "notable": false
+   "notable": false,
+   "district": "หนองวัวซอ"
   },
   {
    "id": "n757720480",
@@ -6142,7 +6922,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.41936,
    "lng": 102.80157,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n1305249974",
@@ -6151,7 +6932,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.40576,
    "lng": 103.24282,
-   "notable": false
+   "notable": false,
+   "district": "หนองหาน"
   },
   {
    "id": "w734215796",
@@ -6160,7 +6942,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.36609,
    "lng": 103.1088,
-   "notable": false
+   "notable": false,
+   "district": "หนองหาน"
   },
   {
    "id": "n8297372625",
@@ -6169,7 +6952,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.09705,
    "lng": 102.93968,
-   "notable": false
+   "notable": false,
+   "district": "กุมภวาปี"
   },
   {
    "id": "n12736658014",
@@ -6178,7 +6962,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.30141,
    "lng": 102.90241,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n14014961240",
@@ -6187,7 +6972,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.85747,
    "lng": 103.05781,
-   "notable": false
+   "notable": false,
+   "district": "สร้างคอม"
   },
   {
    "id": "w668497407",
@@ -6196,7 +6982,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.41364,
    "lng": 102.78702,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   },
   {
    "id": "n4394495893",
@@ -6205,7 +6992,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.19324,
    "lng": 102.47642,
-   "notable": false
+   "notable": false,
+   "district": "หนองวัวซอ"
   },
   {
    "id": "n13283013287",
@@ -6214,7 +7002,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.40411,
    "lng": 102.68972,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุดรธานี"
   }
  ],
  "ตาก": [
@@ -6225,7 +7014,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.91458,
    "lng": 98.68763,
-   "notable": true
+   "notable": true,
+   "district": "แม่สอด"
   },
   {
    "id": "w254018629",
@@ -6234,7 +7024,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.21372,
    "lng": 99.04993,
-   "notable": true
+   "notable": true,
+   "district": "สามเงา"
   },
   {
    "id": "n3970701756",
@@ -6243,7 +7034,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.42906,
    "lng": 98.15757,
-   "notable": true
+   "notable": true,
+   "district": "ท่าสองยาง"
   },
   {
    "id": "n11212239876",
@@ -6252,7 +7044,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.54555,
    "lng": 98.59898,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n1439854053",
@@ -6261,7 +7054,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 16.02214,
    "lng": 98.82482,
-   "notable": false
+   "notable": false,
+   "district": "อุ้มผาง"
   },
   {
    "id": "n1539494224",
@@ -6270,7 +7064,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.05313,
    "lng": 98.82201,
-   "notable": false
+   "notable": false,
+   "district": "อุ้มผาง"
   },
   {
    "id": "n11530811470",
@@ -6279,7 +7074,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.87192,
    "lng": 99.12477,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n13533829694",
@@ -6288,7 +7084,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.15941,
    "lng": 98.61216,
-   "notable": false
+   "notable": false,
+   "district": "แม่ระมาด"
   },
   {
    "id": "n5225789721",
@@ -6297,7 +7094,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.76158,
    "lng": 98.6465,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "w337163999",
@@ -6306,7 +7104,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.76311,
    "lng": 98.7494,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "r12249538",
@@ -6315,7 +7114,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.8308,
    "lng": 98.87022,
-   "notable": true
+   "notable": true,
+   "district": "แม่สอด"
   },
   {
    "id": "w301651245",
@@ -6324,7 +7124,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.7167,
    "lng": 98.56633,
-   "notable": true
+   "notable": true,
+   "district": "แม่สอด"
   },
   {
    "id": "n3970701759",
@@ -6333,7 +7134,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.45393,
    "lng": 98.13608,
-   "notable": true
+   "notable": true,
+   "district": "ท่าสองยาง"
   },
   {
    "id": "n13432425244",
@@ -6342,7 +7144,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.48947,
    "lng": 98.7784,
-   "notable": false
+   "notable": false,
+   "district": "สามเงา"
   },
   {
    "id": "n13531954694",
@@ -6351,7 +7154,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 16.88556,
    "lng": 98.63589,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n4405667796",
@@ -6360,7 +7164,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.30389,
    "lng": 98.15564,
-   "notable": false
+   "notable": false,
+   "district": "ท่าสองยาง"
   },
   {
    "id": "w1417547948",
@@ -6369,7 +7174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.0607,
    "lng": 99.04345,
-   "notable": false
+   "notable": false,
+   "district": "บ้านตาก"
   },
   {
    "id": "n3343042250",
@@ -6378,7 +7184,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.79347,
    "lng": 98.92031,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n14102088713",
@@ -6387,7 +7194,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.72467,
    "lng": 98.59798,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "w1298280928",
@@ -6396,7 +7204,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.69166,
    "lng": 98.60801,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "w395936283",
@@ -6405,7 +7214,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.75784,
    "lng": 99.01016,
-   "notable": true
+   "notable": true,
+   "district": "เมืองตาก"
   },
   {
    "id": "w548044894",
@@ -6414,7 +7224,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.71666,
    "lng": 98.57376,
-   "notable": true
+   "notable": true,
+   "district": "แม่สอด"
   },
   {
    "id": "n3970701760",
@@ -6423,7 +7234,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.44664,
    "lng": 98.09365,
-   "notable": true
+   "notable": true,
+   "district": "ท่าสองยาง"
   },
   {
    "id": "n13540673826",
@@ -6432,7 +7244,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.42463,
    "lng": 98.65564,
-   "notable": false
+   "notable": false,
+   "district": "พบพระ"
   },
   {
    "id": "n13432425243",
@@ -6441,7 +7254,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.48833,
    "lng": 98.87091,
-   "notable": false
+   "notable": false,
+   "district": "สามเงา"
   },
   {
    "id": "w323724839",
@@ -6450,7 +7264,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.8681,
    "lng": 99.12497,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "w1417547947",
@@ -6459,7 +7274,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.06126,
    "lng": 99.04228,
-   "notable": false
+   "notable": false,
+   "district": "บ้านตาก"
   },
   {
    "id": "w1298280296",
@@ -6468,7 +7284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.72263,
    "lng": 98.56808,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "w656480842",
@@ -6477,7 +7294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.06143,
    "lng": 98.96344,
-   "notable": false
+   "notable": false,
+   "district": "บ้านตาก"
   },
   {
    "id": "n3970701761",
@@ -6486,7 +7304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.39943,
    "lng": 98.08127,
-   "notable": true
+   "notable": true,
+   "district": "ท่าสองยาง"
   },
   {
    "id": "n13531998041",
@@ -6495,7 +7314,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.76143,
    "lng": 98.64808,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n12566950471",
@@ -6504,7 +7324,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.60218,
    "lng": 98.71252,
-   "notable": false
+   "notable": false,
+   "district": "แม่สอด"
   },
   {
    "id": "n13521704286",
@@ -6513,7 +7334,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.86774,
    "lng": 99.12516,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n13521570615",
@@ -6522,7 +7344,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.85803,
    "lng": 99.1214,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "r17801218",
@@ -6531,7 +7354,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.8688,
    "lng": 99.12365,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n3997932138",
@@ -6540,7 +7364,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.85277,
    "lng": 98.68638,
-   "notable": true
+   "notable": true,
+   "district": "แม่สอด"
   },
   {
    "id": "n11212240063",
@@ -6549,7 +7374,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.10253,
    "lng": 99.10589,
-   "notable": false
+   "notable": false,
+   "district": "อุ้มผาง"
   },
   {
    "id": "n2279734999",
@@ -6558,7 +7384,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.00593,
    "lng": 98.81718,
-   "notable": false
+   "notable": false,
+   "district": "อุ้มผาง"
   },
   {
    "id": "n7907482661",
@@ -6567,7 +7394,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.90682,
    "lng": 99.12721,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตาก"
   },
   {
    "id": "n3997932139",
@@ -6576,7 +7404,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.76963,
    "lng": 98.68322,
-   "notable": true
+   "notable": true,
+   "district": "แม่สอด"
   }
  ],
  "น่าน": [
@@ -6587,7 +7416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.11893,
    "lng": 101.25605,
-   "notable": true
+   "notable": true,
+   "district": "บ่อเกลือ"
   },
   {
    "id": "w1489131358",
@@ -6596,7 +7426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.27277,
    "lng": 100.57813,
-   "notable": true
+   "notable": true,
+   "district": "นาน้อย"
   },
   {
    "id": "n2082776265",
@@ -6605,7 +7436,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.12826,
    "lng": 101.05989,
-   "notable": true
+   "notable": true,
+   "district": "ปัว"
   },
   {
    "id": "n11212153256",
@@ -6614,7 +7446,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.17478,
    "lng": 101.10644,
-   "notable": false
+   "notable": false,
+   "district": "บ่อเกลือ"
   },
   {
    "id": "n1216530065",
@@ -6623,7 +7456,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.27336,
    "lng": 100.5779,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "w1489041822",
@@ -6632,7 +7466,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.19573,
    "lng": 100.92686,
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "w1091527107",
@@ -6641,7 +7476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 18.78064,
    "lng": 100.76968,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n13651428350",
@@ -6650,7 +7486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 18.78576,
    "lng": 100.72946,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n2481055286",
@@ -6659,7 +7496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.29707,
    "lng": 100.75167,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "w1550354824",
@@ -6668,7 +7506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.27297,
    "lng": 100.57828,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "w625324025",
@@ -6677,7 +7516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.56891,
    "lng": 100.75567,
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "r12719044",
@@ -6686,7 +7526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.21527,
    "lng": 100.52042,
-   "notable": true
+   "notable": true,
+   "district": "นาหมื่น"
   },
   {
    "id": "w742861112",
@@ -6695,7 +7536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.77666,
    "lng": 100.78417,
-   "notable": true
+   "notable": true,
+   "district": "ภูเพียง"
   },
   {
    "id": "n13657817772",
@@ -6704,7 +7546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.0901,
    "lng": 100.68746,
-   "notable": false
+   "notable": false,
+   "district": "ท่าวังผา"
   },
   {
    "id": "n4656414235",
@@ -6713,7 +7556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.36943,
    "lng": 100.83157,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "n4595276460",
@@ -6722,7 +7566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.43319,
    "lng": 101.06731,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งช้าง"
   },
   {
    "id": "n13651452156",
@@ -6731,7 +7576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.75065,
    "lng": 100.6983,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "w1418656793",
@@ -6740,7 +7586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 18.94016,
    "lng": 100.76813,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "r13864362",
@@ -6749,7 +7596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.77781,
    "lng": 100.77219,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n4829765113",
@@ -6758,7 +7606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.386,
    "lng": 100.98333,
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "w764035856",
@@ -6767,7 +7616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.57523,
    "lng": 100.74985,
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "r5944644",
@@ -6776,7 +7626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.10696,
    "lng": 101.08783,
-   "notable": true
+   "notable": true,
+   "district": "บ่อเกลือ"
   },
   {
    "id": "w1089031375",
@@ -6785,7 +7636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.76954,
    "lng": 100.75065,
-   "notable": true
+   "notable": true,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n13657828977",
@@ -6794,7 +7646,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.38611,
    "lng": 101.11643,
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n2683343843",
@@ -6803,7 +7656,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.31493,
    "lng": 100.89211,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "n6937697410",
@@ -6812,7 +7666,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.79966,
    "lng": 100.78991,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n6900148385",
@@ -6821,7 +7676,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.60508,
    "lng": 100.83256,
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "w1550349536",
@@ -6830,7 +7686,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.27298,
    "lng": 100.579,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   },
   {
    "id": "w625324024",
@@ -6839,7 +7696,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.56746,
    "lng": 100.75594,
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "r6009655",
@@ -6848,7 +7706,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.58215,
    "lng": 101.11316,
-   "notable": true
+   "notable": true,
+   "district": "แม่จริม"
   },
   {
    "id": "w246657160",
@@ -6857,7 +7716,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.77483,
    "lng": 100.76912,
-   "notable": true
+   "notable": true,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n13657828985",
@@ -6866,7 +7726,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.11799,
    "lng": 100.65165,
-   "notable": false
+   "notable": false,
+   "district": "ท่าวังผา"
   },
   {
    "id": "n8243047017",
@@ -6875,7 +7736,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.974,
    "lng": 101.03404,
-   "notable": false
+   "notable": false,
+   "district": "ปัว"
   },
   {
    "id": "n6935532339",
@@ -6884,7 +7746,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.75768,
    "lng": 100.76052,
-   "notable": false
+   "notable": false,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n6954285191",
@@ -6893,7 +7756,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.28649,
    "lng": 100.78815,
-   "notable": false
+   "notable": false,
+   "district": "เชียงกลาง"
   },
   {
    "id": "n13651530691",
@@ -6902,7 +7766,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.57187,
    "lng": 101.07398,
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "w625324018",
@@ -6911,7 +7776,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.57103,
    "lng": 100.75155,
-   "notable": false
+   "notable": false,
+   "district": "เวียงสา"
   },
   {
    "id": "r6009660",
@@ -6920,7 +7786,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.26617,
    "lng": 100.85518,
-   "notable": true
+   "notable": true,
+   "district": "นาน้อย"
   },
   {
    "id": "w247050757",
@@ -6929,7 +7796,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.78439,
    "lng": 100.7738,
-   "notable": true
+   "notable": true,
+   "district": "เมืองน่าน"
   },
   {
    "id": "n13652272077",
@@ -6938,7 +7806,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.36762,
    "lng": 100.83881,
-   "notable": false
+   "notable": false,
+   "district": "นาน้อย"
   }
  ],
  "ปทุมธานี": [
@@ -6949,16 +7818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.06579,
    "lng": 100.64753,
-   "notable": true
-  },
-  {
-   "id": "w218136534",
-   "name": "พระราชวังบางปะอิน",
-   "kind": "พิพิธภัณฑ์",
-   "emoji": "🏛️",
-   "lat": 14.23249,
-   "lng": 100.57915,
-   "notable": true
+   "notable": true,
+   "district": "คลองหลวง"
   },
   {
    "id": "n3055733743",
@@ -6967,7 +7828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.98229,
    "lng": 100.65586,
-   "notable": true
+   "notable": true,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w124857541",
@@ -6976,16 +7838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 13.99197,
    "lng": 100.6755,
-   "notable": true
-  },
-  {
-   "id": "w259502248",
-   "name": "ตำหนักเก้าห้อง",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 14.23504,
-   "lng": 100.58106,
-   "notable": true
+   "notable": true,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n13071787295",
@@ -6994,7 +7848,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.99209,
    "lng": 100.67571,
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n6211788322",
@@ -7003,7 +7858,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.98892,
    "lng": 100.67469,
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w543836130",
@@ -7012,7 +7868,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.03531,
    "lng": 100.72934,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "w217893777",
@@ -7021,7 +7878,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.11783,
    "lng": 100.62568,
-   "notable": true
+   "notable": true,
+   "district": "คลองหลวง"
   },
   {
    "id": "w272525312",
@@ -7030,16 +7888,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.96025,
    "lng": 100.68832,
-   "notable": true
-  },
-  {
-   "id": "w761226258",
-   "name": "พระตำหนักพระพันวัสสาฯ",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 14.23266,
-   "lng": 100.58091,
-   "notable": true
+   "notable": true,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n6225820516",
@@ -7048,7 +7898,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.99073,
    "lng": 100.67542,
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w817664149",
@@ -7057,16 +7908,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.0213,
    "lng": 100.76915,
-   "notable": false
-  },
-  {
-   "id": "w259502249",
-   "name": "สภาคารราชประยูร",
-   "kind": "พิพิธภัณฑ์",
-   "emoji": "🏛️",
-   "lat": 14.23162,
-   "lng": 100.57756,
-   "notable": true
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w442820089",
@@ -7075,16 +7918,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.03513,
    "lng": 100.64318,
-   "notable": true
-  },
-  {
-   "id": "w761226249",
-   "name": "พระที่นั่งวโรภาษพิมาน",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 14.23302,
-   "lng": 100.57835,
-   "notable": true
+   "notable": true,
+   "district": "คลองหลวง"
   },
   {
    "id": "n5265311024",
@@ -7093,7 +7928,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.93319,
    "lng": 100.74914,
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "w1464310485",
@@ -7102,7 +7938,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.96208,
    "lng": 100.63133,
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "w910037483",
@@ -7111,7 +7948,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.02987,
    "lng": 100.72234,
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w377487654",
@@ -7120,16 +7958,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.94353,
    "lng": 100.50356,
-   "notable": true
-  },
-  {
-   "id": "w259502250",
-   "name": "พระที่นั่งเวหาศน์จำรูญ",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 14.2341,
-   "lng": 100.58062,
-   "notable": true
+   "notable": true,
+   "district": "เมืองปทุมธานี"
   },
   {
    "id": "n3125855338",
@@ -7138,7 +7968,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.0417,
    "lng": 100.41995,
-   "notable": false
+   "notable": false,
+   "district": "ลาดหลุมแก้ว"
   },
   {
    "id": "w584814881",
@@ -7147,7 +7978,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.95595,
    "lng": 100.64356,
-   "notable": false
+   "notable": false,
+   "district": "ลำลูกกา"
   },
   {
    "id": "w1418913270",
@@ -7156,7 +7988,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.05476,
    "lng": 100.54105,
-   "notable": false
+   "notable": false,
+   "district": "สามโคก"
   },
   {
    "id": "w255439479",
@@ -7165,16 +7998,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.99896,
    "lng": 100.67675,
-   "notable": true
-  },
-  {
-   "id": "w761226261",
-   "name": "พระที่นั่งอุทยานภูมิเสถียร",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 14.23293,
-   "lng": 100.57969,
-   "notable": true
+   "notable": true,
+   "district": "ธัญบุรี"
   },
   {
    "id": "n6433805685",
@@ -7183,7 +8008,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.06999,
    "lng": 100.52529,
-   "notable": false
+   "notable": false,
+   "district": "สามโคก"
   },
   {
    "id": "w839810779",
@@ -7192,7 +8018,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.07772,
    "lng": 100.59573,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "w253429081",
@@ -7201,7 +8028,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.04894,
    "lng": 100.71376,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "w751807021",
@@ -7210,16 +8038,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.93201,
    "lng": 100.68962,
-   "notable": true
-  },
-  {
-   "id": "w761226252",
-   "name": "ตำหนักพระราชชายา เจ้าดารารัศมี",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 14.23489,
-   "lng": 100.57988,
-   "notable": false
+   "notable": true,
+   "district": "ลำลูกกา"
   },
   {
    "id": "n13071787294",
@@ -7228,7 +8048,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.99056,
    "lng": 100.67478,
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w839810778",
@@ -7237,7 +8058,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.07632,
    "lng": 100.59554,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "w141654246",
@@ -7246,7 +8068,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.07059,
    "lng": 100.60336,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n4471644798",
@@ -7255,7 +8078,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.09114,
    "lng": 100.6405,
-   "notable": true
+   "notable": true,
+   "district": "คลองหลวง"
   },
   {
    "id": "n4660006569",
@@ -7264,7 +8088,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.075,
    "lng": 100.60292,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n6225820521",
@@ -7273,7 +8098,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.9925,
    "lng": 100.67567,
-   "notable": false
+   "notable": false,
+   "district": "ธัญบุรี"
   },
   {
    "id": "w569879273",
@@ -7282,7 +8108,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.07255,
    "lng": 100.60291,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "w702369013",
@@ -7291,7 +8118,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.04853,
    "lng": 100.71955,
-   "notable": false
+   "notable": false,
+   "district": "คลองหลวง"
   },
   {
    "id": "n12246199532",
@@ -7300,7 +8128,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.92556,
    "lng": 100.63782,
-   "notable": true
+   "notable": true,
+   "district": "ลำลูกกา"
   }
  ],
  "กาญจนบุรี": [
@@ -7311,7 +8140,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.91275,
    "lng": 98.5281,
-   "notable": true
+   "notable": true,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n947378546",
@@ -7320,7 +8150,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35278,
    "lng": 98.95466,
-   "notable": true
+   "notable": true,
+   "district": "ไทรโยค"
   },
   {
    "id": "w242625483",
@@ -7329,7 +8160,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.01496,
    "lng": 99.5315,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "w1374427396",
@@ -7338,7 +8170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.92249,
    "lng": 99.42446,
-   "notable": true
+   "notable": true,
+   "district": "ด่านมะขามเตี้ย"
   },
   {
    "id": "n3287419752",
@@ -7347,7 +8180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.22916,
    "lng": 98.92902,
-   "notable": true
+   "notable": true,
+   "district": "ไทรโยค"
   },
   {
    "id": "n960997916",
@@ -7356,7 +8190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.30153,
    "lng": 98.38654,
-   "notable": true
+   "notable": true,
+   "district": "สังขละบุรี"
   },
   {
    "id": "w1432713964",
@@ -7365,7 +8200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 13.98785,
    "lng": 99.56714,
-   "notable": false
+   "notable": false,
+   "district": "ท่าม่วง"
   },
   {
    "id": "n960961428",
@@ -7374,7 +8210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.14263,
    "lng": 98.4462,
-   "notable": false
+   "notable": false,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n1395371408",
@@ -7383,7 +8220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 14.10499,
    "lng": 99.16675,
-   "notable": false
+   "notable": false,
+   "district": "ไทรโยค"
   },
   {
    "id": "n946547134",
@@ -7392,7 +8230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.25309,
    "lng": 99.50319,
-   "notable": false
+   "notable": false,
+   "district": "บ่อพลอย"
   },
   {
    "id": "n947378519",
@@ -7401,7 +8240,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35603,
    "lng": 98.95235,
-   "notable": false
+   "notable": false,
+   "district": "ไทรโยค"
   },
   {
    "id": "n11027844503",
@@ -7410,7 +8250,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.92955,
    "lng": 99.63388,
-   "notable": false
+   "notable": false,
+   "district": "ท่าม่วง"
   },
   {
    "id": "r3801467",
@@ -7419,7 +8260,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.74881,
    "lng": 99.02843,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n4948041721",
@@ -7428,7 +8270,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.0163,
    "lng": 99.5306,
-   "notable": true
+   "notable": true,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "w1539135046",
@@ -7437,7 +8280,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.95319,
    "lng": 99.60493,
-   "notable": true
+   "notable": true,
+   "district": "ท่าม่วง"
   },
   {
    "id": "w415442666",
@@ -7446,7 +8290,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.03851,
    "lng": 99.24212,
-   "notable": true
+   "notable": true,
+   "district": "ไทรโยค"
   },
   {
    "id": "n2902542023",
@@ -7455,7 +8300,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.62475,
    "lng": 99.29249,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n2100966428",
@@ -7464,7 +8310,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.23853,
    "lng": 99.05832,
-   "notable": true
+   "notable": true,
+   "district": "ไทรโยค"
   },
   {
    "id": "n13201926463",
@@ -7473,7 +8320,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.04124,
    "lng": 99.54584,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n3287419750",
@@ -7482,7 +8330,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 14.2708,
    "lng": 98.98787,
-   "notable": false
+   "notable": false,
+   "district": "ไทรโยค"
   },
   {
    "id": "w1233823757",
@@ -7491,7 +8340,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.30156,
    "lng": 98.38723,
-   "notable": false
+   "notable": false,
+   "district": "สังขละบุรี"
   },
   {
    "id": "w82659429",
@@ -7500,7 +8350,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.15616,
    "lng": 98.45119,
-   "notable": false
+   "notable": false,
+   "district": "สังขละบุรี"
   },
   {
    "id": "r3801619",
@@ -7509,7 +8360,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.67497,
    "lng": 99.27636,
-   "notable": true
+   "notable": true,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "n4623135789",
@@ -7518,7 +8370,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.13416,
    "lng": 99.44573,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "w1177267459",
@@ -7527,7 +8380,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.95396,
    "lng": 99.60506,
-   "notable": true
+   "notable": true,
+   "district": "ท่าม่วง"
   },
   {
    "id": "n11517080803",
@@ -7536,7 +8390,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.03657,
    "lng": 99.24457,
-   "notable": false
+   "notable": false,
+   "district": "ไทรโยค"
   },
   {
    "id": "n3287419764",
@@ -7545,7 +8400,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.25928,
    "lng": 99.01296,
-   "notable": true
+   "notable": true,
+   "district": "ไทรโยค"
   },
   {
    "id": "n4422274913",
@@ -7554,7 +8410,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.14445,
    "lng": 98.45017,
-   "notable": true
+   "notable": true,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n11212239881",
@@ -7563,7 +8420,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.69752,
    "lng": 98.40559,
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "n3287419744",
@@ -7572,7 +8430,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 14.42443,
    "lng": 98.85312,
-   "notable": false
+   "notable": false,
+   "district": "ไทรโยค"
   },
   {
    "id": "n6187100185",
@@ -7581,7 +8440,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.03931,
    "lng": 99.50161,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "w1228932586",
@@ -7590,7 +8450,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.45564,
    "lng": 99.12868,
-   "notable": false
+   "notable": false,
+   "district": "ศรีสวัสดิ์"
   },
   {
    "id": "r4485849",
@@ -7599,7 +8460,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.87797,
    "lng": 98.44911,
-   "notable": true
+   "notable": true,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "w1418266197",
@@ -7608,7 +8470,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.04143,
    "lng": 99.50519,
-   "notable": false
+   "notable": false,
+   "district": "เมืองกาญจนบุรี"
   },
   {
    "id": "n11404524079",
@@ -7617,7 +8480,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.96081,
    "lng": 99.74529,
-   "notable": true
+   "notable": true,
+   "district": "ท่ามะกา"
   },
   {
    "id": "n3287337997",
@@ -7626,7 +8490,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.92799,
    "lng": 98.27385,
-   "notable": true
+   "notable": true,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n6189030585",
@@ -7635,7 +8500,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.68782,
    "lng": 98.36507,
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   },
   {
    "id": "n11212240089",
@@ -7644,7 +8510,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.01998,
    "lng": 98.58139,
-   "notable": false
+   "notable": false,
+   "district": "สังขละบุรี"
   },
   {
    "id": "n12558557095",
@@ -7653,7 +8520,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.96937,
    "lng": 99.57733,
-   "notable": false
+   "notable": false,
+   "district": "ท่าม่วง"
   },
   {
    "id": "n2300554200",
@@ -7662,7 +8530,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.67471,
    "lng": 98.37048,
-   "notable": false
+   "notable": false,
+   "district": "ทองผาภูมิ"
   }
  ],
  "สมุทรปราการ": [
@@ -7673,7 +8542,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.59535,
    "lng": 100.58755,
-   "notable": true
+   "notable": true,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w378173843",
@@ -7682,7 +8552,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.66109,
    "lng": 100.52927,
-   "notable": true
+   "notable": true,
+   "district": "พระประแดง"
   },
   {
    "id": "w1336674593",
@@ -7691,7 +8562,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.57122,
    "lng": 100.59621,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n4702924590",
@@ -7700,7 +8572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.54061,
    "lng": 100.57305,
-   "notable": true
+   "notable": true,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w1148281220",
@@ -7709,7 +8582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.53869,
    "lng": 100.58439,
-   "notable": true
+   "notable": true,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "n1812250163",
@@ -7718,7 +8592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.51273,
    "lng": 100.65378,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "w312888447",
@@ -7727,7 +8602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.65699,
    "lng": 100.53289,
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "w479541259",
@@ -7736,7 +8612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.59969,
    "lng": 100.59598,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "w1281011693",
@@ -7745,16 +8622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.53198,
    "lng": 100.67956,
-   "notable": false
-  },
-  {
-   "id": "w1003480959",
-   "name": "วัดกลางดาวคนอง",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 13.69694,
-   "lng": 100.48833,
-   "notable": true
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n11355625919",
@@ -7763,7 +8632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.59565,
    "lng": 100.58758,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "n11355625950",
@@ -7772,7 +8642,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.5956,
    "lng": 100.58806,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w448113019",
@@ -7781,7 +8652,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.69171,
    "lng": 100.70307,
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "n1799203298",
@@ -7790,7 +8662,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.69989,
    "lng": 100.56285,
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "w1229700134",
@@ -7799,7 +8672,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.59242,
    "lng": 100.59942,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n6228818686",
@@ -7808,7 +8682,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.6413,
    "lng": 100.52025,
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "w1224445645",
@@ -7817,7 +8692,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.59533,
    "lng": 100.58745,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "n7125929715",
@@ -7826,7 +8702,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.53354,
    "lng": 100.74226,
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "w1224439624",
@@ -7835,7 +8712,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.59561,
    "lng": 100.58782,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w378330233",
@@ -7844,7 +8722,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.65373,
    "lng": 100.53842,
-   "notable": true
+   "notable": true,
+   "district": "พระประแดง"
   },
   {
    "id": "n6282356185",
@@ -7853,7 +8732,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.52973,
    "lng": 100.87447,
-   "notable": false
+   "notable": false,
+   "district": "บางบ่อ"
   },
   {
    "id": "w1224439623",
@@ -7862,7 +8742,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.59547,
    "lng": 100.58804,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w788490409",
@@ -7871,7 +8752,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.57344,
    "lng": 100.79048,
-   "notable": false
+   "notable": false,
+   "district": "บางเสาธง"
   },
   {
    "id": "n12118055070",
@@ -7880,7 +8762,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.69743,
    "lng": 100.57114,
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n5318173821",
@@ -7889,7 +8772,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.68409,
    "lng": 100.56156,
-   "notable": true
+   "notable": true,
+   "district": "พระประแดง"
   },
   {
    "id": "n4702924591",
@@ -7898,7 +8782,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.57217,
    "lng": 100.57301,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w1228796793",
@@ -7907,7 +8792,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.59494,
    "lng": 100.59666,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "w544308065",
@@ -7916,7 +8802,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.65116,
    "lng": 100.6014,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "n1034880627",
@@ -7925,7 +8812,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.53873,
    "lng": 100.58435,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "r18822701",
@@ -7934,7 +8822,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.66599,
    "lng": 100.8658,
-   "notable": true
+   "notable": true,
+   "district": "บางบ่อ"
   },
   {
    "id": "n11675992069",
@@ -7943,7 +8832,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.6496,
    "lng": 100.5228,
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n3925702847",
@@ -7952,7 +8842,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.62819,
    "lng": 100.6036,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "w1247208993",
@@ -7961,7 +8852,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.66143,
    "lng": 100.55048,
-   "notable": false
+   "notable": false,
+   "district": "พระประแดง"
   },
   {
    "id": "n2428409892",
@@ -7970,7 +8862,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.51607,
    "lng": 100.53372,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "n686818122",
@@ -7979,7 +8872,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.67648,
    "lng": 100.7188,
-   "notable": true
+   "notable": true,
+   "district": "บางพลี"
   },
   {
    "id": "n4240101592",
@@ -7988,7 +8882,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.54104,
    "lng": 100.62418,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   },
   {
    "id": "w1224445650",
@@ -7997,7 +8892,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.5953,
    "lng": 100.58691,
-   "notable": false
+   "notable": false,
+   "district": "พระสมุทรเจดีย์"
   },
   {
    "id": "w895664673",
@@ -8006,7 +8902,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.64629,
    "lng": 100.72667,
-   "notable": false
+   "notable": false,
+   "district": "บางพลี"
   },
   {
    "id": "w1367354831",
@@ -8015,7 +8912,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.59982,
    "lng": 100.90751,
-   "notable": true
+   "notable": true,
+   "district": "บางบ่อ"
   },
   {
    "id": "n11622043131",
@@ -8024,7 +8922,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.54055,
    "lng": 100.624,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรปราการ"
   }
  ],
  "สงขลา": [
@@ -8035,7 +8934,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 6.5634,
    "lng": 100.59232,
-   "notable": true
+   "notable": true,
+   "district": "สะเดา"
   },
   {
    "id": "w150393190",
@@ -8044,7 +8944,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.00766,
    "lng": 100.49726,
-   "notable": true
+   "notable": true,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n1662776370",
@@ -8053,7 +8954,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.4745,
    "lng": 100.43885,
-   "notable": true
+   "notable": true,
+   "district": "สทิงพระ"
   },
   {
    "id": "w457997122",
@@ -8062,7 +8964,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 7.14129,
    "lng": 100.60562,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "w243244853",
@@ -8071,7 +8974,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.20664,
    "lng": 100.6008,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870292599",
@@ -8080,7 +8984,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.161,
    "lng": 100.54072,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n1668829996",
@@ -8089,7 +8994,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 6.99648,
    "lng": 100.23143,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w1418239498",
@@ -8098,7 +9004,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.19302,
    "lng": 100.59016,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n10159163701",
@@ -8107,7 +9014,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.07781,
    "lng": 100.46384,
-   "notable": false
+   "notable": false,
+   "district": "บางกล่ำ"
   },
   {
    "id": "n1116453647",
@@ -8116,7 +9024,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.2024,
    "lng": 100.58894,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n2511700861",
@@ -8125,7 +9034,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.04082,
    "lng": 100.45104,
-   "notable": true
+   "notable": true,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12870292600",
@@ -8134,7 +9044,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.17111,
    "lng": 100.54111,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n11212240052",
@@ -8143,7 +9054,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.2219,
    "lng": 100.57387,
-   "notable": false
+   "notable": false,
+   "district": "สิงหนคร"
   },
   {
    "id": "w858795538",
@@ -8152,7 +9064,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.0078,
    "lng": 100.49864,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12465273635",
@@ -8161,7 +9074,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.19722,
    "lng": 100.58912,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "w934494262",
@@ -8170,7 +9084,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.19828,
    "lng": 100.5898,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870292546",
@@ -8179,7 +9094,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.1113,
    "lng": 100.60824,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "w995820447",
@@ -8188,7 +9104,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.1982,
    "lng": 100.58846,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "w1293578304",
@@ -8197,7 +9114,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.6802,
    "lng": 100.32251,
-   "notable": false
+   "notable": false,
+   "district": "สะเดา"
   },
   {
    "id": "n5063378724",
@@ -8206,7 +9124,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.9009,
    "lng": 100.46795,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n1133515783",
@@ -8215,7 +9134,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.01972,
    "lng": 100.49472,
-   "notable": true
+   "notable": true,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n11031988815",
@@ -8224,7 +9144,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.19835,
    "lng": 100.57378,
-   "notable": false
+   "notable": false,
+   "district": "สิงหนคร"
   },
   {
    "id": "n767329184",
@@ -8233,7 +9154,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.00929,
    "lng": 100.49695,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w991624754",
@@ -8242,7 +9164,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.21854,
    "lng": 100.582,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870293005",
@@ -8251,7 +9174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.19773,
    "lng": 100.54838,
-   "notable": false
+   "notable": false,
+   "district": "สิงหนคร"
   },
   {
    "id": "n1662776329",
@@ -8260,7 +9184,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.14805,
    "lng": 100.56206,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870292571",
@@ -8269,7 +9194,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.01772,
    "lng": 100.52836,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "w1550382928",
@@ -8278,7 +9204,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.22676,
    "lng": 100.57753,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870292587",
@@ -8287,7 +9214,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.0257,
    "lng": 100.66072,
-   "notable": false
+   "notable": false,
+   "district": "จะนะ"
   },
   {
    "id": "w243244848",
@@ -8296,7 +9224,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.21073,
    "lng": 100.59744,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870293008",
@@ -8305,7 +9234,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.21444,
    "lng": 100.56945,
-   "notable": false
+   "notable": false,
+   "district": "สิงหนคร"
   },
   {
    "id": "w1004608930",
@@ -8314,7 +9244,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.21066,
    "lng": 100.59807,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n2506660318",
@@ -8323,7 +9254,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.2108,
    "lng": 100.58923,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "w557382297",
@@ -8332,7 +9264,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.99858,
    "lng": 100.4771,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12870292565",
@@ -8341,7 +9274,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.08622,
    "lng": 100.53173,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12870292545",
@@ -8350,7 +9284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.11686,
    "lng": 100.61579,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870293009",
@@ -8359,7 +9294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.21701,
    "lng": 100.55865,
-   "notable": false
+   "notable": false,
+   "district": "สิงหนคร"
   },
   {
    "id": "n12870292547",
@@ -8368,7 +9304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.12441,
    "lng": 100.60139,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสงขลา"
   },
   {
    "id": "n12870292566",
@@ -8377,7 +9314,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.07991,
    "lng": 100.52536,
-   "notable": false
+   "notable": false,
+   "district": "หาดใหญ่"
   },
   {
    "id": "n12870293006",
@@ -8386,7 +9324,38 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.19717,
    "lng": 100.56159,
-   "notable": false
+   "notable": false,
+   "district": "สิงหนคร"
+  },
+  {
+   "id": "n11615135263",
+   "name": "ควนสีปาน",
+   "kind": "ยอดเขา",
+   "emoji": "⛰️",
+   "lat": 7.57411,
+   "lng": 100.29811,
+   "notable": false,
+   "district": "กระแสสินธุ์"
+  },
+  {
+   "id": "n1662778594",
+   "name": "วัดเจดีย์งาม",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 7.64751,
+   "lng": 100.39099,
+   "notable": true,
+   "district": "ระโนด"
+  },
+  {
+   "id": "w834700062",
+   "name": "วัดพะโคะ",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 7.60152,
+   "lng": 100.39191,
+   "notable": true,
+   "district": "สทิงพระ"
   }
  ],
  "ชลบุรี": [
@@ -8397,7 +9366,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.93617,
    "lng": 100.78807,
-   "notable": true
+   "notable": true,
+   "district": "บางละมุง"
   },
   {
    "id": "w312051428",
@@ -8406,7 +9376,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.92594,
    "lng": 100.87724,
-   "notable": true
+   "notable": true,
+   "district": "บางละมุง"
   },
   {
    "id": "w132599367",
@@ -8415,7 +9386,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.21358,
    "lng": 101.05962,
-   "notable": true
+   "notable": true,
+   "district": "ศรีราชา"
   },
   {
    "id": "n3732331700",
@@ -8424,7 +9396,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.18944,
    "lng": 100.95023,
-   "notable": true
+   "notable": true,
+   "district": "ศรีราชา"
   },
   {
    "id": "n1192303025",
@@ -8433,7 +9406,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.62419,
    "lng": 100.9135,
-   "notable": true
+   "notable": true,
+   "district": "สัตหีบ"
   },
   {
    "id": "w1429159253",
@@ -8442,7 +9416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.30198,
    "lng": 100.89848,
-   "notable": true
+   "notable": true,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n5235865821",
@@ -8451,7 +9426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.32167,
    "lng": 100.98066,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n12550959860",
@@ -8460,7 +9436,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.16107,
    "lng": 101.59802,
-   "notable": false
+   "notable": false,
+   "district": "บ่อทอง"
   },
   {
    "id": "w771509535",
@@ -8469,7 +9446,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.34206,
    "lng": 100.94272,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n6637612920",
@@ -8478,7 +9456,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.14959,
    "lng": 100.81856,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสีชัง"
   },
   {
    "id": "w429602627",
@@ -8487,7 +9466,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 12.80193,
    "lng": 100.92701,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w329818674",
@@ -8496,7 +9476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.92407,
    "lng": 100.86583,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w1343006778",
@@ -8505,7 +9486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.90076,
    "lng": 100.7726,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n1937935096",
@@ -8514,7 +9496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.78891,
    "lng": 100.95795,
-   "notable": true
+   "notable": true,
+   "district": "บางละมุง"
   },
   {
    "id": "w145252475",
@@ -8523,7 +9506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.95799,
    "lng": 100.93938,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n11375949547",
@@ -8532,7 +9516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.91219,
    "lng": 100.77771,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w31981734",
@@ -8541,7 +9526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.92602,
    "lng": 100.87147,
-   "notable": true
+   "notable": true,
+   "district": "บางละมุง"
   },
   {
    "id": "n12953105716",
@@ -8550,7 +9536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.121,
    "lng": 100.91828,
-   "notable": false
+   "notable": false,
+   "district": "ศรีราชา"
   },
   {
    "id": "n9975734706",
@@ -8559,7 +9546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.92226,
    "lng": 100.86608,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n7712592302",
@@ -8568,7 +9556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.15245,
    "lng": 101.59319,
-   "notable": false
+   "notable": false,
+   "district": "บ่อทอง"
   },
   {
    "id": "w211144566",
@@ -8577,7 +9566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.94824,
    "lng": 100.88989,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w141604635",
@@ -8586,7 +9576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 12.954,
    "lng": 100.90996,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n12729262729",
@@ -8595,7 +9586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.07741,
    "lng": 100.87401,
-   "notable": false
+   "notable": false,
+   "district": "ศรีราชา"
   },
   {
    "id": "w192658630",
@@ -8604,7 +9596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.97115,
    "lng": 100.88647,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w115955928",
@@ -8613,7 +9606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.50196,
    "lng": 101.15904,
-   "notable": true
+   "notable": true,
+   "district": "พนัสนิคม"
   },
   {
    "id": "n12306505901",
@@ -8622,7 +9616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.15539,
    "lng": 100.81364,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสีชัง"
   },
   {
    "id": "n13261740509",
@@ -8631,7 +9626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.15595,
    "lng": 100.92677,
-   "notable": false
+   "notable": false,
+   "district": "ศรีราชา"
   },
   {
    "id": "w1497830316",
@@ -8640,7 +9636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.28765,
    "lng": 100.9819,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชลบุรี"
   },
   {
    "id": "n3250488937",
@@ -8649,7 +9646,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.76439,
    "lng": 100.95592,
-   "notable": false
+   "notable": false,
+   "district": "สัตหีบ"
   },
   {
    "id": "n4165141024",
@@ -8658,7 +9656,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.16325,
    "lng": 100.80184,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสีชัง"
   },
   {
    "id": "n12574227883",
@@ -8667,7 +9666,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.15265,
    "lng": 101.59948,
-   "notable": false
+   "notable": false,
+   "district": "บ่อทอง"
   },
   {
    "id": "w463162785",
@@ -8676,7 +9676,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 12.89983,
    "lng": 100.88485,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n7500434348",
@@ -8685,7 +9686,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.80077,
    "lng": 100.96979,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w173154608",
@@ -8694,7 +9696,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.90181,
    "lng": 100.86318,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "w321949719",
@@ -8703,7 +9706,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.9616,
    "lng": 100.89355,
-   "notable": true
+   "notable": true,
+   "district": "บางละมุง"
   },
   {
    "id": "n9701108716",
@@ -8712,7 +9716,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.77887,
    "lng": 100.973,
-   "notable": false
+   "notable": false,
+   "district": "บางละมุง"
   },
   {
    "id": "n13794167786",
@@ -8721,7 +9726,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.03167,
    "lng": 101.07238,
-   "notable": false
+   "notable": false,
+   "district": "ศรีราชา"
   },
   {
    "id": "n11826756110",
@@ -8730,7 +9736,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.16322,
    "lng": 100.80166,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสีชัง"
   },
   {
    "id": "n13751881801",
@@ -8739,7 +9746,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.80185,
    "lng": 100.92252,
-   "notable": false
+   "notable": false,
+   "district": "สัตหีบ"
   },
   {
    "id": "n4165141392",
@@ -8748,7 +9756,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.1626,
    "lng": 100.80134,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสีชัง"
   }
  ],
  "พะเยา": [
@@ -8759,7 +9768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.01977,
    "lng": 100.25414,
-   "notable": true
+   "notable": true,
+   "district": "ปง"
   },
   {
    "id": "n3720121477",
@@ -8768,7 +9778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.49832,
    "lng": 100.32399,
-   "notable": true
+   "notable": true,
+   "district": "เชียงคำ"
   },
   {
    "id": "n2082765051",
@@ -8777,7 +9788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.13325,
    "lng": 99.75913,
-   "notable": true
+   "notable": true,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n13511859334",
@@ -8786,7 +9798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 19.67604,
    "lng": 100.39068,
-   "notable": false
+   "notable": false,
+   "district": "ภูซาง"
   },
   {
    "id": "n4173968089",
@@ -8795,7 +9808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.46279,
    "lng": 100.33178,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "n13506750873",
@@ -8804,7 +9818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.5008,
    "lng": 100.45035,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "w1465303266",
@@ -8813,7 +9828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.86426,
    "lng": 100.25573,
-   "notable": false
+   "notable": false,
+   "district": "เชียงม่วน"
   },
   {
    "id": "n3812097353",
@@ -8822,7 +9838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.25229,
    "lng": 99.91435,
-   "notable": false
+   "notable": false,
+   "district": "ภูกามยาว"
   },
   {
    "id": "w738996879",
@@ -8831,7 +9848,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 19.16059,
    "lng": 99.91524,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n6959569387",
@@ -8840,7 +9858,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.71523,
    "lng": 100.41339,
-   "notable": false
+   "notable": false,
+   "district": "ภูซาง"
   },
   {
    "id": "n4734284728",
@@ -8849,7 +9868,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.18384,
    "lng": 99.80423,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "w907987082",
@@ -8858,7 +9878,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.13637,
    "lng": 99.86319,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "r12719043",
@@ -8867,7 +9888,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.45354,
    "lng": 100.55068,
-   "notable": true
+   "notable": true,
+   "district": "เชียงคำ"
   },
   {
    "id": "w1212763493",
@@ -8876,7 +9898,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 19.16544,
    "lng": 99.90073,
-   "notable": true
+   "notable": true,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n13469855017",
@@ -8885,7 +9908,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.18449,
    "lng": 99.88863,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n1193876837",
@@ -8894,7 +9918,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.06225,
    "lng": 99.7818,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n4395687890",
@@ -8903,7 +9928,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.50057,
    "lng": 100.45062,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "w770416897",
@@ -8912,7 +9938,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.16639,
    "lng": 99.91568,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n13504923703",
@@ -8921,7 +9948,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.45156,
    "lng": 100.08191,
-   "notable": false
+   "notable": false,
+   "district": "จุน"
   },
   {
    "id": "n11405142054",
@@ -8930,7 +9958,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.85916,
    "lng": 100.18064,
-   "notable": false
+   "notable": false,
+   "district": "เชียงม่วน"
   },
   {
    "id": "n6174690585",
@@ -8939,7 +9968,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.03079,
    "lng": 99.92403,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "w907987611",
@@ -8948,7 +9978,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.1365,
    "lng": 99.86276,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "r6004123",
@@ -8957,7 +9988,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 19.60106,
    "lng": 100.39566,
-   "notable": true
+   "notable": true,
+   "district": "ภูซาง"
   },
   {
    "id": "n13506750874",
@@ -8966,7 +9998,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.48009,
    "lng": 100.44352,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "n13514126778",
@@ -8975,7 +10008,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 19.39448,
    "lng": 100.44997,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "n3623191042",
@@ -8984,7 +10018,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 19.10016,
    "lng": 100.37108,
-   "notable": false
+   "notable": false,
+   "district": "ปง"
   },
   {
    "id": "w210167221",
@@ -8993,7 +10028,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.1748,
    "lng": 99.89155,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n13504923705",
@@ -9002,7 +10038,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.45027,
    "lng": 100.07904,
-   "notable": false
+   "notable": false,
+   "district": "จุน"
   },
   {
    "id": "n3217073003",
@@ -9011,7 +10048,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.66336,
    "lng": 100.37678,
-   "notable": false
+   "notable": false,
+   "district": "ภูซาง"
   },
   {
    "id": "w350108780",
@@ -9020,7 +10058,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.16855,
    "lng": 99.89625,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n4024104460",
@@ -9029,7 +10068,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.0444,
    "lng": 100.14169,
-   "notable": false
+   "notable": false,
+   "district": "ปง"
   },
   {
    "id": "n2825911022",
@@ -9038,7 +10078,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.83846,
    "lng": 100.35186,
-   "notable": false
+   "notable": false,
+   "district": "เชียงม่วน"
   },
   {
    "id": "n11212152359",
@@ -9047,7 +10088,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 19.53213,
    "lng": 100.29412,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคำ"
   },
   {
    "id": "n13504923704",
@@ -9056,7 +10098,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.45077,
    "lng": 100.08046,
-   "notable": false
+   "notable": false,
+   "district": "จุน"
   },
   {
    "id": "n3721759804",
@@ -9065,7 +10108,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.66176,
    "lng": 100.37952,
-   "notable": false
+   "notable": false,
+   "district": "ภูซาง"
   },
   {
    "id": "w676017557",
@@ -9074,7 +10118,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 19.15809,
    "lng": 99.9088,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n6168197395",
@@ -9083,7 +10128,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 19.13988,
    "lng": 99.74929,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   },
   {
    "id": "n4524390210",
@@ -9092,7 +10138,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.94185,
    "lng": 100.24011,
-   "notable": false
+   "notable": false,
+   "district": "เชียงม่วน"
   },
   {
    "id": "n13504923701",
@@ -9101,7 +10148,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 19.45197,
    "lng": 100.08526,
-   "notable": false
+   "notable": false,
+   "district": "จุน"
   },
   {
    "id": "w407470960",
@@ -9110,7 +10158,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 19.14877,
    "lng": 99.88832,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพะเยา"
   }
  ],
  "ตราด": [
@@ -9121,7 +10170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 12.58334,
    "lng": 102.62402,
-   "notable": true
+   "notable": true,
+   "district": "บ่อไร่"
   },
   {
    "id": "n1200790417",
@@ -9130,7 +10180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 11.64662,
    "lng": 102.55624,
-   "notable": true
+   "notable": true,
+   "district": "เกาะกูด"
   },
   {
    "id": "r5660069",
@@ -9139,7 +10190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.02382,
    "lng": 102.29035,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n8440218520",
@@ -9148,7 +10200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 12.27998,
    "lng": 102.39954,
-   "notable": false
+   "notable": false,
+   "district": "เขาสมิง"
   },
   {
    "id": "n4748267328",
@@ -9157,7 +10210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.0534,
    "lng": 102.30003,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n5504524739",
@@ -9166,7 +10220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 11.65234,
    "lng": 102.56392,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5535306326",
@@ -9175,7 +10230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 11.94232,
    "lng": 102.44324,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "w584533970",
@@ -9184,7 +10240,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.56439,
    "lng": 102.52653,
-   "notable": false
+   "notable": false,
+   "district": "บ่อไร่"
   },
   {
    "id": "r5625609",
@@ -9193,7 +10250,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 11.96775,
    "lng": 102.37994,
-   "notable": true
+   "notable": true,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n3837011082",
@@ -9202,7 +10260,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.0763,
    "lng": 102.36734,
-   "notable": true
+   "notable": true,
+   "district": "เกาะช้าง"
   },
   {
    "id": "r6716889",
@@ -9211,7 +10270,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.63411,
    "lng": 102.54482,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5504524723",
@@ -9220,7 +10280,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 11.60636,
    "lng": 102.529,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5537071722",
@@ -9229,7 +10290,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 11.96077,
    "lng": 102.37845,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n11690487049",
@@ -9238,7 +10300,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.25299,
    "lng": 102.51665,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตราด"
   },
   {
    "id": "n5551876221",
@@ -9247,7 +10310,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.25023,
    "lng": 102.4943,
-   "notable": true
+   "notable": true,
+   "district": "เมืองตราด"
   },
   {
    "id": "r5660061",
@@ -9256,7 +10320,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.04797,
    "lng": 102.29218,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n2507757432",
@@ -9265,7 +10330,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.02295,
    "lng": 102.3401,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n5553714123",
@@ -9274,7 +10340,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.18168,
    "lng": 102.55811,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตราด"
   },
   {
    "id": "r6774190",
@@ -9283,7 +10350,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.62259,
    "lng": 102.54487,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5552017821",
@@ -9292,7 +10360,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.20142,
    "lng": 102.47876,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตราด"
   },
   {
    "id": "r5660062",
@@ -9301,7 +10370,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.06254,
    "lng": 102.28556,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "w1128091355",
@@ -9310,7 +10380,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.17002,
    "lng": 102.39234,
-   "notable": false
+   "notable": false,
+   "district": "แหลมงอบ"
   },
   {
    "id": "r6774189",
@@ -9319,7 +10390,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.61889,
    "lng": 102.5421,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5551958525",
@@ -9328,7 +10400,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.20101,
    "lng": 102.47842,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตราด"
   },
   {
    "id": "r6774152",
@@ -9337,7 +10410,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.60185,
    "lng": 102.54032,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n5554204421",
@@ -9346,7 +10420,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.19132,
    "lng": 102.46234,
-   "notable": false
+   "notable": false,
+   "district": "แหลมงอบ"
   },
   {
    "id": "r6736662",
@@ -9355,7 +10430,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.70331,
    "lng": 102.54059,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "n4557947489",
@@ -9364,7 +10440,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 11.71989,
    "lng": 102.90733,
-   "notable": false
+   "notable": false,
+   "district": "คลองใหญ่"
   },
   {
    "id": "r5837583",
@@ -9373,7 +10450,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.95846,
    "lng": 102.43055,
-   "notable": false
+   "notable": false,
+   "district": "เกาะช้าง"
   },
   {
    "id": "n9867339359",
@@ -9382,7 +10460,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.19667,
    "lng": 102.30007,
-   "notable": false
+   "notable": false,
+   "district": "แหลมงอบ"
   },
   {
    "id": "r6774159",
@@ -9391,7 +10470,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.61135,
    "lng": 102.53547,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "w208193421",
@@ -9400,7 +10480,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.68091,
    "lng": 102.53208,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "w453919980",
@@ -9409,7 +10490,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.64212,
    "lng": 102.53814,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   },
   {
    "id": "w203315750",
@@ -9418,7 +10500,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 11.82626,
    "lng": 102.46783,
-   "notable": false
+   "notable": false,
+   "district": "เกาะกูด"
   }
  ],
  "ระยอง": [
@@ -9429,7 +10512,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 12.55787,
    "lng": 101.46185,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n4626780495",
@@ -9438,7 +10522,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.67934,
    "lng": 101.27305,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w169098402",
@@ -9447,7 +10532,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.61031,
    "lng": 101.42511,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w168705369",
@@ -9456,7 +10542,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.69699,
    "lng": 101.70459,
-   "notable": true
+   "notable": true,
+   "district": "แกลง"
   },
   {
    "id": "n2754451615",
@@ -9465,7 +10552,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.61093,
    "lng": 101.38425,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n1201351884",
@@ -9474,7 +10562,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.67044,
    "lng": 101.41376,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12563190992",
@@ -9483,7 +10572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.10448,
    "lng": 101.60234,
-   "notable": false
+   "notable": false,
+   "district": "เขาชะเมา"
   },
   {
    "id": "n14128767736",
@@ -9492,7 +10582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.89684,
    "lng": 101.81553,
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "w1313535333",
@@ -9501,7 +10592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.82465,
    "lng": 101.2158,
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "w1215935120",
@@ -9510,7 +10602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.76825,
    "lng": 101.328,
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "w168899998",
@@ -9519,7 +10612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.67927,
    "lng": 101.28265,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13628930196",
@@ -9528,7 +10622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.64103,
    "lng": 101.39241,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n6188915685",
@@ -9537,7 +10632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.56664,
    "lng": 101.464,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w240058003",
@@ -9546,7 +10642,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.55663,
    "lng": 101.45358,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12553733011",
@@ -9555,7 +10652,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.6746,
    "lng": 101.41448,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12549498455",
@@ -9564,7 +10662,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.09463,
    "lng": 101.60583,
-   "notable": false
+   "notable": false,
+   "district": "เขาชะเมา"
   },
   {
    "id": "n12764558719",
@@ -9573,7 +10672,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.62601,
    "lng": 101.42345,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13946726041",
@@ -9582,7 +10682,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.70541,
    "lng": 101.14978,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n13093995445",
@@ -9591,7 +10692,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.91479,
    "lng": 101.73559,
-   "notable": false
+   "notable": false,
+   "district": "เขาชะเมา"
   },
   {
    "id": "w96477683",
@@ -9600,7 +10702,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.5669,
    "lng": 101.46514,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n12534000720",
@@ -9609,7 +10712,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.12427,
    "lng": 101.59762,
-   "notable": false
+   "notable": false,
+   "district": "เขาชะเมา"
   },
   {
    "id": "n4417760199",
@@ -9618,7 +10722,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.67797,
    "lng": 101.28145,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w1135458747",
@@ -9627,7 +10732,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.93417,
    "lng": 101.52014,
-   "notable": false
+   "notable": false,
+   "district": "วังจันทร์"
   },
   {
    "id": "w188054152",
@@ -9636,7 +10742,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.79921,
    "lng": 101.23276,
-   "notable": false
+   "notable": false,
+   "district": "บ้านค่าย"
   },
   {
    "id": "w240058006",
@@ -9645,7 +10752,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.55926,
    "lng": 101.45524,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n3265300660",
@@ -9654,7 +10762,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.88447,
    "lng": 101.81699,
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "w559964416",
@@ -9663,7 +10772,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.00221,
    "lng": 101.44451,
-   "notable": false
+   "notable": false,
+   "district": "วังจันทร์"
   },
   {
    "id": "n11675959370",
@@ -9672,7 +10782,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.568,
    "lng": 101.46667,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w211484470",
@@ -9681,7 +10792,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.56147,
    "lng": 101.4561,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n3265302095",
@@ -9690,7 +10802,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.88771,
    "lng": 101.81676,
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "n4597491689",
@@ -9699,7 +10812,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.64015,
    "lng": 101.42206,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w240058005",
@@ -9708,7 +10822,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.55377,
    "lng": 101.45118,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n3265302096",
@@ -9717,7 +10832,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.88781,
    "lng": 101.81601,
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "n13994131190",
@@ -9726,7 +10842,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.66334,
    "lng": 101.30826,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "w475711103",
@@ -9735,7 +10852,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.58039,
    "lng": 101.45232,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n8267068258",
@@ -9744,7 +10862,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.88864,
    "lng": 101.81541,
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "w778627335",
@@ -9753,7 +10872,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.67706,
    "lng": 101.27915,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n2008354719",
@@ -9762,7 +10882,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.66437,
    "lng": 101.24041,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
   },
   {
    "id": "n3265300657",
@@ -9771,7 +10892,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.88462,
    "lng": 101.81641,
-   "notable": false
+   "notable": false,
+   "district": "แกลง"
   },
   {
    "id": "w168875940",
@@ -9780,7 +10902,38 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.67569,
    "lng": 101.27568,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระยอง"
+  },
+  {
+   "id": "n1106296228",
+   "name": "อนุสาวรีย์สุนทรภู่",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 12.67514,
+   "lng": 101.63452,
+   "notable": true,
+   "district": "แกลง"
+  },
+  {
+   "id": "n4623933039",
+   "name": "พิพิธภัณฑ์บ้านครูกัง",
+   "kind": "พิพิธภัณฑ์",
+   "emoji": "🏛️",
+   "lat": 12.68704,
+   "lng": 101.63271,
+   "notable": false,
+   "district": "แกลง"
+  },
+  {
+   "id": "n4122631988",
+   "name": "ศาลเจ้ามรกตแม่พิมพ์",
+   "kind": "จุดชมวิว",
+   "emoji": "🌄",
+   "lat": 12.64388,
+   "lng": 101.63911,
+   "notable": false,
+   "district": "แกลง"
   }
  ],
  "ตรัง": [
@@ -9791,7 +10944,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 7.41189,
    "lng": 99.35339,
-   "notable": true
+   "notable": true,
+   "district": "สิเกา"
   },
   {
    "id": "w1443211476",
@@ -9800,7 +10954,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.53982,
    "lng": 99.60647,
-   "notable": true
+   "notable": true,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w241792775",
@@ -9809,7 +10964,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.313,
    "lng": 99.25603,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n12039015926",
@@ -9818,7 +10974,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.3789,
    "lng": 99.36991,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1365541872",
@@ -9827,7 +10984,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.40812,
    "lng": 99.51529,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1583925188",
@@ -9836,7 +10994,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 7.52948,
    "lng": 99.30969,
-   "notable": false
+   "notable": false,
+   "district": "สิเกา"
   },
   {
    "id": "n1636912028",
@@ -9845,7 +11004,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.40967,
    "lng": 99.46309,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n5267704421",
@@ -9854,7 +11014,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.55677,
    "lng": 99.60989,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w1442961680",
@@ -9863,7 +11024,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.5897,
    "lng": 99.58681,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n2769062276",
@@ -9872,7 +11034,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.57508,
    "lng": 99.61087,
-   "notable": true
+   "notable": true,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w241793408",
@@ -9881,7 +11044,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.37227,
    "lng": 99.31056,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1250725720",
@@ -9890,7 +11054,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.21737,
    "lng": 99.39403,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1583925214",
@@ -9899,7 +11064,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.5214,
    "lng": 99.30624,
-   "notable": false
+   "notable": false,
+   "district": "สิเกา"
   },
   {
    "id": "n2760165016",
@@ -9908,7 +11074,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.56509,
    "lng": 99.62281,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w556703739",
@@ -9917,7 +11084,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.55905,
    "lng": 99.60506,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w1443211478",
@@ -9926,7 +11094,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.58664,
    "lng": 99.61737,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n1641043330",
@@ -9935,7 +11104,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.44719,
    "lng": 99.34331,
-   "notable": false
+   "notable": false,
+   "district": "สิเกา"
   },
   {
    "id": "n1250725757",
@@ -9944,7 +11114,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.26637,
    "lng": 99.37429,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1365544856",
@@ -9953,7 +11124,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.40449,
    "lng": 99.51951,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1442951154",
@@ -9962,7 +11134,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.56724,
    "lng": 99.58541,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w241792779",
@@ -9971,7 +11144,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.30975,
    "lng": 99.25255,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1250732258",
@@ -9980,7 +11154,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.25019,
    "lng": 99.37026,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1442963325",
@@ -9989,7 +11164,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.51455,
    "lng": 99.63987,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "n2495223508",
@@ -9998,7 +11174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.30693,
    "lng": 99.39748,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1250725755",
@@ -10007,7 +11184,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.27735,
    "lng": 99.38711,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w556684877",
@@ -10016,7 +11194,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.55828,
    "lng": 99.61942,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w241792772",
@@ -10025,7 +11204,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.35995,
    "lng": 99.2938,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1250725716",
@@ -10034,7 +11214,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.21043,
    "lng": 99.39132,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1442955722",
@@ -10043,7 +11224,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.60483,
    "lng": 99.59869,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w241792777",
@@ -10052,7 +11234,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.32436,
    "lng": 99.24867,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "n1250725734",
@@ -10061,7 +11244,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.23287,
    "lng": 99.38398,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1443204204",
@@ -10070,7 +11254,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.55523,
    "lng": 99.62264,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w401205326",
@@ -10079,7 +11264,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.37657,
    "lng": 99.28777,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w556703737",
@@ -10088,7 +11274,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.559,
    "lng": 99.60455,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w243408246",
@@ -10097,7 +11284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.30143,
    "lng": 99.25467,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1254814883",
@@ -10106,7 +11294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.55832,
    "lng": 99.61288,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w243408249",
@@ -10115,7 +11304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.30337,
    "lng": 99.25566,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1442952439",
@@ -10124,7 +11314,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.57233,
    "lng": 99.62485,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   },
   {
    "id": "w1343578955",
@@ -10133,7 +11324,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.36285,
    "lng": 99.30451,
-   "notable": false
+   "notable": false,
+   "district": "กันตัง"
   },
   {
    "id": "w1248808573",
@@ -10142,7 +11334,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.55362,
    "lng": 99.61187,
-   "notable": false
+   "notable": false,
+   "district": "เมืองตรัง"
   }
  ],
  "แพร่": [
@@ -10153,7 +11346,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.71968,
    "lng": 100.23136,
-   "notable": true
+   "notable": true,
+   "district": "สอง"
   },
   {
    "id": "w1226128269",
@@ -10162,7 +11356,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.13813,
    "lng": 100.15009,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13717802895",
@@ -10171,7 +11366,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.8569,
    "lng": 100.1299,
-   "notable": true
+   "notable": true,
+   "district": "เด่นชัย"
   },
   {
    "id": "n7134816786",
@@ -10180,7 +11376,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.0878,
    "lng": 100.27825,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w252423924",
@@ -10189,7 +11386,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 17.97869,
    "lng": 99.63765,
-   "notable": false
+   "notable": false,
+   "district": "วังชิ้น"
   },
   {
    "id": "n4996035421",
@@ -10198,7 +11396,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.36928,
    "lng": 100.35443,
-   "notable": false
+   "notable": false,
+   "district": "ร้องกวาง"
   },
   {
    "id": "n6285816587",
@@ -10207,7 +11406,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.13753,
    "lng": 100.13101,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13678622649",
@@ -10216,7 +11416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 18.14921,
    "lng": 100.14349,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n2274314380",
@@ -10225,7 +11426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 18.15316,
    "lng": 99.98583,
-   "notable": false
+   "notable": false,
+   "district": "ลอง"
   },
   {
    "id": "n13671798135",
@@ -10234,7 +11436,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 18.29005,
    "lng": 100.17152,
-   "notable": false
+   "notable": false,
+   "district": "หนองม่วงไข่"
   },
   {
    "id": "n13376959315",
@@ -10243,7 +11446,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.14218,
    "lng": 100.13519,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w1493367875",
@@ -10252,7 +11456,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.14063,
    "lng": 100.13772,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13444810788",
@@ -10261,7 +11466,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.08644,
    "lng": 100.20384,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "r6009663",
@@ -10270,7 +11476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.89005,
    "lng": 99.49368,
-   "notable": true
+   "notable": true,
+   "district": "วังชิ้น"
   },
   {
    "id": "n11410724020",
@@ -10279,7 +11486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.14391,
    "lng": 100.13676,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13717802891",
@@ -10288,7 +11496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.83417,
    "lng": 99.97778,
-   "notable": true
+   "notable": true,
+   "district": "เด่นชัย"
   },
   {
    "id": "n11212240041",
@@ -10297,7 +11506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.16007,
    "lng": 100.00343,
-   "notable": false
+   "notable": false,
+   "district": "ลอง"
   },
   {
    "id": "n11304580673",
@@ -10306,7 +11516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.12957,
    "lng": 100.32113,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w1418653926",
@@ -10315,7 +11526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.14341,
    "lng": 100.13628,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13671727429",
@@ -10324,7 +11536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 18.14153,
    "lng": 100.1425,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n7130172685",
@@ -10333,7 +11546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.93229,
    "lng": 100.06249,
-   "notable": false
+   "notable": false,
+   "district": "เด่นชัย"
   },
   {
    "id": "w1491466667",
@@ -10342,7 +11556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.12817,
    "lng": 100.31907,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w1227063799",
@@ -10351,7 +11566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.08569,
    "lng": 100.20298,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w400316522",
@@ -10360,7 +11576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 18.14137,
    "lng": 100.0151,
-   "notable": false
+   "notable": false,
+   "district": "ลอง"
   },
   {
    "id": "w477792306",
@@ -10369,7 +11586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.97489,
    "lng": 100.01502,
-   "notable": true
+   "notable": true,
+   "district": "เด่นชัย"
   },
   {
    "id": "n13681348846",
@@ -10378,7 +11596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.99427,
    "lng": 99.57055,
-   "notable": false
+   "notable": false,
+   "district": "วังชิ้น"
   },
   {
    "id": "n1280320495",
@@ -10387,7 +11606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.97,
    "lng": 100.3542,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "w1492985898",
@@ -10396,7 +11616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.09099,
    "lng": 99.84585,
-   "notable": false
+   "notable": false,
+   "district": "ลอง"
   },
   {
    "id": "n6347000585",
@@ -10405,7 +11626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.83819,
    "lng": 99.8009,
-   "notable": false
+   "notable": false,
+   "district": "วังชิ้น"
   },
   {
    "id": "n11403302489",
@@ -10414,7 +11636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.78819,
    "lng": 99.46514,
-   "notable": false
+   "notable": false,
+   "district": "วังชิ้น"
   },
   {
    "id": "w1022643709",
@@ -10423,7 +11646,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.10205,
    "lng": 99.86041,
-   "notable": false
+   "notable": false,
+   "district": "ลอง"
   },
   {
    "id": "n11410724034",
@@ -10432,7 +11656,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.14514,
    "lng": 100.13703,
-   "notable": true
+   "notable": true,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13668897225",
@@ -10441,7 +11666,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.12923,
    "lng": 100.32137,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n11212167439",
@@ -10450,7 +11676,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.68005,
    "lng": 100.15903,
-   "notable": false
+   "notable": false,
+   "district": "สอง"
   },
   {
    "id": "n13671727430",
@@ -10459,7 +11686,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.14634,
    "lng": 100.14416,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n3962798645",
@@ -10468,7 +11696,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.89308,
    "lng": 100.04886,
-   "notable": false
+   "notable": false,
+   "district": "เด่นชัย"
   },
   {
    "id": "n4565898993",
@@ -10477,7 +11706,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.11597,
    "lng": 100.11416,
-   "notable": false
+   "notable": false,
+   "district": "สูงเม่น"
   },
   {
    "id": "w699224387",
@@ -10486,7 +11716,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.146,
    "lng": 100.14383,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   },
   {
    "id": "n13678644806",
@@ -10495,7 +11726,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.67919,
    "lng": 100.15854,
-   "notable": false
+   "notable": false,
+   "district": "สอง"
   },
   {
    "id": "n4323391227",
@@ -10504,7 +11736,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.14369,
    "lng": 100.13607,
-   "notable": false
+   "notable": false,
+   "district": "เมืองแพร่"
   }
  ],
  "เลย": [
@@ -10515,7 +11748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.52422,
    "lng": 100.97577,
-   "notable": true
+   "notable": true,
+   "district": "นาแห้ว"
   },
   {
    "id": "n7095100393",
@@ -10524,7 +11758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.27011,
    "lng": 101.14152,
-   "notable": true
+   "notable": true,
+   "district": "ด่านซ้าย"
   },
   {
    "id": "n1673820216",
@@ -10533,7 +11768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.86806,
    "lng": 101.77583,
-   "notable": true
+   "notable": true,
+   "district": "ภูกระดึง"
   },
   {
    "id": "n4696017357",
@@ -10542,7 +11778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 17.36236,
    "lng": 101.50597,
-   "notable": true
+   "notable": true,
+   "district": "ภูเรือ"
   },
   {
    "id": "n13124595287",
@@ -10551,7 +11788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.57687,
    "lng": 101.89273,
-   "notable": false
+   "notable": false,
+   "district": "นาด้วง"
   },
   {
    "id": "n13121370902",
@@ -10560,7 +11798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.57836,
    "lng": 101.71052,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n13124574248",
@@ -10569,7 +11808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.79989,
    "lng": 101.7341,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n9857629217",
@@ -10578,7 +11818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.52905,
    "lng": 101.73691,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n1208557982",
@@ -10587,7 +11828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.81938,
    "lng": 101.55445,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n5082914149",
@@ -10596,7 +11838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.30148,
    "lng": 101.76484,
-   "notable": false
+   "notable": false,
+   "district": "วังสะพุง"
   },
   {
    "id": "n5774598453",
@@ -10605,7 +11848,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.90386,
    "lng": 101.68129,
-   "notable": true
+   "notable": true,
+   "district": "เชียงคาน"
   },
   {
    "id": "n4025569891",
@@ -10614,7 +11858,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.4565,
    "lng": 101.28325,
-   "notable": true
+   "notable": true,
+   "district": "ภูเรือ"
   },
   {
    "id": "n1946513458",
@@ -10623,7 +11868,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 17.05053,
    "lng": 101.74354,
-   "notable": false
+   "notable": false,
+   "district": "หนองหิน"
   },
   {
    "id": "n10803877405",
@@ -10632,7 +11878,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.50515,
    "lng": 101.46225,
-   "notable": false
+   "notable": false,
+   "district": "ท่าลี่"
   },
   {
    "id": "n13125013394",
@@ -10641,7 +11888,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.1209,
    "lng": 101.93322,
-   "notable": false
+   "notable": false,
+   "district": "ผาขาว"
   },
   {
    "id": "w433057892",
@@ -10650,7 +11898,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.27434,
    "lng": 101.14923,
-   "notable": false
+   "notable": false,
+   "district": "ด่านซ้าย"
   },
   {
    "id": "n5776296559",
@@ -10659,7 +11908,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.69949,
    "lng": 101.40728,
-   "notable": false
+   "notable": false,
+   "district": "ท่าลี่"
   },
   {
    "id": "w1230247836",
@@ -10668,7 +11918,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.89754,
    "lng": 101.66111,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n484166133",
@@ -10677,7 +11928,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.90497,
    "lng": 101.68323,
-   "notable": true
+   "notable": true,
+   "district": "เชียงคาน"
   },
   {
    "id": "n4025569892",
@@ -10686,7 +11938,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.47497,
    "lng": 101.31303,
-   "notable": true
+   "notable": true,
+   "district": "ภูเรือ"
   },
   {
    "id": "n13977151453",
@@ -10695,7 +11948,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.4857,
    "lng": 101.75653,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n13124710826",
@@ -10704,7 +11958,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.10649,
    "lng": 101.88032,
-   "notable": false
+   "notable": false,
+   "district": "หนองหิน"
   },
   {
    "id": "n4550103589",
@@ -10713,7 +11968,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.98061,
    "lng": 101.90728,
-   "notable": false
+   "notable": false,
+   "district": "ภูกระดึง"
   },
   {
    "id": "n13124663956",
@@ -10722,7 +11978,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.33888,
    "lng": 101.98918,
-   "notable": false
+   "notable": false,
+   "district": "เอราวัณ"
   },
   {
    "id": "n7003685572",
@@ -10731,7 +11988,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.05195,
    "lng": 101.74802,
-   "notable": false
+   "notable": false,
+   "district": "หนองหิน"
   },
   {
    "id": "n4025693880",
@@ -10740,7 +11998,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.24445,
    "lng": 101.53358,
-   "notable": true
+   "notable": true,
+   "district": "วังสะพุง"
   },
   {
    "id": "n7092539485",
@@ -10749,7 +12008,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.25558,
    "lng": 101.15424,
-   "notable": false
+   "notable": false,
+   "district": "ด่านซ้าย"
   },
   {
    "id": "n2483460698",
@@ -10758,7 +12018,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.34544,
    "lng": 102.01923,
-   "notable": false
+   "notable": false,
+   "district": "เอราวัณ"
   },
   {
    "id": "w1427649775",
@@ -10767,7 +12028,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.79844,
    "lng": 101.73621,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n7085886986",
@@ -10776,7 +12038,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.48398,
    "lng": 100.90773,
-   "notable": false
+   "notable": false,
+   "district": "นาแห้ว"
   },
   {
    "id": "w106747603",
@@ -10785,7 +12048,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.48508,
    "lng": 101.72956,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเลย"
   },
   {
    "id": "n4025693881",
@@ -10794,7 +12058,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.09315,
    "lng": 101.64317,
-   "notable": true
+   "notable": true,
+   "district": "ภูหลวง"
   },
   {
    "id": "n1311831567",
@@ -10803,7 +12068,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.48364,
    "lng": 101.35542,
-   "notable": false
+   "notable": false,
+   "district": "ภูเรือ"
   },
   {
    "id": "w1427660940",
@@ -10812,7 +12078,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.29997,
    "lng": 101.79061,
-   "notable": false
+   "notable": false,
+   "district": "วังสะพุง"
   },
   {
    "id": "w551528398",
@@ -10821,7 +12088,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.39935,
    "lng": 101.28907,
-   "notable": false
+   "notable": false,
+   "district": "ภูเรือ"
   },
   {
    "id": "n13124784499",
@@ -10830,7 +12098,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.58403,
    "lng": 101.35913,
-   "notable": false
+   "notable": false,
+   "district": "ท่าลี่"
   },
   {
    "id": "n13124887197",
@@ -10839,7 +12108,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.53426,
    "lng": 100.96396,
-   "notable": false
+   "notable": false,
+   "district": "นาแห้ว"
   },
   {
    "id": "n9434324621",
@@ -10848,7 +12118,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.93213,
    "lng": 101.05025,
-   "notable": false
+   "notable": false,
+   "district": "ด่านซ้าย"
   },
   {
    "id": "n13195776411",
@@ -10857,7 +12128,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.81872,
    "lng": 101.55508,
-   "notable": false
+   "notable": false,
+   "district": "เชียงคาน"
   },
   {
    "id": "n13128084213",
@@ -10866,7 +12138,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.07087,
    "lng": 101.66048,
-   "notable": false
+   "notable": false,
+   "district": "ภูหลวง"
   }
  ],
  "ชัยภูมิ": [
@@ -10877,7 +12150,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.11078,
    "lng": 101.89575,
-   "notable": true
+   "notable": true,
+   "district": "เกษตรสมบูรณ์"
   },
   {
    "id": "n4686722331",
@@ -10886,7 +12160,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.53532,
    "lng": 101.64931,
-   "notable": true
+   "notable": true,
+   "district": "คอนสาร"
   },
   {
    "id": "n1551507613",
@@ -10895,7 +12170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.06393,
    "lng": 101.96649,
-   "notable": true
+   "notable": true,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n12999854396",
@@ -10904,7 +12180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.97484,
    "lng": 101.4116,
-   "notable": false
+   "notable": false,
+   "district": "ภักดีชุมพล"
   },
   {
    "id": "n6220522787",
@@ -10913,7 +12190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.81762,
    "lng": 101.83853,
-   "notable": false
+   "notable": false,
+   "district": "บ้านเขว้า"
   },
   {
    "id": "n13504905491",
@@ -10922,7 +12200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.39582,
    "lng": 101.5234,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวแดง"
   },
   {
    "id": "n3512350591",
@@ -10931,7 +12210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.80688,
    "lng": 102.0315,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "w1447184567",
@@ -10940,7 +12220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.92827,
    "lng": 102.27868,
-   "notable": false
+   "notable": false,
+   "district": "คอนสวรรค์"
   },
   {
    "id": "n4690379927",
@@ -10949,7 +12230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.82891,
    "lng": 101.42758,
-   "notable": false
+   "notable": false,
+   "district": "เทพสถิต"
   },
   {
    "id": "n11212239868",
@@ -10958,7 +12240,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.38678,
    "lng": 101.57006,
-   "notable": false
+   "notable": false,
+   "district": "คอนสาร"
   },
   {
    "id": "n12999761486",
@@ -10967,7 +12250,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.3847,
    "lng": 102.38352,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแท่น"
   },
   {
    "id": "n13347968379",
@@ -10976,7 +12260,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.19949,
    "lng": 102.00207,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n4701785450",
@@ -10985,7 +12270,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.59307,
    "lng": 101.89658,
-   "notable": false
+   "notable": false,
+   "district": "คอนสาร"
   },
   {
    "id": "n11212239861",
@@ -10994,7 +12280,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.05648,
    "lng": 101.94904,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n13108384279",
@@ -11003,7 +12290,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.87758,
    "lng": 101.50594,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวระเหว"
   },
   {
    "id": "n13351221066",
@@ -11012,7 +12300,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.30869,
    "lng": 101.82767,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวแดง"
   },
   {
    "id": "w753988066",
@@ -11021,7 +12310,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.80677,
    "lng": 102.03608,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n13350686162",
@@ -11030,7 +12320,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.05392,
    "lng": 101.94788,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n8448640939",
@@ -11039,7 +12330,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.38101,
    "lng": 101.56633,
-   "notable": false
+   "notable": false,
+   "district": "คอนสาร"
   },
   {
    "id": "n13105980735",
@@ -11048,7 +12340,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.3502,
    "lng": 101.77294,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวแดง"
   },
   {
    "id": "w1476377585",
@@ -11057,7 +12350,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.78478,
    "lng": 101.36382,
-   "notable": false
+   "notable": false,
+   "district": "ภักดีชุมพล"
   },
   {
    "id": "n13347968380",
@@ -11066,7 +12360,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.00066,
    "lng": 101.87674,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n13105550735",
@@ -11075,7 +12370,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.96857,
    "lng": 101.91345,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n13108636766",
@@ -11084,7 +12380,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.64422,
    "lng": 101.68232,
-   "notable": false
+   "notable": false,
+   "district": "คอนสาร"
   },
   {
    "id": "r5128698",
@@ -11093,7 +12390,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.80101,
    "lng": 102.01049,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n13108367721",
@@ -11102,7 +12400,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.00502,
    "lng": 101.89256,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวแดง"
   },
   {
    "id": "n13347929558",
@@ -11111,7 +12410,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.78653,
    "lng": 102.11116,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยภูมิ"
   },
   {
    "id": "n13108402336",
@@ -11120,7 +12420,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.90578,
    "lng": 101.45499,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวระเหว"
   },
   {
    "id": "n13108367719",
@@ -11129,7 +12430,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.00385,
    "lng": 101.8926,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวแดง"
   },
   {
    "id": "n9593947215",
@@ -11138,7 +12440,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.8992,
    "lng": 101.45439,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวระเหว"
   },
   {
    "id": "n13108402790",
@@ -11147,7 +12450,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.9448,
    "lng": 102.32412,
-   "notable": false
+   "notable": false,
+   "district": "คอนสวรรค์"
   },
   {
    "id": "n9596675292",
@@ -11156,7 +12460,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.88839,
    "lng": 101.45451,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวระเหว"
   },
   {
    "id": "n13105980734",
@@ -11165,7 +12470,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.63702,
    "lng": 101.39282,
-   "notable": false
+   "notable": false,
+   "district": "เทพสถิต"
   },
   {
    "id": "n11212240070",
@@ -11174,7 +12480,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.64574,
    "lng": 101.38567,
-   "notable": false
+   "notable": false,
+   "district": "เทพสถิต"
   },
   {
    "id": "n9593947216",
@@ -11183,7 +12490,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.89691,
    "lng": 101.45436,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัวระเหว"
   },
   {
    "id": "n9593947353",
@@ -11192,7 +12500,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.88237,
    "lng": 101.45401,
-   "notable": false
+   "notable": false,
+   "district": "เทพสถิต"
   }
  ],
  "สุราษฎร์ธานี": [
@@ -11203,7 +12512,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 10.09732,
    "lng": 99.82712,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "r12100307",
@@ -11212,7 +12522,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.50659,
    "lng": 98.8349,
-   "notable": true
+   "notable": true,
+   "district": "ไชยา"
   },
   {
    "id": "w485725004",
@@ -11221,7 +12532,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.70559,
    "lng": 100.02548,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n6171164369",
@@ -11230,7 +12542,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.02747,
    "lng": 98.73706,
-   "notable": true
+   "notable": true,
+   "district": "บ้านตาขุน"
   },
   {
    "id": "w242787629",
@@ -11239,7 +12552,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 9.13754,
    "lng": 99.31566,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุราษฎร์ธานี"
   },
   {
    "id": "n4350015490",
@@ -11248,7 +12562,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "💦",
    "lat": 9.54635,
    "lng": 99.96152,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n1674918451",
@@ -11257,7 +12572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.57098,
    "lng": 99.92522,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n1561803998",
@@ -11266,7 +12582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.88557,
    "lng": 98.66675,
-   "notable": false
+   "notable": false,
+   "district": "พนม"
   },
   {
    "id": "n6232386185",
@@ -11275,7 +12592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 10.12074,
    "lng": 99.81287,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n4733132248",
@@ -11284,7 +12602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 9.76755,
    "lng": 100.00689,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "w170860502",
@@ -11293,7 +12612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.79276,
    "lng": 100.03571,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "r12095603",
@@ -11302,7 +12622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.06869,
    "lng": 98.63759,
-   "notable": true
+   "notable": true,
+   "district": "บ้านตาขุน"
   },
   {
    "id": "w479952983",
@@ -11311,7 +12632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.70731,
    "lng": 100.01599,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n1828274469",
@@ -11320,7 +12642,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.79226,
    "lng": 100.02232,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "w1233228289",
@@ -11329,7 +12652,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 9.14663,
    "lng": 99.32843,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุราษฎร์ธานี"
   },
   {
    "id": "n7055897286",
@@ -11338,7 +12662,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.79746,
    "lng": 100.01919,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n5390163821",
@@ -11347,7 +12672,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 9.11401,
    "lng": 98.72413,
-   "notable": false
+   "notable": false,
+   "district": "บ้านตาขุน"
   },
   {
    "id": "n11200489040",
@@ -11356,7 +12682,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.80056,
    "lng": 99.97924,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n2609686255",
@@ -11365,7 +12692,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 9.76771,
    "lng": 100.00594,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "w246395838",
@@ -11374,7 +12702,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.57333,
    "lng": 100.08342,
-   "notable": true
+   "notable": true,
+   "district": "เกาะสมุย"
   },
   {
    "id": "r12095601",
@@ -11383,7 +12712,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.76454,
    "lng": 98.63302,
-   "notable": true
+   "notable": true,
+   "district": "พนม"
   },
   {
    "id": "n4778062103",
@@ -11392,7 +12722,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.32026,
    "lng": 99.68418,
-   "notable": true
+   "notable": true,
+   "district": "ดอนสัก"
   },
   {
    "id": "n6170753857",
@@ -11401,7 +12732,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.22178,
    "lng": 98.57031,
-   "notable": true
+   "notable": true,
+   "district": "บ้านตาขุน"
   },
   {
    "id": "w1330203998",
@@ -11410,7 +12742,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 9.10703,
    "lng": 99.23248,
-   "notable": false
+   "notable": false,
+   "district": "พุนพิน"
   },
   {
    "id": "n12596221624",
@@ -11419,7 +12752,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.68069,
    "lng": 100.06599,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n10752635637",
@@ -11428,7 +12762,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 9.57385,
    "lng": 99.91656,
-   "notable": false
+   "notable": false,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n4032611425",
@@ -11437,7 +12772,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.70544,
    "lng": 100.02893,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n1855200380",
@@ -11446,7 +12782,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 9.7473,
    "lng": 100.05745,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "w104366880",
@@ -11455,7 +12792,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.56469,
    "lng": 100.02918,
-   "notable": true
+   "notable": true,
+   "district": "เกาะสมุย"
   },
   {
    "id": "r12092898",
@@ -11464,7 +12802,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.78434,
    "lng": 99.48648,
-   "notable": true
+   "notable": true,
+   "district": "บ้านนาสาร"
   },
   {
    "id": "n4581058158",
@@ -11473,7 +12812,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.425,
    "lng": 99.94068,
-   "notable": true
+   "notable": true,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n1898554341",
@@ -11482,7 +12822,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.55202,
    "lng": 100.04268,
-   "notable": true
+   "notable": true,
+   "district": "เกาะสมุย"
   },
   {
    "id": "w171002767",
@@ -11491,7 +12832,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 9.70946,
    "lng": 99.98604,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n1829096376",
@@ -11500,7 +12842,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.18305,
    "lng": 99.3262,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุราษฎร์ธานี"
   },
   {
    "id": "n1822525760",
@@ -11509,7 +12852,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.73467,
    "lng": 100.01559,
-   "notable": false
+   "notable": false,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "n9032493658",
@@ -11518,7 +12862,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.96988,
    "lng": 98.98115,
-   "notable": false
+   "notable": false,
+   "district": "คีรีรัฐนิคม"
   },
   {
    "id": "w381444090",
@@ -11527,7 +12872,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.77054,
    "lng": 99.96194,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "r7175753",
@@ -11536,7 +12882,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.81537,
    "lng": 99.87388,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   },
   {
    "id": "w242668028",
@@ -11545,7 +12892,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.44982,
    "lng": 100.0006,
-   "notable": true
+   "notable": true,
+   "district": "เกาะสมุย"
   },
   {
    "id": "n1828274468",
@@ -11554,7 +12902,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.76443,
    "lng": 99.99692,
-   "notable": true
+   "notable": true,
+   "district": "เกาะพะงัน"
   }
  ],
  "ระนอง": [
@@ -11565,7 +12914,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.98133,
    "lng": 98.7925,
-   "notable": true
+   "notable": true,
+   "district": "ละอุ่น"
   },
   {
    "id": "n14070029893",
@@ -11574,7 +12924,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.97956,
    "lng": 98.63794,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2895081392",
@@ -11583,7 +12934,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.07284,
    "lng": 98.75122,
-   "notable": true
+   "notable": true,
+   "district": "ละอุ่น"
   },
   {
    "id": "w1329034172",
@@ -11592,7 +12944,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.53261,
    "lng": 98.44627,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "n1561813506",
@@ -11601,7 +12954,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.7472,
    "lng": 98.40585,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w761931780",
@@ -11610,7 +12964,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.96528,
    "lng": 98.63642,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w110291983",
@@ -11619,7 +12974,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 9.9666,
    "lng": 98.63367,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1295798789",
@@ -11628,7 +12984,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 9.9514,
    "lng": 98.60882,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "r3790589",
@@ -11637,7 +12994,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 10.16916,
    "lng": 98.67589,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1424557213",
@@ -11646,7 +13004,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 9.9622,
    "lng": 98.64063,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2894956080",
@@ -11655,7 +13014,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.96397,
    "lng": 98.6622,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329034173",
@@ -11664,7 +13024,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.50904,
    "lng": 98.43999,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "n13094400815",
@@ -11673,7 +13034,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 10.52326,
    "lng": 98.8336,
-   "notable": false
+   "notable": false,
+   "district": "กระบุรี"
   },
   {
    "id": "r3288703",
@@ -11682,7 +13044,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.47981,
    "lng": 98.41351,
-   "notable": true
+   "notable": true,
+   "district": "สุขสำราญ"
   },
   {
    "id": "n2883200707",
@@ -11691,7 +13054,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.97018,
    "lng": 98.5997,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329028683",
@@ -11700,7 +13064,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.54834,
    "lng": 98.45192,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "n13308194701",
@@ -11709,7 +13074,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 9.96089,
    "lng": 98.63911,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2894956083",
@@ -11718,7 +13084,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.04907,
    "lng": 98.67878,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329004834",
@@ -11727,7 +13094,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.91849,
    "lng": 98.56331,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2894956081",
@@ -11736,7 +13104,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.01226,
    "lng": 98.62978,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329005655",
@@ -11745,7 +13114,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.67703,
    "lng": 98.5134,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2883200708",
@@ -11754,7 +13124,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.66803,
    "lng": 98.49907,
-   "notable": true
+   "notable": true,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1313002242",
@@ -11763,7 +13134,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.71647,
    "lng": 98.42148,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2894956079",
@@ -11772,7 +13144,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.98454,
    "lng": 98.69247,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w241833212",
@@ -11781,7 +13154,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.74241,
    "lng": 98.42156,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2895081396",
@@ -11790,7 +13164,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.07587,
    "lng": 98.81197,
-   "notable": false
+   "notable": false,
+   "district": "ละอุ่น"
   },
   {
    "id": "w241570033",
@@ -11799,7 +13174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.84601,
    "lng": 98.44124,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2894956084",
@@ -11808,7 +13184,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.09853,
    "lng": 98.65273,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329034970",
@@ -11817,7 +13194,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.44663,
    "lng": 98.42617,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "n2894956082",
@@ -11826,7 +13204,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.05872,
    "lng": 98.65275,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329011864",
@@ -11835,7 +13214,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.64253,
    "lng": 98.50568,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "n2895081397",
@@ -11844,7 +13224,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.99313,
    "lng": 98.80967,
-   "notable": false
+   "notable": false,
+   "district": "ละอุ่น"
   },
   {
    "id": "w1329035368",
@@ -11853,7 +13234,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.40219,
    "lng": 98.41136,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "r13652640",
@@ -11862,7 +13244,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.37539,
    "lng": 98.39624,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "w1329012511",
@@ -11871,7 +13254,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.56416,
    "lng": 98.46306,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "w241570032",
@@ -11880,7 +13264,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.83529,
    "lng": 98.44244,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w241567903",
@@ -11889,7 +13274,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.77063,
    "lng": 98.41104,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   },
   {
    "id": "w1329012023",
@@ -11898,7 +13284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.62817,
    "lng": 98.47368,
-   "notable": false
+   "notable": false,
+   "district": "กะเปอร์"
   },
   {
    "id": "w1329056955",
@@ -11907,7 +13294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.34703,
    "lng": 98.39269,
-   "notable": false
+   "notable": false,
+   "district": "สุขสำราญ"
   },
   {
    "id": "w241567904",
@@ -11916,7 +13304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.76932,
    "lng": 98.41495,
-   "notable": false
+   "notable": false,
+   "district": "เมืองระนอง"
   }
  ],
  "สมุทรสงคราม": [
@@ -11927,7 +13316,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.46179,
    "lng": 99.94475,
-   "notable": true
+   "notable": true,
+   "district": "บางคนที"
   },
   {
    "id": "n4474500489",
@@ -11936,7 +13326,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.42689,
    "lng": 99.95289,
-   "notable": false
+   "notable": false,
+   "district": "อัมพวา"
   },
   {
    "id": "n12901634369",
@@ -11945,7 +13336,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.47172,
    "lng": 99.99475,
-   "notable": false
+   "notable": false,
+   "district": "อัมพวา"
   },
   {
    "id": "w829998811",
@@ -11954,7 +13346,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.41096,
    "lng": 100.00193,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "n1572034461",
@@ -11963,7 +13356,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.46449,
    "lng": 99.94366,
-   "notable": true
+   "notable": true,
+   "district": "บางคนที"
   },
   {
    "id": "n1572174522",
@@ -11972,7 +13366,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.46061,
    "lng": 99.9452,
-   "notable": false
+   "notable": false,
+   "district": "บางคนที"
   },
   {
    "id": "n1573798354",
@@ -11981,7 +13376,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.46287,
    "lng": 99.94442,
-   "notable": false
+   "notable": false,
+   "district": "บางคนที"
   },
   {
    "id": "w143654032",
@@ -11990,7 +13386,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.46632,
    "lng": 99.94772,
-   "notable": false
+   "notable": false,
+   "district": "บางคนที"
   },
   {
    "id": "n2406182462",
@@ -11999,7 +13396,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.50115,
    "lng": 99.92711,
-   "notable": true
+   "notable": true,
+   "district": "บางคนที"
   },
   {
    "id": "n2071354983",
@@ -12008,7 +13406,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.42672,
    "lng": 99.95592,
-   "notable": false
+   "notable": false,
+   "district": "อัมพวา"
   },
   {
    "id": "n5093926721",
@@ -12017,7 +13416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.50088,
    "lng": 100.00065,
-   "notable": false
+   "notable": false,
+   "district": "บางคนที"
   },
   {
    "id": "n1571940409",
@@ -12026,7 +13426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.44094,
    "lng": 99.95188,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "w1378838411",
@@ -12035,7 +13436,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.47103,
    "lng": 99.98692,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "n1285442152",
@@ -12044,7 +13446,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.46673,
    "lng": 99.94705,
-   "notable": true
+   "notable": true,
+   "district": "บางคนที"
   },
   {
    "id": "w1525678992",
@@ -12053,7 +13456,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.48377,
    "lng": 100.02261,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "w842051745",
@@ -12062,7 +13466,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.44157,
    "lng": 100.01273,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "w829998841",
@@ -12071,7 +13476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.43439,
    "lng": 100.00566,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "w538396710",
@@ -12080,7 +13486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.43304,
    "lng": 99.94781,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "w538393773",
@@ -12089,7 +13496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.43014,
    "lng": 99.9465,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "n1572033512",
@@ -12098,7 +13506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.44263,
    "lng": 99.94622,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "n1572033831",
@@ -12107,7 +13516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.44842,
    "lng": 99.94784,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "w1525979213",
@@ -12116,7 +13526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.42599,
    "lng": 99.88925,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
   },
   {
    "id": "w830631043",
@@ -12125,7 +13536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.40674,
    "lng": 100.00246,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "w829998845",
@@ -12134,7 +13546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.43162,
    "lng": 100.00145,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "w126774245",
@@ -12143,7 +13556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.45531,
    "lng": 100.0203,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "n1183700043",
@@ -12152,7 +13566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.37814,
    "lng": 99.99442,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
   },
   {
    "id": "n1571940335",
@@ -12161,7 +13576,88 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.42606,
    "lng": 99.95358,
-   "notable": true
+   "notable": true,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "n1591714965",
+   "name": "วัดแก้วฟ้า",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 13.41189,
+   "lng": 99.9658,
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n2071161275",
+   "name": "พิพิธพัณฑ์ขนมไทย",
+   "kind": "พิพิธภัณฑ์",
+   "emoji": "🏛️",
+   "lat": 13.42403,
+   "lng": 99.95584,
+   "notable": false,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "w538417602",
+   "name": "ตลาดน้ําอัมพวา",
+   "kind": "ที่เที่ยว",
+   "emoji": "📍",
+   "lat": 13.42479,
+   "lng": 99.9556,
+   "notable": false,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "n12762658676",
+   "name": "อนุสรณ์ ทูล ทองใจ",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 13.4203,
+   "lng": 99.95072,
+   "notable": false,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "n1591714969",
+   "name": "วัดจันทร์เจริญสุข",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 13.41219,
+   "lng": 99.96975,
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "w436536851",
+   "name": "วัดช่องลม",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 13.41894,
+   "lng": 99.98074,
+   "notable": true,
+   "district": "เมืองสมุทรสงคราม"
+  },
+  {
+   "id": "n13033832480",
+   "name": "พิพิธภัณฑ์พระบาทสมเด็จพระพุทธเลิศหล้านภาลัย",
+   "kind": "พิพิธภัณฑ์",
+   "emoji": "🏛️",
+   "lat": 13.42444,
+   "lng": 99.9517,
+   "notable": false,
+   "district": "อัมพวา"
+  },
+  {
+   "id": "n1573262140",
+   "name": "วัดนางวัง",
+   "kind": "วัด",
+   "emoji": "🛕",
+   "lat": 13.42054,
+   "lng": 99.9628,
+   "notable": true,
+   "district": "อัมพวา"
   }
  ],
  "พังงา": [
@@ -12172,7 +13668,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.46698,
    "lng": 98.27556,
-   "notable": true
+   "notable": true,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "n6207872824",
@@ -12181,7 +13678,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.19155,
    "lng": 98.63835,
-   "notable": true
+   "notable": true,
+   "district": "เกาะยาว"
   },
   {
    "id": "n6207873260",
@@ -12190,7 +13688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.13331,
    "lng": 98.58113,
-   "notable": false
+   "notable": false,
+   "district": "เกาะยาว"
   },
   {
    "id": "n4792603521",
@@ -12199,7 +13698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.23832,
    "lng": 98.30117,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "n1641043444",
@@ -12208,7 +13708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.44285,
    "lng": 98.51607,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพังงา"
   },
   {
    "id": "n10747670105",
@@ -12217,7 +13718,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.89455,
    "lng": 98.28005,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w621635647",
@@ -12226,7 +13728,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.59684,
    "lng": 98.67628,
-   "notable": false
+   "notable": false,
+   "district": "ทับปุด"
   },
   {
    "id": "n12580068246",
@@ -12235,7 +13738,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 9.20443,
    "lng": 98.2666,
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   },
   {
    "id": "w1312209213",
@@ -12244,7 +13748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.57653,
    "lng": 98.24141,
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "w388811324",
@@ -12253,7 +13758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.43559,
    "lng": 98.51797,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพังงา"
   },
   {
    "id": "r12095604",
@@ -12262,7 +13768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.62549,
    "lng": 98.38303,
-   "notable": true
+   "notable": true,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "n7619565720",
@@ -12271,7 +13778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.8305,
    "lng": 98.36638,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w485019252",
@@ -12280,7 +13788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.63899,
    "lng": 97.64983,
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   },
   {
    "id": "n11284392721",
@@ -12289,7 +13798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.5595,
    "lng": 98.29481,
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "n14001684351",
@@ -12298,7 +13808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.58126,
    "lng": 98.23424,
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "n3426578175",
@@ -12307,7 +13818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.62607,
    "lng": 98.24033,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w815944528",
@@ -12316,7 +13828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.8293,
    "lng": 98.36791,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "r12095597",
@@ -12325,7 +13838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.11628,
    "lng": 98.46023,
-   "notable": true
+   "notable": true,
+   "district": "คุระบุรี"
   },
   {
    "id": "n1641043400",
@@ -12334,7 +13848,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.34518,
    "lng": 98.50282,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพังงา"
   },
   {
    "id": "w1310907858",
@@ -12343,7 +13858,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.07136,
    "lng": 97.81499,
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   },
   {
    "id": "n2754030052",
@@ -12352,7 +13868,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.68704,
    "lng": 98.52303,
-   "notable": false
+   "notable": false,
+   "district": "กะปง"
   },
   {
    "id": "n443928091",
@@ -12361,7 +13878,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.85897,
    "lng": 98.26481,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w338906084",
@@ -12370,7 +13888,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.86728,
    "lng": 98.34051,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "r3263607",
@@ -12379,7 +13898,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.77861,
    "lng": 97.72286,
-   "notable": true
+   "notable": true,
+   "district": "คุระบุรี"
   },
   {
    "id": "n1578550414",
@@ -12388,7 +13908,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.45973,
    "lng": 98.52914,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพังงา"
   },
   {
    "id": "w764494852",
@@ -12397,7 +13918,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.51273,
    "lng": 98.21759,
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "n6169741105",
@@ -12406,7 +13928,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.23929,
    "lng": 98.43864,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "n3202869353",
@@ -12415,7 +13938,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.66559,
    "lng": 98.25469,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w223725728",
@@ -12424,7 +13948,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 9.42091,
    "lng": 97.86575,
-   "notable": true
+   "notable": true,
+   "district": "คุระบุรี"
   },
   {
    "id": "n14069607504",
@@ -12433,7 +13958,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.44488,
    "lng": 97.90137,
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   },
   {
    "id": "w1303065699",
@@ -12442,7 +13968,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.24826,
    "lng": 98.28108,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "n6088878504",
@@ -12451,7 +13978,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.25872,
    "lng": 98.44152,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วทุ่ง"
   },
   {
    "id": "r12092904",
@@ -12460,7 +13988,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.24011,
    "lng": 98.53549,
-   "notable": true
+   "notable": true,
+   "district": "เกาะยาว"
   },
   {
    "id": "n3791111181",
@@ -12469,7 +13998,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.99704,
    "lng": 98.47201,
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   },
   {
    "id": "w1026012337",
@@ -12478,7 +14008,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.45299,
    "lng": 98.23243,
-   "notable": false
+   "notable": false,
+   "district": "ท้ายเหมือง"
   },
   {
    "id": "n1575877909",
@@ -12487,7 +14018,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.65516,
    "lng": 98.28419,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "w23600486",
@@ -12496,7 +14028,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.68449,
    "lng": 98.24099,
-   "notable": false
+   "notable": false,
+   "district": "ตะกั่วป่า"
   },
   {
    "id": "n7205066385",
@@ -12505,7 +14038,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.33415,
    "lng": 98.50387,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพังงา"
   },
   {
    "id": "w669874922",
@@ -12514,7 +14048,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.16334,
    "lng": 98.63588,
-   "notable": false
+   "notable": false,
+   "district": "เกาะยาว"
   },
   {
    "id": "n14069610401",
@@ -12523,7 +14058,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.42178,
    "lng": 97.87777,
-   "notable": false
+   "notable": false,
+   "district": "คุระบุรี"
   }
  ],
  "พัทลุง": [
@@ -12534,7 +14070,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.75198,
    "lng": 100.06723,
-   "notable": true
+   "notable": true,
+   "district": "ควนขนุน"
   },
   {
    "id": "n11212239841",
@@ -12543,7 +14080,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.70524,
    "lng": 99.84445,
-   "notable": false
+   "notable": false,
+   "district": "ศรีบรรพต"
   },
   {
    "id": "n1583925185",
@@ -12552,7 +14090,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 7.68116,
    "lng": 100.06204,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "w1330909144",
@@ -12561,16 +14100,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 7.49939,
    "lng": 100.06545,
-   "notable": false
-  },
-  {
-   "id": "n11615135263",
-   "name": "ควนสีปาน",
-   "kind": "ยอดเขา",
-   "emoji": "⛰️",
-   "lat": 7.57411,
-   "lng": 100.29811,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n5500133321",
@@ -12579,7 +14110,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.72646,
    "lng": 100.00825,
-   "notable": false
+   "notable": false,
+   "district": "ควนขนุน"
   },
   {
    "id": "n12133912376",
@@ -12588,7 +14120,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.61672,
    "lng": 100.07402,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n6302935931",
@@ -12597,16 +14130,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.43921,
    "lng": 99.92317,
-   "notable": false
-  },
-  {
-   "id": "n1662778594",
-   "name": "วัดเจดีย์งาม",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 7.64751,
-   "lng": 100.39099,
-   "notable": true
+   "notable": false,
+   "district": "กงหรา"
   },
   {
    "id": "n11917107969",
@@ -12615,7 +14140,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.70838,
    "lng": 99.86199,
-   "notable": false
+   "notable": false,
+   "district": "ศรีบรรพต"
   },
   {
    "id": "n10962843568",
@@ -12624,7 +14150,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.42675,
    "lng": 100.00281,
-   "notable": false
+   "notable": false,
+   "district": "กงหรา"
   },
   {
    "id": "n11212240044",
@@ -12633,7 +14160,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.67887,
    "lng": 99.87257,
-   "notable": false
+   "notable": false,
+   "district": "ศรีบรรพต"
   },
   {
    "id": "n12133882903",
@@ -12642,7 +14170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.62076,
    "lng": 100.08373,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "w1310833913",
@@ -12651,16 +14180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.61114,
    "lng": 100.05904,
-   "notable": false
-  },
-  {
-   "id": "w834700062",
-   "name": "วัดพะโคะ",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 7.60152,
-   "lng": 100.39191,
-   "notable": true
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n11917184969",
@@ -12669,7 +14190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.6754,
    "lng": 99.87521,
-   "notable": false
+   "notable": false,
+   "district": "ศรีบรรพต"
   },
   {
    "id": "n1583925218",
@@ -12678,7 +14200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.68211,
    "lng": 100.05717,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n12133736885",
@@ -12687,7 +14210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.61037,
    "lng": 100.05892,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "w1310830534",
@@ -12696,7 +14220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.61977,
    "lng": 100.07777,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพัทลุง"
   },
   {
    "id": "n11212240237",
@@ -12705,7 +14230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.78876,
    "lng": 100.12424,
-   "notable": false
+   "notable": false,
+   "district": "ควนขนุน"
   }
  ],
  "นครศรีธรรมราช": [
@@ -12716,7 +14242,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.81534,
    "lng": 99.66463,
-   "notable": true
+   "notable": true,
+   "district": "นบพิตำ"
   },
   {
    "id": "n1586071724",
@@ -12725,7 +14252,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.40043,
    "lng": 99.96956,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "w774940103",
@@ -12734,7 +14262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.40498,
    "lng": 99.96753,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n9667948758",
@@ -12743,7 +14272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.49444,
    "lng": 99.74061,
-   "notable": true
+   "notable": true,
+   "district": "พรหมคีรี"
   },
   {
    "id": "w171177960",
@@ -12752,7 +14282,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 9.26867,
    "lng": 99.84479,
-   "notable": false
+   "notable": false,
+   "district": "ขนอม"
   },
   {
    "id": "n11212240059",
@@ -12761,7 +14292,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.11656,
    "lng": 99.89705,
-   "notable": false
+   "notable": false,
+   "district": "ขนอม"
   },
   {
    "id": "n1586071721",
@@ -12770,7 +14302,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 8.36136,
    "lng": 99.78503,
-   "notable": false
+   "notable": false,
+   "district": "ลานสกา"
   },
   {
    "id": "n13255366644",
@@ -12779,7 +14312,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 8.14144,
    "lng": 99.76046,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n5746611521",
@@ -12788,7 +14322,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.35446,
    "lng": 100.19918,
-   "notable": false
+   "notable": false,
+   "district": "ปากพนัง"
   },
   {
    "id": "n9030229771",
@@ -12797,7 +14332,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.42698,
    "lng": 99.96341,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "w1167960085",
@@ -12806,7 +14342,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.47237,
    "lng": 99.96403,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n1586071740",
@@ -12815,7 +14352,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.41444,
    "lng": 99.96876,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n13255364661",
@@ -12824,7 +14362,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.37313,
    "lng": 99.54241,
-   "notable": true
+   "notable": true,
+   "district": "ช้างกลาง"
   },
   {
    "id": "n8850749063",
@@ -12833,7 +14372,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.48468,
    "lng": 99.46946,
-   "notable": false
+   "notable": false,
+   "district": "ฉวาง"
   },
   {
    "id": "n5746664921",
@@ -12842,7 +14382,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.35565,
    "lng": 100.1993,
-   "notable": false
+   "notable": false,
+   "district": "ปากพนัง"
   },
   {
    "id": "n9031025233",
@@ -12851,7 +14392,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.34647,
    "lng": 99.93801,
-   "notable": false
+   "notable": false,
+   "district": "พระพรหม"
   },
   {
    "id": "w1443765092",
@@ -12860,7 +14402,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.2345,
    "lng": 99.67603,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "w1145063612",
@@ -12869,7 +14412,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.15226,
    "lng": 99.68971,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n12061551224",
@@ -12878,7 +14422,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.49412,
    "lng": 99.72984,
-   "notable": false
+   "notable": false,
+   "district": "พิปูน"
   },
   {
    "id": "n5746250121",
@@ -12887,7 +14432,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.34754,
    "lng": 100.19952,
-   "notable": false
+   "notable": false,
+   "district": "ปากพนัง"
   },
   {
    "id": "n4968634622",
@@ -12896,7 +14442,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.49992,
    "lng": 99.95453,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "w1443692536",
@@ -12905,7 +14452,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.08743,
    "lng": 99.81552,
-   "notable": false
+   "notable": false,
+   "district": "จุฬาภรณ์"
   },
   {
    "id": "n13255388606",
@@ -12914,7 +14462,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.00582,
    "lng": 99.65051,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n12061535006",
@@ -12923,7 +14472,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 8.54819,
    "lng": 99.73257,
-   "notable": false
+   "notable": false,
+   "district": "พรหมคีรี"
   },
   {
    "id": "n11212240058",
@@ -12932,7 +14482,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.40961,
    "lng": 99.96759,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "w1443779990",
@@ -12941,7 +14492,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.24146,
    "lng": 99.62144,
-   "notable": false
+   "notable": false,
+   "district": "นาบอน"
   },
   {
    "id": "w1443760974",
@@ -12950,7 +14502,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.16242,
    "lng": 99.67793,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n5749103724",
@@ -12959,7 +14512,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.57992,
    "lng": 99.92953,
-   "notable": false
+   "notable": false,
+   "district": "ท่าศาลา"
   },
   {
    "id": "w1443782808",
@@ -12968,7 +14522,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.38008,
    "lng": 99.54119,
-   "notable": false
+   "notable": false,
+   "district": "ฉวาง"
   },
   {
    "id": "n13256160570",
@@ -12977,7 +14532,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.39539,
    "lng": 99.95727,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n5746384526",
@@ -12986,7 +14542,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.31832,
    "lng": 100.20529,
-   "notable": false
+   "notable": false,
+   "district": "ปากพนัง"
   },
   {
    "id": "w1443183159",
@@ -12995,7 +14552,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.09013,
    "lng": 99.6635,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n13261648643",
@@ -13004,7 +14562,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.41016,
    "lng": 99.93279,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n5746422721",
@@ -13013,7 +14572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.31307,
    "lng": 100.20191,
-   "notable": false
+   "notable": false,
+   "district": "ปากพนัง"
   },
   {
    "id": "w1443894633",
@@ -13022,7 +14582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.22594,
    "lng": 99.86694,
-   "notable": false
+   "notable": false,
+   "district": "ร่อนพิบูลย์"
   },
   {
    "id": "n13256160568",
@@ -13031,7 +14592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.39308,
    "lng": 99.92303,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครศรีธรรมราช"
   },
   {
    "id": "n11212239941",
@@ -13040,7 +14602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.23828,
    "lng": 99.80553,
-   "notable": false
+   "notable": false,
+   "district": "ร่อนพิบูลย์"
   },
   {
    "id": "w1443686444",
@@ -13049,7 +14612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.98695,
    "lng": 99.72832,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งสง"
   },
   {
    "id": "n13255431534",
@@ -13058,7 +14622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.15289,
    "lng": 99.83058,
-   "notable": false
+   "notable": false,
+   "district": "ร่อนพิบูลย์"
   },
   {
    "id": "n5746463221",
@@ -13067,7 +14632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.36223,
    "lng": 100.19343,
-   "notable": false
+   "notable": false,
+   "district": "ปากพนัง"
   }
  ],
  "ฉะเชิงเทรา": [
@@ -13078,7 +14644,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.50301,
    "lng": 100.98963,
-   "notable": true
+   "notable": true,
+   "district": "บางปะกง"
   },
   {
    "id": "w1324937959",
@@ -13087,7 +14654,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.68442,
    "lng": 101.08985,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "n1597544745",
@@ -13096,7 +14664,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 13.58205,
    "lng": 101.28213,
-   "notable": false
+   "notable": false,
+   "district": "แปลงยาว"
   },
   {
    "id": "n3191573617",
@@ -13105,7 +14674,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.6183,
    "lng": 101.35829,
-   "notable": false
+   "notable": false,
+   "district": "แปลงยาว"
   },
   {
    "id": "r17491068",
@@ -13114,7 +14684,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 13.4894,
    "lng": 101.51802,
-   "notable": false
+   "notable": false,
+   "district": "สนามชัยเขต"
   },
   {
    "id": "w301495801",
@@ -13123,7 +14694,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.95441,
    "lng": 100.86366,
-   "notable": false
+   "notable": false,
+   "district": ""
   },
   {
    "id": "w441635940",
@@ -13132,7 +14704,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.70146,
    "lng": 101.1415,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "w557846924",
@@ -13141,7 +14714,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.54344,
    "lng": 100.9945,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "w301498535",
@@ -13150,7 +14724,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.95673,
    "lng": 100.88665,
-   "notable": true
+   "notable": true,
+   "district": ""
   },
   {
    "id": "n4425040490",
@@ -13159,7 +14734,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.77377,
    "lng": 100.99072,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "n6324401777",
@@ -13168,7 +14744,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.54285,
    "lng": 100.994,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n6324412779",
@@ -13177,7 +14754,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.54347,
    "lng": 100.99465,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n6018701385",
@@ -13186,7 +14764,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.72836,
    "lng": 101.20743,
-   "notable": false
+   "notable": false,
+   "district": "บางคล้า"
   },
   {
    "id": "n6324415540",
@@ -13195,7 +14774,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.54344,
    "lng": 100.99442,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "w557847197",
@@ -13204,7 +14784,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.54284,
    "lng": 100.99434,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n4852113323",
@@ -13213,7 +14794,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.62317,
    "lng": 101.3554,
-   "notable": false
+   "notable": false,
+   "district": "พนมสารคาม"
   },
   {
    "id": "n6309502718",
@@ -13222,7 +14804,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.68867,
    "lng": 101.06701,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "w1337314508",
@@ -13231,7 +14814,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.75694,
    "lng": 101.34302,
-   "notable": false
+   "notable": false,
+   "district": "พนมสารคาม"
   },
   {
    "id": "n4182792692",
@@ -13240,7 +14824,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.66761,
    "lng": 101.04933,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "w585282237",
@@ -13249,7 +14834,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.50114,
    "lng": 100.98908,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n6153011114",
@@ -13258,7 +14844,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.75571,
    "lng": 101.18706,
-   "notable": false
+   "notable": false,
+   "district": "คลองเขื่อน"
   },
   {
    "id": "w555891882",
@@ -13267,7 +14854,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.68593,
    "lng": 101.07488,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "n5379768197",
@@ -13276,7 +14864,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.68761,
    "lng": 101.06705,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "w1337314509",
@@ -13285,7 +14874,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.74048,
    "lng": 101.30129,
-   "notable": false
+   "notable": false,
+   "district": "ราชสาส์น"
   },
   {
    "id": "n5362774372",
@@ -13294,7 +14884,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.68865,
    "lng": 101.06694,
-   "notable": false
+   "notable": false,
+   "district": "เมืองฉะเชิงเทรา"
   },
   {
    "id": "w758654224",
@@ -13303,7 +14894,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.55086,
    "lng": 100.96576,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   },
   {
    "id": "n6324415538",
@@ -13312,7 +14904,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.54318,
    "lng": 100.99435,
-   "notable": false
+   "notable": false,
+   "district": "บางปะกง"
   }
  ],
  "สุพรรณบุรี": [
@@ -13323,7 +14916,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.92569,
    "lng": 99.40472,
-   "notable": true
+   "notable": true,
+   "district": "ด่านช้าง"
   },
   {
    "id": "n5700717921",
@@ -13332,7 +14926,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.37307,
    "lng": 99.89171,
-   "notable": true
+   "notable": true,
+   "district": "อู่ทอง"
   },
   {
    "id": "n13954049637",
@@ -13341,7 +14936,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.37212,
    "lng": 99.87258,
-   "notable": true
+   "notable": true,
+   "district": "อู่ทอง"
   },
   {
    "id": "n11282908869",
@@ -13350,7 +14946,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.28345,
    "lng": 99.8957,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n11212239953",
@@ -13359,7 +14956,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 14.99383,
    "lng": 99.28835,
-   "notable": false
+   "notable": false,
+   "district": "ด่านช้าง"
   },
   {
    "id": "w1328382464",
@@ -13368,7 +14966,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.47049,
    "lng": 100.11292,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n5278833532",
@@ -13377,7 +14976,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.00043,
    "lng": 99.30339,
-   "notable": false
+   "notable": false,
+   "district": "ด่านช้าง"
   },
   {
    "id": "n4579561889",
@@ -13386,7 +14986,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.44238,
    "lng": 100.13261,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n8077312117",
@@ -13395,7 +14996,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.79273,
    "lng": 100.10285,
-   "notable": false
+   "notable": false,
+   "district": "เดิมบางนางบวช"
   },
   {
    "id": "w97549303",
@@ -13404,7 +15006,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.85856,
    "lng": 100.06483,
-   "notable": false
+   "notable": false,
+   "district": "เดิมบางนางบวช"
   },
   {
    "id": "w1328382468",
@@ -13413,7 +15016,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.46969,
    "lng": 100.11247,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w1328382461",
@@ -13422,7 +15026,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.47015,
    "lng": 100.11242,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n11282773669",
@@ -13431,7 +15036,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.27034,
    "lng": 99.86524,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "w1328382463",
@@ -13440,7 +15046,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.47056,
    "lng": 100.11296,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n1641043324",
@@ -13449,7 +15056,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.92805,
    "lng": 100.0475,
-   "notable": false
+   "notable": false,
+   "district": "เดิมบางนางบวช"
   },
   {
    "id": "n14111613114",
@@ -13458,7 +15066,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.63341,
    "lng": 100.02064,
-   "notable": false
+   "notable": false,
+   "district": "ดอนเจดีย์"
   },
   {
    "id": "w201372035",
@@ -13467,7 +15076,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.47106,
    "lng": 100.11845,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w1551244894",
@@ -13476,7 +15086,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.51261,
    "lng": 100.13046,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n5502315144",
@@ -13485,7 +15096,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.53368,
    "lng": 100.12503,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n11283067069",
@@ -13494,7 +15106,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.26374,
    "lng": 99.87832,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n14111613142",
@@ -13503,7 +15116,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.37413,
    "lng": 99.88474,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n4561080689",
@@ -13512,7 +15126,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.78891,
    "lng": 99.53909,
-   "notable": false
+   "notable": false,
+   "district": "ด่านช้าง"
   },
   {
    "id": "w222587788",
@@ -13521,7 +15136,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.47813,
    "lng": 100.12101,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w1257705392",
@@ -13530,7 +15146,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.46927,
    "lng": 100.11388,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w222588404",
@@ -13539,7 +15156,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.475,
    "lng": 100.11833,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w221559751",
@@ -13548,7 +15166,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.50249,
    "lng": 100.12242,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n11283074274",
@@ -13557,7 +15176,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.27143,
    "lng": 99.87891,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n14111613139",
@@ -13566,7 +15186,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.37814,
    "lng": 99.89191,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n14031275402",
@@ -13575,7 +15196,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.44764,
    "lng": 100.12031,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "w1257705393",
@@ -13584,7 +15206,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.4751,
    "lng": 100.11815,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n14109396212",
@@ -13593,7 +15216,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.51671,
    "lng": 100.13244,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n11282716270",
@@ -13602,7 +15226,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.28493,
    "lng": 99.8848,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n14111613140",
@@ -13611,7 +15236,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.37258,
    "lng": 99.88721,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "w98150448",
@@ -13620,7 +15246,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.63348,
    "lng": 100.02126,
-   "notable": false
+   "notable": false,
+   "district": "ดอนเจดีย์"
   },
   {
    "id": "w745784542",
@@ -13629,7 +15256,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.37603,
    "lng": 99.89297,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "n12008729369",
@@ -13638,7 +15266,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.49603,
    "lng": 100.05743,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n11282688669",
@@ -13647,7 +15276,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.30115,
    "lng": 99.87216,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   },
   {
    "id": "w1328382473",
@@ -13656,7 +15286,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.47027,
    "lng": 100.11317,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุพรรณบุรี"
   },
   {
    "id": "n6504279185",
@@ -13665,7 +15296,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.64622,
    "lng": 100.1501,
-   "notable": false
+   "notable": false,
+   "district": "ศรีประจันต์"
   },
   {
    "id": "n11282693469",
@@ -13674,7 +15306,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 14.30055,
    "lng": 99.87261,
-   "notable": false
+   "notable": false,
+   "district": "อู่ทอง"
   }
  ],
  "สระบุรี": [
@@ -13685,7 +15318,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.76494,
    "lng": 101.16773,
-   "notable": true
+   "notable": true,
+   "district": "มวกเหล็ก"
   },
   {
    "id": "n6172916720",
@@ -13694,7 +15328,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.40807,
    "lng": 100.86991,
-   "notable": true
+   "notable": true,
+   "district": "หนองแค"
   },
   {
    "id": "n2927380404",
@@ -13703,7 +15338,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.50678,
    "lng": 101.15714,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n14104606855",
@@ -13712,7 +15348,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 14.59988,
    "lng": 101.20665,
-   "notable": false
+   "notable": false,
+   "district": "มวกเหล็ก"
   },
   {
    "id": "n11607821661",
@@ -13721,7 +15358,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.90295,
    "lng": 101.07076,
-   "notable": false
+   "notable": false,
+   "district": "วังม่วง"
   },
   {
    "id": "n1641043435",
@@ -13730,7 +15368,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.86121,
    "lng": 101.06615,
-   "notable": false
+   "notable": false,
+   "district": "วังม่วง"
   },
   {
    "id": "w740893650",
@@ -13739,7 +15378,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.34061,
    "lng": 100.99424,
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "w937803013",
@@ -13748,7 +15388,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.42937,
    "lng": 100.95652,
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n2591756600",
@@ -13757,7 +15398,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.84437,
    "lng": 101.09908,
-   "notable": false
+   "notable": false,
+   "district": "วังม่วง"
   },
   {
    "id": "n3273277229",
@@ -13766,7 +15408,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.74911,
    "lng": 101.13962,
-   "notable": false
+   "notable": false,
+   "district": "วังม่วง"
   },
   {
    "id": "n12387703769",
@@ -13775,7 +15418,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.59322,
    "lng": 101.08244,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n5402775223",
@@ -13784,7 +15428,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.45747,
    "lng": 101.19175,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "w739098916",
@@ -13793,7 +15438,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.37157,
    "lng": 100.96904,
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n6168770516",
@@ -13802,7 +15448,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.39686,
    "lng": 100.79322,
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n11621602598",
@@ -13811,7 +15458,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.50365,
    "lng": 101.00192,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n4586530189",
@@ -13820,7 +15468,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.55041,
    "lng": 100.85667,
-   "notable": false
+   "notable": false,
+   "district": "เสาไห้"
   },
   {
    "id": "w717046573",
@@ -13829,7 +15478,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.3431,
    "lng": 100.98766,
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n14104500654",
@@ -13838,7 +15488,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.72576,
    "lng": 100.86441,
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n14104605989",
@@ -13847,7 +15498,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.54058,
    "lng": 101.14456,
-   "notable": false
+   "notable": false,
+   "district": "มวกเหล็ก"
   },
   {
    "id": "w556268635",
@@ -13856,7 +15508,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.54741,
    "lng": 100.89429,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระบุรี"
   },
   {
    "id": "n13955623257",
@@ -13865,7 +15518,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.45291,
    "lng": 101.21526,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "w721055299",
@@ -13874,7 +15528,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.34548,
    "lng": 100.99262,
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n13059546052",
@@ -13883,7 +15538,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.57409,
    "lng": 101.14623,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "w639974896",
@@ -13892,7 +15548,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.5791,
    "lng": 100.96753,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n13363037282",
@@ -13901,7 +15558,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.83011,
    "lng": 101.2801,
-   "notable": false
+   "notable": false,
+   "district": "มวกเหล็ก"
   },
   {
    "id": "w1490956591",
@@ -13910,7 +15568,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.3485,
    "lng": 100.86105,
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n14104605988",
@@ -13919,7 +15578,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.53527,
    "lng": 101.13513,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "w720088281",
@@ -13928,7 +15588,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.33174,
    "lng": 100.87522,
-   "notable": false
+   "notable": false,
+   "district": "หนองแค"
   },
   {
    "id": "n14104605990",
@@ -13937,7 +15598,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.55166,
    "lng": 101.18481,
-   "notable": false
+   "notable": false,
+   "district": "มวกเหล็ก"
   },
   {
    "id": "w737260386",
@@ -13946,7 +15608,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.57543,
    "lng": 100.76817,
-   "notable": false
+   "notable": false,
+   "district": "บ้านหมอ"
   },
   {
    "id": "n3273277232",
@@ -13955,7 +15618,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.74868,
    "lng": 101.12909,
-   "notable": false
+   "notable": false,
+   "district": "วังม่วง"
   },
   {
    "id": "n2412639952",
@@ -13964,7 +15628,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.64447,
    "lng": 101.09544,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n6441361991",
@@ -13973,7 +15638,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.63698,
    "lng": 101.11851,
-   "notable": false
+   "notable": false,
+   "district": "แก่งคอย"
   },
   {
    "id": "n10117775740",
@@ -13982,7 +15648,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.3715,
    "lng": 100.96926,
-   "notable": false
+   "notable": false,
+   "district": "วิหารแดง"
   },
   {
    "id": "n3116332814",
@@ -13991,7 +15658,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.77703,
    "lng": 101.1178,
-   "notable": false
+   "notable": false,
+   "district": "วังม่วง"
   }
  ],
  "อุตรดิตถ์": [
@@ -14002,7 +15670,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.56158,
    "lng": 100.5669,
-   "notable": true
+   "notable": true,
+   "district": "น้ำปาด"
   },
   {
    "id": "w1487918482",
@@ -14011,7 +15680,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.67301,
    "lng": 100.03363,
-   "notable": true
+   "notable": true,
+   "district": "ลับแล"
   },
   {
    "id": "n13717802892",
@@ -14020,7 +15690,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.80528,
    "lng": 100.13417,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n3962798660",
@@ -14029,7 +15700,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.83334,
    "lng": 100.05974,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n13646494578",
@@ -14038,7 +15710,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.5847,
    "lng": 100.42172,
-   "notable": false
+   "notable": false,
+   "district": "ทองแสนขัน"
   },
   {
    "id": "n11212153260",
@@ -14047,7 +15720,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.65319,
    "lng": 100.0375,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "n13878860975",
@@ -14056,7 +15730,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.60164,
    "lng": 100.05036,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "n13645251749",
@@ -14065,7 +15740,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 17.47935,
    "lng": 100.12775,
-   "notable": false
+   "notable": false,
+   "district": "ตรอน"
   },
   {
    "id": "w393076712",
@@ -14074,7 +15750,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.83355,
    "lng": 100.0599,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n9450495778",
@@ -14083,7 +15760,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.65148,
    "lng": 100.04443,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "w617346265",
@@ -14092,7 +15770,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.65188,
    "lng": 100.04481,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "r6009658",
@@ -14101,7 +15780,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.83636,
    "lng": 101.02899,
-   "notable": true
+   "notable": true,
+   "district": "น้ำปาด"
   },
   {
    "id": "w1487982724",
@@ -14110,7 +15790,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.66034,
    "lng": 100.02962,
-   "notable": true
+   "notable": true,
+   "district": "ลับแล"
   },
   {
    "id": "n13717802894",
@@ -14119,7 +15800,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.82583,
    "lng": 100.14833,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n11212153257",
@@ -14128,7 +15810,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.74981,
    "lng": 100.97856,
-   "notable": false
+   "notable": false,
+   "district": "น้ำปาด"
   },
   {
    "id": "n13668758407",
@@ -14137,7 +15820,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.5977,
    "lng": 100.04402,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "n1641043450",
@@ -14146,7 +15830,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.70544,
    "lng": 100.95327,
-   "notable": false
+   "notable": false,
+   "district": "น้ำปาด"
   },
   {
    "id": "n13945541415",
@@ -14155,7 +15840,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.65907,
    "lng": 100.03643,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "w777295865",
@@ -14164,7 +15850,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.26056,
    "lng": 100.23988,
-   "notable": false
+   "notable": false,
+   "district": "พิชัย"
   },
   {
    "id": "r5944646",
@@ -14173,7 +15860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.9332,
    "lng": 100.45823,
-   "notable": true
+   "notable": true,
+   "district": "ท่าปลา"
   },
   {
    "id": "w1524305243",
@@ -14182,7 +15870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.6706,
    "lng": 100.02826,
-   "notable": true
+   "notable": true,
+   "district": "ลับแล"
   },
   {
    "id": "n13717802893",
@@ -14191,7 +15880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.81389,
    "lng": 100.19278,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "w1489035553",
@@ -14200,7 +15890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.64665,
    "lng": 100.03221,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "n2349272252",
@@ -14209,7 +15900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.73069,
    "lng": 99.97717,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "w1413830859",
@@ -14218,7 +15910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.61031,
    "lng": 100.09953,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "w556014477",
@@ -14227,7 +15920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.63227,
    "lng": 100.09843,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "w532181974",
@@ -14236,7 +15930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.61948,
    "lng": 100.09862,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n13433951946",
@@ -14245,7 +15940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.5144,
    "lng": 100.32666,
-   "notable": false
+   "notable": false,
+   "district": "ทองแสนขัน"
   },
   {
    "id": "n13893428718",
@@ -14254,7 +15950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.6637,
    "lng": 100.03371,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "n13357495310",
@@ -14263,7 +15960,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.5405,
    "lng": 100.29965,
-   "notable": false
+   "notable": false,
+   "district": "ทองแสนขัน"
   },
   {
    "id": "n13640386968",
@@ -14272,7 +15970,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.6774,
    "lng": 100.0262,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "w1521912987",
@@ -14281,7 +15980,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.60157,
    "lng": 100.05033,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "w1456271120",
@@ -14290,7 +15990,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.6304,
    "lng": 100.1038,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n13645251755",
@@ -14299,7 +16000,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.72017,
    "lng": 100.97904,
-   "notable": false
+   "notable": false,
+   "district": "น้ำปาด"
   },
   {
    "id": "n4525864790",
@@ -14308,7 +16010,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.59389,
    "lng": 100.13071,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุตรดิตถ์"
   },
   {
    "id": "n9928788224",
@@ -14317,7 +16020,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.65278,
    "lng": 100.03933,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   },
   {
    "id": "w556014479",
@@ -14326,7 +16030,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.48193,
    "lng": 100.1262,
-   "notable": false
+   "notable": false,
+   "district": "ตรอน"
   },
   {
    "id": "w1530090400",
@@ -14335,7 +16040,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.70287,
    "lng": 100.02421,
-   "notable": true
+   "notable": true,
+   "district": "ลับแล"
   },
   {
    "id": "n13645251754",
@@ -14344,7 +16050,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.70543,
    "lng": 100.96182,
-   "notable": false
+   "notable": false,
+   "district": "น้ำปาด"
   },
   {
    "id": "w556014480",
@@ -14353,7 +16060,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.60688,
    "lng": 100.04478,
-   "notable": false
+   "notable": false,
+   "district": "ลับแล"
   }
  ],
  "สุรินทร์": [
@@ -14364,7 +16072,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.88439,
    "lng": 103.49315,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "w1413622318",
@@ -14373,7 +16082,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.34917,
    "lng": 103.26668,
-   "notable": true
+   "notable": true,
+   "district": "พนมดงรัก"
   },
   {
    "id": "n10270702411",
@@ -14382,7 +16092,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.46484,
    "lng": 103.5874,
-   "notable": false
+   "notable": false,
+   "district": "กาบเชิง"
   },
   {
    "id": "n14039390080",
@@ -14391,7 +16102,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.88474,
    "lng": 103.49325,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n14039581688",
@@ -14400,7 +16112,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.75941,
    "lng": 103.36569,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "w552231501",
@@ -14409,7 +16122,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.35258,
    "lng": 103.37372,
-   "notable": false
+   "notable": false,
+   "district": "พนมดงรัก"
   },
   {
    "id": "w1413613582",
@@ -14418,7 +16132,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.61025,
    "lng": 103.42443,
-   "notable": false
+   "notable": false,
+   "district": "ปราสาท"
   },
   {
    "id": "w733840764",
@@ -14427,7 +16142,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.52203,
    "lng": 103.95559,
-   "notable": false
+   "notable": false,
+   "district": "บัวเชด"
   },
   {
    "id": "n4631503973",
@@ -14436,7 +16152,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.36945,
    "lng": 103.33913,
-   "notable": true
+   "notable": true,
+   "district": "ชุมพลบุรี"
   },
   {
    "id": "w759900867",
@@ -14445,7 +16162,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.61932,
    "lng": 103.88769,
-   "notable": true
+   "notable": true,
+   "district": "สังขะ"
   },
   {
    "id": "n4759661526",
@@ -14454,7 +16172,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.84837,
    "lng": 103.47377,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n13053109284",
@@ -14463,7 +16182,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.34969,
    "lng": 103.26636,
-   "notable": false
+   "notable": false,
+   "district": "พนมดงรัก"
   },
   {
    "id": "n3398595486",
@@ -14472,7 +16192,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.75943,
    "lng": 103.36585,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n13523781306",
@@ -14481,7 +16202,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.54777,
    "lng": 103.87931,
-   "notable": false
+   "notable": false,
+   "district": "สังขะ"
   },
   {
    "id": "w733855645",
@@ -14490,7 +16212,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.52708,
    "lng": 103.94563,
-   "notable": false
+   "notable": false,
+   "district": "บัวเชด"
   },
   {
    "id": "n13202567002",
@@ -14499,7 +16222,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.36738,
    "lng": 103.46456,
-   "notable": false
+   "notable": false,
+   "district": "กาบเชิง"
   },
   {
    "id": "n1641043475",
@@ -14508,7 +16232,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.26628,
    "lng": 103.49676,
-   "notable": false
+   "notable": false,
+   "district": "ท่าตูม"
   },
   {
    "id": "n6410547185",
@@ -14517,7 +16242,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.87837,
    "lng": 103.48961,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "w553268588",
@@ -14526,7 +16252,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.87916,
    "lng": 103.49139,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "n14039657083",
@@ -14535,7 +16262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.59088,
    "lng": 103.43289,
-   "notable": false
+   "notable": false,
+   "district": "ปราสาท"
   },
   {
    "id": "w771925225",
@@ -14544,7 +16272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.64435,
    "lng": 103.40631,
-   "notable": false
+   "notable": false,
+   "district": "ปราสาท"
   },
   {
    "id": "n5452261744",
@@ -14553,7 +16282,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.10484,
    "lng": 103.60214,
-   "notable": false
+   "notable": false,
+   "district": "จอมพระ"
   },
   {
    "id": "w1553950192",
@@ -14562,7 +16292,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.32316,
    "lng": 103.65619,
-   "notable": false
+   "notable": false,
+   "district": "ท่าตูม"
   },
   {
    "id": "n968280866",
@@ -14571,7 +16302,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.74534,
    "lng": 103.77032,
-   "notable": false
+   "notable": false,
+   "district": "ลำดวน"
   },
   {
    "id": "w733855646",
@@ -14580,7 +16312,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.52816,
    "lng": 103.94512,
-   "notable": false
+   "notable": false,
+   "district": "บัวเชด"
   },
   {
    "id": "w552205459",
@@ -14589,7 +16322,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.35585,
    "lng": 103.25863,
-   "notable": false
+   "notable": false,
+   "district": "พนมดงรัก"
   },
   {
    "id": "w553268586",
@@ -14598,7 +16332,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.87074,
    "lng": 103.50127,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "w162891761",
@@ -14607,7 +16342,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.35405,
    "lng": 103.26154,
-   "notable": false
+   "notable": false,
+   "district": "พนมดงรัก"
   },
   {
    "id": "n9590983389",
@@ -14616,7 +16352,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.70327,
    "lng": 103.39293,
-   "notable": false
+   "notable": false,
+   "district": "ปราสาท"
   },
   {
    "id": "n1137074730",
@@ -14625,7 +16362,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.54813,
    "lng": 103.87662,
-   "notable": false
+   "notable": false,
+   "district": "สังขะ"
   },
   {
    "id": "n5452261799",
@@ -14634,7 +16372,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.8883,
    "lng": 103.65161,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสุรินทร์"
   },
   {
    "id": "w553851585",
@@ -14643,7 +16382,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.61022,
    "lng": 103.42412,
-   "notable": false
+   "notable": false,
+   "district": "ปราสาท"
   }
  ],
  "จันทบุรี": [
@@ -14654,7 +16394,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 12.8428,
    "lng": 102.158,
-   "notable": true
+   "notable": true,
+   "district": "เขาคิชฌกูฏ"
   },
   {
    "id": "r7920302",
@@ -14663,7 +16404,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.60587,
    "lng": 102.11918,
-   "notable": true
+   "notable": true,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n3809900661",
@@ -14672,7 +16414,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.80686,
    "lng": 102.18179,
-   "notable": true
+   "notable": true,
+   "district": "มะขาม"
   },
   {
    "id": "n2231865009",
@@ -14681,16 +16424,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.52969,
    "lng": 102.18406,
-   "notable": true
-  },
-  {
-   "id": "n1106296228",
-   "name": "อนุสาวรีย์สุนทรภู่",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 12.67514,
-   "lng": 101.63452,
-   "notable": true
+   "notable": true,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n4640208126",
@@ -14699,7 +16434,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.59329,
    "lng": 101.88004,
-   "notable": false
+   "notable": false,
+   "district": "นายายอาม"
   },
   {
    "id": "n1674579689",
@@ -14708,7 +16444,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.58485,
    "lng": 102.06758,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n11130271715",
@@ -14717,16 +16454,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 12.92104,
    "lng": 102.48983,
-   "notable": false
-  },
-  {
-   "id": "n4623933039",
-   "name": "พิพิธภัณฑ์บ้านครูกัง",
-   "kind": "พิพิธภัณฑ์",
-   "emoji": "🏛️",
-   "lat": 12.68704,
-   "lng": 101.63271,
-   "notable": false
+   "notable": false,
+   "district": "โป่งน้ำร้อน"
   },
   {
    "id": "n12693302085",
@@ -14735,7 +16464,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 12.58576,
    "lng": 102.14455,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w961917070",
@@ -14744,7 +16474,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.58836,
    "lng": 102.14289,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n1674589528",
@@ -14753,7 +16484,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.60924,
    "lng": 102.04028,
-   "notable": false
+   "notable": false,
+   "district": "ท่าใหม่"
   },
   {
    "id": "n3809900662",
@@ -14762,7 +16494,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.8319,
    "lng": 102.18121,
-   "notable": true
+   "notable": true,
+   "district": "เขาคิชฌกูฏ"
   },
   {
    "id": "w303416961",
@@ -14771,7 +16504,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.48146,
    "lng": 102.06569,
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "n14124829130",
@@ -14780,7 +16514,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.61764,
    "lng": 102.11026,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w821870201",
@@ -14789,7 +16524,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.53307,
    "lng": 101.9419,
-   "notable": false
+   "notable": false,
+   "district": "ท่าใหม่"
   },
   {
    "id": "n11586057771",
@@ -14798,7 +16534,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.46905,
    "lng": 102.05797,
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "w961964425",
@@ -14807,7 +16544,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.66565,
    "lng": 102.09756,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n3077769555",
@@ -14816,7 +16554,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 12.53139,
    "lng": 102.07647,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w27163537",
@@ -14825,7 +16564,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.60477,
    "lng": 102.10561,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w554612054",
@@ -14834,7 +16574,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 12.6165,
    "lng": 102.11008,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n8698017567",
@@ -14843,7 +16584,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.84989,
    "lng": 102.17013,
-   "notable": false
+   "notable": false,
+   "district": "เขาคิชฌกูฏ"
   },
   {
    "id": "n5547405322",
@@ -14852,7 +16594,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.58798,
    "lng": 101.88389,
-   "notable": false
+   "notable": false,
+   "district": "นายายอาม"
   },
   {
    "id": "n5334746207",
@@ -14861,7 +16604,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.60423,
    "lng": 102.10272,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w172165089",
@@ -14870,7 +16614,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.47895,
    "lng": 102.06592,
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "n3894594791",
@@ -14879,7 +16624,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.60797,
    "lng": 101.87028,
-   "notable": false
+   "notable": false,
+   "district": "นายายอาม"
   },
   {
    "id": "n12693302084",
@@ -14888,7 +16634,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.58781,
    "lng": 102.14163,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w551856074",
@@ -14897,7 +16644,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.63979,
    "lng": 102.08589,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n3809900663",
@@ -14906,7 +16654,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.87169,
    "lng": 102.20748,
-   "notable": false
+   "notable": false,
+   "district": "มะขาม"
   },
   {
    "id": "n7775804752",
@@ -14915,7 +16664,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.54272,
    "lng": 102.11312,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "n5040597021",
@@ -14924,7 +16674,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.59279,
    "lng": 102.08625,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w172386119",
@@ -14933,7 +16684,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.56717,
    "lng": 101.90033,
-   "notable": false
+   "notable": false,
+   "district": "ท่าใหม่"
   },
   {
    "id": "n11399860270",
@@ -14942,7 +16694,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.89,
    "lng": 102.19879,
-   "notable": false
+   "notable": false,
+   "district": "เขาคิชฌกูฏ"
   },
   {
    "id": "w553658466",
@@ -14951,7 +16704,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.58476,
    "lng": 102.0683,
-   "notable": false
+   "notable": false,
+   "district": "เมืองจันทบุรี"
   },
   {
    "id": "w617583011",
@@ -14960,7 +16714,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.45368,
    "lng": 102.22162,
-   "notable": false
+   "notable": false,
+   "district": "ขลุง"
   },
   {
    "id": "n14122409348",
@@ -14969,7 +16724,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.06121,
    "lng": 102.15518,
-   "notable": false
+   "notable": false,
+   "district": "สอยดาว"
   },
   {
    "id": "w303416962",
@@ -14978,7 +16734,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.48132,
    "lng": 102.06249,
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   },
   {
    "id": "w1553565972",
@@ -14987,7 +16744,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.56237,
    "lng": 101.913,
-   "notable": false
+   "notable": false,
+   "district": "ท่าใหม่"
   },
   {
    "id": "w172391111",
@@ -14996,16 +16754,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 12.47201,
    "lng": 102.05335,
-   "notable": false
-  },
-  {
-   "id": "n4122631988",
-   "name": "ศาลเจ้ามรกตแม่พิมพ์",
-   "kind": "จุดชมวิว",
-   "emoji": "🌄",
-   "lat": 12.64388,
-   "lng": 101.63911,
-   "notable": false
+   "notable": false,
+   "district": "แหลมสิงห์"
   }
  ],
  "ศรีสะเกษ": [
@@ -15016,7 +16766,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.42382,
    "lng": 104.82653,
-   "notable": true
+   "notable": true,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "w1333701134",
@@ -15025,7 +16776,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.19967,
    "lng": 104.08003,
-   "notable": true
+   "notable": true,
+   "district": "โพธิ์ศรีสุวรรณ"
   },
   {
    "id": "n11445493169",
@@ -15034,7 +16786,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.39173,
    "lng": 104.05857,
-   "notable": false
+   "notable": false,
+   "district": "ภูสิงห์"
   },
   {
    "id": "n14030226931",
@@ -15043,7 +16796,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.16623,
    "lng": 104.29902,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "n14030262528",
@@ -15052,7 +16806,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.30078,
    "lng": 104.09338,
-   "notable": false
+   "notable": false,
+   "district": "บึงบูรพ์"
   },
   {
    "id": "n12999103387",
@@ -15061,7 +16816,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 15.10498,
    "lng": 104.30294,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "n14031122425",
@@ -15070,7 +16826,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.64291,
    "lng": 104.49264,
-   "notable": false
+   "notable": false,
+   "district": "ขุนหาญ"
   },
   {
    "id": "n14031028154",
@@ -15079,7 +16836,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.72752,
    "lng": 104.20706,
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   },
   {
    "id": "n14028833497",
@@ -15088,7 +16846,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.61849,
    "lng": 104.42348,
-   "notable": false
+   "notable": false,
+   "district": "ขุนหาญ"
   },
   {
    "id": "n7474972038",
@@ -15097,7 +16856,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.52439,
    "lng": 104.56018,
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "w764209643",
@@ -15106,7 +16866,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.1566,
    "lng": 104.0292,
-   "notable": true
+   "notable": true,
+   "district": "เมืองจันทร์"
   },
   {
    "id": "n5452193657",
@@ -15115,7 +16876,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.72927,
    "lng": 104.02154,
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   },
   {
    "id": "n14031028153",
@@ -15124,7 +16886,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.56338,
    "lng": 104.23197,
-   "notable": false
+   "notable": false,
+   "district": "ภูสิงห์"
   },
   {
    "id": "n13098169208",
@@ -15133,7 +16896,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.10342,
    "lng": 104.62272,
-   "notable": false
+   "notable": false,
+   "district": "กันทรารมย์"
   },
   {
    "id": "w1132001591",
@@ -15142,7 +16906,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.11151,
    "lng": 104.13986,
-   "notable": false
+   "notable": false,
+   "district": "อุทุมพรพิสัย"
   },
   {
    "id": "n4596616778",
@@ -15151,7 +16916,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.9679,
    "lng": 104.10643,
-   "notable": false
+   "notable": false,
+   "district": "อุทุมพรพิสัย"
   },
   {
    "id": "n14031028155",
@@ -15160,7 +16926,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.5408,
    "lng": 104.48606,
-   "notable": false
+   "notable": false,
+   "district": "ขุนหาญ"
   },
   {
    "id": "n1826048391",
@@ -15169,7 +16936,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.24227,
    "lng": 104.48955,
-   "notable": false
+   "notable": false,
+   "district": "กันทรารมย์"
   },
   {
    "id": "w934524775",
@@ -15178,7 +16946,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.64622,
    "lng": 104.64121,
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "w394164947",
@@ -15187,7 +16956,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.09278,
    "lng": 104.32842,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "w762963876",
@@ -15196,7 +16966,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.16584,
    "lng": 104.29954,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "n7084065786",
@@ -15205,7 +16976,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.81779,
    "lng": 104.10997,
-   "notable": false
+   "notable": false,
+   "district": "ปรางค์กู่"
   },
   {
    "id": "n14030298002",
@@ -15214,7 +16986,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.45362,
    "lng": 104.6539,
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "n5428300948",
@@ -15223,7 +16996,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.11904,
    "lng": 104.32323,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "w643063902",
@@ -15232,7 +17006,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.70838,
    "lng": 104.19716,
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   },
   {
    "id": "w762980849",
@@ -15241,7 +17016,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.85263,
    "lng": 103.98439,
-   "notable": false
+   "notable": false,
+   "district": "ปรางค์กู่"
   },
   {
    "id": "n14031095228",
@@ -15250,7 +17026,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.50993,
    "lng": 104.48542,
-   "notable": false
+   "notable": false,
+   "district": "ขุนหาญ"
   },
   {
    "id": "w909194067",
@@ -15259,7 +17036,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.63934,
    "lng": 104.64901,
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "w740596045",
@@ -15268,7 +17046,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.2279,
    "lng": 104.40612,
-   "notable": false
+   "notable": false,
+   "district": "ยางชุมน้อย"
   },
   {
    "id": "n7084065785",
@@ -15277,7 +17056,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.85266,
    "lng": 103.98433,
-   "notable": false
+   "notable": false,
+   "district": "ปรางค์กู่"
   },
   {
    "id": "n14031095229",
@@ -15286,7 +17066,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.53133,
    "lng": 104.35879,
-   "notable": false
+   "notable": false,
+   "district": "ขุนหาญ"
   },
   {
    "id": "w643062490",
@@ -15295,7 +17076,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.71447,
    "lng": 104.19836,
-   "notable": false
+   "notable": false,
+   "district": "ขุขันธ์"
   },
   {
    "id": "n9603866309",
@@ -15304,7 +17086,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.11006,
    "lng": 104.02768,
-   "notable": false
+   "notable": false,
+   "district": "ห้วยทับทัน"
   },
   {
    "id": "n10965625066",
@@ -15313,7 +17096,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.10863,
    "lng": 104.36762,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "w787491525",
@@ -15322,7 +17106,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.85955,
    "lng": 104.04108,
-   "notable": false
+   "notable": false,
+   "district": "ปรางค์กู่"
   },
   {
    "id": "n12999120193",
@@ -15331,7 +17116,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.14633,
    "lng": 104.24701,
-   "notable": false
+   "notable": false,
+   "district": "อุทุมพรพิสัย"
   },
   {
    "id": "n14030262543",
@@ -15340,7 +17126,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.3403,
    "lng": 104.04989,
-   "notable": false
+   "notable": false,
+   "district": "บึงบูรพ์"
   },
   {
    "id": "w568742797",
@@ -15349,7 +17136,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.09852,
    "lng": 104.33322,
-   "notable": false
+   "notable": false,
+   "district": "เมืองศรีสะเกษ"
   },
   {
    "id": "n7113078277",
@@ -15358,7 +17146,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.39914,
    "lng": 104.68499,
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   },
   {
    "id": "n14030285600",
@@ -15367,7 +17156,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.40214,
    "lng": 104.68644,
-   "notable": false
+   "notable": false,
+   "district": "กันทรลักษ์"
   }
  ],
  "สระแก้ว": [
@@ -15378,7 +17168,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.84289,
    "lng": 102.73984,
-   "notable": true
+   "notable": true,
+   "district": "โคกสูง"
   },
   {
    "id": "n1880989238",
@@ -15387,7 +17178,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.07803,
    "lng": 102.26107,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "n12563316486",
@@ -15396,7 +17188,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.41373,
    "lng": 102.32545,
-   "notable": false
+   "notable": false,
+   "district": "คลองหาด"
   },
   {
    "id": "n11568574019",
@@ -15405,7 +17198,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.58387,
    "lng": 102.5273,
-   "notable": false
+   "notable": false,
+   "district": "อรัญประเทศ"
   },
   {
    "id": "n11974754724",
@@ -15414,7 +17208,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.58244,
    "lng": 102.52844,
-   "notable": false
+   "notable": false,
+   "district": "อรัญประเทศ"
   },
   {
    "id": "r17958060",
@@ -15423,7 +17218,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 13.77061,
    "lng": 102.65358,
-   "notable": false
+   "notable": false,
+   "district": "โคกสูง"
   },
   {
    "id": "w269823808",
@@ -15432,7 +17228,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.42126,
    "lng": 102.08364,
-   "notable": false
+   "notable": false,
+   "district": "วังสมบูรณ์"
   },
   {
    "id": "n6884909393",
@@ -15441,7 +17238,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.80242,
    "lng": 102.11761,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w838470182",
@@ -15450,7 +17248,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.81569,
    "lng": 102.07153,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w1419754095",
@@ -15459,7 +17258,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.99702,
    "lng": 102.81179,
-   "notable": false
+   "notable": false,
+   "district": "ตาพระยา"
   },
   {
    "id": "n13099759594",
@@ -15468,7 +17268,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.93283,
    "lng": 102.78279,
-   "notable": false
+   "notable": false,
+   "district": "ตาพระยา"
   },
   {
    "id": "n8419895817",
@@ -15477,7 +17278,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.81443,
    "lng": 102.34642,
-   "notable": false
+   "notable": false,
+   "district": "วัฒนานคร"
   },
   {
    "id": "n13816596057",
@@ -15486,7 +17288,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.51312,
    "lng": 102.00915,
-   "notable": false
+   "notable": false,
+   "district": "วังน้ำเย็น"
   },
   {
    "id": "w566101011",
@@ -15495,7 +17298,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.6942,
    "lng": 102.51069,
-   "notable": false
+   "notable": false,
+   "district": "อรัญประเทศ"
   },
   {
    "id": "w1336553405",
@@ -15504,7 +17308,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.74779,
    "lng": 102.39476,
-   "notable": false
+   "notable": false,
+   "district": "วัฒนานคร"
   },
   {
    "id": "n11539804805",
@@ -15513,7 +17318,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.49433,
    "lng": 102.30536,
-   "notable": false
+   "notable": false,
+   "district": "คลองหาด"
   },
   {
    "id": "w1307293051",
@@ -15522,7 +17328,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.44861,
    "lng": 102.30474,
-   "notable": false
+   "notable": false,
+   "district": "คลองหาด"
   },
   {
    "id": "n2629971396",
@@ -15531,7 +17338,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.68244,
    "lng": 102.43375,
-   "notable": false
+   "notable": false,
+   "district": "อรัญประเทศ"
   },
   {
    "id": "n13099764428",
@@ -15540,7 +17348,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.91214,
    "lng": 102.65541,
-   "notable": false
+   "notable": false,
+   "district": "ตาพระยา"
   },
   {
    "id": "w1125802194",
@@ -15549,7 +17358,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.75677,
    "lng": 101.98056,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "n12719098159",
@@ -15558,7 +17368,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.79754,
    "lng": 102.72055,
-   "notable": false
+   "notable": false,
+   "district": "โคกสูง"
   },
   {
    "id": "w683266004",
@@ -15567,7 +17378,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.75882,
    "lng": 101.98932,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w838874628",
@@ -15576,7 +17388,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.81852,
    "lng": 102.06773,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w846655224",
@@ -15585,7 +17398,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.78778,
    "lng": 101.94869,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w675373155",
@@ -15594,7 +17408,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.82139,
    "lng": 102.05828,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w675373156",
@@ -15603,7 +17418,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.82043,
    "lng": 102.05582,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสระแก้ว"
   },
   {
    "id": "w839267634",
@@ -15612,7 +17428,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.75256,
    "lng": 102.30889,
-   "notable": false
+   "notable": false,
+   "district": "วัฒนานคร"
   }
  ],
  "ภูเก็ต": [
@@ -15623,7 +17440,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 8.04197,
    "lng": 98.27628,
-   "notable": true
+   "notable": true,
+   "district": "ถลาง"
   },
   {
    "id": "w243010403",
@@ -15632,7 +17450,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 8.1147,
    "lng": 98.28106,
-   "notable": true
+   "notable": true,
+   "district": "ถลาง"
   },
   {
    "id": "n3277475708",
@@ -15641,7 +17460,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.60888,
    "lng": 98.36708,
-   "notable": true
+   "notable": true,
+   "district": ""
   },
   {
    "id": "n2504525674",
@@ -15650,7 +17470,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.98093,
    "lng": 98.36694,
-   "notable": true
+   "notable": true,
+   "district": "ถลาง"
   },
   {
    "id": "n1496579705",
@@ -15659,7 +17480,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 7.98911,
    "lng": 98.31213,
-   "notable": true
+   "notable": true,
+   "district": "ถลาง"
   },
   {
    "id": "n8523623117",
@@ -15668,7 +17490,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 7.41137,
    "lng": 98.19636,
-   "notable": false
+   "notable": false,
+   "district": ""
   },
   {
    "id": "w1409110964",
@@ -15677,7 +17500,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 7.97784,
    "lng": 98.3687,
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "w1268307618",
@@ -15686,7 +17510,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 7.95652,
    "lng": 98.28619,
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "w481948258",
@@ -15695,7 +17520,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 7.80349,
    "lng": 98.40788,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11445782948",
@@ -15704,7 +17530,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.89892,
    "lng": 98.3955,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11041935068",
@@ -15713,7 +17540,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.89381,
    "lng": 98.37951,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n12378118591",
@@ -15722,7 +17550,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.86639,
    "lng": 98.40062,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w806425782",
@@ -15731,7 +17560,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.02654,
    "lng": 98.31944,
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "r6892478",
@@ -15740,7 +17570,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.9564,
    "lng": 98.28047,
-   "notable": true
+   "notable": true,
+   "district": "กะทู้"
   },
   {
    "id": "n6078342487",
@@ -15749,7 +17580,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.92675,
    "lng": 98.30039,
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "n6253270085",
@@ -15758,7 +17590,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.88578,
    "lng": 98.38394,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w245594305",
@@ -15767,7 +17600,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 8.0862,
    "lng": 98.34139,
-   "notable": true
+   "notable": true,
+   "district": "ถลาง"
   },
   {
    "id": "n11445859246",
@@ -15776,7 +17610,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 7.89347,
    "lng": 98.37996,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w1360817593",
@@ -15785,7 +17620,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.8932,
    "lng": 98.29813,
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "n11355959396",
@@ -15794,7 +17630,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 8.02001,
    "lng": 98.31938,
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "w806425783",
@@ -15803,7 +17640,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 8.03269,
    "lng": 98.32868,
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "r4235946",
@@ -15812,7 +17650,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.8063,
    "lng": 98.29868,
-   "notable": true
+   "notable": true,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n1957082023",
@@ -15821,7 +17660,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.83468,
    "lng": 98.38355,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11029692867",
@@ -15830,7 +17670,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.86597,
    "lng": 98.39779,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n5060965586",
@@ -15839,7 +17680,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.8836,
    "lng": 98.39085,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n2082869799",
@@ -15848,7 +17690,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.84906,
    "lng": 98.29326,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w268298982",
@@ -15857,7 +17700,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 7.88536,
    "lng": 98.39168,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w134394729",
@@ -15866,7 +17710,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.84399,
    "lng": 98.29178,
-   "notable": true
+   "notable": true,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n2835558850",
@@ -15875,7 +17720,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.89238,
    "lng": 98.38019,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w1233476539",
@@ -15884,7 +17730,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.88375,
    "lng": 98.39069,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n4779401621",
@@ -15893,7 +17740,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 7.82359,
    "lng": 98.38999,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n11020595696",
@@ -15902,7 +17750,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.86848,
    "lng": 98.396,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w150178573",
@@ -15911,7 +17760,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.86474,
    "lng": 98.28235,
-   "notable": true
+   "notable": true,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n4283530491",
@@ -15920,7 +17770,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 7.89647,
    "lng": 98.39509,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "w1044722332",
@@ -15929,7 +17780,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.93327,
    "lng": 98.34948,
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "n2434607516",
@@ -15938,7 +17790,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 8.03823,
    "lng": 98.39041,
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "w1273355150",
@@ -15947,7 +17800,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.90256,
    "lng": 98.32123,
-   "notable": false
+   "notable": false,
+   "district": "กะทู้"
   },
   {
    "id": "r6162518",
@@ -15956,7 +17810,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 7.77563,
    "lng": 98.30531,
-   "notable": true
+   "notable": true,
+   "district": "เมืองภูเก็ต"
   },
   {
    "id": "n4144223791",
@@ -15965,7 +17820,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 8.11365,
    "lng": 98.30221,
-   "notable": false
+   "notable": false,
+   "district": "ถลาง"
   },
   {
    "id": "w1233476540",
@@ -15974,7 +17830,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 7.88348,
    "lng": 98.39075,
-   "notable": false
+   "notable": false,
+   "district": "เมืองภูเก็ต"
   }
  ],
  "ลำพูน": [
@@ -15985,7 +17842,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.59423,
    "lng": 98.80282,
-   "notable": true
+   "notable": true,
+   "district": "ลี้"
   },
   {
    "id": "w547918298",
@@ -15994,7 +17852,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.66877,
    "lng": 99.13572,
-   "notable": true
+   "notable": true,
+   "district": "บ้านธิ"
   },
   {
    "id": "n13304753157",
@@ -16003,7 +17862,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.22144,
    "lng": 98.85957,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโฮ่ง"
   },
   {
    "id": "w1463174795",
@@ -16012,7 +17872,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.1098,
    "lng": 98.88666,
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "w1463147993",
@@ -16021,7 +17882,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 18.51633,
    "lng": 98.89485,
-   "notable": false
+   "notable": false,
+   "district": "ป่าซาง"
   },
   {
    "id": "n11428851721",
@@ -16030,7 +17892,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.28843,
    "lng": 98.77841,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโฮ่ง"
   },
   {
    "id": "n3419097415",
@@ -16039,7 +17902,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.58344,
    "lng": 98.81764,
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "n2608303153",
@@ -16048,7 +17912,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.57451,
    "lng": 99.00855,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "w386343022",
@@ -16057,7 +17922,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.58662,
    "lng": 99.01876,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n1540463031",
@@ -16066,7 +17932,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.61169,
    "lng": 99.17168,
-   "notable": true
+   "notable": true,
+   "district": "บ้านธิ"
   },
   {
    "id": "n7142149333",
@@ -16075,7 +17942,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 18.32725,
    "lng": 98.87153,
-   "notable": false
+   "notable": false,
+   "district": "ป่าซาง"
   },
   {
    "id": "n3735398269",
@@ -16084,7 +17952,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.57755,
    "lng": 99.00597,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "w1464358346",
@@ -16093,7 +17962,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.67638,
    "lng": 98.76624,
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "n11263001094",
@@ -16102,7 +17972,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.57447,
    "lng": 99.13947,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n13432589553",
@@ -16111,7 +17982,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.53276,
    "lng": 99.26427,
-   "notable": false
+   "notable": false,
+   "district": "แม่ทา"
   },
   {
    "id": "n13305487932",
@@ -16120,7 +17992,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.36689,
    "lng": 98.77484,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโฮ่ง"
   },
   {
    "id": "w1413408678",
@@ -16129,7 +18002,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.57333,
    "lng": 99.00637,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n805139030",
@@ -16138,7 +18012,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.45498,
    "lng": 98.92208,
-   "notable": true
+   "notable": true,
+   "district": "ป่าซาง"
   },
   {
    "id": "w1463147992",
@@ -16147,7 +18022,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.51551,
    "lng": 98.8946,
-   "notable": false
+   "notable": false,
+   "district": "ป่าซาง"
   },
   {
    "id": "n13415817289",
@@ -16156,7 +18032,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.42923,
    "lng": 99.21778,
-   "notable": false
+   "notable": false,
+   "district": "แม่ทา"
   },
   {
    "id": "w1450770166",
@@ -16165,7 +18042,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.48403,
    "lng": 98.90895,
-   "notable": false
+   "notable": false,
+   "district": "ป่าซาง"
   },
   {
    "id": "w82765661",
@@ -16174,7 +18052,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.61601,
    "lng": 99.02274,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "w315302213",
@@ -16183,7 +18062,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.34452,
    "lng": 98.79612,
-   "notable": true
+   "notable": true,
+   "district": "บ้านโฮ่ง"
   },
   {
    "id": "n5008711021",
@@ -16192,7 +18072,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.58175,
    "lng": 99.00572,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n4614554763",
@@ -16201,7 +18082,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 18.66944,
    "lng": 99.20158,
-   "notable": false
+   "notable": false,
+   "district": "บ้านธิ"
   },
   {
    "id": "n4583815689",
@@ -16210,7 +18092,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.80207,
    "lng": 98.9493,
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "w776457884",
@@ -16219,7 +18102,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.30047,
    "lng": 98.81503,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโฮ่ง"
   },
   {
    "id": "w106899433",
@@ -16228,7 +18112,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.65923,
    "lng": 99.15829,
-   "notable": true
+   "notable": true,
+   "district": "บ้านธิ"
   },
   {
    "id": "n2043472190",
@@ -16237,7 +18122,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.49612,
    "lng": 99.26974,
-   "notable": false
+   "notable": false,
+   "district": "แม่ทา"
   },
   {
    "id": "n12464177896",
@@ -16246,7 +18132,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.63879,
    "lng": 98.78558,
-   "notable": false
+   "notable": false,
+   "district": "ลี้"
   },
   {
    "id": "w251577070",
@@ -16255,7 +18142,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.59983,
    "lng": 99.02984,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลำพูน"
   },
   {
    "id": "n11917184503",
@@ -16264,7 +18152,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.49894,
    "lng": 99.26546,
-   "notable": false
+   "notable": false,
+   "district": "แม่ทา"
   },
   {
    "id": "w1046403912",
@@ -16273,7 +18162,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.48137,
    "lng": 99.03097,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลำพูน"
   }
  ],
  "บุรีรัมย์": [
@@ -16284,7 +18174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.20135,
    "lng": 102.86224,
-   "notable": true
+   "notable": true,
+   "district": "ละหานทราย"
   },
   {
    "id": "w28187610",
@@ -16293,7 +18184,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.5319,
    "lng": 102.94225,
-   "notable": true
+   "notable": true,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n1831806735",
@@ -16302,7 +18194,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.9867,
    "lng": 103.10464,
-   "notable": true
+   "notable": true,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n13105293850",
@@ -16311,7 +18204,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 14.705,
    "lng": 102.56636,
-   "notable": false
+   "notable": false,
+   "district": "หนองกี่"
   },
   {
    "id": "w1413494364",
@@ -16320,7 +18214,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.99196,
    "lng": 103.10215,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n2067868492",
@@ -16329,7 +18224,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.93866,
    "lng": 103.09387,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "w564766359",
@@ -16338,7 +18234,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.96641,
    "lng": 103.08985,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n4594812056",
@@ -16347,7 +18244,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.5011,
    "lng": 102.97655,
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   },
   {
    "id": "n12051022932",
@@ -16356,7 +18254,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.99844,
    "lng": 103.11748,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "w1161592295",
@@ -16365,7 +18264,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.64528,
    "lng": 102.95024,
-   "notable": false
+   "notable": false,
+   "district": "นาโพธิ์"
   },
   {
    "id": "n13100614372",
@@ -16374,7 +18274,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.8872,
    "lng": 103.07988,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n5404685721",
@@ -16383,7 +18284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.55454,
    "lng": 102.84046,
-   "notable": false
+   "notable": false,
+   "district": "บ้านใหม่ไชยพจน์"
   },
   {
    "id": "w461233032",
@@ -16392,7 +18294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.29903,
    "lng": 102.74372,
-   "notable": false
+   "notable": false,
+   "district": "โนนดินแดง"
   },
   {
    "id": "n13350747601",
@@ -16401,7 +18304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.58225,
    "lng": 102.80654,
-   "notable": false
+   "notable": false,
+   "district": "นางรอง"
   },
   {
    "id": "n4567429351",
@@ -16410,7 +18314,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.29846,
    "lng": 102.75802,
-   "notable": false
+   "notable": false,
+   "district": "โนนดินแดง"
   },
   {
    "id": "n11584775500",
@@ -16419,7 +18324,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.46345,
    "lng": 102.72774,
-   "notable": false
+   "notable": false,
+   "district": "ปะคำ"
   },
   {
    "id": "w352402589",
@@ -16428,7 +18334,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.53236,
    "lng": 102.94322,
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "w1161339286",
@@ -16437,7 +18344,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.63486,
    "lng": 102.95699,
-   "notable": false
+   "notable": false,
+   "district": "นาโพธิ์"
   },
   {
    "id": "n2457531307",
@@ -16446,7 +18354,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.5338,
    "lng": 102.97928,
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   },
   {
    "id": "n5487405914",
@@ -16455,7 +18364,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.86929,
    "lng": 102.70316,
-   "notable": false
+   "notable": false,
+   "district": "หนองหงส์"
   },
   {
    "id": "r4555934",
@@ -16464,7 +18374,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.6097,
    "lng": 103.07714,
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   },
   {
    "id": "n11538360382",
@@ -16473,7 +18384,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.34616,
    "lng": 103.16311,
-   "notable": false
+   "notable": false,
+   "district": "บ้านกรวด"
   },
   {
    "id": "w637267857",
@@ -16482,7 +18394,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.99611,
    "lng": 103.1138,
-   "notable": false
+   "notable": false,
+   "district": "เมืองบุรีรัมย์"
   },
   {
    "id": "n4594811998",
@@ -16491,7 +18404,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.48356,
    "lng": 102.95726,
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   },
   {
    "id": "w1425317984",
@@ -16500,7 +18414,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.28599,
    "lng": 103.00321,
-   "notable": false
+   "notable": false,
+   "district": "คูเมือง"
   },
   {
    "id": "n4594811991",
@@ -16509,7 +18424,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.48536,
    "lng": 102.94527,
-   "notable": false
+   "notable": false,
+   "district": "เฉลิมพระเกียรติ"
   },
   {
    "id": "n11539325198",
@@ -16518,7 +18434,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.44615,
    "lng": 103.05676,
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   },
   {
    "id": "n11212240084",
@@ -16527,7 +18444,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.30229,
    "lng": 102.76059,
-   "notable": false
+   "notable": false,
+   "district": "โนนดินแดง"
   },
   {
    "id": "w46578266",
@@ -16536,7 +18454,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.49667,
    "lng": 102.98243,
-   "notable": false
+   "notable": false,
+   "district": "ประโคนชัย"
   }
  ],
  "พระนครศรีอยุธยา": [
@@ -16547,7 +18466,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35119,
    "lng": 100.56182,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w538786416",
@@ -16556,7 +18476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.3322,
    "lng": 100.39833,
-   "notable": true
+   "notable": true,
+   "district": "เสนา"
   },
   {
    "id": "w1361450652",
@@ -16565,7 +18486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.46529,
    "lng": 100.61148,
-   "notable": true
+   "notable": true,
+   "district": "นครหลวง"
   },
   {
    "id": "w311268149",
@@ -16574,7 +18496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.34628,
    "lng": 100.57628,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w786197170",
@@ -16583,7 +18506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35036,
    "lng": 100.55626,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w315724781",
@@ -16592,7 +18516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.35227,
    "lng": 100.55884,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w723827723",
@@ -16601,7 +18526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🖼️",
    "lat": 14.34943,
    "lng": 100.55972,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w694526495",
@@ -16610,7 +18536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.36544,
    "lng": 100.57335,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w799767094",
@@ -16619,7 +18546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35335,
    "lng": 100.55939,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w727049431",
@@ -16628,7 +18556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.35205,
    "lng": 100.54419,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n5893023917",
@@ -16637,7 +18566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.35727,
    "lng": 100.57009,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w724591701",
@@ -16646,7 +18576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.34954,
    "lng": 100.55736,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w725133417",
@@ -16655,7 +18586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.36054,
    "lng": 100.56353,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w218776562",
@@ -16664,7 +18596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.15475,
    "lng": 100.5193,
-   "notable": false
+   "notable": false,
+   "district": "บางไทร"
   },
   {
    "id": "w737256671",
@@ -16673,7 +18606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.56674,
    "lng": 100.74937,
-   "notable": false
+   "notable": false,
+   "district": "ท่าเรือ"
   },
   {
    "id": "w311245682",
@@ -16682,7 +18616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.3406,
    "lng": 100.5773,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w739583666",
@@ -16691,7 +18626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.34634,
    "lng": 100.57056,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n6974174189",
@@ -16700,7 +18636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.33728,
    "lng": 100.56289,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n5367664921",
@@ -16709,7 +18646,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.34307,
    "lng": 100.57558,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w744402576",
@@ -16718,7 +18656,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.3763,
    "lng": 100.57107,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w1214949978",
@@ -16727,7 +18666,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.49435,
    "lng": 100.71609,
-   "notable": false
+   "notable": false,
+   "district": "ท่าเรือ"
   },
   {
    "id": "w733460008",
@@ -16736,7 +18676,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.5649,
    "lng": 100.75336,
-   "notable": false
+   "notable": false,
+   "district": "ท่าเรือ"
   },
   {
    "id": "w751017309",
@@ -16745,16 +18686,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.35656,
    "lng": 100.57196,
-   "notable": false
-  },
-  {
-   "id": "w1312486090",
-   "name": "วัดขุนอินทประมูล",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 14.643,
-   "lng": 100.42756,
-   "notable": true
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n2595997637",
@@ -16763,7 +18696,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.34768,
    "lng": 100.56127,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w744115928",
@@ -16772,7 +18706,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.3546,
    "lng": 100.56306,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n1726998192",
@@ -16781,7 +18716,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.34065,
    "lng": 100.57771,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w746174524",
@@ -16790,7 +18726,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.37823,
    "lng": 100.57013,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w722877846",
@@ -16799,7 +18736,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.35185,
    "lng": 100.55056,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w749840289",
@@ -16808,7 +18746,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.36043,
    "lng": 100.55287,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w769394016",
@@ -16817,7 +18756,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.37434,
    "lng": 100.5708,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n6964397239",
@@ -16826,7 +18766,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.3604,
    "lng": 100.56811,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w744115898",
@@ -16835,7 +18776,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.34654,
    "lng": 100.57994,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w755449881",
@@ -16844,7 +18786,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.36163,
    "lng": 100.57994,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w1120715448",
@@ -16853,7 +18796,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.56297,
    "lng": 100.72388,
-   "notable": false
+   "notable": false,
+   "district": "ท่าเรือ"
   },
   {
    "id": "w271051391",
@@ -16862,7 +18806,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.36509,
    "lng": 100.57463,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "w761227698",
@@ -16871,7 +18816,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.23668,
    "lng": 100.58117,
-   "notable": true
+   "notable": true,
+   "district": "บางปะอิน"
   },
   {
    "id": "n6964290265",
@@ -16880,7 +18826,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.34864,
    "lng": 100.59903,
-   "notable": true
+   "notable": true,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n6964290261",
@@ -16889,7 +18836,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.36298,
    "lng": 100.56852,
-   "notable": false
+   "notable": false,
+   "district": "พระนครศรีอยุธยา"
   },
   {
    "id": "n5150832521",
@@ -16898,7 +18846,88 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.43716,
    "lng": 100.72171,
-   "notable": false
+   "notable": false,
+   "district": "ภาชี"
+  },
+  {
+   "id": "w218136534",
+   "name": "พระราชวังบางปะอิน",
+   "kind": "พิพิธภัณฑ์",
+   "emoji": "🏛️",
+   "lat": 14.23249,
+   "lng": 100.57915,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w259502248",
+   "name": "ตำหนักเก้าห้อง",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 14.23504,
+   "lng": 100.58106,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w761226258",
+   "name": "พระตำหนักพระพันวัสสาฯ",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 14.23266,
+   "lng": 100.58091,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w259502249",
+   "name": "สภาคารราชประยูร",
+   "kind": "พิพิธภัณฑ์",
+   "emoji": "🏛️",
+   "lat": 14.23162,
+   "lng": 100.57756,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w761226249",
+   "name": "พระที่นั่งวโรภาษพิมาน",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 14.23302,
+   "lng": 100.57835,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w259502250",
+   "name": "พระที่นั่งเวหาศน์จำรูญ",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 14.2341,
+   "lng": 100.58062,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w761226261",
+   "name": "พระที่นั่งอุทยานภูมิเสถียร",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 14.23293,
+   "lng": 100.57969,
+   "notable": true,
+   "district": "บางปะอิน"
+  },
+  {
+   "id": "w761226252",
+   "name": "ตำหนักพระราชชายา เจ้าดารารัศมี",
+   "kind": "ประวัติศาสตร์",
+   "emoji": "🏛️",
+   "lat": 14.23489,
+   "lng": 100.57988,
+   "notable": false,
+   "district": "บางปะอิน"
   }
  ],
  "ราชบุรี": [
@@ -16909,7 +18938,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 13.32113,
    "lng": 99.5028,
-   "notable": true
+   "notable": true,
+   "district": "บ้านคา"
   },
   {
    "id": "n2619511120",
@@ -16918,16 +18948,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.59236,
    "lng": 99.66683,
-   "notable": true
-  },
-  {
-   "id": "n1591714965",
-   "name": "วัดแก้วฟ้า",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 13.41189,
-   "lng": 99.9658,
-   "notable": true
+   "notable": true,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n4537006921",
@@ -16936,16 +18958,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.52354,
    "lng": 99.7865,
-   "notable": false
-  },
-  {
-   "id": "n2071161275",
-   "name": "พิพิธพัณฑ์ขนมไทย",
-   "kind": "พิพิธภัณฑ์",
-   "emoji": "🏛️",
-   "lat": 13.42403,
-   "lng": 99.95584,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n13204637701",
@@ -16954,7 +18968,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.54305,
    "lng": 99.79843,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n9094881748",
@@ -16963,7 +18978,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🎡",
    "lat": 13.50958,
    "lng": 99.28964,
-   "notable": false
+   "notable": false,
+   "district": "สวนผึ้ง"
   },
   {
    "id": "n13921800109",
@@ -16972,7 +18988,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 13.41187,
    "lng": 99.65096,
-   "notable": false
+   "notable": false,
+   "district": "ปากท่อ"
   },
   {
    "id": "n11251086338",
@@ -16981,7 +18998,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.40809,
    "lng": 99.28058,
-   "notable": false
+   "notable": false,
+   "district": "สวนผึ้ง"
   },
   {
    "id": "n5583402621",
@@ -16990,7 +19008,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.48637,
    "lng": 99.83534,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "w620818125",
@@ -16999,7 +19018,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.81236,
    "lng": 99.87164,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n4404074609",
@@ -17008,7 +19028,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 13.62553,
    "lng": 99.58754,
-   "notable": false
+   "notable": false,
+   "district": "จอมบึง"
   },
   {
    "id": "w558398004",
@@ -17017,7 +19038,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.7182,
    "lng": 99.77041,
-   "notable": true
+   "notable": true,
+   "district": "โพธาราม"
   },
   {
    "id": "n11212239945",
@@ -17026,7 +19048,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.58207,
    "lng": 99.58229,
-   "notable": false
+   "notable": false,
+   "district": "จอมบึง"
   },
   {
    "id": "n14121891709",
@@ -17035,25 +19058,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.85795,
    "lng": 99.84877,
-   "notable": false
-  },
-  {
-   "id": "w538417602",
-   "name": "ตลาดน้ําอัมพวา",
-   "kind": "ที่เที่ยว",
-   "emoji": "📍",
-   "lat": 13.42479,
-   "lng": 99.9556,
-   "notable": false
-  },
-  {
-   "id": "n12762658676",
-   "name": "อนุสรณ์ ทูล ทองใจ",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 13.4203,
-   "lng": 99.95072,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "n7153534600",
@@ -17062,16 +19068,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.48453,
    "lng": 99.72636,
-   "notable": false
-  },
-  {
-   "id": "n1591714969",
-   "name": "วัดจันทร์เจริญสุข",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 13.41219,
-   "lng": 99.96975,
-   "notable": true
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n11294967069",
@@ -17080,7 +19078,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.53761,
    "lng": 99.20717,
-   "notable": false
+   "notable": false,
+   "district": "สวนผึ้ง"
   },
   {
    "id": "n13301445431",
@@ -17089,7 +19088,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.54235,
    "lng": 99.82576,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n8461490217",
@@ -17098,7 +19098,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.65107,
    "lng": 99.8327,
-   "notable": false
+   "notable": false,
+   "district": "โพธาราม"
   },
   {
    "id": "w766513995",
@@ -17107,25 +19108,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.53821,
    "lng": 99.82568,
-   "notable": false
-  },
-  {
-   "id": "w436536851",
-   "name": "วัดช่องลม",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 13.41894,
-   "lng": 99.98074,
-   "notable": true
-  },
-  {
-   "id": "n13033832480",
-   "name": "พิพิธภัณฑ์พระบาทสมเด็จพระพุทธเลิศหล้านภาลัย",
-   "kind": "พิพิธภัณฑ์",
-   "emoji": "🏛️",
-   "lat": 13.42444,
-   "lng": 99.9517,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n4561184892",
@@ -17134,7 +19118,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.6079,
    "lng": 99.61085,
-   "notable": false
+   "notable": false,
+   "district": "จอมบึง"
   },
   {
    "id": "w620812688",
@@ -17143,7 +19128,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.82206,
    "lng": 99.87581,
-   "notable": false
+   "notable": false,
+   "district": "บ้านโป่ง"
   },
   {
    "id": "w1298075699",
@@ -17152,7 +19138,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.37795,
    "lng": 99.86907,
-   "notable": true
+   "notable": true,
+   "district": "ปากท่อ"
   },
   {
    "id": "r12906115",
@@ -17161,7 +19148,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.54102,
    "lng": 99.81766,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n9075261461",
@@ -17170,7 +19158,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.54369,
    "lng": 99.30408,
-   "notable": false
+   "notable": false,
+   "district": "สวนผึ้ง"
   },
   {
    "id": "w817082990",
@@ -17179,7 +19168,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.69666,
    "lng": 99.85212,
-   "notable": false
+   "notable": false,
+   "district": "โพธาราม"
   },
   {
    "id": "w559317553",
@@ -17188,7 +19178,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.71156,
    "lng": 100.01356,
-   "notable": true
+   "notable": true,
+   "district": "บางแพ"
   },
   {
    "id": "n11212240057",
@@ -17197,7 +19188,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.5893,
    "lng": 99.83022,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n7276186685",
@@ -17206,7 +19198,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.64888,
    "lng": 100.02153,
-   "notable": false
+   "notable": false,
+   "district": "บางแพ"
   },
   {
    "id": "w1160795256",
@@ -17215,7 +19208,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.62693,
    "lng": 99.58802,
-   "notable": false
+   "notable": false,
+   "district": "จอมบึง"
   },
   {
    "id": "n1312010736",
@@ -17224,7 +19218,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.51627,
    "lng": 99.91231,
-   "notable": true
+   "notable": true,
+   "district": "ดำเนินสะดวก"
   },
   {
    "id": "w1181171732",
@@ -17233,7 +19228,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.53116,
    "lng": 99.8442,
-   "notable": false
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "w547609157",
@@ -17242,16 +19238,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.52121,
    "lng": 99.78947,
-   "notable": false
-  },
-  {
-   "id": "n1573262140",
-   "name": "วัดนางวัง",
-   "kind": "วัด",
-   "emoji": "🛕",
-   "lat": 13.42054,
-   "lng": 99.9628,
-   "notable": true
+   "notable": false,
+   "district": "เมืองราชบุรี"
   },
   {
    "id": "n9075258279",
@@ -17260,7 +19248,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.54669,
    "lng": 99.29113,
-   "notable": false
+   "notable": false,
+   "district": "สวนผึ้ง"
   }
  ],
  "อุทัยธานี": [
@@ -17271,7 +19260,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.01028,
    "lng": 99.44395,
-   "notable": true
+   "notable": true,
+   "district": "บ้านไร่"
   },
   {
    "id": "n7084870342",
@@ -17280,7 +19270,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.03153,
    "lng": 99.45561,
-   "notable": true
+   "notable": true,
+   "district": "บ้านไร่"
   },
   {
    "id": "n7153188085",
@@ -17289,7 +19280,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.32965,
    "lng": 100.06919,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n11296415883",
@@ -17298,7 +19290,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.38039,
    "lng": 100.01599,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n1127246194",
@@ -17307,7 +19300,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.342,
    "lng": 99.51556,
-   "notable": false
+   "notable": false,
+   "district": "ห้วยคต"
   },
   {
    "id": "w1485659494",
@@ -17316,7 +19310,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.3747,
    "lng": 100.03659,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n2079401369",
@@ -17325,7 +19320,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.63386,
    "lng": 99.70944,
-   "notable": false
+   "notable": false,
+   "district": "สว่างอารมณ์"
   },
   {
    "id": "n13622043351",
@@ -17334,7 +19330,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.42888,
    "lng": 99.59137,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n6905083809",
@@ -17343,7 +19340,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.41037,
    "lng": 100.05101,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "w1420370793",
@@ -17352,7 +19350,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.37428,
    "lng": 100.06152,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n13622760669",
@@ -17361,7 +19360,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.10425,
    "lng": 99.38684,
-   "notable": false
+   "notable": false,
+   "district": "บ้านไร่"
   },
   {
    "id": "w757929230",
@@ -17370,7 +19370,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.37909,
    "lng": 100.01672,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n11212240154",
@@ -17379,7 +19380,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.43726,
    "lng": 99.59699,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n13622760622",
@@ -17388,7 +19390,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.11078,
    "lng": 99.40423,
-   "notable": false
+   "notable": false,
+   "district": "บ้านไร่"
   },
   {
    "id": "w1486481407",
@@ -17397,7 +19400,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.38478,
    "lng": 100.02775,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n13629549375",
@@ -17406,7 +19410,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.26308,
    "lng": 99.68893,
-   "notable": false
+   "notable": false,
+   "district": "บ้านไร่"
   },
   {
    "id": "n11432417980",
@@ -17415,7 +19420,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.60829,
    "lng": 99.31642,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "w1420370785",
@@ -17424,7 +19430,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.37631,
    "lng": 100.02571,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n13629555294",
@@ -17433,7 +19440,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.26314,
    "lng": 99.69015,
-   "notable": false
+   "notable": false,
+   "district": "บ้านไร่"
   },
   {
    "id": "n4337887795",
@@ -17442,7 +19450,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.54537,
    "lng": 99.46344,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n11212240159",
@@ -17451,7 +19460,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.07857,
    "lng": 99.41548,
-   "notable": false
+   "notable": false,
+   "district": "บ้านไร่"
   },
   {
    "id": "n13626729085",
@@ -17460,7 +19470,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.47334,
    "lng": 99.75751,
-   "notable": false
+   "notable": false,
+   "district": "ทัพทัน"
   },
   {
    "id": "n13105284348",
@@ -17469,7 +19480,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.33314,
    "lng": 100.07036,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอุทัยธานี"
   },
   {
    "id": "n11296485293",
@@ -17478,7 +19490,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.37489,
    "lng": 99.63396,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n11212240081",
@@ -17487,7 +19500,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.07736,
    "lng": 99.51201,
-   "notable": false
+   "notable": false,
+   "district": "บ้านไร่"
   },
   {
    "id": "n13622043350",
@@ -17496,7 +19510,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.39914,
    "lng": 99.65084,
-   "notable": false
+   "notable": false,
+   "district": "หนองฉาง"
   },
   {
    "id": "n13622380785",
@@ -17505,7 +19520,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.49263,
    "lng": 99.56714,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n13626729095",
@@ -17514,7 +19530,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.54152,
    "lng": 99.55494,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n13622760501",
@@ -17523,7 +19540,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.34588,
    "lng": 99.48691,
-   "notable": false
+   "notable": false,
+   "district": "ห้วยคต"
   },
   {
    "id": "n11296473076",
@@ -17532,7 +19550,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.37428,
    "lng": 99.63761,
-   "notable": false
+   "notable": false,
+   "district": "ลานสัก"
   },
   {
    "id": "n13622883613",
@@ -17541,7 +19560,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.40827,
    "lng": 99.82651,
-   "notable": false
+   "notable": false,
+   "district": "หนองฉาง"
   }
  ],
  "เพชรบุรี": [
@@ -17552,7 +19572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.6117,
    "lng": 99.71074,
-   "notable": true
+   "notable": true,
+   "district": "แก่งกระจาน"
   },
   {
    "id": "w244737138",
@@ -17561,7 +19582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.10579,
    "lng": 99.94322,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "r2004804",
@@ -17570,7 +19592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.09306,
    "lng": 99.94841,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n4757358347",
@@ -17579,7 +19602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.83772,
    "lng": 99.94805,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n11212240054",
@@ -17588,7 +19612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 12.84744,
    "lng": 99.95401,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "w1286322178",
@@ -17597,7 +19622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.80449,
    "lng": 99.80351,
-   "notable": false
+   "notable": false,
+   "district": "ท่ายาง"
   },
   {
    "id": "n12696225954",
@@ -17606,7 +19632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.63918,
    "lng": 99.69657,
-   "notable": false
+   "notable": false,
+   "district": "ท่ายาง"
   },
   {
    "id": "w1310987497",
@@ -17615,7 +19642,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌿",
    "lat": 13.25269,
    "lng": 99.87581,
-   "notable": false
+   "notable": false,
+   "district": "เขาย้อย"
   },
   {
    "id": "n3680237580",
@@ -17624,7 +19652,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.8237,
    "lng": 99.9389,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n4753880491",
@@ -17633,7 +19662,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.83935,
    "lng": 99.95243,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n3981392074",
@@ -17642,7 +19672,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 12.60394,
    "lng": 99.7225,
-   "notable": false
+   "notable": false,
+   "district": "แก่งกระจาน"
   },
   {
    "id": "w1525832296",
@@ -17651,25 +19682,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.27331,
    "lng": 99.88615,
-   "notable": true
-  },
-  {
-   "id": "n3969590458",
-   "name": "พระบาทสมเด็จพระปกเกล้าเจ้าอยู่หัว รัชกาลที่ 7",
-   "kind": "ประวัติศาสตร์",
-   "emoji": "🏛️",
-   "lat": 12.56631,
-   "lng": 99.94473,
-   "notable": false
-  },
-  {
-   "id": "n4318214995",
-   "name": "จุดชมวิว 2",
-   "kind": "จุดชมวิว",
-   "emoji": "🌄",
-   "lat": 12.56377,
-   "lng": 99.94346,
-   "notable": false
+   "notable": true,
+   "district": "บ้านแหลม"
   },
   {
    "id": "w1363823495",
@@ -17678,7 +19692,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 12.66745,
    "lng": 99.91755,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n11930986902",
@@ -17687,16 +19702,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.75908,
    "lng": 99.87004,
-   "notable": false
-  },
-  {
-   "id": "n4024978211",
-   "name": "จุดชมวิวเขาหินเหล็กไฟ",
-   "kind": "ที่เที่ยว",
-   "emoji": "📍",
-   "lat": 12.56548,
-   "lng": 99.94369,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "w308117435",
@@ -17705,7 +19712,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.08771,
    "lng": 99.9486,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "w243656245",
@@ -17714,7 +19722,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.10612,
    "lng": 99.94047,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n2852218472",
@@ -17723,34 +19732,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.10641,
    "lng": 99.93991,
-   "notable": false
-  },
-  {
-   "id": "n3967382513",
-   "name": "จุดชมวิว 4",
-   "kind": "จุดชมวิว",
-   "emoji": "🌄",
-   "lat": 12.56593,
-   "lng": 99.94555,
-   "notable": false
-  },
-  {
-   "id": "n4109703479",
-   "name": "สวนสัตว์ หัวหิน",
-   "kind": "สวนสัตว์/อควาเรียม",
-   "emoji": "🐘",
-   "lat": 12.57668,
-   "lng": 99.88412,
-   "notable": false
-  },
-  {
-   "id": "n11933319502",
-   "name": "เขาดอนตะแบก",
-   "kind": "ยอดเขา",
-   "emoji": "⛰️",
-   "lat": 12.60567,
-   "lng": 99.91738,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n4104293689",
@@ -17759,7 +19742,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 12.83068,
    "lng": 99.93352,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "w243656254",
@@ -17768,7 +19752,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.11181,
    "lng": 99.9395,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "w244790942",
@@ -17777,7 +19762,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.10718,
    "lng": 99.94668,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n12696225955",
@@ -17786,16 +19772,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 12.63877,
    "lng": 99.68395,
-   "notable": false
-  },
-  {
-   "id": "n2089847314",
-   "name": "จุดชมวิว 5",
-   "kind": "จุดชมวิว",
-   "emoji": "🌄",
-   "lat": 12.56664,
-   "lng": 99.94665,
-   "notable": false
+   "notable": false,
+   "district": "ท่ายาง"
   },
   {
    "id": "n12064096801",
@@ -17804,16 +19782,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.85299,
    "lng": 99.86781,
-   "notable": false
-  },
-  {
-   "id": "w981475836",
-   "name": "ตลาดโต้รุ่งหัวหิน",
-   "kind": "ที่เที่ยว",
-   "emoji": "📍",
-   "lat": 12.57102,
-   "lng": 99.95521,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "w779033080",
@@ -17822,7 +19792,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 12.65091,
    "lng": 99.86196,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "w244790941",
@@ -17831,7 +19802,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.10554,
    "lng": 99.94683,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n7012744854",
@@ -17840,16 +19812,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.23811,
    "lng": 99.82346,
-   "notable": false
-  },
-  {
-   "id": "n3969589851",
-   "name": "จุดชมวิว 6",
-   "kind": "จุดชมวิว",
-   "emoji": "🌄",
-   "lat": 12.56803,
-   "lng": 99.94475,
-   "notable": false
+   "notable": false,
+   "district": "เขาย้อย"
   },
   {
    "id": "n11933319501",
@@ -17858,16 +19822,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.61945,
    "lng": 99.91806,
-   "notable": false
-  },
-  {
-   "id": "n5698451221",
-   "name": "พิพิธภัณฑ์ภาพวาด 4 มิติ",
-   "kind": "ที่เที่ยว",
-   "emoji": "📍",
-   "lat": 12.60715,
-   "lng": 99.9496,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "r19346125",
@@ -17876,7 +19832,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.12477,
    "lng": 99.93526,
-   "notable": false
+   "notable": false,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "w243656261",
@@ -17885,7 +19842,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.10709,
    "lng": 99.94108,
-   "notable": true
+   "notable": true,
+   "district": "เมืองเพชรบุรี"
   },
   {
    "id": "n4485100091",
@@ -17894,7 +19852,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 12.87254,
    "lng": 99.93957,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   },
   {
    "id": "n11930886843",
@@ -17903,7 +19862,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 12.846,
    "lng": 99.85547,
-   "notable": false
+   "notable": false,
+   "district": "ชะอำ"
   }
  ],
  "มุกดาหาร": [
@@ -17914,7 +19874,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.86059,
    "lng": 104.27663,
-   "notable": true
+   "notable": true,
+   "district": "ดงหลวง"
   },
   {
    "id": "w1452159194",
@@ -17923,7 +19884,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.54368,
    "lng": 104.73106,
-   "notable": true
+   "notable": true,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n2900674179",
@@ -17932,7 +19894,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.44565,
    "lng": 104.74987,
-   "notable": true
+   "notable": true,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "w1442795434",
@@ -17941,7 +19904,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.67623,
    "lng": 104.75138,
-   "notable": false
+   "notable": false,
+   "district": "หว้านใหญ่"
   },
   {
    "id": "n2130373781",
@@ -17950,7 +19914,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.80251,
    "lng": 104.73434,
-   "notable": false
+   "notable": false,
+   "district": "หว้านใหญ่"
   },
   {
    "id": "n13238737584",
@@ -17959,7 +19924,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.66982,
    "lng": 104.74828,
-   "notable": false
+   "notable": false,
+   "district": "หว้านใหญ่"
   },
   {
    "id": "w1445825894",
@@ -17968,7 +19934,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 16.50526,
    "lng": 104.70071,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n4131533857",
@@ -17977,7 +19944,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.49468,
    "lng": 104.31314,
-   "notable": false
+   "notable": false,
+   "district": "หนองสูง"
   },
   {
    "id": "n5795698255",
@@ -17986,7 +19954,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.80245,
    "lng": 104.7333,
-   "notable": false
+   "notable": false,
+   "district": "หว้านใหญ่"
   },
   {
    "id": "n7704030765",
@@ -17995,7 +19964,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.54568,
    "lng": 104.70351,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n2900674180",
@@ -18004,7 +19974,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.4273,
    "lng": 104.7788,
-   "notable": true
+   "notable": true,
+   "district": "ดอนตาล"
   },
   {
    "id": "n11536068370",
@@ -18013,7 +19984,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.42989,
    "lng": 104.79394,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "w1330117543",
@@ -18022,7 +19994,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.60107,
    "lng": 104.73569,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n13243188928",
@@ -18031,7 +20004,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.44154,
    "lng": 104.33404,
-   "notable": false
+   "notable": false,
+   "district": "หนองสูง"
   },
   {
    "id": "n13293743392",
@@ -18040,7 +20014,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.38626,
    "lng": 104.32102,
-   "notable": false
+   "notable": false,
+   "district": "หนองสูง"
   },
   {
    "id": "n2900674182",
@@ -18049,7 +20024,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.46948,
    "lng": 104.72105,
-   "notable": true
+   "notable": true,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n13742291701",
@@ -18058,7 +20034,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83633,
    "lng": 104.28694,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n11536072169",
@@ -18067,7 +20044,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.4325,
    "lng": 104.79439,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "w824972381",
@@ -18076,7 +20054,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.27207,
    "lng": 104.92292,
-   "notable": false
+   "notable": false,
+   "district": "ดอนตาล"
   },
   {
    "id": "n2900674183",
@@ -18085,7 +20064,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.48214,
    "lng": 104.73101,
-   "notable": true
+   "notable": true,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n13742292304",
@@ -18094,7 +20074,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83585,
    "lng": 104.29177,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "w1442781210",
@@ -18103,7 +20084,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.43478,
    "lng": 104.79769,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n2900674181",
@@ -18112,7 +20094,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.43764,
    "lng": 104.73324,
-   "notable": true
+   "notable": true,
+   "district": "เมืองมุกดาหาร"
   },
   {
    "id": "n13742292110",
@@ -18121,7 +20104,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83326,
    "lng": 104.2909,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13234273567",
@@ -18130,7 +20114,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.2421,
    "lng": 104.78639,
-   "notable": false
+   "notable": false,
+   "district": "ดอนตาล"
   },
   {
    "id": "n13742291610",
@@ -18139,7 +20124,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83578,
    "lng": 104.29185,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13234917227",
@@ -18148,7 +20134,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.20045,
    "lng": 104.78691,
-   "notable": false
+   "notable": false,
+   "district": "ดอนตาล"
   },
   {
    "id": "n13293743393",
@@ -18157,7 +20144,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.385,
    "lng": 104.3228,
-   "notable": false
+   "notable": false,
+   "district": "หนองสูง"
   },
   {
    "id": "n13238979912",
@@ -18166,7 +20154,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.31276,
    "lng": 104.55108,
-   "notable": false
+   "notable": false,
+   "district": "นิคมคำสร้อย"
   },
   {
    "id": "n4374927623",
@@ -18175,7 +20164,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.31435,
    "lng": 104.54985,
-   "notable": false
+   "notable": false,
+   "district": "นิคมคำสร้อย"
   },
   {
    "id": "n4374927622",
@@ -18184,7 +20174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.31384,
    "lng": 104.55217,
-   "notable": false
+   "notable": false,
+   "district": "นิคมคำสร้อย"
   },
   {
    "id": "n13742292109",
@@ -18193,7 +20184,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83387,
    "lng": 104.28497,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13742291703",
@@ -18202,7 +20194,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.84709,
    "lng": 104.28286,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13742289807",
@@ -18211,7 +20204,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83933,
    "lng": 104.28645,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13742292306",
@@ -18220,7 +20214,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.82837,
    "lng": 104.29536,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13742292305",
@@ -18229,7 +20224,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.8265,
    "lng": 104.29744,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   },
   {
    "id": "n13742291705",
@@ -18238,7 +20234,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.83595,
    "lng": 104.29171,
-   "notable": false
+   "notable": false,
+   "district": "ดงหลวง"
   }
  ],
  "นครสวรรค์": [
@@ -18249,7 +20246,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 15.88662,
    "lng": 99.22307,
-   "notable": true
+   "notable": true,
+   "district": "แม่วงก์"
   },
   {
    "id": "n3549608304",
@@ -18258,7 +20256,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.70134,
    "lng": 100.13515,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w52438403",
@@ -18267,7 +20266,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 15.711,
    "lng": 100.17772,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n13590652169",
@@ -18276,7 +20276,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.30525,
    "lng": 100.39801,
-   "notable": false
+   "notable": false,
+   "district": "ตาคลี"
   },
   {
    "id": "n13580612655",
@@ -18285,7 +20286,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.5948,
    "lng": 99.54496,
-   "notable": false
+   "notable": false,
+   "district": "ชุมตาบง"
   },
   {
    "id": "w1317595853",
@@ -18294,7 +20296,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.11919,
    "lng": 100.45694,
-   "notable": false
+   "notable": false,
+   "district": "ตาคลี"
   },
   {
    "id": "w1478486667",
@@ -18303,7 +20306,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.41517,
    "lng": 100.15253,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n2147672094",
@@ -18312,7 +20316,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 15.71174,
    "lng": 100.17567,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n13546365420",
@@ -18321,7 +20326,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.71527,
    "lng": 100.13384,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n11300093407",
@@ -18330,7 +20336,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.91734,
    "lng": 99.36886,
-   "notable": false
+   "notable": false,
+   "district": "แม่วงก์"
   },
   {
    "id": "n5142077222",
@@ -18339,7 +20346,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.57372,
    "lng": 100.26262,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n12110437263",
@@ -18348,7 +20356,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.64561,
    "lng": 100.10876,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n3549604489",
@@ -18357,7 +20366,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.7047,
    "lng": 100.1405,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n13565665476",
@@ -18366,7 +20376,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.94219,
    "lng": 99.87631,
-   "notable": false
+   "notable": false,
+   "district": "บรรพตพิสัย"
   },
   {
    "id": "n13579395637",
@@ -18375,7 +20386,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.71418,
    "lng": 99.94691,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w1481336663",
@@ -18384,7 +20396,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.01721,
    "lng": 100.00408,
-   "notable": false
+   "notable": false,
+   "district": "บรรพตพิสัย"
   },
   {
    "id": "w1478486666",
@@ -18393,7 +20406,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.41593,
    "lng": 100.14983,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n13287109158",
@@ -18402,7 +20416,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 15.7138,
    "lng": 100.17597,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n13202696667",
@@ -18411,7 +20426,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.24722,
    "lng": 100.33645,
-   "notable": false
+   "notable": false,
+   "district": "ตาคลี"
   },
   {
    "id": "n12194591327",
@@ -18420,7 +20436,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.92234,
    "lng": 99.32564,
-   "notable": false
+   "notable": false,
+   "district": "แม่วงก์"
   },
   {
    "id": "w1156855662",
@@ -18429,7 +20446,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.69725,
    "lng": 100.10641,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n7361601596",
@@ -18438,7 +20456,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.59933,
    "lng": 100.65694,
-   "notable": false
+   "notable": false,
+   "district": "ไพศาลี"
   },
   {
    "id": "n11212240157",
@@ -18447,7 +20466,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.70099,
    "lng": 100.14209,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n3939947271",
@@ -18456,7 +20476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.73028,
    "lng": 99.94549,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "w1478577500",
@@ -18465,7 +20486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.86871,
    "lng": 100.26241,
-   "notable": false
+   "notable": false,
+   "district": "ชุมแสง"
   },
   {
    "id": "w1478737034",
@@ -18474,7 +20496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.52022,
    "lng": 100.64903,
-   "notable": false
+   "notable": false,
+   "district": "ไพศาลี"
   },
   {
    "id": "n13202696652",
@@ -18483,7 +20506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.51802,
    "lng": 100.69791,
-   "notable": false
+   "notable": false,
+   "district": "ไพศาลี"
   },
   {
    "id": "n13479078000",
@@ -18492,7 +20516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.70282,
    "lng": 100.13945,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n6904655049",
@@ -18501,7 +20526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.4602,
    "lng": 100.13789,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n1597584938",
@@ -18510,7 +20536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.30418,
    "lng": 100.39401,
-   "notable": false
+   "notable": false,
+   "district": "ตาคลี"
   },
   {
    "id": "n13590652187",
@@ -18519,7 +20546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.30564,
    "lng": 100.39566,
-   "notable": false
+   "notable": false,
+   "district": "ตาคลี"
   },
   {
    "id": "n6903140162",
@@ -18528,7 +20556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.41415,
    "lng": 100.15197,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n6903140163",
@@ -18537,7 +20566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.41354,
    "lng": 100.15097,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n6900297963",
@@ -18546,7 +20576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.474,
    "lng": 100.1373,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n13566591670",
@@ -18555,7 +20586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.66961,
    "lng": 99.5521,
-   "notable": false
+   "notable": false,
+   "district": "ชุมตาบง"
   },
   {
    "id": "n6902960988",
@@ -18564,7 +20596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.41592,
    "lng": 100.13248,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n6908228369",
@@ -18573,7 +20606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.54387,
    "lng": 100.12578,
-   "notable": false
+   "notable": false,
+   "district": "พยุหะคีรี"
   },
   {
    "id": "n13565652575",
@@ -18582,7 +20616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.95228,
    "lng": 99.87875,
-   "notable": false
+   "notable": false,
+   "district": "บรรพตพิสัย"
   },
   {
    "id": "w1477370166",
@@ -18591,7 +20626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.68858,
    "lng": 100.10815,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครสวรรค์"
   },
   {
    "id": "n13202696657",
@@ -18600,7 +20636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.87085,
    "lng": 100.68367,
-   "notable": false
+   "notable": false,
+   "district": "หนองบัว"
   }
  ],
  "ชุมพร": [
@@ -18611,7 +20648,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 10.30474,
    "lng": 99.27538,
-   "notable": true
+   "notable": true,
+   "district": ""
   },
   {
    "id": "n3277783846",
@@ -18620,7 +20658,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.63429,
    "lng": 99.27713,
-   "notable": true
+   "notable": true,
+   "district": "ปะทิว"
   },
   {
    "id": "w1029334661",
@@ -18629,7 +20668,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 10.9501,
    "lng": 99.49632,
-   "notable": false
+   "notable": false,
+   "district": "ปะทิว"
   },
   {
    "id": "n2636481293",
@@ -18638,7 +20678,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 10.6332,
    "lng": 99.28647,
-   "notable": false
+   "notable": false,
+   "district": "ปะทิว"
   },
   {
    "id": "w1158901795",
@@ -18647,7 +20688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 10.52358,
    "lng": 99.19349,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n10684501426",
@@ -18656,7 +20698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 10.13302,
    "lng": 98.93125,
-   "notable": false
+   "notable": false,
+   "district": "สวี"
   },
   {
    "id": "n13271551991",
@@ -18665,7 +20708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 10.49754,
    "lng": 99.18894,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "w693937283",
@@ -18674,7 +20718,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 9.95123,
    "lng": 99.08277,
-   "notable": false
+   "notable": false,
+   "district": "หลังสวน"
   },
   {
    "id": "n2895081394",
@@ -18683,7 +20728,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 9.86028,
    "lng": 98.71482,
-   "notable": true
+   "notable": true,
+   "district": "พะโต๊ะ"
   },
   {
    "id": "w553490959",
@@ -18692,7 +20738,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 10.35523,
    "lng": 99.25222,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n11914737569",
@@ -18701,7 +20748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 10.17665,
    "lng": 98.89509,
-   "notable": false
+   "notable": false,
+   "district": "สวี"
   },
   {
    "id": "n7296879985",
@@ -18710,7 +20758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 10.87848,
    "lng": 99.50778,
-   "notable": false
+   "notable": false,
+   "district": "ปะทิว"
   },
   {
    "id": "n13271494868",
@@ -18719,7 +20768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 10.47778,
    "lng": 99.20795,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "w675153733",
@@ -18728,7 +20778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 10.49808,
    "lng": 99.1891,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n2895081395",
@@ -18737,7 +20788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.17383,
    "lng": 98.89171,
-   "notable": true
+   "notable": true,
+   "district": "สวี"
   },
   {
    "id": "n5416958109",
@@ -18746,7 +20798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 10.53003,
    "lng": 99.23685,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n11212240143",
@@ -18755,7 +20808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 9.95452,
    "lng": 98.99496,
-   "notable": false
+   "notable": false,
+   "district": "หลังสวน"
   },
   {
    "id": "n5515802625",
@@ -18764,7 +20818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 10.45565,
    "lng": 99.18672,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n2895081393",
@@ -18773,7 +20828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 10.12916,
    "lng": 98.85931,
-   "notable": false
+   "notable": false,
+   "district": "สวี"
   },
   {
    "id": "n5515818021",
@@ -18782,7 +20838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 10.46122,
    "lng": 99.1985,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชุมพร"
   },
   {
    "id": "n13570250881",
@@ -18791,7 +20848,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 9.95931,
    "lng": 99.08041,
-   "notable": false
+   "notable": false,
+   "district": "หลังสวน"
   }
  ],
  "นครปฐม": [
@@ -18802,7 +20860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.7728,
    "lng": 100.20754,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w1472988301",
@@ -18811,7 +20870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.81962,
    "lng": 100.04545,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n11813283392",
@@ -18820,7 +20880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.99091,
    "lng": 99.96264,
-   "notable": true
+   "notable": true,
+   "district": "กำแพงแสน"
   },
   {
    "id": "n2661388654",
@@ -18829,7 +20890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.81947,
    "lng": 100.04493,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "w760456011",
@@ -18838,7 +20900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 13.71949,
    "lng": 100.2533,
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "w96940850",
@@ -18847,7 +20910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.81885,
    "lng": 100.04597,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "w822116107",
@@ -18856,7 +20920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.79697,
    "lng": 100.32403,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w818677552",
@@ -18865,7 +20930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.79044,
    "lng": 100.32327,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w586461383",
@@ -18874,7 +20940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.89199,
    "lng": 100.08961,
-   "notable": true
+   "notable": true,
+   "district": "ดอนตูม"
   },
   {
    "id": "n1199673166",
@@ -18883,7 +20950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.81562,
    "lng": 100.10068,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n7967933785",
@@ -18892,7 +20960,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.89971,
    "lng": 100.23437,
-   "notable": false
+   "notable": false,
+   "district": "นครชัยศรี"
   },
   {
    "id": "r21109795",
@@ -18901,7 +20970,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.81958,
    "lng": 100.04452,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "w544062323",
@@ -18910,7 +20980,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.78253,
    "lng": 100.1668,
-   "notable": false
+   "notable": false,
+   "district": "นครชัยศรี"
   },
   {
    "id": "r16799105",
@@ -18919,7 +20990,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.78295,
    "lng": 100.32584,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w1461898649",
@@ -18928,7 +21000,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.81643,
    "lng": 100.18779,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w1227287978",
@@ -18937,7 +21010,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.81494,
    "lng": 100.0969,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n5323185123",
@@ -18946,7 +21020,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.01349,
    "lng": 100.15749,
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "w96937112",
@@ -18955,7 +21030,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.82045,
    "lng": 100.04449,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "w589121268",
@@ -18964,7 +21040,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.82325,
    "lng": 100.06398,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n5057927728",
@@ -18973,7 +21050,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.7989,
    "lng": 100.303,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w1458701064",
@@ -18982,7 +21060,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.79483,
    "lng": 100.19353,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w1016829707",
@@ -18991,7 +21070,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 13.81116,
    "lng": 100.06705,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n5323201421",
@@ -19000,7 +21080,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.11954,
    "lng": 100.12042,
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n12997277485",
@@ -19009,7 +21090,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.69475,
    "lng": 100.21301,
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "w552268275",
@@ -19018,7 +21100,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.76584,
    "lng": 100.18571,
-   "notable": false
+   "notable": false,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w584807308",
@@ -19027,7 +21110,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.79872,
    "lng": 100.08037,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n6315289024",
@@ -19036,7 +21120,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.79034,
    "lng": 100.32446,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w822116100",
@@ -19045,7 +21130,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.79106,
    "lng": 100.31895,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w560501964",
@@ -19054,7 +21140,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.72757,
    "lng": 100.22306,
-   "notable": false
+   "notable": false,
+   "district": "สามพราน"
   },
   {
    "id": "n13377882229",
@@ -19063,7 +21150,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.75308,
    "lng": 100.17423,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   },
   {
    "id": "n5017437622",
@@ -19072,7 +21160,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.9633,
    "lng": 100.23377,
-   "notable": false
+   "notable": false,
+   "district": "บางเลน"
   },
   {
    "id": "n1121782389",
@@ -19081,7 +21170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.82313,
    "lng": 100.06131,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "w555900973",
@@ -19090,7 +21180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.7833,
    "lng": 100.16211,
-   "notable": false
+   "notable": false,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w1382821614",
@@ -19099,7 +21190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.70251,
    "lng": 100.25698,
-   "notable": true
+   "notable": true,
+   "district": "สามพราน"
   },
   {
    "id": "n1123345225",
@@ -19108,7 +21200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.81903,
    "lng": 100.04598,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n13890668047",
@@ -19117,7 +21210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.83898,
    "lng": 100.03375,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครปฐม"
   },
   {
    "id": "n2626873225",
@@ -19126,7 +21220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.8095,
    "lng": 100.18425,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w563389811",
@@ -19135,7 +21230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.79021,
    "lng": 100.31857,
-   "notable": false
+   "notable": false,
+   "district": "พุทธมณฑล"
   },
   {
    "id": "w587350748",
@@ -19144,7 +21240,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.8635,
    "lng": 100.13875,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   },
   {
    "id": "w587083466",
@@ -19153,7 +21250,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.73826,
    "lng": 100.11945,
-   "notable": true
+   "notable": true,
+   "district": "นครชัยศรี"
   }
  ],
  "สมุทรสาคร": [
@@ -19164,7 +21262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.64368,
    "lng": 100.11687,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "n3112658916",
@@ -19173,7 +21272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.48763,
    "lng": 100.36269,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n5281558085",
@@ -19182,7 +21282,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.54493,
    "lng": 100.27318,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n3112658917",
@@ -19191,7 +21292,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.48778,
    "lng": 100.36267,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w1519446307",
@@ -19200,7 +21302,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.54461,
    "lng": 100.27356,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w309356120",
@@ -19209,7 +21312,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.6117,
    "lng": 100.21926,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w591099377",
@@ -19218,7 +21322,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.46812,
    "lng": 100.20615,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n5608794322",
@@ -19227,7 +21332,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 13.48779,
    "lng": 100.36316,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n3136574004",
@@ -19236,7 +21342,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.50256,
    "lng": 100.27047,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n4346158393",
@@ -19245,7 +21352,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.57809,
    "lng": 100.26568,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w544126935",
@@ -19254,7 +21362,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.51302,
    "lng": 100.18419,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "n3250471832",
@@ -19263,7 +21372,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.54472,
    "lng": 100.24705,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n3136547892",
@@ -19272,7 +21382,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.49767,
    "lng": 100.30785,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n4346158390",
@@ -19281,7 +21392,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.58521,
    "lng": 100.23152,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w546521410",
@@ -19290,7 +21402,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.54534,
    "lng": 100.27394,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w300168799",
@@ -19299,7 +21412,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.5113,
    "lng": 100.15033,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "n3049880444",
@@ -19308,7 +21422,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.48786,
    "lng": 100.33543,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w1107637826",
@@ -19317,7 +21432,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.58595,
    "lng": 100.10141,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w430440864",
@@ -19326,7 +21442,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.59587,
    "lng": 100.22213,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w556808284",
@@ -19335,7 +21452,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.58521,
    "lng": 100.37946,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w1468606672",
@@ -19344,7 +21462,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.53127,
    "lng": 100.27506,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w764307924",
@@ -19353,7 +21472,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.58745,
    "lng": 100.10004,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w592527847",
@@ -19362,7 +21482,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.64407,
    "lng": 100.137,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w1107919611",
@@ -19371,7 +21492,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.59001,
    "lng": 100.10382,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w1524476432",
@@ -19380,7 +21502,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.55006,
    "lng": 100.29141,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w838443992",
@@ -19389,7 +21512,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.59046,
    "lng": 100.10797,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w592010169",
@@ -19398,7 +21522,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.66274,
    "lng": 100.22241,
-   "notable": true
+   "notable": true,
+   "district": "กระทุ่มแบน"
   },
   {
    "id": "w545375455",
@@ -19407,7 +21532,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.54559,
    "lng": 100.27337,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n1886588934",
@@ -19416,7 +21542,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.67654,
    "lng": 100.25524,
-   "notable": true
+   "notable": true,
+   "district": "กระทุ่มแบน"
   },
   {
    "id": "w1107637971",
@@ -19425,7 +21552,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.58732,
    "lng": 100.10428,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w1524819694",
@@ -19434,7 +21562,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.60005,
    "lng": 100.37437,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w590905425",
@@ -19443,7 +21572,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.58321,
    "lng": 100.29308,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "r20990860",
@@ -19452,7 +21582,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.63213,
    "lng": 100.21582,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w592345644",
@@ -19461,7 +21592,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.58535,
    "lng": 100.10093,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w591688551",
@@ -19470,7 +21602,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.55755,
    "lng": 100.18346,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w1527930962",
@@ -19479,7 +21612,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.53588,
    "lng": 100.24438,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "n3145186781",
@@ -19488,7 +21622,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.48279,
    "lng": 100.12243,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w1524832777",
@@ -19497,7 +21632,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.47612,
    "lng": 100.10418,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   },
   {
    "id": "w591695303",
@@ -19506,7 +21642,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.51503,
    "lng": 100.19716,
-   "notable": true
+   "notable": true,
+   "district": "บ้านแพ้ว"
   },
   {
    "id": "w591700883",
@@ -19515,7 +21652,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.50705,
    "lng": 100.17527,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสมุทรสาคร"
   }
  ],
  "ยะลา": [
@@ -19526,7 +21664,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 5.98175,
    "lng": 101.28053,
-   "notable": true
+   "notable": true,
+   "district": "ธารโต"
   },
   {
    "id": "n11934009069",
@@ -19535,7 +21674,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 5.77246,
    "lng": 101.07064,
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "n7498692185",
@@ -19544,7 +21684,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 5.9643,
    "lng": 101.23353,
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "n6541474893",
@@ -19553,7 +21694,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.06018,
    "lng": 101.40034,
-   "notable": false
+   "notable": false,
+   "district": "ธารโต"
   },
   {
    "id": "w217407908",
@@ -19562,7 +21704,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 5.77375,
    "lng": 101.06602,
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "n2814747825",
@@ -19571,7 +21714,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.54117,
    "lng": 101.2804,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "w1544864915",
@@ -19580,7 +21724,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.54106,
    "lng": 101.27515,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยะลา"
   },
   {
    "id": "n8231034217",
@@ -19589,7 +21734,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 6.04945,
    "lng": 101.19806,
-   "notable": false
+   "notable": false,
+   "district": "ธารโต"
   },
   {
    "id": "n3152587939",
@@ -19598,7 +21744,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 5.77182,
    "lng": 101.07154,
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "w937114158",
@@ -19607,7 +21754,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 5.76706,
    "lng": 101.07123,
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   },
   {
    "id": "n8231010222",
@@ -19616,7 +21764,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 5.79536,
    "lng": 101.07135,
-   "notable": false
+   "notable": false,
+   "district": "เบตง"
   }
  ],
  "สกลนคร": [
@@ -19627,7 +21776,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.16445,
    "lng": 104.15345,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n5136889317",
@@ -19636,7 +21786,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.18691,
    "lng": 104.09573,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13313666126",
@@ -19645,7 +21796,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.24476,
    "lng": 104.15398,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13319434569",
@@ -19654,7 +21806,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 16.93841,
    "lng": 104.13703,
-   "notable": false
+   "notable": false,
+   "district": "เต่างอย"
   },
   {
    "id": "w1443908529",
@@ -19663,7 +21816,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.17313,
    "lng": 104.14488,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "w1443908527",
@@ -19672,7 +21826,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 17.17055,
    "lng": 104.15242,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13319434509",
@@ -19681,7 +21836,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 17.21724,
    "lng": 103.90092,
-   "notable": false
+   "notable": false,
+   "district": "พรรณานิคม"
   },
   {
    "id": "n13316456165",
@@ -19690,7 +21846,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.12235,
    "lng": 104.02068,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13343890501",
@@ -19699,7 +21856,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.93534,
    "lng": 103.90508,
-   "notable": false
+   "notable": false,
+   "district": "ภูพาน"
   },
   {
    "id": "n13788471502",
@@ -19708,7 +21866,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.18675,
    "lng": 104.14049,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n12328360181",
@@ -19717,7 +21876,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.21667,
    "lng": 103.90085,
-   "notable": false
+   "notable": false,
+   "district": "พรรณานิคม"
   },
   {
    "id": "n12327636809",
@@ -19726,7 +21886,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.4426,
    "lng": 103.55737,
-   "notable": false
+   "notable": false,
+   "district": "สว่างแดนดิน"
   },
   {
    "id": "n11532845369",
@@ -19735,7 +21896,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.2566,
    "lng": 103.45818,
-   "notable": false
+   "notable": false,
+   "district": "ส่องดาว"
   },
   {
    "id": "n13249604588",
@@ -19744,7 +21906,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.15074,
    "lng": 104.13859,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13319434567",
@@ -19753,7 +21916,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.93832,
    "lng": 104.13693,
-   "notable": false
+   "notable": false,
+   "district": "เต่างอย"
   },
   {
    "id": "n5403884441",
@@ -19762,7 +21926,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.59161,
    "lng": 103.98339,
-   "notable": false
+   "notable": false,
+   "district": "อากาศอำนวย"
   },
   {
    "id": "n12178741493",
@@ -19771,7 +21936,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.14403,
    "lng": 104.16438,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n4084718351",
@@ -19780,7 +21946,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.06459,
    "lng": 103.96761,
-   "notable": false
+   "notable": false,
+   "district": "กุดบาก"
   },
   {
    "id": "n7005253344",
@@ -19789,7 +21956,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.35706,
    "lng": 103.86536,
-   "notable": false
+   "notable": false,
+   "district": "พรรณานิคม"
   },
   {
    "id": "n4084718352",
@@ -19798,7 +21966,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.06717,
    "lng": 103.96676,
-   "notable": false
+   "notable": false,
+   "district": "กุดบาก"
   },
   {
    "id": "w560352936",
@@ -19807,7 +21976,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.5911,
    "lng": 103.9833,
-   "notable": false
+   "notable": false,
+   "district": "อากาศอำนวย"
   },
   {
    "id": "n12328360188",
@@ -19816,7 +21986,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.19205,
    "lng": 103.93722,
-   "notable": false
+   "notable": false,
+   "district": "พรรณานิคม"
   },
   {
    "id": "w1443908528",
@@ -19825,7 +21996,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.1513,
    "lng": 104.13792,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n13724543293",
@@ -19834,7 +22006,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.31327,
    "lng": 103.68433,
-   "notable": false
+   "notable": false,
+   "district": "วาริชภูมิ"
   },
   {
    "id": "n11591914549",
@@ -19843,7 +22016,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.2458,
    "lng": 103.44133,
-   "notable": false
+   "notable": false,
+   "district": "ส่องดาว"
   },
   {
    "id": "w597957843",
@@ -19852,7 +22026,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.0066,
    "lng": 103.90136,
-   "notable": false
+   "notable": false,
+   "district": "ภูพาน"
   },
   {
    "id": "n12328347854",
@@ -19861,7 +22036,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 17.19269,
    "lng": 103.93434,
-   "notable": false
+   "notable": false,
+   "district": "พรรณานิคม"
   },
   {
    "id": "w600615474",
@@ -19870,7 +22046,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.01025,
    "lng": 103.90588,
-   "notable": false
+   "notable": false,
+   "district": "ภูพาน"
   },
   {
    "id": "w597957840",
@@ -19879,7 +22056,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.02733,
    "lng": 103.86414,
-   "notable": false
+   "notable": false,
+   "district": "ภูพาน"
   },
   {
    "id": "w560352940",
@@ -19888,7 +22066,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.59027,
    "lng": 103.98327,
-   "notable": false
+   "notable": false,
+   "district": "อากาศอำนวย"
   },
   {
    "id": "w556780895",
@@ -19897,7 +22076,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.15452,
    "lng": 104.13844,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n5370564073",
@@ -19906,7 +22086,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.16635,
    "lng": 104.16153,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "w556787252",
@@ -19915,7 +22096,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.17329,
    "lng": 104.14671,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   },
   {
    "id": "n7005276203",
@@ -19924,7 +22106,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.99459,
    "lng": 104.17172,
-   "notable": false
+   "notable": false,
+   "district": "เต่างอย"
   },
   {
    "id": "n5404762530",
@@ -19933,7 +22116,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.59211,
    "lng": 103.98299,
-   "notable": false
+   "notable": false,
+   "district": "อากาศอำนวย"
   },
   {
    "id": "w1451636582",
@@ -19942,7 +22126,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.26787,
    "lng": 104.15707,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสกลนคร"
   }
  ],
  "ร้อยเอ็ด": [
@@ -19953,7 +22138,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.06184,
    "lng": 103.65444,
-   "notable": true
+   "notable": true,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13293740047",
@@ -19962,7 +22148,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.39554,
    "lng": 104.30937,
-   "notable": false
+   "notable": false,
+   "district": "หนองพอก"
   },
   {
    "id": "n9774965117",
@@ -19971,7 +22158,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.77984,
    "lng": 104.01747,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "n11425813288",
@@ -19980,7 +22168,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.05415,
    "lng": 103.65733,
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13298924077",
@@ -19989,7 +22178,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.65389,
    "lng": 103.58432,
-   "notable": false
+   "notable": false,
+   "district": "เกษตรวิสัย"
   },
   {
    "id": "n13293880629",
@@ -19998,7 +22188,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.04248,
    "lng": 103.72964,
-   "notable": false
+   "notable": false,
+   "district": "ธวัชบุรี"
   },
   {
    "id": "n13296226599",
@@ -20007,7 +22198,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.5713,
    "lng": 103.9435,
-   "notable": false
+   "notable": false,
+   "district": "หนองฮี"
   },
   {
    "id": "w108533261",
@@ -20016,7 +22208,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.73029,
    "lng": 103.65146,
-   "notable": false
+   "notable": false,
+   "district": "เกษตรวิสัย"
   },
   {
    "id": "n4111173189",
@@ -20025,7 +22218,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.14512,
    "lng": 103.87402,
-   "notable": false
+   "notable": false,
+   "district": "เสลภูมิ"
   },
   {
    "id": "n9778570617",
@@ -20034,7 +22228,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.7517,
    "lng": 104.02502,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "w737003640",
@@ -20043,7 +22238,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.03837,
    "lng": 103.74426,
-   "notable": false
+   "notable": false,
+   "district": "ธวัชบุรี"
   },
   {
    "id": "n5312650580",
@@ -20052,7 +22248,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.46283,
    "lng": 103.99304,
-   "notable": false
+   "notable": false,
+   "district": "โพนทราย"
   },
   {
    "id": "n13254111478",
@@ -20061,7 +22258,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.05614,
    "lng": 103.65149,
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13296226598",
@@ -20070,7 +22268,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.57176,
    "lng": 103.94349,
-   "notable": false
+   "notable": false,
+   "district": "หนองฮี"
   },
   {
    "id": "w598500899",
@@ -20079,7 +22278,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.29352,
    "lng": 103.9774,
-   "notable": false
+   "notable": false,
+   "district": "โพนทอง"
   },
   {
    "id": "n9729643717",
@@ -20088,7 +22288,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.81416,
    "lng": 103.94635,
-   "notable": false
+   "notable": false,
+   "district": "อาจสามารถ"
   },
   {
    "id": "n13298924076",
@@ -20097,7 +22298,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.60378,
    "lng": 103.59545,
-   "notable": false
+   "notable": false,
+   "district": "เกษตรวิสัย"
   },
   {
    "id": "n11496203069",
@@ -20106,7 +22308,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.05465,
    "lng": 103.65244,
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n13296226581",
@@ -20115,7 +22318,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.73529,
    "lng": 103.97921,
-   "notable": false
+   "notable": false,
+   "district": "อาจสามารถ"
   },
   {
    "id": "w812702830",
@@ -20124,7 +22328,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.71968,
    "lng": 103.64435,
-   "notable": false
+   "notable": false,
+   "district": "เกษตรวิสัย"
   },
   {
    "id": "n9774989917",
@@ -20133,7 +22338,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.79314,
    "lng": 104.00104,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "n12002320853",
@@ -20142,7 +22348,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.55594,
    "lng": 103.8204,
-   "notable": false
+   "notable": false,
+   "district": "สุวรรณภูมิ"
   },
   {
    "id": "n13290723264",
@@ -20151,7 +22358,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.05731,
    "lng": 103.64578,
-   "notable": false
+   "notable": false,
+   "district": "เมืองร้อยเอ็ด"
   },
   {
    "id": "n9774989617",
@@ -20160,7 +22368,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.79283,
    "lng": 103.99708,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "n11212240075",
@@ -20169,7 +22378,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.57723,
    "lng": 103.67973,
-   "notable": false
+   "notable": false,
+   "district": "เกษตรวิสัย"
   },
   {
    "id": "n9700199817",
@@ -20178,7 +22388,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.76495,
    "lng": 103.70183,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสรวง"
   },
   {
    "id": "n2354788512",
@@ -20187,7 +22398,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.07736,
    "lng": 103.73486,
-   "notable": false
+   "notable": false,
+   "district": "ธวัชบุรี"
   },
   {
    "id": "n9931609223",
@@ -20196,7 +22408,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.6755,
    "lng": 103.95996,
-   "notable": false
+   "notable": false,
+   "district": "สุวรรณภูมิ"
   },
   {
    "id": "n11212240158",
@@ -20205,7 +22418,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.57654,
    "lng": 103.67611,
-   "notable": false
+   "notable": false,
+   "district": "เกษตรวิสัย"
   },
   {
    "id": "n9729504617",
@@ -20214,7 +22428,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.85864,
    "lng": 103.94459,
-   "notable": false
+   "notable": false,
+   "district": "อาจสามารถ"
   },
   {
    "id": "n13298924075",
@@ -20223,7 +22438,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.55591,
    "lng": 103.94099,
-   "notable": false
+   "notable": false,
+   "district": "หนองฮี"
   },
   {
    "id": "n9835397819",
@@ -20232,7 +22448,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.65577,
    "lng": 104.11623,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "n13296231201",
@@ -20241,7 +22458,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.563,
    "lng": 103.91927,
-   "notable": false
+   "notable": false,
+   "district": "สุวรรณภูมิ"
   },
   {
    "id": "n9931610618",
@@ -20250,7 +22468,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.67206,
    "lng": 103.95074,
-   "notable": false
+   "notable": false,
+   "district": "สุวรรณภูมิ"
   },
   {
    "id": "n9685158317",
@@ -20259,7 +22478,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.59053,
    "lng": 104.08181,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "n9682537017",
@@ -20268,7 +22488,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.62402,
    "lng": 104.08473,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   },
   {
    "id": "n9702706617",
@@ -20277,7 +22498,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.78148,
    "lng": 103.82464,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสรวง"
   },
   {
    "id": "n9926320517",
@@ -20286,7 +22508,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.78615,
    "lng": 103.80521,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสรวง"
   },
   {
    "id": "n9702620917",
@@ -20295,7 +22518,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.76374,
    "lng": 103.74806,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสรวง"
   },
   {
    "id": "n9776420019",
@@ -20304,7 +22528,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "♨️",
    "lat": 15.59551,
    "lng": 104.09734,
-   "notable": false
+   "notable": false,
+   "district": "พนมไพร"
   }
  ],
  "สตูล": [
@@ -20315,7 +22540,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.48556,
    "lng": 99.3024,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสตูล"
   },
   {
    "id": "r3283059",
@@ -20324,7 +22550,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 6.95316,
    "lng": 99.59497,
-   "notable": true
+   "notable": true,
+   "district": "ละงู"
   },
   {
    "id": "n1666152561",
@@ -20333,7 +22560,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 6.83346,
    "lng": 100.1038,
-   "notable": true
+   "notable": true,
+   "district": "ควนกาหลง"
   },
   {
    "id": "n8258955829",
@@ -20342,7 +22570,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.45015,
    "lng": 100.11825,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n5356471023",
@@ -20351,7 +22580,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 6.83766,
    "lng": 99.75362,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n2512113646",
@@ -20360,7 +22590,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 6.82315,
    "lng": 99.53181,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "w1016594034",
@@ -20369,7 +22600,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.88358,
    "lng": 99.78687,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n6377651485",
@@ -20378,7 +22610,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 6.69768,
    "lng": 99.83979,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w1022907133",
@@ -20387,7 +22620,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.61759,
    "lng": 100.06619,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n1666152559",
@@ -20396,7 +22630,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.71006,
    "lng": 100.16931,
-   "notable": false
+   "notable": false,
+   "district": "ควนโดน"
   },
   {
    "id": "w1366214981",
@@ -20405,7 +22640,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.73148,
    "lng": 99.70734,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w242889889",
@@ -20414,7 +22650,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 6.87674,
    "lng": 99.56785,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n8258955839",
@@ -20423,7 +22660,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.49099,
    "lng": 100.12333,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n5356421924",
@@ -20432,7 +22670,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 6.83672,
    "lng": 99.7812,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n2512113647",
@@ -20441,7 +22680,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 6.83208,
    "lng": 99.5274,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n10647888506",
@@ -20450,7 +22690,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 6.57003,
    "lng": 99.46677,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w1010918896",
@@ -20459,7 +22700,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.62577,
    "lng": 100.06639,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w1366214980",
@@ -20468,7 +22710,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.7318,
    "lng": 99.70554,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n8258955838",
@@ -20477,7 +22720,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.48454,
    "lng": 100.13876,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n5356471022",
@@ -20486,7 +22730,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 6.83501,
    "lng": 99.75504,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n4577045684",
@@ -20495,7 +22740,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 7.12394,
    "lng": 99.79776,
-   "notable": false
+   "notable": false,
+   "district": "ทุ่งหว้า"
   },
   {
    "id": "n5356469821",
@@ -20504,7 +22750,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 6.86009,
    "lng": 99.72176,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "w492162532",
@@ -20513,7 +22760,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.62792,
    "lng": 100.05996,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w680087059",
@@ -20522,7 +22770,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.85543,
    "lng": 99.59451,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n8258955841",
@@ -20531,7 +22780,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.50917,
    "lng": 100.13135,
-   "notable": true
+   "notable": true,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n10647888505",
@@ -20540,7 +22790,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 6.8531,
    "lng": 99.69542,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "w177807513",
@@ -20549,7 +22800,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.49225,
    "lng": 99.30013,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "n620877829",
@@ -20558,7 +22810,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.82741,
    "lng": 99.53119,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "n4164296989",
@@ -20567,7 +22820,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 6.87698,
    "lng": 99.7824,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "w91228600",
@@ -20576,7 +22830,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.48965,
    "lng": 99.3081,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w1366214984",
@@ -20585,7 +22840,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.73281,
    "lng": 99.7067,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w198451165",
@@ -20594,7 +22850,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.55713,
    "lng": 99.25683,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "r5906137",
@@ -20603,7 +22860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.6969,
    "lng": 99.64411,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w1347552827",
@@ -20612,7 +22870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.6721,
    "lng": 99.63697,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w592361544",
@@ -20621,7 +22880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.48549,
    "lng": 99.29696,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w177807509",
@@ -20630,7 +22890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.49044,
    "lng": 99.29815,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w270598769",
@@ -20639,7 +22900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.83239,
    "lng": 99.53813,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "w49072028",
@@ -20648,7 +22910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.83198,
    "lng": 99.534,
-   "notable": false
+   "notable": false,
+   "district": "ละงู"
   },
   {
    "id": "w177843089",
@@ -20657,7 +22920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.4931,
    "lng": 99.31277,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   },
   {
    "id": "w177801016",
@@ -20666,7 +22930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 6.48377,
    "lng": 99.29163,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสตูล"
   }
  ],
  "ลพบุรี": [
@@ -20677,7 +22942,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.05093,
    "lng": 100.5665,
-   "notable": true
+   "notable": true,
+   "district": "บ้านหมี่"
   },
   {
    "id": "n14021939655",
@@ -20686,7 +22952,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.80119,
    "lng": 100.61551,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n8490940175",
@@ -20695,7 +22962,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.93201,
    "lng": 100.98438,
-   "notable": false
+   "notable": false,
+   "district": "พัฒนานิคม"
   },
   {
    "id": "n9676169437",
@@ -20704,7 +22972,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.03032,
    "lng": 101.32357,
-   "notable": false
+   "notable": false,
+   "district": "ท่าหลวง"
   },
   {
    "id": "n4513000190",
@@ -20713,7 +22982,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.91661,
    "lng": 101.24778,
-   "notable": false
+   "notable": false,
+   "district": "พัฒนานิคม"
   },
   {
    "id": "w555934404",
@@ -20722,7 +22992,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 14.80357,
    "lng": 100.63653,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n10660785226",
@@ -20731,7 +23002,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.98224,
    "lng": 100.65683,
-   "notable": false
+   "notable": false,
+   "district": "โคกสำโรง"
   },
   {
    "id": "w1539990211",
@@ -20740,7 +23012,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.79522,
    "lng": 100.6144,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w1539990210",
@@ -20749,7 +23022,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.79491,
    "lng": 100.61744,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w685183511",
@@ -20758,7 +23032,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.11515,
    "lng": 101.11391,
-   "notable": false
+   "notable": false,
+   "district": "ชัยบาดาล"
   },
   {
    "id": "w1539990203",
@@ -20767,7 +23042,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.80752,
    "lng": 100.61633,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w196252384",
@@ -20776,7 +23052,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.79857,
    "lng": 100.61393,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n9676169431",
@@ -20785,7 +23062,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.03153,
    "lng": 101.32404,
-   "notable": false
+   "notable": false,
+   "district": "ท่าหลวง"
   },
   {
    "id": "n10660780856",
@@ -20794,7 +23072,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.96151,
    "lng": 100.70826,
-   "notable": false
+   "notable": false,
+   "district": "โคกสำโรง"
   },
   {
    "id": "n12609767588",
@@ -20803,7 +23082,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.94401,
    "lng": 101.0625,
-   "notable": false
+   "notable": false,
+   "district": "พัฒนานิคม"
   },
   {
    "id": "w877960809",
@@ -20812,7 +23092,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.80719,
    "lng": 100.61245,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n9432505906",
@@ -20821,7 +23102,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.99651,
    "lng": 100.73056,
-   "notable": false
+   "notable": false,
+   "district": "โคกสำโรง"
   },
   {
    "id": "w957378677",
@@ -20830,7 +23112,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.80829,
    "lng": 100.61417,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w40632293",
@@ -20839,7 +23122,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.80304,
    "lng": 100.61031,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n3623459639",
@@ -20848,7 +23132,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 15.20689,
    "lng": 100.65432,
-   "notable": false
+   "notable": false,
+   "district": "หนองม่วง"
   },
   {
    "id": "n5571095821",
@@ -20857,7 +23142,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.83506,
    "lng": 100.80911,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n10313967715",
@@ -20866,7 +23152,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.79832,
    "lng": 100.61496,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w554931189",
@@ -20875,7 +23162,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.80024,
    "lng": 100.64033,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n5046424422",
@@ -20884,7 +23172,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.86084,
    "lng": 100.44464,
-   "notable": true
+   "notable": true,
+   "district": "ท่าวุ้ง"
   },
   {
    "id": "n2066042913",
@@ -20893,7 +23182,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.80229,
    "lng": 100.61171,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w543818048",
@@ -20902,7 +23192,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.7995,
    "lng": 100.65311,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w586958773",
@@ -20911,7 +23202,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.7995,
    "lng": 100.65308,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "r21110553",
@@ -20920,7 +23212,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.80665,
    "lng": 100.60981,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n11428187969",
@@ -20929,7 +23222,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.8121,
    "lng": 100.64521,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "w554931190",
@@ -20938,7 +23232,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.80268,
    "lng": 100.6393,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n5449133974",
@@ -20947,7 +23242,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.80608,
    "lng": 100.59541,
-   "notable": true
+   "notable": true,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n14021939680",
@@ -20956,7 +23252,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.79781,
    "lng": 100.61513,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n14021939678",
@@ -20965,7 +23262,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.8032,
    "lng": 100.60947,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   },
   {
    "id": "n6773612485",
@@ -20974,7 +23272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.79502,
    "lng": 100.61958,
-   "notable": false
+   "notable": false,
+   "district": "เมืองลพบุรี"
   }
  ],
  "มหาสารคาม": [
@@ -20985,7 +23284,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 16.44382,
    "lng": 102.99871,
-   "notable": true
+   "notable": true,
+   "district": "เชียงยืน"
   },
   {
    "id": "r2425686",
@@ -20994,7 +23294,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 16.30603,
    "lng": 103.01983,
-   "notable": false
+   "notable": false,
+   "district": "โกสุมพิสัย"
   },
   {
    "id": "n4567738247",
@@ -21003,7 +23304,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.70579,
    "lng": 103.26774,
-   "notable": false
+   "notable": false,
+   "district": "นาดูน"
   },
   {
    "id": "n7095280785",
@@ -21012,7 +23314,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 16.15829,
    "lng": 103.4174,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "w314108910",
@@ -21021,7 +23324,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.2575,
    "lng": 103.06782,
-   "notable": false
+   "notable": false,
+   "district": "โกสุมพิสัย"
   },
   {
    "id": "n2589653664",
@@ -21030,7 +23334,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.18407,
    "lng": 103.30716,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "w544353294",
@@ -21039,7 +23344,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.17999,
    "lng": 103.29505,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n13230353298",
@@ -21048,7 +23354,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.69995,
    "lng": 103.22723,
-   "notable": false
+   "notable": false,
+   "district": "นาดูน"
   },
   {
    "id": "n4564310301",
@@ -21057,7 +23364,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.70661,
    "lng": 103.26813,
-   "notable": false
+   "notable": false,
+   "district": "นาดูน"
   },
   {
    "id": "n8063842958",
@@ -21066,7 +23374,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.40577,
    "lng": 103.10491,
-   "notable": false
+   "notable": false,
+   "district": "เชียงยืน"
   },
   {
    "id": "w1441621177",
@@ -21075,7 +23384,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.20041,
    "lng": 103.28937,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n9376466232",
@@ -21084,7 +23394,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.15479,
    "lng": 103.37269,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n7095321585",
@@ -21093,7 +23404,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.02529,
    "lng": 103.39065,
-   "notable": false
+   "notable": false,
+   "district": "แกดำ"
   },
   {
    "id": "w544353292",
@@ -21102,7 +23414,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.18796,
    "lng": 103.30007,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n13208718150",
@@ -21111,7 +23424,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.15521,
    "lng": 103.26988,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "w252900135",
@@ -21120,7 +23434,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.17548,
    "lng": 103.27392,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "w670652797",
@@ -21129,7 +23444,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.20084,
    "lng": 103.29048,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   },
   {
    "id": "n9928770484",
@@ -21138,7 +23454,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.32009,
    "lng": 103.29618,
-   "notable": false
+   "notable": false,
+   "district": "กันทรวิชัย"
   },
   {
    "id": "w657117959",
@@ -21147,7 +23464,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.18441,
    "lng": 103.30681,
-   "notable": false
+   "notable": false,
+   "district": "เมืองมหาสารคาม"
   }
  ],
  "นครพนม": [
@@ -21158,7 +23476,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 17.95389,
    "lng": 104.15243,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพง"
   },
   {
    "id": "n13251304635",
@@ -21167,7 +23486,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.38889,
    "lng": 104.79388,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n9368651627",
@@ -21176,7 +23496,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.98565,
    "lng": 104.12736,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพง"
   },
   {
    "id": "n13264229922",
@@ -21185,7 +23506,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.3749,
    "lng": 104.76148,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n6166009666",
@@ -21194,7 +23516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 17.3742,
    "lng": 104.7368,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n14026910502",
@@ -21203,7 +23526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.38565,
    "lng": 104.79387,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n5813049354",
@@ -21212,7 +23536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.39933,
    "lng": 104.79049,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "w666150807",
@@ -21221,7 +23546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.42427,
    "lng": 104.77052,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n4611450591",
@@ -21230,7 +23556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 17.40166,
    "lng": 104.78916,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "w1445687503",
@@ -21239,7 +23566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.41596,
    "lng": 104.7797,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n13250885128",
@@ -21248,7 +23576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.95217,
    "lng": 104.15773,
-   "notable": false
+   "notable": false,
+   "district": "บ้านแพง"
   },
   {
    "id": "n13017126305",
@@ -21257,7 +23586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.65261,
    "lng": 104.46111,
-   "notable": false
+   "notable": false,
+   "district": "ท่าอุเทน"
   },
   {
    "id": "n6166009665",
@@ -21266,7 +23596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.37131,
    "lng": 104.73693,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "w1444104565",
@@ -21275,7 +23606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.39132,
    "lng": 104.7925,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n11516038969",
@@ -21284,7 +23616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.37652,
    "lng": 104.75783,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   },
   {
    "id": "n9375546925",
@@ -21293,7 +23626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.94502,
    "lng": 104.49745,
-   "notable": false
+   "notable": false,
+   "district": "นาแก"
   },
   {
    "id": "w867191443",
@@ -21302,7 +23636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.4039,
    "lng": 104.7878,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนครพนม"
   }
  ],
  "หนองคาย": [
@@ -21313,7 +23648,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 17.74308,
    "lng": 102.68135,
-   "notable": true
+   "notable": true,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13288889464",
@@ -21322,7 +23658,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.20564,
    "lng": 102.1244,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n4592079890",
@@ -21331,7 +23668,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 17.96068,
    "lng": 102.30222,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n10240304520",
@@ -21340,7 +23678,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.8792,
    "lng": 102.73892,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n7027509785",
@@ -21349,7 +23688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 17.80917,
    "lng": 102.7462,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n10296556604",
@@ -21358,7 +23698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.94421,
    "lng": 102.82726,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13017978186",
@@ -21367,7 +23708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 17.87962,
    "lng": 102.74057,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13246869298",
@@ -21376,7 +23718,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.15605,
    "lng": 103.13848,
-   "notable": false
+   "notable": false,
+   "district": "โพนพิสัย"
   },
   {
    "id": "w321703192",
@@ -21385,7 +23728,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 18.0368,
    "lng": 102.30513,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n13004292859",
@@ -21394,7 +23738,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.20951,
    "lng": 102.13586,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "w1416622053",
@@ -21403,7 +23748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 18.02218,
    "lng": 103.07705,
-   "notable": false
+   "notable": false,
+   "district": "โพนพิสัย"
   },
   {
    "id": "n13290147307",
@@ -21412,7 +23758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.02451,
    "lng": 103.07596,
-   "notable": false
+   "notable": false,
+   "district": "โพนพิสัย"
   },
   {
    "id": "w1550374604",
@@ -21421,7 +23768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 18.02757,
    "lng": 103.26341,
-   "notable": false
+   "notable": false,
+   "district": "เฝ้าไร่"
   },
   {
    "id": "n13288699963",
@@ -21430,7 +23778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.16136,
    "lng": 102.16995,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n11212239874",
@@ -21439,7 +23788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.88776,
    "lng": 102.7528,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "w476935069",
@@ -21448,7 +23798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 17.87624,
    "lng": 102.72485,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n6089407088",
@@ -21457,7 +23808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 18.20792,
    "lng": 102.12575,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n13288769813",
@@ -21466,7 +23818,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.79174,
    "lng": 102.68942,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13288480857",
@@ -21475,7 +23828,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.98716,
    "lng": 102.37808,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n4693066592",
@@ -21484,7 +23838,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 18.03694,
    "lng": 102.30514,
-   "notable": false
+   "notable": false,
+   "district": "สังคม"
   },
   {
    "id": "n13288769812",
@@ -21493,7 +23848,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.87663,
    "lng": 102.71003,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   },
   {
    "id": "n13363041501",
@@ -21502,7 +23858,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 17.85651,
    "lng": 102.76058,
-   "notable": false
+   "notable": false,
+   "district": "เมืองหนองคาย"
   }
  ],
  "นนทบุรี": [
@@ -21513,7 +23870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.89364,
    "lng": 100.49224,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n6172163736",
@@ -21522,7 +23880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.83103,
    "lng": 100.4662,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n6897991386",
@@ -21531,7 +23890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.93479,
    "lng": 100.56178,
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w1364029936",
@@ -21540,7 +23900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.8697,
    "lng": 100.49398,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w544275352",
@@ -21549,7 +23910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.85015,
    "lng": 100.53116,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w682472289",
@@ -21558,7 +23920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.80165,
    "lng": 100.48247,
-   "notable": true
+   "notable": true,
+   "district": "บางกรวย"
   },
   {
    "id": "n12792330388",
@@ -21567,7 +23930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.82279,
    "lng": 100.50378,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w560610616",
@@ -21576,7 +23940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.84792,
    "lng": 100.52942,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n11675957572",
@@ -21585,7 +23950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.95895,
    "lng": 100.50291,
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w552515447",
@@ -21594,7 +23960,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.86401,
    "lng": 100.54069,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w376680367",
@@ -21603,7 +23970,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.80598,
    "lng": 100.47966,
-   "notable": true
+   "notable": true,
+   "district": "บางกรวย"
   },
   {
    "id": "n9029177254",
@@ -21612,7 +23980,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.8136,
    "lng": 100.41306,
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "n11675957870",
@@ -21621,7 +23990,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.85575,
    "lng": 100.47221,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w545151742",
@@ -21630,7 +24000,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.81384,
    "lng": 100.5049,
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "w151745957",
@@ -21639,7 +24010,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.9056,
    "lng": 100.49182,
-   "notable": true
+   "notable": true,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "n13059166084",
@@ -21648,7 +24020,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.88082,
    "lng": 100.53112,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w598466643",
@@ -21657,7 +24030,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.97809,
    "lng": 100.31057,
-   "notable": false
+   "notable": false,
+   "district": "ไทรน้อย"
   },
   {
    "id": "w556417677",
@@ -21666,7 +24040,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.81378,
    "lng": 100.43013,
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "w377882406",
@@ -21675,7 +24050,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.8613,
    "lng": 100.48123,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n12792330389",
@@ -21684,7 +24060,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 13.82264,
    "lng": 100.50361,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n5265310928",
@@ -21693,7 +24070,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.82415,
    "lng": 100.41919,
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "w610411822",
@@ -21702,7 +24080,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.9182,
    "lng": 100.53585,
-   "notable": false
+   "notable": false,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w376466916",
@@ -21711,7 +24090,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.83264,
    "lng": 100.50723,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n11675957771",
@@ -21720,7 +24100,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.88882,
    "lng": 100.28805,
-   "notable": false
+   "notable": false,
+   "district": "ไทรน้อย"
   },
   {
    "id": "w1233468944",
@@ -21729,7 +24110,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.88512,
    "lng": 100.50532,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w377487659",
@@ -21738,7 +24120,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.93163,
    "lng": 100.50497,
-   "notable": true
+   "notable": true,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w164588367",
@@ -21747,7 +24130,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 13.85034,
    "lng": 100.48168,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w544275357",
@@ -21756,7 +24140,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.84819,
    "lng": 100.52925,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w377487664",
@@ -21765,7 +24150,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.92374,
    "lng": 100.50109,
-   "notable": true
+   "notable": true,
+   "district": "ปากเกร็ด"
   },
   {
    "id": "w469366914",
@@ -21774,7 +24160,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.84291,
    "lng": 100.43791,
-   "notable": false
+   "notable": false,
+   "district": "บางใหญ่"
   },
   {
    "id": "w700619118",
@@ -21783,7 +24170,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.85098,
    "lng": 100.4561,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w469366915",
@@ -21792,7 +24180,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.84225,
    "lng": 100.43763,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w376679542",
@@ -21801,7 +24190,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.8214,
    "lng": 100.50317,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w561180440",
@@ -21810,7 +24200,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.81301,
    "lng": 100.44063,
-   "notable": false
+   "notable": false,
+   "district": "บางกรวย"
   },
   {
    "id": "w377882407",
@@ -21819,7 +24210,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.82861,
    "lng": 100.4958,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w94669639",
@@ -21828,7 +24220,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.86108,
    "lng": 100.51574,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "n3923440429",
@@ -21837,7 +24230,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.85015,
    "lng": 100.41309,
-   "notable": true
+   "notable": true,
+   "district": "บางใหญ่"
   },
   {
    "id": "n4441653317",
@@ -21846,7 +24240,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.97611,
    "lng": 100.35395,
-   "notable": true
+   "notable": true,
+   "district": "ไทรน้อย"
   },
   {
    "id": "w377882070",
@@ -21855,7 +24250,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.81975,
    "lng": 100.49894,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   },
   {
    "id": "w200002710",
@@ -21864,7 +24260,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 13.87959,
    "lng": 100.48245,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนนทบุรี"
   }
  ],
  "นราธิวาส": [
@@ -21875,7 +24272,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.41429,
    "lng": 101.86779,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n11965914469",
@@ -21884,7 +24282,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 5.81131,
    "lng": 101.80275,
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n11107712477",
@@ -21893,7 +24292,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🕳️",
    "lat": 6.2026,
    "lng": 101.54902,
-   "notable": false
+   "notable": false,
+   "district": "ศรีสาคร"
   },
   {
    "id": "n6533649920",
@@ -21902,7 +24302,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 5.92261,
    "lng": 101.64212,
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n11262003613",
@@ -21911,7 +24312,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 5.84904,
    "lng": 101.76427,
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n5595697267",
@@ -21920,7 +24322,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.42558,
    "lng": 101.82491,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "w585491760",
@@ -21929,7 +24332,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.42619,
    "lng": 101.8241,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n8269122047",
@@ -21938,7 +24342,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.35936,
    "lng": 101.86647,
-   "notable": true
+   "notable": true,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n5330086024",
@@ -21947,7 +24352,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 6.32999,
    "lng": 101.64893,
-   "notable": false
+   "notable": false,
+   "district": "ระแงะ"
   },
   {
    "id": "n11966775570",
@@ -21956,7 +24362,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 5.79405,
    "lng": 101.74932,
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "n5595198914",
@@ -21965,7 +24372,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.42032,
    "lng": 101.81012,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   },
   {
    "id": "n2412744053",
@@ -21974,7 +24382,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.38986,
    "lng": 101.51697,
-   "notable": false
+   "notable": false,
+   "district": "รือเสาะ"
   },
   {
    "id": "n6534475785",
@@ -21983,7 +24392,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 5.91926,
    "lng": 101.63962,
-   "notable": false
+   "notable": false,
+   "district": "สุคิริน"
   },
   {
    "id": "w1295251566",
@@ -21992,7 +24402,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.02615,
    "lng": 101.96704,
-   "notable": false
+   "notable": false,
+   "district": "สุไหงโก-ลก"
   },
   {
    "id": "w1295251565",
@@ -22001,7 +24412,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.02602,
    "lng": 101.9705,
-   "notable": false
+   "notable": false,
+   "district": "สุไหงโก-ลก"
   },
   {
    "id": "w1295251561",
@@ -22010,7 +24422,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.02458,
    "lng": 101.9746,
-   "notable": false
+   "notable": false,
+   "district": "สุไหงโก-ลก"
   },
   {
    "id": "w585508415",
@@ -22019,7 +24432,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.42181,
    "lng": 101.80911,
-   "notable": false
+   "notable": false,
+   "district": "เมืองนราธิวาส"
   }
  ],
  "ปราจีนบุรี": [
@@ -22030,7 +24444,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 14.32598,
    "lng": 101.51134,
-   "notable": true
+   "notable": true,
+   "district": "ประจันตคาม"
   },
   {
    "id": "n5449003442",
@@ -22039,7 +24454,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 14.31828,
    "lng": 101.92993,
-   "notable": false
+   "notable": false,
+   "district": "นาดี"
   },
   {
    "id": "w242744876",
@@ -22048,7 +24464,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.05423,
    "lng": 101.39484,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปราจีนบุรี"
   },
   {
    "id": "w1311218809",
@@ -22057,7 +24474,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.06586,
    "lng": 101.51782,
-   "notable": false
+   "notable": false,
+   "district": "ประจันตคาม"
   },
   {
    "id": "n12507446395",
@@ -22066,7 +24484,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.07013,
    "lng": 101.36963,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปราจีนบุรี"
   },
   {
    "id": "w1351872829",
@@ -22075,7 +24494,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.0597,
    "lng": 101.37116,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปราจีนบุรี"
   },
   {
    "id": "n8527903036",
@@ -22084,7 +24504,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 13.98694,
    "lng": 101.74989,
-   "notable": false
+   "notable": false,
+   "district": "กบินทร์บุรี"
   }
  ],
  "สิงห์บุรี": [
@@ -22095,7 +24516,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.9244,
    "lng": 100.26963,
-   "notable": true
+   "notable": true,
+   "district": "บางระจัน"
   },
   {
    "id": "n13951371437",
@@ -22104,7 +24526,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.99419,
    "lng": 100.3346,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n7507359371",
@@ -22113,7 +24536,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.80111,
    "lng": 100.32015,
-   "notable": false
+   "notable": false,
+   "district": "ค่ายบางระจัน"
   },
   {
    "id": "w1177606350",
@@ -22122,7 +24546,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.01377,
    "lng": 100.33074,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "r18212511",
@@ -22131,7 +24556,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.99465,
    "lng": 100.27867,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n5568335123",
@@ -22140,7 +24566,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.80147,
    "lng": 100.32104,
-   "notable": true
+   "notable": true,
+   "district": "ค่ายบางระจัน"
   },
   {
    "id": "n11212240102",
@@ -22149,7 +24576,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.88884,
    "lng": 100.40457,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสิงห์บุรี"
   },
   {
    "id": "n13949112212",
@@ -22158,7 +24586,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.99482,
    "lng": 100.27818,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n7518778785",
@@ -22167,7 +24596,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.89659,
    "lng": 100.39554,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสิงห์บุรี"
   },
   {
    "id": "w1277746664",
@@ -22176,7 +24606,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.05461,
    "lng": 100.31989,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n7505845109",
@@ -22185,7 +24616,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.77357,
    "lng": 100.44296,
-   "notable": true
+   "notable": true,
+   "district": "พรหมบุรี"
   },
   {
    "id": "w1177799364",
@@ -22194,7 +24626,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.00277,
    "lng": 100.33854,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n5978365021",
@@ -22203,7 +24636,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.8535,
    "lng": 100.37029,
-   "notable": true
+   "notable": true,
+   "district": "ค่ายบางระจัน"
   },
   {
    "id": "n3712071275",
@@ -22212,7 +24646,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.94202,
    "lng": 100.33965,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n7505018418",
@@ -22221,7 +24656,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.06483,
    "lng": 100.29487,
-   "notable": false
+   "notable": false,
+   "district": "อินทร์บุรี"
   },
   {
    "id": "n7502764089",
@@ -22230,7 +24666,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.91912,
    "lng": 100.37005,
-   "notable": false
+   "notable": false,
+   "district": "เมืองสิงห์บุรี"
   },
   {
    "id": "w1017273449",
@@ -22239,7 +24676,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.80536,
    "lng": 100.32095,
-   "notable": false
+   "notable": false,
+   "district": "ค่ายบางระจัน"
   }
  ],
  "อำนาจเจริญ": [
@@ -22250,7 +24688,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.90987,
    "lng": 104.79219,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "n13938245024",
@@ -22259,7 +24698,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.91443,
    "lng": 104.79352,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "n6239424565",
@@ -22268,7 +24708,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.17816,
    "lng": 105.0171,
-   "notable": false
+   "notable": false,
+   "district": "ชานุมาน"
   },
   {
    "id": "w840101477",
@@ -22277,7 +24718,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.80664,
    "lng": 104.63382,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "n11448387269",
@@ -22286,7 +24728,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 15.91016,
    "lng": 104.79764,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "n13240645709",
@@ -22295,7 +24738,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.24276,
    "lng": 105.00814,
-   "notable": false
+   "notable": false,
+   "district": "ชานุมาน"
   },
   {
    "id": "w479077505",
@@ -22304,7 +24748,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.86898,
    "lng": 104.62454,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "n13240645621",
@@ -22313,7 +24758,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.22512,
    "lng": 105.01398,
-   "notable": false
+   "notable": false,
+   "district": "ชานุมาน"
   },
   {
    "id": "n7086507986",
@@ -22322,7 +24768,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.12845,
    "lng": 105.03282,
-   "notable": false
+   "notable": false,
+   "district": "ชานุมาน"
   },
   {
    "id": "w841628636",
@@ -22331,7 +24778,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.90281,
    "lng": 104.6198,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "n13240484501",
@@ -22340,7 +24788,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 15.89187,
    "lng": 104.63711,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "w913057005",
@@ -22349,7 +24798,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.86341,
    "lng": 104.62714,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   },
   {
    "id": "w913050794",
@@ -22358,7 +24808,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.85929,
    "lng": 104.62663,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอำนาจเจริญ"
   }
  ],
  "ชัยนาท": [
@@ -22369,7 +24820,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.03803,
    "lng": 100.177,
-   "notable": true
+   "notable": true,
+   "district": "สรรคบุรี"
   },
   {
    "id": "n2982684313",
@@ -22378,7 +24830,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 14.92258,
    "lng": 99.98744,
-   "notable": true
+   "notable": true,
+   "district": "หันคา"
   },
   {
    "id": "n12145210401",
@@ -22387,7 +24840,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.20451,
    "lng": 100.15002,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   },
   {
    "id": "w1011926312",
@@ -22396,7 +24850,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.1727,
    "lng": 100.134,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   },
   {
    "id": "n7024970785",
@@ -22405,7 +24860,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.05122,
    "lng": 100.16114,
-   "notable": false
+   "notable": false,
+   "district": "สรรคบุรี"
   },
   {
    "id": "n13741894808",
@@ -22414,7 +24870,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.22639,
    "lng": 100.15257,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   },
   {
    "id": "n6210251885",
@@ -22423,7 +24880,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.26217,
    "lng": 100.05766,
-   "notable": false
+   "notable": false,
+   "district": "วัดสิงห์"
   },
   {
    "id": "w1195169376",
@@ -22432,7 +24890,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.2974,
    "lng": 100.18672,
-   "notable": false
+   "notable": false,
+   "district": "มโนรมย์"
   },
   {
    "id": "n13951967837",
@@ -22441,7 +24900,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.04974,
    "lng": 100.162,
-   "notable": false
+   "notable": false,
+   "district": "สรรคบุรี"
   },
   {
    "id": "n13741894811",
@@ -22450,7 +24910,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.21135,
    "lng": 100.13697,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   },
   {
    "id": "n13951963390",
@@ -22459,7 +24920,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 15.04771,
    "lng": 100.16149,
-   "notable": false
+   "notable": false,
+   "district": "สรรคบุรี"
   },
   {
    "id": "n13741894809",
@@ -22468,7 +24930,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.20877,
    "lng": 100.12394,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   },
   {
    "id": "n13741894810",
@@ -22477,7 +24940,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.20686,
    "lng": 100.14684,
-   "notable": false
+   "notable": false,
+   "district": "เมืองชัยนาท"
   },
   {
    "id": "n13957840865",
@@ -22486,7 +24950,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 15.1023,
    "lng": 100.24487,
-   "notable": false
+   "notable": false,
+   "district": "สรรพยา"
   }
  ],
  "ปัตตานี": [
@@ -22497,7 +24962,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.89199,
    "lng": 101.2447,
-   "notable": true
+   "notable": true,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "w888242282",
@@ -22506,7 +24972,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 6.59802,
    "lng": 101.08765,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   },
   {
    "id": "n11963849471",
@@ -22515,7 +24982,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 6.93573,
    "lng": 101.24008,
-   "notable": false
+   "notable": false,
+   "district": "ยะหริ่ง"
   },
   {
    "id": "n4713521338",
@@ -22524,7 +24992,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.64382,
    "lng": 101.06887,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   },
   {
    "id": "n3048977993",
@@ -22533,7 +25002,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 6.87782,
    "lng": 101.2363,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "n4713521335",
@@ -22542,7 +25012,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.63576,
    "lng": 101.0809,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   },
   {
    "id": "n4713521339",
@@ -22551,7 +25022,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 6.65557,
    "lng": 101.0612,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   },
   {
    "id": "n4713521337",
@@ -22560,7 +25032,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.64499,
    "lng": 101.07259,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   },
   {
    "id": "w1336859852",
@@ -22569,7 +25042,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.89583,
    "lng": 101.24662,
-   "notable": false
+   "notable": false,
+   "district": "เมืองปัตตานี"
   },
   {
    "id": "n4713521336",
@@ -22578,7 +25052,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.64356,
    "lng": 101.07638,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   },
   {
    "id": "n4713521342",
@@ -22587,7 +25062,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 6.65469,
    "lng": 101.06863,
-   "notable": false
+   "notable": false,
+   "district": "โคกโพธิ์"
   }
  ],
  "ยโสธร": [
@@ -22598,7 +25074,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌲",
    "lat": 16.1958,
    "lng": 104.70513,
-   "notable": true
+   "notable": true,
+   "district": "เลิงนกทา"
   },
   {
    "id": "w1102712545",
@@ -22607,7 +25084,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.74267,
    "lng": 104.292,
-   "notable": true
+   "notable": true,
+   "district": "คำเขื่อนแก้ว"
   },
   {
    "id": "n4750438163",
@@ -22616,7 +25094,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 15.76364,
    "lng": 104.20704,
-   "notable": true
+   "notable": true,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "n13238979911",
@@ -22625,7 +25104,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌄",
    "lat": 16.30861,
    "lng": 104.55012,
-   "notable": false
+   "notable": false,
+   "district": "เลิงนกทา"
   },
   {
    "id": "w737512386",
@@ -22634,7 +25114,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.78315,
    "lng": 104.15308,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "n7179629990",
@@ -22643,7 +25124,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 15.56653,
    "lng": 104.22138,
-   "notable": true
+   "notable": true,
+   "district": "มหาชนะชัย"
   },
   {
    "id": "w737517482",
@@ -22652,7 +25134,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.79059,
    "lng": 104.15474,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "w936970336",
@@ -22661,7 +25144,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.78382,
    "lng": 104.15818,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "w913060396",
@@ -22670,7 +25154,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.7916,
    "lng": 104.1392,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "w936973714",
@@ -22679,7 +25164,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.80036,
    "lng": 104.1387,
-   "notable": false
+   "notable": false,
+   "district": "เมืองยโสธร"
   },
   {
    "id": "w839950955",
@@ -22688,7 +25174,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 15.65402,
    "lng": 104.3083,
-   "notable": false
+   "notable": false,
+   "district": "คำเขื่อนแก้ว"
   }
  ],
  "พิจิตร": [
@@ -22699,7 +25186,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.44379,
    "lng": 100.3479,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   },
   {
    "id": "n13686480685",
@@ -22708,7 +25196,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 16.42334,
    "lng": 100.34324,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   },
   {
    "id": "n12161401538",
@@ -22717,7 +25206,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.28486,
    "lng": 100.5595,
-   "notable": false
+   "notable": false,
+   "district": "ทับคล้อ"
   },
   {
    "id": "w321257081",
@@ -22726,7 +25216,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 16.30197,
    "lng": 100.55264,
-   "notable": false
+   "notable": false,
+   "district": "วังทรายพูน"
   },
   {
    "id": "w1495865325",
@@ -22735,7 +25226,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.18599,
    "lng": 100.57742,
-   "notable": false
+   "notable": false,
+   "district": "ทับคล้อ"
   },
   {
    "id": "w399157543",
@@ -22744,7 +25236,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.02641,
    "lng": 100.37904,
-   "notable": false
+   "notable": false,
+   "district": "บางมูลนาก"
   },
   {
    "id": "n13691364602",
@@ -22753,7 +25246,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.1378,
    "lng": 100.23486,
-   "notable": false
+   "notable": false,
+   "district": "โพทะเล"
   },
   {
    "id": "w236162747",
@@ -22762,7 +25256,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🐘",
    "lat": 16.4238,
    "lng": 100.3412,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   },
   {
    "id": "n12161395006",
@@ -22771,7 +25266,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.27712,
    "lng": 100.57227,
-   "notable": false
+   "notable": false,
+   "district": "ทับคล้อ"
   },
   {
    "id": "n13686486804",
@@ -22780,7 +25276,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.42721,
    "lng": 100.3431,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   },
   {
    "id": "w1493613942",
@@ -22789,7 +25286,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.42622,
    "lng": 100.34319,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   },
   {
    "id": "n12161395005",
@@ -22798,7 +25296,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.27503,
    "lng": 100.56735,
-   "notable": false
+   "notable": false,
+   "district": "ทับคล้อ"
   },
   {
    "id": "w1494290695",
@@ -22807,7 +25306,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 16.13741,
    "lng": 100.23492,
-   "notable": false
+   "notable": false,
+   "district": "โพทะเล"
   },
   {
    "id": "w1493373890",
@@ -22816,7 +25316,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.44476,
    "lng": 100.34795,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   },
   {
    "id": "n13688700176",
@@ -22825,7 +25326,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "⛰️",
    "lat": 16.30168,
    "lng": 100.55085,
-   "notable": false
+   "notable": false,
+   "district": "วังทรายพูน"
   },
   {
    "id": "n13686486816",
@@ -22834,7 +25336,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 16.40375,
    "lng": 100.33363,
-   "notable": false
+   "notable": false,
+   "district": "เมืองพิจิตร"
   }
  ],
  "อ่างทอง": [
@@ -22845,7 +25348,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.68082,
    "lng": 100.46151,
-   "notable": true
+   "notable": true,
+   "district": "ไชโย"
   },
   {
    "id": "n13947157104",
@@ -22854,7 +25358,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏖️",
    "lat": 14.67485,
    "lng": 100.46085,
-   "notable": false
+   "notable": false,
+   "district": "ไชโย"
   },
   {
    "id": "w1244099120",
@@ -22863,7 +25368,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.58992,
    "lng": 100.45504,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1530358443",
@@ -22872,7 +25378,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏯",
    "lat": 14.65796,
    "lng": 100.33706,
-   "notable": false
+   "notable": false,
+   "district": "โพธิ์ทอง"
   },
   {
    "id": "n13947619154",
@@ -22881,7 +25388,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.67043,
    "lng": 100.3752,
-   "notable": false
+   "notable": false,
+   "district": "โพธิ์ทอง"
   },
   {
    "id": "w1530271721",
@@ -22890,7 +25398,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.48067,
    "lng": 100.44716,
-   "notable": false
+   "notable": false,
+   "district": "ป่าโมก"
   },
   {
    "id": "w1246957881",
@@ -22899,7 +25408,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.53236,
    "lng": 100.48985,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1312486089",
@@ -22908,7 +25418,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.72439,
    "lng": 100.40616,
-   "notable": true
+   "notable": true,
+   "district": "โพธิ์ทอง"
   },
   {
    "id": "n13947763944",
@@ -22917,7 +25428,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.70206,
    "lng": 100.29576,
-   "notable": false
+   "notable": false,
+   "district": "แสวงหา"
   },
   {
    "id": "n11173425101",
@@ -22926,7 +25438,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.58965,
    "lng": 100.45462,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1280466920",
@@ -22935,7 +25448,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🌳",
    "lat": 14.58678,
    "lng": 100.35309,
-   "notable": false
+   "notable": false,
+   "district": "วิเศษชัยชาญ"
   },
   {
    "id": "w1312486083",
@@ -22944,7 +25458,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.6466,
    "lng": 100.46145,
-   "notable": true
+   "notable": true,
+   "district": "ไชโย"
   },
   {
    "id": "n13947619153",
@@ -22953,7 +25468,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.69203,
    "lng": 100.41425,
-   "notable": false
+   "notable": false,
+   "district": "โพธิ์ทอง"
   },
   {
    "id": "n12148389140",
@@ -22962,7 +25478,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.58455,
    "lng": 100.452,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1320941620",
@@ -22971,7 +25488,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.53938,
    "lng": 100.4324,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "n14109183866",
@@ -22980,7 +25498,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "📍",
    "lat": 14.6216,
    "lng": 100.36623,
-   "notable": false
+   "notable": false,
+   "district": "โพธิ์ทอง"
   },
   {
    "id": "n12148389141",
@@ -22989,7 +25508,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.58451,
    "lng": 100.4521,
-   "notable": false
+   "notable": false,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "w1315102649",
@@ -22998,7 +25518,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.58909,
    "lng": 100.44743,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "n13949181554",
@@ -23007,7 +25528,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.55387,
    "lng": 100.36439,
-   "notable": false
+   "notable": false,
+   "district": "วิเศษชัยชาญ"
   },
   {
    "id": "w1314582906",
@@ -23016,7 +25538,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🛕",
    "lat": 14.60324,
    "lng": 100.43808,
-   "notable": true
+   "notable": true,
+   "district": "เมืองอ่างทอง"
   },
   {
    "id": "n13949112290",
@@ -23025,7 +25548,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.58656,
    "lng": 100.35328,
-   "notable": false
+   "notable": false,
+   "district": "วิเศษชัยชาญ"
   },
   {
    "id": "n13947141879",
@@ -23034,7 +25558,8 @@ export const OSM_PLACES: Record<string, OsmPlace[]> = {
    "emoji": "🏛️",
    "lat": 14.51715,
    "lng": 100.45743,
-   "notable": false
+   "notable": false,
+   "district": "ป่าโมก"
   }
  ]
 };

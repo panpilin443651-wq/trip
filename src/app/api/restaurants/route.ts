@@ -28,6 +28,8 @@ export interface RestaurantHit {
   openingHours: string | null;
   /** มีคนเขียนถึงใน Wikipedia — ใช้ติดดาวในรายการ */
   notable: boolean;
+  /** อำเภอ/เขต ว่างได้ถ้าหาไม่เจอตอนสร้างข้อมูล */
+  district: string;
 }
 
 /** ค้นด้วยชื่อ + พิกัด เพื่อให้ Google เจอร้านเดียวกันแล้วเห็นรีวิว */
@@ -43,11 +45,19 @@ export async function GET(request: Request) {
     new URL(request.url).searchParams.get("province") ?? ""
   ).trim();
 
+  // กรองต่อด้วยอำเภอได้ ว่าง = ทั้งจังหวัด
+  const district = (
+    new URL(request.url).searchParams.get("district") ?? ""
+  ).trim();
+
   if (!province) {
     return NextResponse.json({ error: "ต้องระบุจังหวัด" }, { status: 400 });
   }
 
-  const hits: RestaurantHit[] = (OSM_RESTAURANTS[province] ?? []).map((r) => ({
+  const all = OSM_RESTAURANTS[province] ?? [];
+  const rows = district ? all.filter((r) => r.district === district) : all;
+
+  const hits: RestaurantHit[] = rows.map((r) => ({
     id: r.id,
     name: r.name,
     kind: r.kind,
@@ -57,6 +67,7 @@ export async function GET(request: Request) {
     mapsUrl: mapsUrlFor(r.name, r.lat, r.lng),
     openingHours: r.openingHours || null,
     notable: r.notable,
+    district: r.district,
   }));
 
   return NextResponse.json(hits, {

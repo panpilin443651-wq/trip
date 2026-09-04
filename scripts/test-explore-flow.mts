@@ -79,5 +79,49 @@ check("เวลาเรียงจากน้อยไปมาก",
   program.every((r, i) => i === 0 || timeToMinutes(r.startTime) > timeToMinutes(program[i - 1].startTime)));
 check("โปรแกรมว่างไม่พัง", buildProgram([], "09:00").length === 0);
 
-console.log(`\nผ่าน ${pass} · ไม่ผ่าน ${fail}`);
+
+/* ── ข้อมูล OSM ที่เติมอำเภอแล้ว ─────────────────────────────────── */
+import { OSM_PLACES } from "@/data/osm-places";
+import { OSM_RESTAURANTS } from "@/data/osm-restaurants";
+
+console.log("\nชุดข้อมูล OpenStreetMap หลังเติมอำเภอ");
+const allPlaces = Object.entries(OSM_PLACES);
+const allFood = Object.entries(OSM_RESTAURANTS);
+const flatPlaces = allPlaces.flatMap(([, v]) => v);
+const flatFood = allFood.flatMap(([, v]) => v);
+
+check(
+  "ที่เที่ยวมีอำเภอเกิน 98%",
+  flatPlaces.filter((p) => p.district).length / flatPlaces.length > 0.98,
+);
+check(
+  "ร้านอาหารมีอำเภอเกิน 98%",
+  flatFood.filter((r) => r.district).length / flatFood.length > 0.98,
+);
+
+/** อำเภอที่เติมมาต้องอยู่ในทะเบียนของจังหวัดนั้นเสมอ ไม่งั้นหน้าเว็บกรองไม่เจอ */
+let mismatched = 0;
+for (const [prov, list] of [...allPlaces, ...allFood]) {
+  const valid = new Set(districtsOf(prov));
+  for (const row of list) if (row.district && !valid.has(row.district)) mismatched += 1;
+}
+check("อำเภอทุกตัวตรงกับทะเบียนของจังหวัดนั้น", mismatched === 0, String(mismatched));
+
+check("มีวัดในชุดข้อมูล", flatPlaces.filter((p) => p.kind === "วัด").length > 200);
+check("มีคาเฟ่ในชุดข้อมูล", flatFood.filter((r) => r.kind === "คาเฟ่").length > 200);
+check("มีร้านอาหารในชุดข้อมูล", flatFood.filter((r) => r.kind === "ร้านอาหาร").length > 200);
+
+console.log("\nจังหวัดที่แก้ให้ถูกแล้ว (เคยถูกจัดผิดจังหวัด)");
+const ayutthaya = (OSM_PLACES["พระนครศรีอยุธยา"] ?? []).map((p) => p.name);
+check("พระราชวังบางปะอินอยู่อยุธยา", ayutthaya.includes("พระราชวังบางปะอิน"));
+check(
+  "ไม่เหลืออยู่ปทุมธานี",
+  !(OSM_PLACES["ปทุมธานี"] ?? []).some((p) => p.name === "พระราชวังบางปะอิน"),
+);
+const huahin = (OSM_RESTAURANTS["ประจวบคีรีขันธ์"] ?? []).filter(
+  (r) => r.district === "หัวหิน",
+);
+check("ร้านหัวหินย้ายมาประจวบฯ แล้ว", huahin.length > 0, String(huahin.length));
+
+console.log(`\nรวมทั้งไฟล์: ผ่าน ${pass} · ไม่ผ่าน ${fail}`);
 process.exit(fail ? 1 : 0);

@@ -15,11 +15,19 @@ export async function GET(request: Request) {
     new URL(request.url).searchParams.get("province") ?? ""
   ).trim();
 
+  // กรองต่อด้วยอำเภอได้ ว่าง = ทั้งจังหวัด
+  const district = (
+    new URL(request.url).searchParams.get("district") ?? ""
+  ).trim();
+
   if (!province) {
     return NextResponse.json({ error: "ต้องระบุจังหวัด" }, { status: 400 });
   }
 
-  const places = OSM_PLACES[province] ?? [];
+  const all = OSM_PLACES[province] ?? [];
+  const places = district
+    ? all.filter((place) => place.district === district)
+    : all;
 
   return NextResponse.json(places, {
     headers: {
