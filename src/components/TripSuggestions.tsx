@@ -1,88 +1,136 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
-import {
-  PROVINCE_BY_NAME,
-  type SuggestedActivity,
-  type SuggestedPlace,
-} from "@/data/provinces";
-import { activityFill, matchesQuery, placeFill } from "@/lib/activity-search";
+import { useEffect, useMemo, useState } from "react";
+import type { HotelHit } from "@/app/api/hotels/route";
+import type { OsmPlace } from "@/data/osm-places";
+import type { RestaurantHit } from "@/app/api/restaurants/route";
+import { PlaceThumb } from "@/components/PlaceThumb";
+import { PROVINCE_BY_NAME } from "@/data/provinces";
+import { matchesQuery } from "@/lib/activity-search";
 import { cn } from "@/lib/cn";
-import { addMinutesToTime, formatDuration, formatTHB } from "@/lib/format";
+import { groupCount, rowsInScope } from "@/lib/district-groups";
+import { addMinutesToTime } from "@/lib/format";
+import {
+  buildSuggestionRows,
+  SUGGESTION_GROUPS,
+  type SuggestionGroup,
+  type SuggestionRow,
+} from "@/lib/trip-suggestions";
 import { useTrip } from "@/lib/trip-context";
-import { Badge, Button, Card, Input, SectionTitle } from "./ui";
+import { Button, Card, Input, SectionTitle } from "./ui";
 
-type Tab = "places" | "activities";
+/** จำนวนที่โชว์ก่อนกด "ดูทั้งหมด" */
+const PREVIEW = 6;
 
-/**
- * ข้อความทั้งหมดของแถวหนึ่งที่เอาไปค้นได้
- * ต้องรวมคำอธิบายและทิปด้วย เพราะคำที่คนพิมพ์อย่าง "เดินป่า"
- * ไม่ได้อยู่ในชื่อสถานที่สักแห่ง แต่อยู่ในคำอธิบายเส้นทาง
- */
-function haystack(row: PlaceRow | ActivityRow): string {
-  const item = "place" in row ? row.place : row.activity;
-  const extra =
-    "place" in row
-      ? `${row.place.tag} ${row.place.tip} ${row.place.bestTime}`
-      : `${row.activity.prepare} ${row.activity.duration}`;
-  return `${item.name} ${item.description} ${extra} ${row.province}`.toLowerCase();
-}
-
-interface PlaceRow {
-  province: string;
-  place: SuggestedPlace;
-}
-interface ActivityRow {
-  province: string;
-  activity: SuggestedActivity;
-}
+type Group = "ทั้งหมด" | SuggestionGroup;
+const GROUPS: Group[] = ["ทั้งหมด", ...SUGGESTION_GROUPS];
 
 /**
- * ช่องแนะนำสถานที่และกิจกรรม ดึงจากจังหวัดที่เลือกไว้ในแพลนการเที่ยว
- * กดครั้งเดียวใส่ลงวันที่กำลังดูอยู่ได้เลย
+ * แนะนำสถานที่ กิจกรรม วัด ร้านอาหาร คาเฟ่ และที่พัก สำหรับวันที่กำลังดูอยู่
+ * กดครั้งเดียวใส่ลงวันนั้นได้เลย ทุกแถวที่มีพิกัดมีลิงก์ไป Google Maps
+ *
+ * เดิมเป็นการ์ดสองใบซ้อนกัน ใบนี้กับ ProvinceRestaurants ซึ่งทำคนละครึ่ง
+ * ของงานเดียวกัน รวมเป็นใบเดียวแล้ว ดูเหตุผลใน lib/trip-suggestions.ts
  */
 export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
   const { state, dispatch, activitiesForDay } = useTrip();
   const { trip, activities } = state;
 
-  const [tab, setTab] = useState<Tab>("places");
+  /*
+   * ใช้จังหวัดของวันนั้นก่อน ถ้ายังไม่ได้ระบุค่อยใช้ทุกจังหวัดในทริป
+   * ดูวันที่ 3 อยู่ก็ควรได้ที่เที่ยวของจังหวัดวันที่ 3 ไม่ใช่ทั้งทริป
+   */
+  const dayProvince = trip.dayPlans[dayIndex]?.province ?? "";
+  const provinceNames = useMemo(
+    () => (dayProvince ? [dayProvince] : trip.provinces),
+    [dayProvince, trip.provinces],
+  );
+
+  const [group, setGroup] = useState<Group>("ทั้งหมด");
   const [query, setQuery] = useState("");
   const [expanded, setExpanded] = useState(false);
   const [toast, setToast] = useState<string | null>(null);
 
-  const provinces = useMemo(
-    () =>
-      trip.provinces
-        .map((name) => PROVINCE_BY_NAME.get(name))
-        .filter((p) => p !== undefined),
-    [trip.provinces],
-  );
+  /**
+   * ผูกผลลัพธ์กับจังหวัดที่ขอไป ผลของจังหวัดเก่าถูกมองข้ามเองเมื่อคีย์ไม่ตรง
+   * จึงไม่ต้องล้างค่าเก่าด้วย setState ตอนเริ่ม effect ซึ่งติดกฎ
+   * react-hooks/set-state-in-effect
+   */
+  const wanted = provinceNames.join("|");
+  const [result, setResult] = useState<{
+    key: string;
+    rows: SuggestionRow[] | null;
+  } | null>(null);
 
-  /** ชื่อกิจกรรมที่อยู่ในแผนแล้ว ใช้กันเพิ่มซ้ำ */
+  useEffect(() => {
+    if (provinceNames.length === 0) return;
+    let cancelled = false;
+
+    const load = async (name: string) => {
+      const qs = `province=${encodeURIComponent(name)}`;
+      const [places, food, stay] = await Promise.all([
+        fetch(`/api/places?${qs}`, { signal: AbortSignal.timeout(15000) }).then(
+          (r) => (r.ok ? (r.json() as Promise<OsmPlace[]>) : []),
+        ),
+        fetch(`/api/restaurants?${qs}`, {
+          signal: AbortSignal.timeout(15000),
+        }).then((r) => (r.ok ? (r.json() as Promise<RestaurantHit[]>) : [])),
+        fetch(`/api/hotels?${qs}`, { signal: AbortSignal.timeout(15000) }).then(
+          (r) => (r.ok ? (r.json() as Promise<HotelHit[]>) : []),
+        ),
+      ]);
+      return { name, places, food, stay };
+    };
+
+    Promise.all(provinceNames.map(load))
+      .then((loaded) => {
+        if (cancelled) return;
+        setResult({
+          key: wanted,
+          rows: buildSuggestionRows({
+            curated: provinceNames
+              .map((name) => PROVINCE_BY_NAME.get(name))
+              .filter((p) => p !== undefined),
+            osmPlaces: Object.fromEntries(loaded.map((l) => [l.name, l.places])),
+            restaurants: Object.fromEntries(loaded.map((l) => [l.name, l.food])),
+            hotels: Object.fromEntries(loaded.map((l) => [l.name, l.stay])),
+          }),
+        });
+      })
+      .catch(() => {
+        if (!cancelled) setResult({ key: wanted, rows: null });
+      });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [provinceNames, wanted]);
+
+  const current = result?.key === wanted ? result : null;
+  const all = current?.rows ?? null;
+
+  /** ชื่อที่อยู่ในแผนแล้ว ใช้กันเพิ่มซ้ำ */
   const planned = useMemo(
     () => new Set(activities.map((a) => a.title)),
     [activities],
   );
 
-  const placeRows = useMemo<PlaceRow[]>(
-    () =>
-      provinces.flatMap((province) =>
-        province.places.map((place) => ({ province: province.name, place })),
-      ),
-    [provinces],
-  );
+  /*
+   * นับให้ตรงกับที่กดแล้วได้เห็นจริง — ใช้ตัวเดียวกับการ์ดในแท็บแนะนำเที่ยว
+   * เคยเจอปุ่มบอก 0 แต่กดไปมีรายการขึ้น ซึ่งอ่านแล้วงง
+   * (การ์ดนี้ไม่ได้กรองอำเภอ จึงส่งอำเภอเป็นค่าว่างเสมอ)
+   */
+  const countFor = (name: Group) =>
+    all ? groupCount(all, "", name).count : 0;
 
-  const activityRows = useMemo<ActivityRow[]>(
-    () =>
-      provinces.flatMap((province) =>
-        province.activities.map((activity) => ({
-          province: province.name,
-          activity,
-        })),
-      ),
-    [provinces],
-  );
+  const filtered = useMemo(() => {
+    if (!all) return null;
+    const q = query.trim().toLowerCase();
+    return rowsInScope(all, "", group).rows.filter((row) =>
+      matchesQuery(row.haystack, q),
+    );
+  }, [all, group, query]);
 
   function notify(message: string) {
     setToast(message);
@@ -96,36 +144,21 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     return addMinutesToTime(last.startTime, last.durationMin + 30);
   }
 
-  function addPlace(row: PlaceRow) {
+  function add(row: SuggestionRow) {
     dispatch({
       type: "addActivity",
-      activity: {
-        dayIndex,
-        startTime: nextStartTime(),
-        ...placeFill(row.province, row.place),
-      },
+      activity: { dayIndex, startTime: nextStartTime(), ...row.fill },
     });
-    notify(`ใส่ "${row.place.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
+    notify(`ใส่ "${row.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
   }
 
-  function addActivity(row: ActivityRow) {
-    dispatch({
-      type: "addActivity",
-      activity: {
-        dayIndex,
-        startTime: nextStartTime(),
-        ...activityFill(row.province, row.activity),
-      },
-    });
-    notify(`ใส่ "${row.activity.name}" ในวันที่ ${dayIndex + 1} แล้ว`);
-  }
-  if (provinces.length === 0) {
+  if (provinceNames.length === 0) {
     return (
       <Card as="section" className="bg-canvas">
         <SectionTitle title="แนะนำสำหรับทริปนี้" />
-        <p className="text-sm text-muted">
+        <p className="text-sm leading-relaxed text-muted">
           ยังไม่ได้เลือกจังหวัดในแพลนการเที่ยว เลือกก่อนแล้วระบบจะแนะนำ
-          สถานที่และกิจกรรมของจังหวัดนั้นให้ที่นี่
+          สถานที่ กิจกรรม วัด ร้านอาหาร คาเฟ่ และที่พักของจังหวัดนั้นให้ที่นี่
         </p>
         <Link href="/settings" className="mt-3 inline-block">
           <Button variant="secondary" size="sm">
@@ -136,55 +169,48 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     );
   }
 
-  const q = query.trim().toLowerCase();
-  const countPlaces = placeRows.filter((row) =>
-    matchesQuery(haystack(row), q),
-  ).length;
-  const countActivities = activityRows.filter((row) =>
-    matchesQuery(haystack(row), q),
-  ).length;
-  const rows = (tab === "places" ? placeRows : activityRows).filter((row) =>
-    matchesQuery(haystack(row), q),
-  );
-  const visible = expanded ? rows : rows.slice(0, 4);
+  const visible = filtered ? (expanded ? filtered : filtered.slice(0, PREVIEW)) : [];
 
   return (
     <Card as="section">
       <SectionTitle
         title="แนะนำสำหรับทริปนี้"
         action={
-          <span className="text-xs text-muted">
-            ใส่ในวันที่ {dayIndex + 1}
-          </span>
+          <span className="text-xs text-muted">ใส่ในวันที่ {dayIndex + 1}</span>
         }
       />
 
       <p className="mb-3 text-sm text-muted">
-        จาก {provinces.map((p) => p.name).join(" • ")}
+        จาก {provinceNames.join(" • ")}
+        {all ? ` · ${all.length} แห่ง` : ""}
       </p>
 
-      <div className="mb-3 flex gap-2 rounded-xl bg-line/50 p-1">
-        {(
-          [
-            ["places", `สถานที่ (${countPlaces})`],
-            ["activities", `🎯 กิจกรรม (${countActivities})`],
-          ] as Array<[Tab, string]>
-        ).map(([id, label]) => (
-          <button
-            key={id}
-            type="button"
-            onClick={() => {
-              setTab(id);
-              setExpanded(false);
-            }}
-            className={cn(
-              "min-h-10 flex-1 rounded-lg text-sm font-medium transition-colors",
-              tab === id ? "bg-card text-ink shadow-sm" : "text-muted",
-            )}
-          >
-            {label}
-          </button>
-        ))}
+      <div className="mb-3 flex flex-wrap gap-1.5">
+        {GROUPS.map((name) => {
+          const count = countFor(name);
+          return (
+            <button
+              key={name}
+              type="button"
+              onClick={() => {
+                setGroup(name);
+                setExpanded(false);
+              }}
+              aria-pressed={group === name}
+              disabled={all !== null && count === 0}
+              className={cn(
+                "min-h-9 rounded-full border px-3 text-xs transition-colors",
+                "disabled:cursor-not-allowed disabled:opacity-40",
+                group === name
+                  ? "border-pick bg-pick text-on-pick"
+                  : "border-line text-muted hover:text-ink",
+              )}
+            >
+              {name}
+              {all ? ` (${count})` : ""}
+            </button>
+          );
+        })}
       </div>
 
       <Input
@@ -193,98 +219,96 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
           setQuery(e.target.value);
           setExpanded(false);
         }}
-        placeholder="🔍 ค้นหา เช่น เดินป่า ล่องแก่ง ตลาด"
-        aria-label="ค้นหาสถานที่และกิจกรรมแนะนำ"
+        placeholder="🔍 ค้นหา เช่น เดินป่า ก๋วยเตี๋ยว ริมทะเล"
+        aria-label="ค้นหารายการแนะนำ"
         className="mb-3"
       />
 
-      {rows.length === 0 ? (
-        <p className="rounded-xl border border-dashed border-line px-3 py-4 text-center text-sm text-muted">
-          ไม่พบรายการที่ตรงกับ &ldquo;{query}&rdquo; ในจังหวัดที่เลือกไว้
+      {current === null ? (
+        <p className="text-sm text-muted">กำลังโหลด…</p>
+      ) : current.rows === null ? (
+        <p role="alert" className="text-sm text-danger">
+          ⚠️ โหลดข้อมูลไม่สำเร็จ — ตรวจอินเทอร์เน็ตแล้วลองใหม่
+        </p>
+      ) : filtered && filtered.length === 0 ? (
+        <p className="rounded-xl border border-dashed border-line px-3 py-4 text-center text-sm leading-relaxed text-muted">
+          ไม่พบรายการที่ตรงกับ &ldquo;{query}&rdquo; ในหมวด{group}
+          {" — "}ลองเปลี่ยนหมวดหรือลบคำค้นดู
         </p>
       ) : null}
 
       <ul className="space-y-2">
-        {tab === "places"
-          ? (visible as PlaceRow[]).map((row) => {
-              const added = planned.has(row.place.name);
-              return (
-                <li
-                  key={row.place.id}
-                  className="flex items-start gap-3 rounded-xl border border-line px-3 py-2.5"
+        {visible.map((row) => {
+          const added = planned.has(row.name);
+          return (
+            <li
+              key={row.key}
+              className="flex items-start gap-3 rounded-xl border border-line px-3 py-2.5"
+            >
+              {/* กิจกรรมไม่มีพิกัด จึงไม่มีรูปและไม่มีลิงก์แผนที่
+                  ใช้อิโมจิของกิจกรรมนั้นแทนเพื่อให้แถวไม่แหว่ง */}
+              {row.mapsUrl ? (
+                <PlaceThumb
+                  name={row.name}
+                  province={row.province}
+                  mapsUrl={row.mapsUrl}
+                  skipLookup={!row.notable}
+                  className="h-14 w-14"
+                />
+              ) : (
+                <span
+                  className="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl bg-canvas text-2xl"
+                  aria-hidden
                 >
-                  <span className="text-xl leading-none" aria-hidden>
-                    {row.place.emoji}
-                  </span>
-                  <div className="min-w-0 flex-1">
-                    <p className="text-sm font-medium">{row.place.name}</p>
-                    <p className="mt-0.5 text-xs text-muted">
-                      {row.province} • ⏱️ {formatDuration(row.place.durationMin)}{" "}
-                      • 🎟️{" "}
-                      {row.place.fee > 0 ? formatTHB(row.place.fee) : "ไม่มีค่าเข้า"}
-                    </p>
-                  </div>
-                  <Button
-                    size="sm"
-                    variant={added ? "secondary" : "primary"}
-                    disabled={added}
-                    onClick={() => addPlace(row)}
-                    className="shrink-0"
+                  {row.emoji}
+                </span>
+              )}
+
+              <div className="min-w-0 flex-1">
+                <p className="text-sm font-medium break-words">
+                  {row.notable ? "⭐ " : ""}
+                  {row.name}
+                </p>
+                <p className="mt-0.5 text-xs leading-relaxed text-muted">
+                  {row.hint}
+                </p>
+                <p className="mt-0.5 text-xs text-faint">
+                  {row.province}
+                  {row.district ? ` · อ.${row.district}` : ""}
+                </p>
+                {row.mapsUrl ? (
+                  <a
+                    href={row.mapsUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-1 inline-block text-xs text-brand underline underline-offset-2"
                   >
-                    {added ? "✓ อยู่ในแผน" : "➕ ใส่"}
-                  </Button>
-                </li>
-              );
-            })
-          : (visible as ActivityRow[]).map((row) => {
-              const added = planned.has(row.activity.name);
-              return (
-                <li
-                  key={row.activity.id}
-                  className="rounded-xl border border-line px-3 py-2.5"
-                >
-                  <div className="flex items-start gap-3">
-                    <span className="text-xl leading-none" aria-hidden>
-                      {row.activity.emoji}
-                    </span>
-                    <div className="min-w-0 flex-1">
-                      <p className="text-sm font-medium">{row.activity.name}</p>
-                      <p className="mt-0.5 text-xs leading-relaxed text-muted">
-                        {row.activity.description}
-                      </p>
-                      <div className="mt-1.5 flex flex-wrap gap-1.5">
-                        <Badge>{row.province}</Badge>
-                        <Badge className="bg-brand-soft text-brand">
-                          💵 {row.activity.price}
-                        </Badge>
-                        <Badge>⏱️ {row.activity.duration}</Badge>
-                      </div>
-                      <p className="mt-1.5 text-xs text-faint">
-                        🎒 {row.activity.prepare}
-                      </p>
-                    </div>
-                    <Button
-                      size="sm"
-                      variant={added ? "secondary" : "primary"}
-                      disabled={added}
-                      onClick={() => addActivity(row)}
-                      className="shrink-0"
-                    >
-                      {added ? "✓" : "➕ ใส่"}
-                    </Button>
-                  </div>
-                </li>
-              );
-            })}
+                    เปิดใน Google Maps
+                  </a>
+                ) : null}
+              </div>
+
+              <Button
+                size="sm"
+                variant={added ? "secondary" : "primary"}
+                disabled={added}
+                onClick={() => add(row)}
+                className="shrink-0"
+              >
+                {added ? "✓ อยู่ในแผน" : "➕ ใส่"}
+              </Button>
+            </li>
+          );
+        })}
       </ul>
 
-      {rows.length > 4 ? (
+      {filtered && filtered.length > PREVIEW ? (
         <button
           type="button"
           onClick={() => setExpanded((v) => !v)}
           className="mt-3 text-sm text-brand underline"
         >
-          {expanded ? "ย่อรายการ" : `ดูทั้งหมด ${rows.length} รายการ`}
+          {expanded ? "ย่อรายการ" : `ดูทั้งหมด ${filtered.length} รายการ`}
         </button>
       ) : null}
 

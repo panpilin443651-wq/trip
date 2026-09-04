@@ -19,7 +19,6 @@ import {
 } from "./ActivityForm";
 import { DayPlanCard } from "./DayPlanCard";
 import { DayTabs } from "./DayTabs";
-import { ProvinceRestaurants } from "./ProvinceRestaurants";
 import { TripSuggestions } from "./TripSuggestions";
 import { Button, Card, ConfirmDialog, EmptyState, SectionTitle } from "./ui";
 
@@ -171,8 +170,6 @@ export function ItineraryPlanner() {
       </Card>
 
       <TripSuggestions dayIndex={safeDayIndex} />
-
-      <ProvinceRestaurants dayIndex={safeDayIndex} />
 
       {form ? (
         <ActivityForm

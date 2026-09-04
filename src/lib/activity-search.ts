@@ -3,6 +3,7 @@ import {
   type SuggestedActivity,
   type SuggestedPlace,
 } from "@/data/provinces";
+import { parseDurationMin, parsePriceTHB } from "./activity-parse";
 import type { CategoryId } from "./types";
 
 /** ค่าที่จะเติมลงฟอร์มกิจกรรมเมื่อเลือกรายการที่ค้นเจอ */
@@ -56,10 +57,11 @@ export function activityFill(
     placeName: province,
     province,
     detail: `${activity.description}\n💵 ${activity.price}\n⏱️ ${activity.duration}\n🎒 ${activity.prepare}`,
-    // ข้อมูลแนะนำเก็บระยะเวลาเป็นข้อความ เช่น "ครึ่งวัน" แปลงเป็นนาทีไม่ได้
-    // จึงตั้ง 2 ชั่วโมงเป็นค่าเริ่มต้นให้ผู้ใช้ปรับเอง
-    durationMin: 120,
-    cost: 0,
+    // ข้อมูลแนะนำเก็บระยะเวลากับราคาเป็นข้อความที่เขียนให้คนอ่าน
+    // ("ครึ่งวัน–เต็มวัน", "150–400 บาท/คน") แปลงเป็นตัวเลขด้วย activity-parse
+    // ข้อความเดิมยังอยู่ใน detail ผู้ใช้จึงเห็นช่วงจริงและแก้เองได้
+    durationMin: parseDurationMin(activity.duration),
+    cost: parsePriceTHB(activity.price),
     category: "other",
   };
 }
