@@ -9,7 +9,7 @@ import { PlaceThumb } from "@/components/PlaceThumb";
 import { PROVINCE_BY_NAME } from "@/data/provinces";
 import { matchesQuery } from "@/lib/activity-search";
 import { cn } from "@/lib/cn";
-import { groupCount, rowsInScope } from "@/lib/district-groups";
+import { groupCounts, scopedRows } from "@/lib/district-groups";
 import { addMinutesToTime } from "@/lib/format";
 import {
   buildSuggestionRows,
@@ -52,8 +52,8 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
    * อำเภอที่เจาะไว้ในแพลนการเที่ยว — เฉพาะของจังหวัดที่การ์ดนี้กำลังแนะอยู่
    *
    * ถ้าไม่ได้เจาะอำเภอไว้เลยจะได้ null แปลว่าใช้ทั้งจังหวัดเหมือนเดิม
-   * ถ้าเจาะไว้แล้วหมวดไหนไม่มีของในอำเภอนั้น จะถอยไปทั้งจังหวัดให้เอง
-   * พร้อมบอกให้รู้ ไม่ปล่อยให้ปุ่มตายเหมือนที่เคยเจอกับการ์ดในแท็บแนะนำเที่ยว
+   * ถ้าเจาะไว้แล้วหมวดไหนไม่มีของในอำเภอนั้น จะขึ้นว่าว่างพร้อมปุ่มให้ขยาย
+   * ไปทั้งจังหวัดเอง ไม่ถอยให้เงียบ ๆ ผู้ใช้จะได้รู้ตลอดว่าดูขอบเขตไหนอยู่
    */
   const planDistricts = useMemo(() => {
     const picked: Record<string, string[]> = {};
@@ -64,8 +64,21 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     return picked;
   }, [provinceNames, trip.districts]);
 
-  const scope = useMemo(() => byPlanDistricts(planDistricts), [planDistricts]);
   const districtLabels = Object.values(planDistricts).flat();
+  /**
+   * ผู้ใช้กดขยายขอบเขตไปทั้งจังหวัดเองหรือยัง
+   *
+   * ผูกกับชุดอำเภอที่เจาะไว้ เพื่อให้กลับไปเป็นเฉพาะอำเภอเองเมื่อเปลี่ยนวัน
+   * หรือเปลี่ยนอำเภอในแพลน ไม่งั้นกดทีเดียวแล้วติดค้างยาวโดยไม่รู้ตัว
+   */
+  const [widened, setWidened] = useState("");
+  const districtKey = districtLabels.join("|");
+  const wholeProvince = districtKey !== "" && widened === districtKey;
+
+  const scope = useMemo(
+    () => (wholeProvince ? null : byPlanDistricts(planDistricts)),
+    [planDistricts, wholeProvince],
+  );
 
   const [group, setGroup] = useState<Group>("ทั้งหมด");
   const [query, setQuery] = useState("");
@@ -141,12 +154,12 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
    * เคยเจอปุ่มบอก 0 แต่กดไปมีรายการขึ้น ซึ่งอ่านแล้วงง
    */
   const countFor = (name: Group) =>
-    all ? groupCount(all, scope, name).count : 0;
+    all ? groupCounts(all, scope, name) : { scoped: 0, province: 0 };
 
   const filtered = useMemo(() => {
     if (!all) return null;
     const q = query.trim().toLowerCase();
-    return rowsInScope(all, scope, group).rows.filter((row) =>
+    return scopedRows(all, scope, group).filter((row) =>
       matchesQuery(row.haystack, q),
     );
   }, [all, scope, group, query]);
@@ -188,7 +201,6 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
     );
   }
 
-  const usingWholeProvince = all ? groupCount(all, scope, group).wide : false;
   const visible = filtered ? (expanded ? filtered : filtered.slice(0, PREVIEW)) : [];
 
   return (
@@ -210,7 +222,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
 
       <div className="mb-3 flex flex-wrap gap-1.5">
         {GROUPS.map((name) => {
-          const count = countFor(name);
+          const { scoped, province: inProvince } = countFor(name);
           return (
             <button
               key={name}
@@ -220,7 +232,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
                 setExpanded(false);
               }}
               aria-pressed={group === name}
-              disabled={all !== null && count === 0}
+              disabled={all !== null && inProvince === 0}
               className={cn(
                 "min-h-9 rounded-full border px-3 text-xs transition-colors",
                 "disabled:cursor-not-allowed disabled:opacity-40",
@@ -230,7 +242,7 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
               )}
             >
               {name}
-              {all ? ` (${count})` : ""}
+              {all ? ` (${scoped})` : ""}
             </button>
           );
         })}
@@ -247,10 +259,16 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
         className="mb-3"
       />
 
-      {usingWholeProvince ? (
-        <p className="mb-3 text-xs leading-relaxed text-muted">
-          อำเภอที่เลือกไว้ในแพลนไม่มี{group}ในฐานข้อมูล — กำลังแสดง{group}
-          ทั้งจังหวัดแทน
+      {wholeProvince ? (
+        <p className="mb-3 flex flex-wrap items-center gap-2 text-xs leading-relaxed text-muted">
+          กำลังแสดงทั้งจังหวัด
+          <button
+            type="button"
+            onClick={() => setWidened("")}
+            className="text-brand underline"
+          >
+            กลับไปเฉพาะอำเภอในแพลน
+          </button>
         </p>
       ) : null}
 
@@ -260,6 +278,27 @@ export function TripSuggestions({ dayIndex }: { dayIndex: number }) {
         <p role="alert" className="text-sm text-danger">
           ⚠️ โหลดข้อมูลไม่สำเร็จ — ตรวจอินเทอร์เน็ตแล้วลองใหม่
         </p>
+      ) : filtered &&
+        filtered.length === 0 &&
+        !query.trim() &&
+        !wholeProvince &&
+        districtKey !== "" &&
+        countFor(group).province > 0 ? (
+        <div className="rounded-xl border border-dashed border-line px-3 py-4 text-center">
+          <p className="text-sm leading-relaxed text-muted">
+            ไม่มี{group}ในอำเภอที่เจาะไว้ในแพลน
+            <br />
+            แต่ทั้งจังหวัดมี {countFor(group).province} แห่ง
+          </p>
+          <Button
+            size="sm"
+            variant="secondary"
+            className="mt-3"
+            onClick={() => setWidened(districtKey)}
+          >
+            ดู{group}ทั้งจังหวัด
+          </Button>
+        </div>
       ) : filtered && filtered.length === 0 ? (
         <p className="rounded-xl border border-dashed border-line px-3 py-4 text-center text-sm leading-relaxed text-muted">
           ไม่พบรายการที่ตรงกับ &ldquo;{query}&rdquo; ในหมวด{group}

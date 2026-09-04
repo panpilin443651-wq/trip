@@ -1,11 +1,13 @@
 /**
- * ทดสอบปุ่มกรองหมวดในการ์ด "วัด ร้านดัง ที่พัก"
+ * ทดสอบการกรองตามหมวดและขอบเขตที่แคบกว่าจังหวัด
  *
  * ใช้: node --experimental-strip-types --import ./scripts/alias-hooks.mjs scripts/test-district-groups.mts
  *
- * เดิมพอเลือกอำเภอแล้วปุ่มส่วนใหญ่กดไม่ได้ เพราะชุดข้อมูลจำกัดจำนวนต่อจังหวัด
- * พอหารลงอำเภอจึงเหลือหมวดละศูนย์ ปุ่ม "วัด" ตาย 78% "โรงแรม" ตาย 76%
- * เทสต์นี้กันไม่ให้กลับไปเป็นแบบนั้นอีกโดยไม่มีใครรู้
+ * เคยถอยไปทั้งจังหวัดให้อัตโนมัติเมื่ออำเภอที่เลือกไม่มีของในหมวดนั้น
+ * เพราะกลัวปุ่มกรองตาย แต่ผลคือผู้ใช้เลือกอำเภอแล้วยังได้รายการทั้งจังหวัด
+ * เกือบทุกครั้ง (วัด 78% โรงแรม 76%) จนรู้สึกว่าเลือกอำเภอไปก็ไม่มีผลอะไร
+ *
+ * ตอนนี้กรองตามที่เลือกจริง ๆ เทสต์นี้กันไม่ให้กลับไปถอยเองเงียบ ๆ อีก
  */
 import { OSM_HOTELS } from "@/data/osm-hotels";
 import { OSM_PLACES } from "@/data/osm-places";
@@ -13,8 +15,8 @@ import { OSM_RESTAURANTS } from "@/data/osm-restaurants";
 import {
   ALL_GROUPS,
   byDistrict,
-  groupCount,
-  rowsInScope,
+  groupCounts,
+  scopedRows,
   type GroupedRow,
 } from "@/lib/district-groups";
 
@@ -38,49 +40,46 @@ const GROUPS = ["วัด", "ที่เที่ยว", "คาเฟ่", "
 console.log("\nยังไม่เลือกอำเภอ — ดูทั้งจังหวัด");
 {
   const all = [row("ก", "เมือง", "วัด"), row("ข", "ชะอำ", "คาเฟ่")];
-  const r = rowsInScope(all, byDistrict<Row>(""), ALL_GROUPS);
-  check("ได้ทุกแถว", r.rows.length === 2);
-  check("ไม่บอกว่าถอยไปทั้งจังหวัด", !r.wholeProvince);
-  check("กรองหมวดได้", rowsInScope(all, byDistrict<Row>(""), "วัด").rows.length === 1);
+  check("ได้ทุกแถว", scopedRows(all, byDistrict<Row>(""), ALL_GROUPS).length === 2);
+  check("กรองหมวดได้", scopedRows(all, byDistrict<Row>(""), "วัด").length === 1);
 }
 
-console.log("\nเลือกอำเภอที่มีของในหมวดนั้น");
+console.log("\nเลือกอำเภอแล้วต้องกรองจริง");
 {
   const all = [
     row("วัดในเมือง", "เมือง", "วัด"),
     row("วัดที่ชะอำ", "ชะอำ", "วัด"),
     row("คาเฟ่ชะอำ", "ชะอำ", "คาเฟ่"),
   ];
-  const r = rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด");
-  check("ได้เฉพาะของอำเภอนั้น", r.rows.length === 1 && r.rows[0].name === "วัดที่ชะอำ");
-  check("ไม่ถอยไปทั้งจังหวัด", !r.wholeProvince);
-  check("นับตรงกับที่จะได้เห็น", groupCount(all, byDistrict<Row>("ชะอำ"), "วัด").count === 1);
-  check("ไม่ติดป้ายทั้งจังหวัด", !groupCount(all, byDistrict<Row>("ชะอำ"), "วัด").wide);
+  const rows = scopedRows(all, byDistrict<Row>("ชะอำ"), "วัด");
+  check("ได้เฉพาะของอำเภอนั้น", rows.length === 1 && rows[0].name === "วัดที่ชะอำ");
+
+  const c = groupCounts(all, byDistrict<Row>("ชะอำ"), "วัด");
+  check("นับในขอบเขตได้ถูก", c.scoped === 1);
+  check("และรู้จำนวนทั้งจังหวัดด้วย", c.province === 2);
 }
 
-console.log("\nเลือกอำเภอที่ไม่มีของในหมวดนั้น — ต้องถอยไปทั้งจังหวัด");
+console.log("\nอำเภอที่เลือกไม่มีของในหมวดนั้น — ต้องว่าง ไม่ใช่ถอยเอง");
 {
   const all = [
     row("วัดในเมือง", "เมือง", "วัด"),
     row("คาเฟ่ชะอำ", "ชะอำ", "คาเฟ่"),
   ];
-  const r = rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด");
-  check("ยังได้รายการมาแสดง ไม่ใช่หน้าจอว่าง", r.rows.length === 1);
-  check("บอกว่ากำลังดูทั้งจังหวัด", r.wholeProvince);
+  // นี่คือหัวใจของการแก้รอบนี้ — เดิมคืนวัดของทั้งจังหวัดมาให้เงียบ ๆ
+  check("ไม่ถอยไปทั้งจังหวัดเอง", scopedRows(all, byDistrict<Row>("ชะอำ"), "วัด").length === 0);
 
-  const c = groupCount(all, byDistrict<Row>("ชะอำ"), "วัด");
-  // ปุ่มต้องไม่บอกว่า 0 แล้วกดไปเจอรายการ
-  check("ปุ่มบอกจำนวนที่จะได้เห็นจริง", c.count === 1 && c.wide);
+  const c = groupCounts(all, byDistrict<Row>("ชะอำ"), "วัด");
+  check("ปุ่มบอก 0 ตามความจริง", c.scoped === 0);
+  // หน้าจอใช้เลขนี้ตัดสินว่าควรเสนอปุ่ม "ดูทั้งจังหวัด" ไหม
+  check("แต่บอกด้วยว่าทั้งจังหวัดมี 1 แห่ง", c.province === 1);
 }
 
 console.log("\nไม่มีของในหมวดนั้นเลยทั้งจังหวัด");
 {
   const all = [row("คาเฟ่ชะอำ", "ชะอำ", "คาเฟ่")];
-  const r = rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด");
-  check("ได้รายการว่าง", r.rows.length === 0);
-  // ทั้งจังหวัดก็ว่าง บอกว่า "แสดงทั้งจังหวัดแทน" ไปก็สับสนเปล่า ๆ
-  check("ไม่ขึ้นหมายเหตุว่าถอยไปทั้งจังหวัด", !r.wholeProvince);
-  check("ปุ่มนับเป็น 0 (กดไม่ได้ถูกแล้ว)", groupCount(all, byDistrict<Row>("ชะอำ"), "วัด").count === 0);
+  const c = groupCounts(all, byDistrict<Row>("ชะอำ"), "วัด");
+  // ทั้งจังหวัดก็ไม่มี เสนอให้ขยายขอบเขตไปก็เก้อ หน้าจอจึงปิดปุ่มนั้นได้เลย
+  check("ทั้งสองเลขเป็น 0", c.scoped === 0 && c.province === 0);
 }
 
 console.log("\nแถวที่ไม่รู้อำเภอ");
@@ -88,9 +87,9 @@ console.log("\nแถวที่ไม่รู้อำเภอ");
   const all = [row("ไม่รู้อำเภอ", "", "วัด"), row("วัดชะอำ", "ชะอำ", "วัด")];
   check(
     "ไม่ถูกนับเข้าอำเภอใดอำเภอหนึ่ง",
-    rowsInScope(all, byDistrict<Row>("ชะอำ"), "วัด").rows.length === 1,
+    scopedRows(all, byDistrict<Row>("ชะอำ"), "วัด").length === 1,
   );
-  check("แต่ยังเห็นตอนดูทั้งจังหวัด", rowsInScope(all, byDistrict<Row>(""), "วัด").rows.length === 2);
+  check("แต่ยังเห็นตอนดูทั้งจังหวัด", scopedRows(all, byDistrict<Row>(""), "วัด").length === 2);
 }
 
 console.log("\nวัดกับข้อมูลจริงทั้งประเทศ");
@@ -114,12 +113,10 @@ console.log("\nวัดกับข้อมูลจริงทั้งป�
   ];
 
   let buttons = 0;
-  let dead = 0;
-  let deadTemple = 0;
-  let deadHotel = 0;
-  let templeButtons = 0;
-  let hotelButtons = 0;
   let lying = 0;
+  let leaked = 0;
+  let canWiden = 0;
+  let trulyEmpty = 0;
 
   for (const prov of Object.keys(OSM_PLACES)) {
     const all = rowsOf(prov);
@@ -127,36 +124,26 @@ console.log("\nวัดกับข้อมูลจริงทั้งป�
     for (const d of districts) {
       for (const g of GROUPS) {
         buttons += 1;
-        const { count, wide } = groupCount(all, byDistrict<RealRow>(d), g);
-        const shown = rowsInScope(all, byDistrict<RealRow>(d), g).rows.length;
+        const narrow = byDistrict<RealRow>(d);
+        const rows = scopedRows(all, narrow, g);
+        const c = groupCounts(all, narrow, g);
         // ตัวเลขบนปุ่มต้องเท่ากับจำนวนที่กดแล้วได้เห็นจริงเสมอ
-        if (count !== shown) lying += 1;
-        if (count === 0) {
-          dead += 1;
-          if (g === "วัด") deadTemple += 1;
-          if (g === "โรงแรม") deadHotel += 1;
-        }
-        if (g === "วัด") templeButtons += 1;
-        if (g === "โรงแรม") hotelButtons += 1;
-        if (wide && shown === 0) lying += 1;
+        if (c.scoped !== rows.length) lying += 1;
+        // ทุกแถวต้องอยู่ในอำเภอที่เลือกจริง ๆ ไม่มีของอำเภออื่นหลุดมา
+        if (rows.some((r) => r.district !== d)) leaked += 1;
+        if (c.scoped === 0 && c.province > 0) canWiden += 1;
+        if (c.scoped === 0 && c.province === 0) trulyEmpty += 1;
       }
     }
   }
 
-  const pct = (n: number, of: number) => (n / of) * 100;
+  const pct = (n: number) => ((n / buttons) * 100).toFixed(1) + "%";
   check(`ตัวเลขบนปุ่มตรงกับรายการที่ได้เห็นทุกปุ่ม (${buttons} ปุ่ม)`, lying === 0, `ผิด ${lying}`);
-  check(
-    `ปุ่มที่กดไม่ได้เหลือน้อยกว่า 15% (${pct(dead, buttons).toFixed(1)}%)`,
-    pct(dead, buttons) < 15,
-  );
-  check(
-    `ปุ่ม "วัด" ที่กดไม่ได้เหลือน้อยกว่า 25% (เดิม 78%, ตอนนี้ ${pct(deadTemple, templeButtons).toFixed(1)}%)`,
-    pct(deadTemple, templeButtons) < 25,
-  );
-  check(
-    `ปุ่ม "โรงแรม" ที่กดไม่ได้เหลือน้อยกว่า 10% (เดิม 76%, ตอนนี้ ${pct(deadHotel, hotelButtons).toFixed(1)}%)`,
-    pct(deadHotel, hotelButtons) < 10,
-  );
+  check("ไม่มีรายการของอำเภออื่นหลุดเข้ามาเลย", leaked === 0, `หลุด ${leaked} ปุ่ม`);
+  console.log(`    หมวดที่ว่างแต่ขยายไปทั้งจังหวัดได้ ${canWiden} ปุ่ม (${pct(canWiden)})`);
+  console.log(`    หมวดที่ไม่มีของเลยทั้งจังหวัด ${trulyEmpty} ปุ่ม (${pct(trulyEmpty)})`);
+  // ส่วนใหญ่ของปุ่มที่ว่างมีทางออกให้ผู้ใช้กดขยายเอง ไม่ใช่ทางตัน
+  check("ปุ่มที่ว่างส่วนใหญ่ยังขยายไปทั้งจังหวัดได้", canWiden > trulyEmpty);
 }
 
 console.log(`\nผ่าน ${pass} · ไม่ผ่าน ${fail}\n`);

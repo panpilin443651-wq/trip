@@ -4,7 +4,7 @@ import { useEffect, useMemo, useState } from "react";
 import type { OsmPlace } from "@/data/osm-places";
 import type { HotelHit } from "@/app/api/hotels/route";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
-import { byDistrict, groupCount, rowsInScope } from "@/lib/district-groups";
+import { byDistrict, groupCounts, scopedRows } from "@/lib/district-groups";
 import { addMinutesToTime } from "@/lib/format";
 import { PlaceThumb } from "@/components/PlaceThumb";
 import { googleMapsUrl } from "@/lib/place-search";
@@ -87,6 +87,13 @@ export function DistrictPicks({
 
   const [group, setGroup] = useState<Group>("ทั้งหมด");
   const [showAll, setShowAll] = useState(false);
+  /**
+   * ผู้ใช้กดขยายขอบเขตไปทั้งจังหวัดเองหรือยัง
+   *
+   * ผูกไว้กับอำเภอที่ขอ เพื่อให้กลับไปเป็นเฉพาะอำเภอเองเมื่อเปลี่ยนอำเภอ
+   * ไม่งั้นกดขยายทีเดียวแล้วติดค้างยาวโดยที่ผู้ใช้ไม่รู้ตัว
+   */
+  const [widened, setWidened] = useState("");
   const [added, setAdded] = useState<Set<string>>(new Set());
 
   useEffect(() => {
@@ -180,15 +187,20 @@ export function DistrictPicks({
     [all, district],
   );
 
-  const scope = byDistrict<Row>(district);
-  const countFor = (name: Group) =>
-    all ? groupCount(all, scope, name) : { count: 0, wide: false };
+  // ขยายแล้วก็ไม่จำกัดขอบเขต ไม่งั้นกรองตามอำเภอที่เลือกตรง ๆ
+  const wholeProvince = widened === district && district !== "";
+  const scope = wholeProvince ? null : byDistrict<Row>(district);
 
-  const usingWholeProvince = countFor(group).wide;
+  const countFor = (name: Group) =>
+    all ? groupCounts(all, scope, name) : { scoped: 0, province: 0 };
 
   const filtered = useMemo(() => {
     if (!all) return null;
-    const rows = rowsInScope(all, byDistrict<Row>(district), group).rows;
+    const rows = scopedRows(
+      all,
+      widened === district && district !== "" ? null : byDistrict<Row>(district),
+      group,
+    );
     const q = query.trim().toLowerCase();
     return rows
       .filter(
@@ -198,7 +210,7 @@ export function DistrictPicks({
           row.hint.toLowerCase().includes(q),
       )
       .sort((a, b) => Number(b.notable) - Number(a.notable));
-  }, [all, district, group, query]);
+  }, [all, district, widened, group, query]);
 
   /** ต่อท้ายกิจกรรมสุดท้ายของวัน เผื่อเวลาเดินทาง 30 นาที */
   function nextStartTime(): string {
@@ -257,7 +269,7 @@ export function DistrictPicks({
 
       <div className="mb-3 flex flex-wrap gap-1.5">
         {GROUPS.map((name) => {
-          const { count, wide } = countFor(name);
+          const { scoped, province: inProvince } = countFor(name);
           return (
             <button
               key={name}
@@ -267,7 +279,7 @@ export function DistrictPicks({
                 setShowAll(false);
               }}
               aria-pressed={group === name}
-              disabled={all !== null && count === 0}
+              disabled={all !== null && inProvince === 0}
               className={cn(
                 "min-h-9 rounded-full border px-3 text-xs transition-colors",
                 "disabled:cursor-not-allowed disabled:opacity-40",
@@ -277,16 +289,22 @@ export function DistrictPicks({
               )}
             >
               {name}
-              {all ? ` (${count}${wide ? " ทั้งจังหวัด" : ""})` : ""}
+              {all ? ` (${scoped})` : ""}
             </button>
           );
         })}
       </div>
 
-      {usingWholeProvince ? (
-        <p className="mb-3 text-xs leading-relaxed text-muted">
-          อำเภอ{district}ไม่มี{group}ในฐานข้อมูล — กำลังแสดง{group}ทั้งจังหวัด
-          {province}แทน
+      {wholeProvince ? (
+        <p className="mb-3 flex flex-wrap items-center gap-2 text-xs leading-relaxed text-muted">
+          กำลังแสดงทั้งจังหวัด{province}
+          <button
+            type="button"
+            onClick={() => setWidened("")}
+            className="text-brand underline"
+          >
+            กลับไปเฉพาะ อ.{district}
+          </button>
         </p>
       ) : null}
 
@@ -301,6 +319,27 @@ export function DistrictPicks({
           ยังไม่มีข้อมูลของ{where}ใน OpenStreetMap — อำเภอที่คนลงข้อมูลไว้น้อย
           จะเป็นแบบนี้ ลองเลือกดูทั้งจังหวัดแทน
         </p>
+      ) : filtered &&
+        filtered.length === 0 &&
+        !query.trim() &&
+        !wholeProvince &&
+        district &&
+        countFor(group).province > 0 ? (
+        <div className="rounded-xl border border-dashed border-line px-3 py-4 text-center">
+          <p className="text-sm leading-relaxed text-muted">
+            ไม่มี{group}ใน อ.{district} ในฐานข้อมูล
+            <br />
+            แต่ทั้งจังหวัด{province}มี {countFor(group).province} แห่ง
+          </p>
+          <Button
+            size="sm"
+            variant="secondary"
+            className="mt-3"
+            onClick={() => setWidened(district)}
+          >
+            ดู{group}ทั้งจังหวัด
+          </Button>
+        </div>
       ) : filtered && filtered.length === 0 ? (
         <p className="text-sm leading-relaxed text-muted">
           ไม่พบที่ตรงกับ &ldquo;{query}&rdquo; ใน{where} —
