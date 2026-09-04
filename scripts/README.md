@@ -174,3 +174,30 @@ node scripts/validate-restaurants.js
 
 ย้ายแล้วต้องเช็กชื่อซ้ำที่ปลายทางด้วย เพราะการตัดซ้ำตอน `build-attractions.js`
 ทำไว้กับจังหวัดเดิม (เจอจริง 2 จุด — ตลาดโต้รุ่งหัวหิน กับ วัดขุนอินทประมูล)
+
+## ชุดสร้างรายการโรงแรม/รีสอร์ต
+
+```bash
+node scripts/fetch-province-boundaries.js boundaries.json
+node scripts/fetch-hotels.js hotels.json
+node scripts/build-hotels.js hotels.json boundaries.json
+node scripts/fetch-district-boundaries.js district-boundaries.json
+node scripts/fill-osm-districts.js district-boundaries.json
+node scripts/validate-hotels.js
+```
+
+วิธีเหมือนชุดร้านอาหารทุกอย่าง คัดเฉพาะที่พักที่มีร่องรอยว่ามีตัวตนจริงจัง
+(มีเว็บ เบอร์โทร จำนวนดาว หรือมีคนเขียนถึงใน Wikipedia) ได้ 845 แห่ง
+ใน 71 จังหวัด
+
+**สองอย่างที่ต้องรู้ถ้าจะแก้สคริปต์**
+
+1. **แท็ก `tourism=resort` แทบไม่มีใครใช้ในไทย** — ลองแล้วภูเก็ตกับเชียงใหม่
+   ได้ 0 แห่ง ที่พักที่คนเรียกว่ารีสอร์ตถูกแท็กเป็น `hotel` แล้วใส่คำว่า
+   "รีสอร์ท" ไว้ในชื่อ จึงต้องดูชื่อประกอบด้วย ไม่งั้นปุ่มกรอง "รีสอร์ต"
+   จะว่างเปล่า (แก้แล้วภูเก็ตได้รีสอร์ต 12 จาก 25)
+2. **มีคนแท็กเขตปกครองไว้เป็นที่พัก** — เจอ "อำเภอแก่งกระจาน" เป็น
+   `tourism=hotel` จึงต้องกรองชื่อที่ขึ้นต้นด้วย อำเภอ/ตำบล/จังหวัด/เขต ออก
+
+ไม่เก็บราคา เพราะ OSM ไม่มี และราคาที่พักเปลี่ยนตามวันจนเก็บไว้ไม่มีความหมาย
+ทุกแถวจึงมีลิงก์ไป Google Maps ให้ไปดูราคาและรีวิวต่อ

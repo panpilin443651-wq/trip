@@ -88,6 +88,12 @@ const TARGETS = [
     interfaceField: `  /** มีหน้า Wikipedia หรือ Wikidata */
   notable: boolean;`,
   },
+  {
+    // build-hotels.js ใส่ฟิลด์ district ไว้ให้แล้ว (ค่าว่าง) จึงไม่ต้องแทรกใน interface
+    file: "src/data/osm-hotels.ts",
+    marker: "export const OSM_HOTELS: Record<string, OsmHotel[]> = ",
+    interfaceField: null,
+  },
 ];
 
 const DISTRICT_DOC = `  /**
@@ -185,7 +191,7 @@ const DISTRICT_DOC = `  /**
 
     // ใส่ฟิลด์ลงในตัว interface ด้วย ถ้ายังไม่มี
     let out = text.slice(0, jsonStart);
-    if (!out.includes("district: string;")) {
+    if (target.interfaceField && !out.includes("district: string;")) {
       out = out.replace(
         target.interfaceField,
         `${target.interfaceField}\n${DISTRICT_DOC}`,

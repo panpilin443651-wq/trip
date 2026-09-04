@@ -2,6 +2,7 @@
 
 import { useEffect, useMemo, useState } from "react";
 import type { OsmPlace } from "@/data/osm-places";
+import type { HotelHit } from "@/app/api/hotels/route";
 import type { RestaurantHit } from "@/app/api/restaurants/route";
 import { addMinutesToTime } from "@/lib/format";
 import { PlaceThumb } from "@/components/PlaceThumb";
@@ -11,6 +12,12 @@ import { Badge, Button, Card, SectionTitle, cn } from "./ui";
 
 /** จำนวนที่โชว์ก่อนกด "ดูเพิ่ม" */
 const PREVIEW = 10;
+
+/**
+ * หมวดที่เป็นที่พัก — ลงงบหมวด "ที่พัก" และเผื่อเวลาไว้ 12 ชั่วโมง
+ * เพราะเช็กอินแล้วนอนข้ามคืน ไม่ใช่แวะชั่วโมงเดียวเหมือนที่เที่ยว
+ */
+const STAY = new Set(["โรงแรม", "รีสอร์ต"]);
 
 type Row = {
   key: string;
@@ -22,14 +29,22 @@ type Row = {
   lng: number;
   notable: boolean;
   /** หมวดสำหรับปุ่มกรอง */
-  group: "วัด" | "ที่เที่ยว" | "คาเฟ่" | "ร้านอาหาร";
+  group: "วัด" | "ที่เที่ยว" | "คาเฟ่" | "ร้านอาหาร" | "โรงแรม" | "รีสอร์ต";
 };
 
-const GROUPS = ["ทั้งหมด", "วัด", "ที่เที่ยว", "คาเฟ่", "ร้านอาหาร"] as const;
+const GROUPS = [
+  "ทั้งหมด",
+  "วัด",
+  "ที่เที่ยว",
+  "คาเฟ่",
+  "ร้านอาหาร",
+  "โรงแรม",
+  "รีสอร์ต",
+] as const;
 type Group = (typeof GROUPS)[number];
 
 /**
- * ที่เที่ยว วัด คาเฟ่ และร้านอาหารของอำเภอที่เลือก จาก OpenStreetMap
+ * ที่เที่ยว วัด คาเฟ่ ร้านอาหาร และที่พักของอำเภอที่เลือก จาก OpenStreetMap
  *
  * เสริมจากรายการที่คัดไว้เอง ซึ่งมีแค่จังหวัดละ 4-8 แห่ง ชุดนี้มีหลักพัน
  * แต่ไม่มีคำอธิบายหรือค่าเข้า เพราะ OSM ไม่ได้เก็บไว้ จึงพาไปดูรูปกับรีวิวต่อ
@@ -85,8 +100,12 @@ export function DistrictPicks({
       fetch(`/api/restaurants?${qs}`, {
         signal: AbortSignal.timeout(15000),
       }).then((r) => (r.ok ? r.json() : Promise.reject(new Error("food")))),
+      fetch(`/api/hotels?${qs}`, {
+        signal: AbortSignal.timeout(15000),
+      }).then((r) => (r.ok ? r.json() : Promise.reject(new Error("stay")))),
     ])
-      .then(([places, food]: [OsmPlace[], RestaurantHit[]]) => {
+      .then(
+        ([places, food, stay]: [OsmPlace[], RestaurantHit[], HotelHit[]]) => {
         if (cancelled) return;
         const rows: Row[] = [
           ...places.map((p) => ({
@@ -110,6 +129,19 @@ export function DistrictPicks({
             lng: f.lng,
             notable: f.notable,
             group: (f.kind === "คาเฟ่" ? "คาเฟ่" : "ร้านอาหาร") as Row["group"],
+          })),
+          ...stay.map((h) => ({
+            key: `h-${h.id}`,
+            name: h.name,
+            emoji: h.kind === "รีสอร์ต" ? "🏝️" : "🏨",
+            kind: h.kind,
+            // ดาวของโรงแรมคือระดับที่พัก คนละเรื่องกับ ⭐ ที่แปลว่ามีคนเขียนถึง
+            // จึงเขียนเป็นคำ ไม่ใช้สัญลักษณ์ดาว จะได้ไม่อ่านสลับกัน
+            hint: h.stars > 0 ? `ระดับ ${h.stars} ดาว` : h.kind,
+            lat: h.lat,
+            lng: h.lng,
+            notable: h.notable,
+            group: (h.kind === "รีสอร์ต" ? "รีสอร์ต" : "โรงแรม") as Row["group"],
           })),
         ];
         setResult({ key: wanted, rows });
@@ -153,14 +185,19 @@ export function DistrictPicks({
       activity: {
         dayIndex,
         startTime: nextStartTime(),
-        durationMin: row.group === "คาเฟ่" || row.group === "ร้านอาหาร" ? 60 : 90,
+        durationMin: STAY.has(row.group)
+          ? 720
+          : row.group === "คาเฟ่" || row.group === "ร้านอาหาร"
+            ? 60
+            : 90,
         title: row.name,
         placeName: `${row.name} ${province}`,
         province,
         detail: `${row.kind}${row.hint && row.hint !== row.kind ? ` • ${row.hint}` : ""}`,
         cost: 0,
-        category:
-          row.group === "คาเฟ่" || row.group === "ร้านอาหาร"
+        category: STAY.has(row.group)
+          ? "accommodation"
+          : row.group === "คาเฟ่" || row.group === "ร้านอาหาร"
             ? "food"
             : "attraction",
         lat: row.lat,
@@ -177,7 +214,7 @@ export function DistrictPicks({
   return (
     <Card as="section" className="mt-4">
       <SectionTitle
-        title={`วัด คาเฟ่ ร้านดัง ใน${where}`}
+        title={`วัด ร้านดัง ที่พัก ใน${where}`}
         action={
           all ? (
             <span className="text-xs text-muted">
